@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<title>NormWise — Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html,body{background-color:#070c18 !important;min-height:100svh}
+:root{--blue:#1a3fa8;--red:#c0392b;--red-glow:rgba(192,57,43,.35);--ink:#070c18;--surface:#111827;--surface2:#161e30;--muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;-webkit-text-size-adjust:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(7,12,24,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
+.nav-wordmark span{color:var(--red)}
+.nav-back{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted2);text-decoration:none;border:1px solid var(--border2);padding:7px 16px;border-radius:6px;transition:all .2s}
+.nav-back:hover{border-color:var(--blue);color:#fff}
+.page{max-width:880px;margin:0 auto;padding:100px 32px 80px;position:relative;z-index:1}
+.page-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.page-chip::before{content:'//';color:var(--muted)}
+.page-title{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-2px;margin-bottom:12px}
+.page-sub{font-size:16px;color:var(--muted2);line-height:1.7;margin-bottom:48px;max-width:580px}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.support-panel{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.panel-header{background:var(--surface2);padding:16px 20px;border-bottom:1px solid var(--border)}
+.panel-chip{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.12em;margin-bottom:6px}
+.panel-header h3{font-size:16px;font-weight:600}
+.panel-header p{font-size:13px;color:var(--muted2);margin-top:4px}
+/* AI CHAT */
+.ai-messages{padding:16px;min-height:280px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.ai-msg{display:flex;gap:8px;align-items:flex-start;animation:msgIn .3s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-avatar{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.ai-avatar.bot{background:var(--blue)}.ai-avatar.user{background:var(--red)}
+.ai-bubble{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;font-size:13px;color:var(--muted2);line-height:1.65;max-width:85%}
+.ai-msg.user .ai-bubble{background:rgba(192,57,43,.1);border-color:rgba(192,57,43,.2);color:#fff}
+.typing-dots{display:flex;gap:3px;align-items:center;padding:4px 0}
+.typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:bounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.ai-input-area{padding:12px 14px;border-top:1px solid var(--border);display:flex;gap:8px}
+.ai-input{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:7px;padding:10px 13px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#fff;outline:none;transition:border-color .2s}
+.ai-input::placeholder{color:var(--muted)}
+.ai-input:focus{border-color:rgba(26,63,168,.4)}
+.ai-send{background:var(--red);border:none;border-radius:7px;padding:10px 14px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s}
+.ai-send:hover{background:#a93226}
+/* CONTACT FORM */
+.contact-form{padding:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:7px;padding:11px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:#fff;outline:none;transition:border-color .2s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(26,63,168,.4)}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-group textarea{resize:vertical;min-height:100px}
+.btn-submit{width:100%;background:var(--red);border:none;border-radius:8px;padding:13px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#fff;cursor:pointer;box-shadow:0 0 20px var(--red-glow);transition:all .2s}
+.btn-submit:hover{background:#a93226}
+.success-msg{background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.3);border-radius:8px;padding:14px;text-align:center;font-size:14px;color:#4ade80;display:none;margin-top:12px}
+/* RESPONSE TIMES */
+.response-times{margin-top:32px}
+.rt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.rt-card{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:18px 16px;text-align:center}
+.rt-plan{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em;margin-bottom:8px}
+.rt-time{font-size:22px;font-weight:700;letter-spacing:-1px;margin-bottom:4px}
+.rt-desc{font-size:12px;color:var(--muted)}
+footer{background:var(--ink);border-top:1px solid var(--border2);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+footer span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+footer a{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none}
+footer a:hover{color:#fff}
+.footer-links{display:flex;gap:20px}
+@media(max-width:700px){nav{padding:0 20px}.page{padding:90px 20px 60px}.support-grid{grid-template-columns:1fr}.rt-grid{grid-template-columns:1fr 1fr}footer{padding:24px 20px;flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="26" height="26" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
+    <span class="nav-wordmark">Norm<span>Wise</span></span>
+  </a>
+  <a href="index.html" class="nav-back">← back_to_home</a>
+</nav>
+
+<div class="page">
+  <div class="page-chip">support</div>
+  <h1 class="page-title" id="support-title">How can we help?</h1>
+  <p class="page-sub" id="support-sub">Get instant answers from our AI support agent — or send us a message and we'll reply within your plan's response time.</p>
+
+  <div class="support-grid">
+
+    <!-- AI SUPPORT AGENT -->
+    <div class="support-panel">
+      <div class="panel-header">
+        <div class="panel-chip">// ai_support_agent</div>
+        <h3 id="ai-panel-title">NormWise Support AI</h3>
+        <p id="ai-panel-sub">Instant answers — available 24/7 in EN/DE/FR</p>
+      </div>
+      <div class="ai-messages" id="ai-messages">
+        <div class="ai-msg">
+          <div class="ai-avatar bot">N</div>
+          <div class="ai-bubble" id="ai-welcome">Hi! I'm the NormWise support assistant. I can help with account questions, billing, plan features, and how to use NormWise. What do you need help with?</div>
+        </div>
+      </div>
+      <div class="ai-input-area">
+        <input class="ai-input" id="ai-input" placeholder="Ask a support question..." onkeydown="if(event.key==='Enter')sendSupport()"/>
+        <button class="ai-send" onclick="sendSupport()" id="ai-send-btn">→</button>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="support-panel">
+      <div class="panel-header">
+        <div class="panel-chip">// contact_form</div>
+        <h3 id="contact-panel-title">Send us a message</h3>
+        <p id="contact-panel-sub">For billing, technical issues, or anything complex</p>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label id="label-name">Your Name</label>
+          <input type="text" id="contact-name" placeholder="Alina Brunen"/>
+        </div>
+        <div class="form-group">
+          <label id="label-email">Email Address</label>
+          <input type="email" id="contact-email" placeholder="you@company.com"/>
+        </div>
+        <div class="form-group">
+          <label id="label-subject">Subject</label>
+          <select id="contact-subject">
+            <option value="billing">Billing / Payment</option>
+            <option value="technical">Technical Issue</option>
+            <option value="account">Account / Access</option>
+            <option value="feature">Feature Request</option>
+            <option value="enterprise">Enterprise Inquiry</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label id="label-message">Message</label>
+          <textarea id="contact-message" placeholder="Describe your issue or question..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="sendContact()" id="contact-btn">
+          <span id="contact-btn-text">Send Message</span>
+        </button>
+        <div class="success-msg" id="contact-success">
+          ✅ Message sent! We'll reply to your email within your plan's response time.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSE TIMES -->
+  <div class="response-times">
+    <div class="page-chip" style="margin-bottom:12px">response_times</div>
+    <h2 style="font-size:24px;font-weight:700;letter-spacing:-1px;margin-bottom:8px" id="rt-title">Response times by plan</h2>
+    <div class="rt-grid">
+      <div class="rt-card"><div class="rt-plan">DEMO</div><div class="rt-time">—</div><div class="rt-desc">AI support only</div></div>
+      <div class="rt-card"><div class="rt-plan">STARTER</div><div class="rt-time">48h</div><div class="rt-desc">Business days</div></div>
+      <div class="rt-card"><div class="rt-plan">PROFESSIONAL</div><div class="rt-time">24h</div><div class="rt-desc">Business days</div></div>
+      <div class="rt-card"><div class="rt-plan">EXPERT</div><div class="rt-time">Same day</div><div class="rt-desc">Business hours</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 NormWise · hello@normwise.cloud</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="faq.html">FAQ</a>
+    <a href="legal.html">Legal</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<script>
+const supportSystemPrompt = `You are the NormWise customer support assistant. You help users with:
+
+ACCOUNT & BILLING:
+- How to cancel: Go to Dashboard → Settings → Cancel Subscription. Cancellation takes effect at end of billing period.
+- How to upgrade: Go to Dashboard → Settings → Change Plan. Upgrade takes effect immediately.
+- Password reset: Click "Forgot password?" on the login page.
+- Refunds: We offer refunds within 7 days of first charge if you haven't used the service. Contact hello@normwise.cloud.
+- Trial: 7-day free trial included with all plans. Credit card required to start. Won't be charged until trial ends.
+- VAT: Stripe Tax handles EU VAT automatically. Your invoice is sent by email after each payment.
+
+PLANS & FEATURES:
+- Starter €79/month: 1 user, 150 questions, Q&A only, 48h support
+- Professional €199/month: 3 users, 750 questions, Word/Excel reports, 24h support  
+- Expert €499/month: 5 users, 3000 questions, Gap Analysis, same-day support
+- Enterprise: Custom pricing, unlimited users, white-label, API access
+
+TECHNICAL:
+- The chatbot supports ISO 9001:2015, 14001:2015, 45001:2018 and 2026/2027 drafts
+- Languages: English, German, French — auto-detected
+- Documents can be uploaded on Expert plan for gap analysis
+- If the AI gives incorrect information, please report it to hello@normwise.cloud
+
+LANGUAGE: Detect user language and respond 100% in English, German or French.
+Be helpful, friendly and concise. If you cannot answer, say "Please email hello@normwise.cloud for this question."`;
+
+let supportHistory = [];
+
+async function sendSupport() {
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  addSupportMsg('user', text);
+  supportHistory.push({ role: 'user', content: text });
+
+  const typingId = 'typing-' + Date.now();
+  const msgs = document.getElementById('ai-messages');
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'ai-msg';
+  typingDiv.id = typingId;
+  typingDiv.innerHTML = '<div class="ai-avatar bot">N</div><div class="ai-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
+  msgs.appendChild(typingDiv);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        system: supportSystemPrompt,
+        messages: supportHistory
+      })
+    });
+    const data = await response.json();
+    document.getElementById(typingId)?.remove();
+    if (data.content && data.content[0]) {
+      const reply = data.content[0].text;
+      supportHistory.push({ role: 'assistant', content: reply });
+      addSupportMsg('bot', reply);
+    }
+  } catch(e) {
+    document.getElementById(typingId)?.remove();
+    addSupportMsg('bot', 'Connection error. Please email hello@normwise.cloud directly.');
+  }
+}
+
+function addSupportMsg(role, text) {
+  const msgs = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + (role === 'user' ? 'user' : '');
+  div.innerHTML = `<div class="ai-avatar ${role === 'bot' ? 'bot' : 'user'}">${role === 'bot' ? 'N' : 'U'}</div><div class="ai-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+async function sendContact() {
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const subject = document.getElementById('contact-subject').value;
+  const message = document.getElementById('contact-message').value.trim();
+  if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
+
+  const btn = document.getElementById('contact-btn');
+  btn.disabled = true;
+  document.getElementById('contact-btn-text').textContent = '...';
+
+  // In production this would send to a backend endpoint
+  // For now simulate success
+  setTimeout(() => {
+    btn.disabled = false;
+    document.getElementById('contact-btn-text').textContent = 'Send Message';
+    document.getElementById('contact-success').style.display = 'block';
+    document.getElementById('contact-name').value = '';
+    document.getElementById('contact-email').value = '';
+    document.getElementById('contact-message').value = '';
+  }, 1500);
+}
+
+// Language
+const lang = localStorage.getItem('nw_lang') || 'en';
+const t = {
+  en: { title: 'How can we help?', sub: 'Get instant answers from our AI support agent — or send us a message.', aiTitle: 'NormWise Support AI', aiSub: 'Instant answers — available 24/7 in EN/DE/FR', aiWelcome: "Hi! I'm the NormWise support assistant. I can help with account questions, billing, plan features, and how to use NormWise. What do you need help with?", contactTitle: 'Send us a message', contactSub: 'For billing, technical issues, or anything complex', labelName: 'Your Name', labelEmail: 'Email Address', labelSubject: 'Subject', labelMessage: 'Message', btnText: 'Send Message', rtTitle: 'Response times by plan' },
+  de: { title: 'Wie können wir helfen?', sub: 'Sofortige Antworten von unserem KI-Support oder senden Sie uns eine Nachricht.', aiTitle: 'NormWise Support-KI', aiSub: 'Sofortige Antworten — rund um die Uhr auf DE/EN/FR', aiWelcome: 'Hallo! Ich bin der NormWise-Support-Assistent. Ich helfe Ihnen bei Kontofragen, Abrechnung, Planfunktionen und der Nutzung von NormWise.', contactTitle: 'Nachricht senden', contactSub: 'Für Abrechnungsfragen, technische Probleme oder komplexe Anfragen', labelName: 'Ihr Name', labelEmail: 'E-Mail-Adresse', labelSubject: 'Betreff', labelMessage: 'Nachricht', btnText: 'Nachricht senden', rtTitle: 'Antwortzeiten nach Plan' },
+  fr: { title: 'Comment pouvons-nous vous aider ?', sub: "Obtenez des réponses instantanées de notre agent IA ou envoyez-nous un message.", aiTitle: 'Support IA NormWise', aiSub: 'Réponses instantanées — disponible 24h/24 en FR/DE/EN', aiWelcome: "Bonjour ! Je suis l'assistant support NormWise. Je peux vous aider avec vos questions de compte, facturation et utilisation.", contactTitle: 'Envoyez-nous un message', contactSub: 'Pour la facturation, les problèmes techniques ou les demandes complexes', labelName: 'Votre nom', labelEmail: 'Adresse e-mail', labelSubject: 'Sujet', labelMessage: 'Message', btnText: 'Envoyer le message', rtTitle: 'Délais de réponse par plan' }
+};
+const l = t[lang] || t.en;
+document.getElementById('support-title').textContent = l.title;
+document.getElementById('support-sub').textContent = l.sub;
+document.getElementById('ai-panel-title').textContent = l.aiTitle;
+document.getElementById('ai-panel-sub').textContent = l.aiSub;
+document.getElementById('ai-welcome').textContent = l.aiWelcome;
+document.getElementById('contact-panel-title').textContent = l.contactTitle;
+document.getElementById('contact-panel-sub').textContent = l.contactSub;
+document.getElementById('label-name').textContent = l.labelName;
+document.getElementById('label-email').textContent = l.labelEmail;
+document.getElementById('label-subject').textContent = l.labelSubject;
+document.getElementById('label-message').textContent = l.labelMessage;
+document.getElementById('contact-btn-text').textContent = l.btnText;
+document.getElementById('rt-title').textContent = l.rtTitle;
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<title>NormWise — Terms of Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html,body{background-color:#070c18 !important;min-height:100svh}
+:root{--blue:#1a3fa8;--red:#c0392b;--ink:#070c18;--surface:#111827;--surface2:#161e30;--muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;-webkit-text-size-adjust:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(7,12,24,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
+.nav-wordmark span{color:var(--red)}
+.nav-links{display:flex;gap:8px}
+.tab{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;padding:7px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border2);color:var(--muted2);background:transparent;transition:all .2s;text-decoration:none}
+.tab.active,.tab:hover{border-color:var(--blue);color:#fff;background:rgba(26,63,168,.15)}
+.nav-back{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted2);text-decoration:none;border:1px solid var(--border2);padding:7px 16px;border-radius:6px;transition:all .2s}
+.nav-back:hover{border-color:var(--blue);color:#fff}
+.page{max-width:800px;margin:0 auto;padding:100px 32px 80px;position:relative;z-index:1}
+.lang-section{display:none}
+.lang-section.active{display:block}
+.page-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.page-chip::before{content:'//';color:var(--muted)}
+.page-title{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-2px;margin-bottom:8px}
+.page-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:40px}
+.legal-block{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:28px;margin-bottom:16px}
+.legal-block h3{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+.legal-block p,.legal-block li{font-size:14px;color:var(--muted2);line-height:1.8;margin-bottom:8px}
+.legal-block ul{list-style:none;padding:0}
+.legal-block ul li{padding:4px 0;display:flex;align-items:flex-start;gap:8px}
+.legal-block ul li::before{content:'·';color:var(--red);flex-shrink:0;font-size:16px;line-height:1.4}
+.legal-block a{color:#6a9fd8;text-decoration:none}
+.legal-block a:hover{text-decoration:underline}
+footer{background:var(--ink);border-top:1px solid var(--border2);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+footer span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+footer a{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none}
+footer a:hover{color:#fff}
+.footer-links{display:flex;gap:20px}
+@media(max-width:700px){nav{padding:0 16px}.page{padding:90px 20px 60px}footer{padding:24px 20px;flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="26" height="26" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
+    <span class="nav-wordmark">Norm<span>Wise</span></span>
+  </a>
+  <div class="nav-links">
+    <a class="tab active" onclick="showLang('en',this)">🇬🇧 English</a>
+    <a class="tab" onclick="showLang('de',this)">🇩🇪 Deutsch</a>
+    <a class="tab" onclick="showLang('fr',this)">🇫🇷 Français</a>
+  </div>
+  <a href="index.html" class="nav-back">← home</a>
+</nav>
+
+<div class="page">
+
+<!-- ENGLISH -->
+<div class="lang-section active" id="lang-en">
+  <div class="page-chip">terms_of_service</div>
+  <h1 class="page-title">Terms of Service</h1>
+  <div class="page-date">Last updated: April 2026 · Effective for all NormWise subscriptions</div>
+
+  <div class="legal-block"><h3>// 1. acceptance_of_terms</h3><p>By creating an account or using NormWise ("the Service"), you agree to these Terms of Service. If you do not agree, do not use the Service. These terms constitute a legally binding agreement between you and Unternehmensberatung Brunen ("NormWise", "we", "us"), Gewerbegebiet Nord 5, 26892 Heede, Germany.</p></div>
+
+  <div class="legal-block"><h3>// 2. description_of_service</h3><p>NormWise is an AI-powered SaaS platform providing guidance and assistance with ISO management system standards (ISO 9001, ISO 14001, ISO 45001). The Service includes:</p><ul><li>AI-powered Q&A about ISO standards</li><li>Document gap analysis (Expert plan)</li><li>Downloadable reports and action plans</li><li>Draft standard knowledge (ISO 2026/2027)</li></ul><p style="margin-top:10px"><strong style="color:#f87171">Important disclaimer:</strong> NormWise provides informational guidance only. It does not constitute formal ISO certification, legal advice, or professional auditing services. Always verify compliance with a certified auditor.</p></div>
+
+  <div class="legal-block"><h3>// 3. subscription_and_billing</h3><ul><li>All plans include a 7-day free trial. You will not be charged until the trial ends.</li><li>Subscriptions renew automatically on a monthly basis.</li><li>Payments are processed by Stripe. We never store your payment card details.</li><li>EU VAT is applied automatically based on your country of residence.</li><li>You can cancel your subscription at any time from your dashboard. Cancellation takes effect at the end of the current billing period.</li><li>We reserve the right to change pricing with 30 days notice.</li></ul></div>
+
+  <div class="legal-block"><h3>// 4. refund_policy</h3><p>We offer a full refund within 7 days of your first charge if you have not made more than 10 AI queries. After this period, refunds are at our discretion. To request a refund, email <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a>.</p></div>
+
+  <div class="legal-block"><h3>// 5. acceptable_use</h3><p>You agree not to:</p><ul><li>Use the Service to generate misleading or fraudulent compliance documentation</li><li>Attempt to reverse-engineer, copy or resell the Service</li><li>Share your account credentials with others (except as permitted by your plan's user seats)</li><li>Use the Service in any way that violates applicable laws</li><li>Attempt to circumvent usage limits</li></ul></div>
+
+  <div class="legal-block"><h3>// 6. intellectual_property</h3><p>All content, software, and AI responses generated by NormWise are protected by copyright. You may use outputs for your own compliance work but may not resell or redistribute them without our written permission. ISO standards referenced are the intellectual property of ISO (International Organization for Standardization).</p></div>
+
+  <div class="legal-block"><h3>// 7. limitation_of_liability</h3><p>NormWise is provided "as is". To the maximum extent permitted by law, we exclude all warranties and liability for direct, indirect, or consequential damages arising from use of the Service. Our total liability shall not exceed the amount you paid in the 3 months preceding the claim.</p></div>
+
+  <div class="legal-block"><h3>// 8. data_and_privacy</h3><p>Your data is processed in accordance with our <a href="privacy.html">Privacy Policy</a>. We comply with GDPR. Your data is stored in the EU (Supabase, Frankfurt). AI processing uses Anthropic's API under a data processing agreement.</p></div>
+
+  <div class="legal-block"><h3>// 9. governing_law</h3><p>These terms are governed by German law. The exclusive jurisdiction for any disputes is the competent court in Germany. If you are a consumer in the EU, you may also be entitled to your local consumer protection rights.</p></div>
+
+  <div class="legal-block"><h3>// 10. contact</h3><p>For any questions about these terms: <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a><br/>Unternehmensberatung Brunen · Gewerbegebiet Nord 5 · 26892 Heede · Germany</p></div>
+</div>
+
+<!-- DEUTSCH -->
+<div class="lang-section" id="lang-de">
+  <div class="page-chip">nutzungsbedingungen</div>
+  <h1 class="page-title">Allgemeine Geschäftsbedingungen</h1>
+  <div class="page-date">Zuletzt aktualisiert: April 2026 · Gültig für alle NormWise-Abonnements</div>
+
+  <div class="legal-block"><h3>// 1. annahme_der_bedingungen</h3><p>Mit der Erstellung eines Kontos oder der Nutzung von NormWise ("der Dienst") stimmen Sie diesen Nutzungsbedingungen zu. Diese Bedingungen stellen einen rechtsverbindlichen Vertrag zwischen Ihnen und der Unternehmensberatung Brunen ("NormWise", "wir"), Gewerbegebiet Nord 5, 26892 Heede, Deutschland, dar.</p></div>
+
+  <div class="legal-block"><h3>// 2. beschreibung_des_dienstes</h3><p>NormWise ist eine KI-gestützte SaaS-Plattform, die Orientierungshilfe zu ISO-Managementsystemnormen bietet. Der Dienst umfasst:</p><ul><li>KI-gestützte Fragen und Antworten zu ISO-Normen</li><li>Dokument-Gap-Analyse (Expert-Plan)</li><li>Herunterladbare Berichte und Maßnahmenpläne</li></ul><p style="margin-top:10px"><strong style="color:#f87171">Wichtiger Hinweis:</strong> NormWise bietet ausschließlich informelle Orientierungshilfe. Es stellt keine formelle ISO-Zertifizierung, Rechtsberatung oder professionelle Auditdienstleistung dar.</p></div>
+
+  <div class="legal-block"><h3>// 3. abonnement_und_abrechnung</h3><ul><li>Alle Pläne beinhalten eine 7-tägige kostenlose Testversion. Die Abrechnung beginnt erst nach Ablauf der Testphase.</li><li>Abonnements verlängern sich automatisch monatlich.</li><li>Zahlungen werden von Stripe verarbeitet. Wir speichern keine Kreditkartendaten.</li><li>Die EU-Mehrwertsteuer wird automatisch basierend auf Ihrem Wohnsitzland erhoben.</li><li>Sie können Ihr Abonnement jederzeit über Ihr Dashboard kündigen.</li></ul></div>
+
+  <div class="legal-block"><h3>// 4. rückerstattungsrichtlinie</h3><p>Wir erstatten den vollen Betrag innerhalb von 7 Tagen nach der ersten Abbuchung, sofern Sie nicht mehr als 10 KI-Anfragen gestellt haben. Danach liegt eine Rückerstattung in unserem Ermessen. Rückerstattungsanfragen richten Sie bitte an: <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a></p></div>
+
+  <div class="legal-block"><h3>// 5. haftungsbeschränkung</h3><p>NormWise wird "wie besehen" zur Verfügung gestellt. Im größtmöglichen gesetzlich zulässigen Umfang schließen wir jegliche Gewährleistung und Haftung für direkte, indirekte oder Folgeschäden aus, die durch die Nutzung des Dienstes entstehen.</p></div>
+
+  <div class="legal-block"><h3>// 6. anwendbares_recht</h3><p>Diese Bedingungen unterliegen deutschem Recht. Als ausschließlicher Gerichtsstand gilt das zuständige deutsche Gericht. Verbraucher in der EU können sich auch auf ihre lokalen Verbraucherschutzrechte berufen.</p></div>
+
+  <div class="legal-block"><h3>// 7. kontakt</h3><p>Bei Fragen zu diesen Bedingungen: <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a><br/>Unternehmensberatung Brunen · Gewerbegebiet Nord 5 · 26892 Heede · Deutschland</p></div>
+</div>
+
+<!-- FRANÇAIS -->
+<div class="lang-section" id="lang-fr">
+  <div class="page-chip">conditions_d'utilisation</div>
+  <h1 class="page-title">Conditions Générales d'Utilisation</h1>
+  <div class="page-date">Dernière mise à jour : avril 2026 · Applicables à tous les abonnements NormWise</div>
+
+  <div class="legal-block"><h3>// 1. acceptation_des_conditions</h3><p>En créant un compte ou en utilisant NormWise ("le Service"), vous acceptez les présentes Conditions Générales d'Utilisation. Ces conditions constituent un accord juridiquement contraignant entre vous et Unternehmensberatung Brunen ("NormWise", "nous"), Gewerbegebiet Nord 5, 26892 Heede, Allemagne.</p></div>
+
+  <div class="legal-block"><h3>// 2. description_du_service</h3><p>NormWise est une plateforme SaaS alimentée par IA fournissant des conseils sur les normes ISO de systèmes de management. Le Service comprend :</p><ul><li>Assistance IA pour les questions sur les normes ISO</li><li>Analyse des écarts sur documents (plan Expert)</li><li>Rapports et plans d'action téléchargeables</li></ul><p style="margin-top:10px"><strong style="color:#f87171">Avertissement important :</strong> NormWise fournit uniquement des informations à titre indicatif. Il ne constitue pas une certification ISO formelle, un conseil juridique ou un service d'audit professionnel.</p></div>
+
+  <div class="legal-block"><h3>// 3. abonnement_et_facturation</h3><ul><li>Tous les plans incluent un essai gratuit de 7 jours. Vous ne serez facturé qu'à l'issue de l'essai.</li><li>Les abonnements se renouvellent automatiquement chaque mois.</li><li>Les paiements sont traités par Stripe. Nous ne stockons jamais vos coordonnées bancaires.</li><li>La TVA européenne est appliquée automatiquement selon votre pays de résidence.</li><li>Vous pouvez résilier votre abonnement à tout moment depuis votre tableau de bord.</li></ul></div>
+
+  <div class="legal-block"><h3>// 4. politique_de_remboursement</h3><p>Nous offrons un remboursement complet dans les 7 jours suivant votre premier prélèvement si vous n'avez pas effectué plus de 10 requêtes IA. Au-delà, les remboursements sont à notre discrétion. Pour toute demande : <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a></p></div>
+
+  <div class="legal-block"><h3>// 5. limitation_de_responsabilité</h3><p>NormWise est fourni "en l'état". Dans toute la mesure permise par la loi applicable, nous excluons toute garantie et responsabilité pour les dommages directs, indirects ou consécutifs résultant de l'utilisation du Service.</p></div>
+
+  <div class="legal-block"><h3>// 6. droit_applicable</h3><p>Les présentes conditions sont régies par le droit allemand. En tant que consommateur dans l'UE, vous bénéficiez également de vos droits de protection des consommateurs locaux.</p></div>
+
+  <div class="legal-block"><h3>// 7. contact</h3><p>Pour toute question sur ces conditions : <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a><br/>Unternehmensberatung Brunen · Gewerbegebiet Nord 5 · 26892 Heede · Allemagne</p></div>
+</div>
+
+</div><!-- end page -->
+
+<footer>
+  <span>© 2026 NormWise · normwise.cloud</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="legal.html">Legal Notice</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+</footer>
+
+<script>
+function showLang(lang,el){
+  document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('lang-'+lang).classList.add('active');
+  if(el)el.classList.add('active');
+}
+const lang = localStorage.getItem('nw_lang') || 'en';
+showLang(lang, null);
+document.querySelectorAll('.tab').forEach(t=>{
+  if(t.textContent.toLowerCase().includes(lang==='en'?'english':lang==='de'?'deutsch':'français')) t.classList.add('active');
+});
+</script>
+</body>
+</html>

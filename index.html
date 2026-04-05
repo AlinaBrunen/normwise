@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="description" content="NormWise — Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. ISO 9001, 14001, 45001. English, German, French."/>
+<title>NormWise — Your Compliance Co-Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html,body{background-color:#070c18 !important;min-height:100svh}
+:root{--blue:#1a3fa8;--red:#c0392b;--red-glow:rgba(192,57,43,.35);--blue-glow:rgba(26,63,168,.35);--ink:#070c18;--surface:#111827;--surface2:#161e30;--muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background-color:#070c18 !important}
+body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body::before{content:'';position:fixed;inset:0;z-index:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px);pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(7,12,24,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
+.nav-wordmark span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-lang{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);text-decoration:none;padding:5px 10px;border-radius:5px;border:1px solid transparent;transition:all .2s;cursor:pointer;background:none}
+.nav-lang:hover,.nav-lang.active{border-color:var(--border2);color:#fff;background:rgba(255,255,255,.05)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn-login{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;color:var(--muted2);text-decoration:none;padding:8px 18px;border-radius:6px;border:1px solid var(--border2);transition:all .2s}
+.btn-login:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-start{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;background:var(--red);border:none;padding:9px 20px;border-radius:6px;cursor:pointer;text-decoration:none;box-shadow:0 0 20px var(--red-glow);transition:all .2s}
+.btn-start:hover{background:#a93226;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;position:relative;z-index:1}
+.hero-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px;justify-content:center}
+.hero-chip::before,.hero-chip::after{content:'';width:32px;height:1px;background:rgba(192,57,43,.4)}
+.hero h1{font-size:clamp(36px,6vw,80px);font-weight:700;letter-spacing:-3px;line-height:1.0;margin-bottom:24px;max-width:900px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{font-size:clamp(15px,2vw,20px);color:var(--muted2);line-height:1.7;margin-bottom:40px;max-width:600px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:60px}
+.btn-hero-primary{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:#fff;background:var(--red);border:none;padding:16px 36px;border-radius:8px;cursor:pointer;text-decoration:none;box-shadow:0 0 32px var(--red-glow);transition:all .25s;display:inline-flex;align-items:center;gap:10px}
+.btn-hero-primary:hover{background:#a93226;transform:translateY(-2px);box-shadow:0 0 48px var(--red-glow)}
+.btn-hero-secondary{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:500;color:#fff;background:transparent;border:1px solid var(--border2);padding:16px 36px;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-hero-secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.hero-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em}
+
+/* DEMO BOX */
+.demo-wrap{width:100%;max-width:700px;margin:0 auto 0;position:relative}
+.demo-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
+.demo-bar{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.demo-dot{width:10px;height:10px;border-radius:50%}
+.demo-dot.r{background:#ff5f57}.demo-dot.y{background:#ffbd2e}.demo-dot.g{background:#28c840}
+.demo-title{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin:0 auto}
+.demo-messages{padding:20px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg.user{flex-direction:row-reverse}
+.msg-avatar{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.msg-avatar.ai{background:var(--blue);color:#fff}
+.msg-avatar.user{background:var(--red);color:#fff}
+.msg-bubble{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--muted2);line-height:1.65;max-width:85%}
+.msg.user .msg-bubble{background:rgba(192,57,43,.15);border-color:rgba(192,57,43,.25);color:#fff}
+.msg-bubble strong{color:#fff}
+.msg-bubble .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:3px;margin-right:4px;margin-top:4px}
+.tag-major{background:rgba(192,57,43,.2);color:#f87171;border:1px solid rgba(192,57,43,.3)}
+.tag-minor{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
+.tag-ok{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
+.demo-input{padding:14px 16px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}
+.demo-input-field{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--muted2)}
+.demo-send{background:var(--red);border:none;border-radius:8px;padding:10px 16px;color:#fff;font-size:13px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:60px 32px;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{text-align:center}
+.stat-val{font-size:40px;font-weight:700;letter-spacing:-2px;color:#fff}
+.stat-val span{color:var(--red)}
+.stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
+
+/* FEATURES */
+.section{max-width:1000px;margin:0 auto;padding:80px 32px;position:relative;z-index:1}
+.section-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-chip::before{content:'//';color:var(--muted)}
+.section h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
+.section p.lead{font-size:17px;color:var(--muted2);line-height:1.7;margin-bottom:48px;max-width:600px}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;transition:border-color .2s}
+.feature-card:hover{border-color:rgba(26,63,168,.4)}
+.feature-icon{font-size:28px;margin-bottom:16px}
+.feature-card h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.feature-card p{font-size:13px;color:var(--muted2);line-height:1.7}
+
+/* STANDARDS */
+.standards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.std-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
+.std-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
+.std-badge.current{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
+.std-badge.draft{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
+.std-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.std-card p{font-size:13px;color:var(--muted2);line-height:1.6}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.plan-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;position:relative}
+.plan-card.featured{border-color:var(--red);box-shadow:0 0 32px rgba(192,57,43,.15)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.plan-name{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.plan-price{font-size:36px;font-weight:700;letter-spacing:-2px;margin-bottom:4px}
+.plan-price span{font-size:16px;font-weight:400;color:var(--muted2);letter-spacing:0}
+.plan-period{font-size:13px;color:var(--muted);margin-bottom:20px}
+.plan-features{list-style:none;padding:0;margin-bottom:24px}
+.plan-features li{font-size:13px;color:var(--muted2);padding:6px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.plan-features li::before{content:'→';font-family:'IBM Plex Mono',monospace;color:var(--red);font-size:10px;flex-shrink:0}
+.plan-features li:last-child{border:none}
+.btn-plan{width:100%;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;padding:12px;border-radius:8px;cursor:pointer;text-decoration:none;display:block;text-align:center;transition:all .2s}
+.btn-plan.primary{background:var(--red);color:#fff;border:none;box-shadow:0 0 20px var(--red-glow)}
+.btn-plan.primary:hover{background:#a93226}
+.btn-plan.secondary{background:transparent;color:#fff;border:1px solid var(--border2)}
+.btn-plan.secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.trial-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-align:center;margin-top:20px;letter-spacing:.05em}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;position:relative}
+.steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent);z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:var(--red);margin:0 auto 16px}
+.step h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted2);line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.testimonial{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
+.testimonial-text{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:16px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.testimonial-name{font-size:14px;font-weight:600}
+.testimonial-role{font-size:12px;color:var(--muted)}
+
+/* CTA SECTION */
+.cta-section{background:linear-gradient(135deg,rgba(26,63,168,.15),rgba(192,57,43,.1));border:1px solid var(--border2);border-radius:16px;padding:64px 48px;text-align:center;margin:0 32px 80px;position:relative;z-index:1;max-width:960px;margin-left:auto;margin-right:auto}
+.cta-section h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
+.cta-section p{font-size:17px;color:var(--muted2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;position:relative;z-index:1}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1000px;margin:0 auto 40px}
+.footer-brand h3{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+.footer-brand h3 span{color:var(--red)}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:var(--muted2);text-decoration:none;padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:32px;border-top:1px solid var(--border);max-width:1000px;margin:0 auto}
+.footer-bottom span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.footer-langs{display:flex;gap:16px}
+.footer-langs a{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-langs a:hover{color:#fff}
+
+/* LANG SECTIONS */
+.lang-section{display:none}
+.lang-section.active{display:block}
+
+@media(max-width:900px){.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){nav{padding:0 20px}.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials,.footer-grid{grid-template-columns:1fr}.hero{padding:100px 20px 60px}.section{padding:60px 20px}.stats{gap:32px;padding:40px 20px}.hero-cta{flex-direction:column;align-items:center}.cta-section{padding:40px 24px;margin:0 20px 60px}.footer-bottom{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="28" height="28" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/>
+      <circle cx="100" cy="178" r="6" fill="#1a3fa8" opacity="0.2"/>
+      <circle cx="62" cy="163" r="7" fill="#1a3fa8" opacity="0.35"/>
+      <circle cx="30" cy="136" r="7" fill="#1a3fa8" opacity="0.5"/>
+      <circle cx="14" cy="100" r="7" fill="#1a3fa8" opacity="0.65"/>
+      <circle cx="24" cy="60" r="8" fill="#1a3fa8" opacity="0.8"/>
+      <circle cx="54" cy="26" r="9" fill="#1a3fa8" opacity="0.9"/>
+      <circle cx="100" cy="14" r="10" fill="#1a3fa8"/>
+      <circle cx="146" cy="26" r="9" fill="#3a6fd4"/>
+      <circle cx="172" cy="62" r="12" fill="#c0392b"/>
+      <circle cx="172" cy="62" r="20" fill="#c0392b" opacity="0.12"/>
+    </svg>
+    <span class="nav-wordmark">Norm<span>Wise</span></span>
+  </a>
+  <div class="nav-links">
+    <button class="nav-lang active" onclick="setLang('en',this)">🇬🇧 EN</button>
+    <button class="nav-lang" onclick="setLang('de',this)">🇩🇪 DE</button>
+    <button class="nav-lang" onclick="setLang('fr',this)">🇫🇷 FR</button>
+  </div>
+  <div class="nav-cta">
+    <a href="login.html" class="btn-login" id="nav-login">Log in</a>
+    <a href="register.html" class="btn-start" id="nav-start">Try for Free</a>
+  </div>
+</nav>
+
+<!-- ═══════════ ENGLISH ═══════════ -->
+<div class="lang-section active" id="lang-en">
+
+<section class="hero">
+  <div class="hero-chip">AI-powered ISO compliance</div>
+  <h1>Your <em>Compliance</em><br/>Co-Pilot</h1>
+  <p>Gap analysis in minutes. Clause-by-clause answers. ISO 9001, 14001 & 45001. In English, German and French.</p>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-hero-primary">Try 3 Free Questions →</a>
+    <a href="register.html" class="btn-hero-secondary">Start 7-Day Trial</a>
+  </div>
+  <p class="hero-note">// no_card_needed_for_demo · 7_day_free_trial · cancel_anytime</p>
+
+  <div class="demo-wrap" style="margin-top:48px">
+    <div class="demo-box">
+      <div class="demo-bar">
+        <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+        <span class="demo-title">// normwise_chat · iso_9001_session</span>
+      </div>
+      <div class="demo-messages">
+        <div class="msg user">
+          <div class="msg-avatar user">A</div>
+          <div class="msg-bubble">What are the required inputs for a Management Review under ISO 9001 Clause 9.3?</div>
+        </div>
+        <div class="msg">
+          <div class="msg-avatar ai">N</div>
+          <div class="msg-bubble">
+            <strong>ISO 9001:2015 Clause 9.3.2 requires 8 mandatory inputs:</strong><br/><br/>
+            1. Status of actions from previous reviews<br/>
+            2. Changes in external/internal issues (Clause 4.1)<br/>
+            3. Customer satisfaction & stakeholder feedback<br/>
+            4. Quality objectives achievement<br/>
+            5. Process performance & product conformity<br/>
+            6. Nonconformities & corrective actions<br/>
+            7. Monitoring & measurement results<br/>
+            8. Audit results & external provider performance<br/><br/>
+            <span class="tag tag-major">⚠ Major NC</span> if any input is missing from your minutes.<br/>
+            <span class="tag tag-ok">✓ Best practice</span> Document each input with evidence references.
+          </div>
+        </div>
+      </div>
+      <div class="demo-input">
+        <div class="demo-input-field">Ask about ISO 9001, 14001 or 45001...</div>
+        <button class="demo-send" onclick="window.location.href='demo.html'">Ask →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val">2.1<span>M+</span></div><div class="stat-lbl">ISO certified companies</div></div>
+  <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl">Languages EN/DE/FR</div></div>
+  <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">ISO standards covered</div></div>
+  <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl">Day free trial</div></div>
+</div>
+
+<div class="section">
+  <div class="section-chip">features</div>
+  <h2>Everything you need<br/>for ISO compliance</h2>
+  <p class="lead">From quick clause questions to full document gap analysis — NormWise handles it all.</p>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">🔍</div><h3>Gap Analysis Engine</h3><p>Upload your documents and get a clause-by-clause gap analysis with Major NC / Minor NC / OFI classification in minutes.</p></div>
+    <div class="feature-card"><div class="feature-icon">🌍</div><h3>Trilingual Support</h3><p>Auto-detects your language and responds 100% in English, German or French — including all reports and outputs.</p></div>
+    <div class="feature-card"><div class="feature-icon">📋</div><h3>Audit Preparation</h3><p>Know exactly what auditors check for each clause. Built with TÜV SÜD and DNV audit knowledge embedded.</p></div>
+    <div class="feature-card"><div class="feature-icon">📊</div><h3>Word & Excel Reports</h3><p>Generate professional gap analysis reports and action plans ready to share with management — in one click.</p></div>
+    <div class="feature-card"><div class="feature-icon">🔮</div><h3>ISO 2026 Ready</h3><p>Includes full knowledge of ISO 9001:2026, ISO 14001:2026 and ISO 45001:2027 draft revisions. Prepare now.</p></div>
+    <div class="feature-card"><div class="feature-icon">⚡</div><h3>Instant Answers</h3><p>Ask any compliance question and get clause-referenced answers in seconds — not hours of searching through PDFs.</p></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="section-chip">standards</div>
+  <h2>All major ISO standards<br/>+ upcoming revisions</h2>
+  <div class="standards-grid">
+    <div class="std-card"><div class="std-badge current">CURRENT</div><h3>ISO 9001:2015</h3><p>Quality Management Systems — incl. Amendment 1:2024 on climate change</p></div>
+    <div class="std-card"><div class="std-badge current">CURRENT</div><h3>ISO 14001:2015</h3><p>Environmental Management Systems — all clauses with practical examples</p></div>
+    <div class="std-card"><div class="std-badge current">CURRENT</div><h3>ISO 45001:2018</h3><p>Occupational Health & Safety Management Systems — full coverage</p></div>
+    <div class="std-card"><div class="std-badge draft">DRAFT 2026</div><h3>ISO 9001:2026</h3><p>DIS approved December 2025 — publication expected September 2026</p></div>
+    <div class="std-card"><div class="std-badge draft">DRAFT 2026</div><h3>ISO 14001:2026</h3><p>FDIS stage — publication expected April 2026 — prepare now</p></div>
+    <div class="std-card"><div class="std-badge draft">DRAFT 2027</div><h3>ISO 45001:2027</h3><p>Committee Draft stage — NormWise tracks all developments</p></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="section-chip">how_it_works</div>
+  <h2>From question to<br/>action in 4 steps</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><h3>Ask or Upload</h3><p>Type your ISO question or upload your document for gap analysis</p></div>
+    <div class="step"><div class="step-num">02</div><h3>AI Analyses</h3><p>NormWise checks every clause against requirements and best practice</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Get Findings</h3><p>Receive clause-level findings with Major NC / Minor NC / OFI classification</p></div>
+    <div class="step"><div class="step-num">04</div><h3>Download Report</h3><p>Export your action plan as Word or Excel — ready to share immediately</p></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0" id="pricing">
+  <div class="section-chip">pricing</div>
+  <h2>Simple, transparent<br/>pricing</h2>
+  <p class="lead">Start free. Scale as you grow. Cancel anytime.</p>
+  <div class="pricing-grid">
+    <div class="plan-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">€79<span>/mo</span></div>
+      <div class="plan-period">1 user · 150 questions/month</div>
+      <ul class="plan-features">
+        <li>AI Q&A assistant</li>
+        <li>ISO 9001, 14001, 45001</li>
+        <li>Draft 2026/2027 knowledge</li>
+        <li>EN / DE / FR</li>
+        <li>Email support (48h)</li>
+      </ul>
+      <a href="register.html?plan=starter" class="btn-plan secondary">Start Free Trial</a>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Professional</div>
+      <div class="plan-price">€199<span>/mo</span></div>
+      <div class="plan-period">3 users · 750 questions/month</div>
+      <ul class="plan-features">
+        <li>Everything in Starter</li>
+        <li>Word Action Plans</li>
+        <li>Excel Gap Tables</li>
+        <li>KPI Dashboard PDF</li>
+        <li>Priority support (24h)</li>
+      </ul>
+      <a href="register.html?plan=pro" class="btn-plan secondary">Start Free Trial</a>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Expert</div>
+      <div class="plan-price">€499<span>/mo</span></div>
+      <div class="plan-period">5 users · 3,000 questions/month</div>
+      <ul class="plan-features">
+        <li>Everything in Professional</li>
+        <li>Document Gap Analysis</li>
+        <li>Master Action Plan</li>
+        <li>Management Summary</li>
+        <li>Same-day support</li>
+      </ul>
+      <a href="register.html?plan=expert" class="btn-plan primary">Start Free Trial</a>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price" style="font-size:28px">Custom</div>
+      <div class="plan-period">Unlimited users</div>
+      <ul class="plan-features">
+        <li>Everything in Expert</li>
+        <li>White-label branding</li>
+        <li>API access</li>
+        <li>Dedicated account manager</li>
+        <li>Custom onboarding</li>
+      </ul>
+      <a href="mailto:hello@normwise.cloud" class="btn-plan secondary">Contact Us</a>
+    </div>
+  </div>
+  <p class="trial-note">// all_plans_include_7_day_free_trial · no_card_needed_for_demo · cancel_anytime</p>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="section-chip">testimonials</div>
+  <h2>Trusted by quality<br/>professionals</h2>
+  <div class="testimonials">
+    <div class="testimonial"><p class="testimonial-text">"NormWise saved me 2 days of audit preparation. The gap analysis was incredibly accurate and the action plan was ready to present to management immediately."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#1a3fa8">MK</div><div><div class="testimonial-name">Michael K.</div><div class="testimonial-role">Quality Manager, Manufacturing · Germany</div></div></div></div>
+    <div class="testimonial"><p class="testimonial-text">"As an ISO consultant managing 15 clients, NormWise has transformed my workflow. The trilingual support means I can serve German, French and English clients with one tool."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#c0392b">SL</div><div><div class="testimonial-name">Sophie L.</div><div class="testimonial-role">ISO Consultant · Switzerland</div></div></div></div>
+    <div class="testimonial"><p class="testimonial-text">"The ISO 9001:2026 draft knowledge is a game changer. We started preparing for the transition 18 months early thanks to NormWise."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#16a34a">JD</div><div><div class="testimonial-name">Jean D.</div><div class="testimonial-role">QHSE Director · France</div></div></div></div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="section-chip" style="justify-content:center">get_started</div>
+  <h2>Ready to simplify<br/>your ISO compliance?</h2>
+  <p>Start with 3 free questions — no account needed. See NormWise in action before you sign up.</p>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-hero-primary">Try 3 Free Questions →</a>
+    <a href="register.html" class="btn-hero-secondary">Start 7-Day Trial</a>
+  </div>
+</div>
+
+</div><!-- end lang-en -->
+
+<!-- ═══════════ DEUTSCH ═══════════ -->
+<div class="lang-section" id="lang-de">
+<section class="hero">
+  <div class="hero-chip">KI-gestützte ISO-Compliance</div>
+  <h1>Ihr <em>Compliance</em><br/>Co-Pilot</h1>
+  <p>Gap-Analyse in Minuten. Klauselgenaue Antworten. ISO 9001, 14001 & 45001. Auf Deutsch, Englisch und Französisch.</p>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-hero-primary">3 kostenlose Fragen →</a>
+    <a href="register.html" class="btn-hero-secondary">7 Tage kostenlos testen</a>
+  </div>
+  <p class="hero-note">// keine_kreditkarte_für_demo · 7_tage_kostenlos · jederzeit_kündbar</p>
+</section>
+<div class="section">
+  <div class="section-chip">preise</div>
+  <h2>Einfache, transparente<br/>Preisgestaltung</h2>
+  <p class="lead">Kostenlos starten. Nach Bedarf skalieren. Jederzeit kündbar.</p>
+  <div class="pricing-grid">
+    <div class="plan-card"><div class="plan-name">Starter</div><div class="plan-price">€79<span>/Mo</span></div><div class="plan-period">1 Nutzer · 150 Fragen/Monat</div><ul class="plan-features"><li>KI-Assistent</li><li>ISO 9001, 14001, 45001</li><li>Entwurf 2026/2027</li><li>DE / EN / FR</li><li>E-Mail-Support (48h)</li></ul><a href="register.html?plan=starter" class="btn-plan secondary">Kostenlos testen</a></div>
+    <div class="plan-card"><div class="plan-name">Professional</div><div class="plan-price">€199<span>/Mo</span></div><div class="plan-period">3 Nutzer · 750 Fragen/Monat</div><ul class="plan-features"><li>Alles aus Starter</li><li>Word-Maßnahmenpläne</li><li>Excel Gap-Tabellen</li><li>KPI-Dashboard PDF</li><li>Prioritäts-Support (24h)</li></ul><a href="register.html?plan=pro" class="btn-plan secondary">Kostenlos testen</a></div>
+    <div class="plan-card featured"><div class="plan-badge">Beliebteste</div><div class="plan-name">Expert</div><div class="plan-price">€499<span>/Mo</span></div><div class="plan-period">5 Nutzer · 3.000 Fragen/Monat</div><ul class="plan-features"><li>Alles aus Professional</li><li>Dokument-Gap-Analyse</li><li>Master-Maßnahmenplan</li><li>Management-Summary</li><li>Same-Day-Support</li></ul><a href="register.html?plan=expert" class="btn-plan primary">Kostenlos testen</a></div>
+    <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price" style="font-size:28px">Individuell</div><div class="plan-period">Unbegrenzte Nutzer</div><ul class="plan-features"><li>Alles aus Expert</li><li>White-Label-Branding</li><li>API-Zugang</li><li>Dedizierter Ansprechpartner</li><li>Custom Onboarding</li></ul><a href="mailto:hello@normwise.cloud" class="btn-plan secondary">Kontakt aufnehmen</a></div>
+  </div>
+  <p class="trial-note">// alle_pläne_inkl_7_tage_gratis · keine_kreditkarte_für_demo · jederzeit_kündbar</p>
+</div>
+</div><!-- end lang-de -->
+
+<!-- ═══════════ FRANÇAIS ═══════════ -->
+<div class="lang-section" id="lang-fr">
+<section class="hero">
+  <div class="hero-chip">Conformité ISO assistée par IA</div>
+  <h1>Votre <em>Co-Pilote</em><br/>Conformité</h1>
+  <p>Analyse des écarts en minutes. Réponses clause par clause. ISO 9001, 14001 & 45001. En français, allemand et anglais.</p>
+  <div class="hero-cta">
+    <a href="demo.html" class="btn-hero-primary">3 questions gratuites →</a>
+    <a href="register.html" class="btn-hero-secondary">Essai gratuit 7 jours</a>
+  </div>
+  <p class="hero-note">// sans_carte_pour_la_démo · essai_7_jours · résiliation_à_tout_moment</p>
+</section>
+<div class="section">
+  <div class="section-chip">tarifs</div>
+  <h2>Tarification simple<br/>et transparente</h2>
+  <p class="lead">Commencez gratuitement. Évoluez selon vos besoins. Résiliez à tout moment.</p>
+  <div class="pricing-grid">
+    <div class="plan-card"><div class="plan-name">Starter</div><div class="plan-price">€79<span>/mois</span></div><div class="plan-period">1 utilisateur · 150 questions/mois</div><ul class="plan-features"><li>Assistant IA</li><li>ISO 9001, 14001, 45001</li><li>Projets 2026/2027</li><li>FR / DE / EN</li><li>Support e-mail (48h)</li></ul><a href="register.html?plan=starter" class="btn-plan secondary">Essai gratuit</a></div>
+    <div class="plan-card"><div class="plan-name">Professional</div><div class="plan-price">€199<span>/mois</span></div><div class="plan-period">3 utilisateurs · 750 questions/mois</div><ul class="plan-features"><li>Tout du Starter</li><li>Plans d'action Word</li><li>Tableaux Excel</li><li>Dashboard KPI PDF</li><li>Support prioritaire (24h)</li></ul><a href="register.html?plan=pro" class="btn-plan secondary">Essai gratuit</a></div>
+    <div class="plan-card featured"><div class="plan-badge">Plus populaire</div><div class="plan-name">Expert</div><div class="plan-price">€499<span>/mois</span></div><div class="plan-period">5 utilisateurs · 3 000 questions/mois</div><ul class="plan-features"><li>Tout du Professional</li><li>Analyse des écarts</li><li>Plan d'action maître</li><li>Synthèse direction</li><li>Support même jour</li></ul><a href="register.html?plan=expert" class="btn-plan primary">Essai gratuit</a></div>
+    <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price" style="font-size:28px">Sur mesure</div><div class="plan-period">Utilisateurs illimités</div><ul class="plan-features"><li>Tout du Expert</li><li>Marque blanche</li><li>Accès API</li><li>Gestionnaire dédié</li><li>Onboarding personnalisé</li></ul><a href="mailto:hello@normwise.cloud" class="btn-plan secondary">Nous contacter</a></div>
+  </div>
+  <p class="trial-note">// tous_les_plans_incluent_7_jours_gratuits · sans_carte_pour_démo · résiliation_libre</p>
+</div>
+</div><!-- end lang-fr -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Norm<span>Wise</span></h3>
+      <p>Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. Available in English, German and French.</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)">hello@normwise.cloud</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="demo.html">Free Demo</a>
+      <a href="register.html">Sign Up</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="support.html">Contact Us</a>
+      <a href="faq.html">Help Center</a>
+      <a href="mailto:hello@normwise.cloud">Email Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="legal.html">Legal Notice</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Unternehmensberatung Brunen · normwise.cloud · All rights reserved</span>
+    <div class="footer-langs">
+      <a href="#" onclick="setLang('en',null)">🇬🇧 English</a>
+      <a href="#" onclick="setLang('de',null)">🇩🇪 Deutsch</a>
+      <a href="#" onclick="setLang('fr',null)">🇫🇷 Français</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-lang').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById('lang-' + lang);
+  if (section) section.classList.add('active');
+  if (btn) btn.classList.add('active');
+  else {
+    document.querySelectorAll('.nav-lang').forEach(b => {
+      if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
+    });
+  }
+  // Update nav text
+  const loginBtn = document.getElementById('nav-login');
+  const startBtn = document.getElementById('nav-start');
+  if (lang === 'de') { loginBtn.textContent = 'Anmelden'; startBtn.textContent = 'Kostenlos testen'; }
+  else if (lang === 'fr') { loginBtn.textContent = 'Connexion'; startBtn.textContent = 'Essai gratuit'; }
+  else { loginBtn.textContent = 'Log in'; startBtn.textContent = 'Try for Free'; }
+  localStorage.setItem('nw_lang', lang);
+}
+// Auto-detect language
+const saved = localStorage.getItem('nw_lang');
+const browser = navigator.language.substring(0,2).toLowerCase();
+const lang = saved || (['de','fr'].includes(browser) ? browser : 'en');
+const btn = document.querySelector('.nav-lang');
+setLang(lang, null);
+document.querySelectorAll('.nav-lang').forEach(b => {
+  if (b.textContent.toLowerCase().includes(lang)) { b.classList.add('active'); }
+  else { b.classList.remove('active'); }
+});
+</script>
+
+<!-- IUBENDA COOKIE BANNER -->
+<!-- Replace YOUR_IUBENDA_COOKIE_SCRIPT_HERE with your actual iubenda script -->
+<!-- YOUR_IUBENDA_COOKIE_SCRIPT_HERE -->
+
+</body>
+</html>

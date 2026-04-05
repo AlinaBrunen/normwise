@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<title>NormWise — Create Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html,body{background-color:#070c18 !important;min-height:100svh}
+:root{--blue:#1a3fa8;--red:#c0392b;--red-glow:rgba(192,57,43,.35);--ink:#070c18;--surface:#111827;--surface2:#161e30;--muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100svh;padding:20px;-webkit-text-size-adjust:100%}
+.auth-wrap{width:100%;max-width:440px}
+.auth-logo{text-align:center;margin-bottom:32px}
+.auth-logo a{text-decoration:none;display:inline-flex;align-items:center;gap:10px}
+.auth-wordmark{font-weight:700;font-size:24px;color:#fff;letter-spacing:-.5px}
+.auth-wordmark span{color:var(--red)}
+.auth-box{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:36px}
+.auth-chip{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.auth-box h1{font-size:26px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+.auth-box p{font-size:14px;color:var(--muted2);margin-bottom:28px;line-height:1.6}
+.plan-selected{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:8px;padding:12px 16px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center}
+.plan-selected span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red)}
+.plan-selected strong{font-size:14px;color:#fff}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.form-group input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:13px 16px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s}
+.form-group input::placeholder{color:var(--muted)}
+.form-group input:focus{border-color:rgba(26,63,168,.5)}
+.form-group input.error{border-color:rgba(192,57,43,.6)}
+.error-msg{font-size:12px;color:#f87171;margin-top:6px;display:none}
+.btn-submit{width:100%;background:var(--red);border:none;border-radius:8px;padding:14px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:#fff;cursor:pointer;box-shadow:0 0 24px var(--red-glow);transition:all .2s;margin-top:8px}
+.btn-submit:hover{background:#a93226;transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.auth-divider{text-align:center;margin:20px 0;position:relative}
+.auth-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border2)}
+.auth-divider span{background:var(--surface);padding:0 12px;position:relative;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.auth-footer{text-align:center;margin-top:20px;font-size:13px;color:var(--muted2)}
+.auth-footer a{color:#6a9fd8;text-decoration:none}
+.auth-footer a:hover{text-decoration:underline}
+.trial-info{background:rgba(26,63,168,.1);border:1px solid rgba(26,63,168,.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--muted2);line-height:1.6}
+.trial-info strong{color:#7aa4e8}
+.success-box{display:none;text-align:center;padding:20px}
+.success-box .icon{font-size:48px;margin-bottom:16px}
+.success-box h2{font-size:22px;font-weight:700;letter-spacing:-1px;margin-bottom:8px}
+.success-box p{font-size:14px;color:var(--muted2);line-height:1.7}
+.alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
+.alert.error{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);color:#f87171}
+.alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
+.terms-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
+.terms-note a{color:var(--muted2);text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-logo">
+    <a href="index.html">
+      <svg width="28" height="28" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
+      <span class="auth-wordmark">Norm<span>Wise</span></span>
+    </a>
+  </div>
+
+  <div class="auth-box">
+    <div id="form-section">
+      <div class="auth-chip" id="reg-chip">// create_account</div>
+      <h1 id="reg-title">Start your free trial</h1>
+      <p id="reg-subtitle">7 days free — no credit card needed for the first 3 questions. Full access after trial starts.</p>
+
+      <div class="trial-info" id="trial-info">
+        ✅ <strong>7-day free trial</strong> — cancel anytime before it ends and you won't be charged.
+      </div>
+
+      <div class="plan-selected" id="plan-display" style="display:none">
+        <span id="plan-label">SELECTED PLAN</span>
+        <strong id="plan-name">NormWise Starter</strong>
+      </div>
+
+      <div class="alert error" id="alert-error"></div>
+      <div class="alert success" id="alert-success"></div>
+
+      <div class="form-group">
+        <label id="label-name">Full Name</label>
+        <input type="text" id="fullname" placeholder="Your full name" autocomplete="name"/>
+        <div class="error-msg" id="err-name">Please enter your full name</div>
+      </div>
+      <div class="form-group">
+        <label id="label-email">Work Email</label>
+        <input type="email" id="email" placeholder="you@company.com" autocomplete="email"/>
+        <div class="error-msg" id="err-email">Please enter a valid email address</div>
+      </div>
+      <div class="form-group">
+        <label id="label-password">Password</label>
+        <input type="password" id="password" placeholder="Minimum 8 characters" autocomplete="new-password"/>
+        <div class="error-msg" id="err-password">Password must be at least 8 characters</div>
+      </div>
+      <div class="form-group">
+        <label id="label-company">Company (Optional)</label>
+        <input type="text" id="company" placeholder="Your company name" autocomplete="organization"/>
+      </div>
+
+      <button class="btn-submit" id="submit-btn" onclick="handleRegister()">
+        <span id="btn-text">Create Account & Start Trial</span>
+      </button>
+
+      <p class="terms-note" id="terms-note">
+        By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.
+      </p>
+
+      <div class="auth-divider"><span id="divider-text">already have an account?</span></div>
+      <div class="auth-footer">
+        <a href="login.html" id="login-link">Log in to NormWise</a>
+      </div>
+    </div>
+
+    <div class="success-box" id="success-section">
+      <div class="icon">✅</div>
+      <h2 id="success-title">Account Created!</h2>
+      <p id="success-text">Check your email — we've sent you a confirmation link. Click it to activate your account and start your 7-day free trial.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Supabase configuration
+const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+
+const translations = {
+  en: {
+    chip: '// create_account', title: 'Start your free trial',
+    subtitle: '7 days free — no credit card needed for the first 3 questions.',
+    trialInfo: '✅ <strong>7-day free trial</strong> — cancel anytime before it ends and you won\'t be charged.',
+    labelName: 'Full Name', labelEmail: 'Work Email', labelPassword: 'Password', labelCompany: 'Company (Optional)',
+    btnText: 'Create Account & Start Trial', planLabel: 'SELECTED PLAN',
+    errName: 'Please enter your full name', errEmail: 'Please enter a valid email',
+    errPassword: 'Password must be at least 8 characters',
+    termsNote: 'By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.',
+    divider: 'already have an account?', loginLink: 'Log in to NormWise',
+    successTitle: 'Account Created!', successText: 'Check your email for a confirmation link to activate your 7-day free trial.',
+    placeholderName: 'Your full name', placeholderEmail: 'you@company.com',
+    placeholderPassword: 'Minimum 8 characters', placeholderCompany: 'Your company name'
+  },
+  de: {
+    chip: '// konto_erstellen', title: 'Kostenlosen Test starten',
+    subtitle: '7 Tage kostenlos — keine Kreditkarte für die ersten 3 Fragen erforderlich.',
+    trialInfo: '✅ <strong>7 Tage kostenlos</strong> — jederzeit vor Ablauf kündbar, keine Kosten.',
+    labelName: 'Vollständiger Name', labelEmail: 'Geschäftliche E-Mail', labelPassword: 'Passwort', labelCompany: 'Unternehmen (Optional)',
+    btnText: 'Konto erstellen & Test starten', planLabel: 'AUSGEWÄHLTER PLAN',
+    errName: 'Bitte geben Sie Ihren vollständigen Namen ein', errEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+    errPassword: 'Das Passwort muss mindestens 8 Zeichen lang sein',
+    termsNote: 'Mit der Kontoerstellung stimmen Sie unseren <a href="terms.html">Nutzungsbedingungen</a> und unserer <a href="privacy.html">Datenschutzerklärung</a> zu.',
+    divider: 'bereits ein Konto?', loginLink: 'Bei NormWise anmelden',
+    successTitle: 'Konto erstellt!', successText: 'Prüfen Sie Ihre E-Mail — wir haben Ihnen einen Bestätigungslink gesendet.',
+    placeholderName: 'Ihr vollständiger Name', placeholderEmail: 'sie@unternehmen.de',
+    placeholderPassword: 'Mindestens 8 Zeichen', placeholderCompany: 'Ihr Unternehmen'
+  },
+  fr: {
+    chip: '// créer_un_compte', title: 'Démarrer votre essai gratuit',
+    subtitle: '7 jours gratuits — aucune carte bancaire requise pour les 3 premières questions.',
+    trialInfo: '✅ <strong>Essai gratuit 7 jours</strong> — résiliez à tout moment avant la fin sans frais.',
+    labelName: 'Nom complet', labelEmail: 'E-mail professionnel', labelPassword: 'Mot de passe', labelCompany: 'Entreprise (Optionnel)',
+    btnText: 'Créer un compte et démarrer', planLabel: 'PLAN SÉLECTIONNÉ',
+    errName: 'Veuillez entrer votre nom complet', errEmail: 'Veuillez entrer un e-mail valide',
+    errPassword: 'Le mot de passe doit contenir au moins 8 caractères',
+    termsNote: 'En créant un compte, vous acceptez nos <a href="terms.html">Conditions d\'utilisation</a> et notre <a href="privacy.html">Politique de confidentialité</a>.',
+    divider: 'vous avez déjà un compte ?', loginLink: 'Se connecter à NormWise',
+    successTitle: 'Compte créé !', successText: 'Vérifiez votre e-mail — nous vous avons envoyé un lien de confirmation.',
+    placeholderName: 'Votre nom complet', placeholderEmail: 'vous@entreprise.fr',
+    placeholderPassword: 'Minimum 8 caractères', placeholderCompany: 'Votre entreprise'
+  }
+};
+
+function applyLang(lang) {
+  const t = translations[lang] || translations.en;
+  document.getElementById('reg-chip').textContent = t.chip;
+  document.getElementById('reg-title').textContent = t.title;
+  document.getElementById('reg-subtitle').textContent = t.subtitle;
+  document.getElementById('trial-info').innerHTML = t.trialInfo;
+  document.getElementById('label-name').textContent = t.labelName;
+  document.getElementById('label-email').textContent = t.labelEmail;
+  document.getElementById('label-password').textContent = t.labelPassword;
+  document.getElementById('label-company').textContent = t.labelCompany;
+  document.getElementById('btn-text').textContent = t.btnText;
+  document.getElementById('plan-label').textContent = t.planLabel;
+  document.getElementById('err-name').textContent = t.errName;
+  document.getElementById('err-email').textContent = t.errEmail;
+  document.getElementById('err-password').textContent = t.errPassword;
+  document.getElementById('terms-note').innerHTML = t.termsNote;
+  document.getElementById('divider-text').textContent = t.divider;
+  document.getElementById('login-link').textContent = t.loginLink;
+  document.getElementById('success-title').textContent = t.successTitle;
+  document.getElementById('success-text').textContent = t.successText;
+  document.getElementById('fullname').placeholder = t.placeholderName;
+  document.getElementById('email').placeholder = t.placeholderEmail;
+  document.getElementById('password').placeholder = t.placeholderPassword;
+  document.getElementById('company').placeholder = t.placeholderCompany;
+}
+
+// Show selected plan
+const urlParams = new URLSearchParams(window.location.search);
+const plan = urlParams.get('plan');
+const planNames = { starter: 'NormWise Starter — €79/mo', pro: 'NormWise Professional — €199/mo', expert: 'NormWise Expert — €499/mo' };
+if (plan && planNames[plan]) {
+  document.getElementById('plan-display').style.display = 'flex';
+  document.getElementById('plan-name').textContent = planNames[plan];
+}
+
+async function handleRegister() {
+  const name = document.getElementById('fullname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const company = document.getElementById('company').value.trim();
+
+  // Validate
+  let valid = true;
+  if (!name) { document.getElementById('err-name').style.display='block'; document.getElementById('fullname').classList.add('error'); valid=false; }
+  else { document.getElementById('err-name').style.display='none'; document.getElementById('fullname').classList.remove('error'); }
+  if (!email || !email.includes('@')) { document.getElementById('err-email').style.display='block'; document.getElementById('email').classList.add('error'); valid=false; }
+  else { document.getElementById('err-email').style.display='none'; document.getElementById('email').classList.remove('error'); }
+  if (password.length < 8) { document.getElementById('err-password').style.display='block'; document.getElementById('password').classList.add('error'); valid=false; }
+  else { document.getElementById('err-password').style.display='none'; document.getElementById('password').classList.remove('error'); }
+  if (!valid) return;
+
+  const btn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  btn.disabled = true;
+  btnText.textContent = '...';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY },
+      body: JSON.stringify({ email, password, data: { full_name: name, company, plan: plan || 'starter' } })
+    });
+    const data = await res.json();
+
+    if (data.error) {
+      document.getElementById('alert-error').textContent = data.error.message || 'Registration failed. Please try again.';
+      document.getElementById('alert-error').style.display = 'block';
+      btn.disabled = false;
+      btnText.textContent = translations[localStorage.getItem('nw_lang')||'en'].btnText;
+    } else {
+      document.getElementById('form-section').style.display = 'none';
+      document.getElementById('success-section').style.display = 'block';
+    }
+  } catch(e) {
+    document.getElementById('alert-error').textContent = 'Connection error. Please try again.';
+    document.getElementById('alert-error').style.display = 'block';
+    btn.disabled = false;
+    btnText.textContent = translations[localStorage.getItem('nw_lang')||'en'].btnText;
+  }
+}
+
+const lang = localStorage.getItem('nw_lang') || 'en';
+applyLang(lang);
+</script>
+</body>
+</html>
