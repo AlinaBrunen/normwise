@@ -7,6 +7,11 @@ export default async function handler(req, res) {
 
   try {
     const { messages, system } = req.body;
+
+    const languageInstruction = `CRITICAL LANGUAGE RULE: Always detect the language of the user's message and respond in EXACTLY that language. If the user writes in German, respond in German. If the user writes in French, respond in French. If the user writes in English, respond in English. Never switch languages.`;
+
+    const finalSystem = languageInstruction + '\n\n' + (system || '');
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -17,10 +22,11 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        system: system || '',
+        system: finalSystem,
         messages: messages
       })
     });
+
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {
