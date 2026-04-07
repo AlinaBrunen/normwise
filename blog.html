@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<title>NormWise Blog — ISO Compliance Insights</title>
+<meta name="description" content="Expert insights on ISO 9001, ISO 14001 and ISO 45001. Gap analysis guides, audit preparation tips and ISO 2026 updates. In English, German and French."/>
+<meta name="keywords" content="ISO 9001 blog, ISO gap analysis, audit preparation, ISO 9001 2026, Qualitätsmanagement, analyse écarts ISO"/>
+<link rel="canonical" href="https://normwise.cloud/blog"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #070c18;
+  --bg2: #0d1525;
+  --surface: #111827;
+  --surface2: #1a2538;
+  --border: rgba(255,255,255,0.07);
+  --red: #e63946;
+  --red2: #c1121f;
+  --blue: #1d4ed8;
+  --blue2: #3b82f6;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+html, body { background: #070c18 !important; color: #f1f5f9 !important; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;background:#070c18;}
+body{background:#070c18;color:#f1f5f9;font-family:var(--sans);min-height:100vh;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,12,24,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--red),var(--red2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:14px;color:#fff;}
+.logo-text{font-weight:700;font-size:18px;color:var(--text);}
+.logo-text span{color:var(--red);}
+.nav-links{display:flex;align-items:center;gap:8px;}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:6px;cursor:pointer;font-family:var(--sans);font-size:13px;transition:all 0.2s;}
+.lang-btn.active,.lang-btn:hover{border-color:var(--red);color:var(--text);background:rgba(230,57,70,0.1);}
+.nav-cta{background:var(--red);color:#fff;padding:8px 18px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;}
+.nav-cta:hover{background:var(--red2);}
+
+/* HERO */
+.blog-hero{padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden;}
+.blog-hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(230,57,70,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.3);border-radius:20px;padding:6px 16px;margin-bottom:24px;}
+.hero-chip span{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:0.05em;}
+.hero-dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.blog-hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:16px;}
+.blog-hero h1 em{color:var(--red);font-style:normal;}
+.blog-hero p{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto 40px;}
+
+/* FILTER TABS */
+.filter-bar{max-width:1200px;margin:0 auto;padding:0 24px 48px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.filter-label{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:0.1em;margin-right:4px;}
+.filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:500;transition:all 0.2s;display:flex;align-items:center;gap:6px;}
+.filter-btn.active,.filter-btn:hover{background:rgba(230,57,70,0.1);border-color:rgba(230,57,70,0.4);color:var(--text);}
+.filter-btn.active{border-color:var(--red);}
+.count-badge{background:rgba(230,57,70,0.2);color:var(--red);border-radius:10px;padding:1px 7px;font-size:11px;font-family:var(--mono);}
+
+/* FEATURED POST */
+.featured-section{max-width:1200px;margin:0 auto;padding:0 24px 48px;}
+.section-label{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;}
+.featured-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:border-color 0.3s,transform 0.3s;cursor:pointer;text-decoration:none;color:inherit;}
+.featured-card:hover{border-color:rgba(230,57,70,0.4);transform:translateY(-2px);}
+.featured-img{background:linear-gradient(135deg,#0d1525 0%,#1a2538 50%,#0d1525 100%);min-height:280px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.featured-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(230,57,70,0.15),transparent 60%);}
+.featured-img-text{font-family:var(--mono);font-size:11px;color:rgba(230,57,70,0.6);letter-spacing:0.1em;text-align:center;position:relative;z-index:1;}
+.featured-img-number{font-size:80px;font-weight:700;color:rgba(230,57,70,0.08);font-family:var(--mono);position:absolute;bottom:-10px;right:20px;}
+.featured-content{padding:40px;}
+.post-meta{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.lang-tag{font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;}
+.lang-de{background:rgba(255,206,0,0.15);color:#ffd700;border:1px solid rgba(255,206,0,0.2);}
+.lang-en{background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.2);}
+.lang-fr{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.2);}
+.cat-tag{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--surface2);padding:3px 10px;border-radius:4px;}
+.read-time{font-size:12px;color:var(--muted);margin-left:auto;}
+.featured-content h2{font-size:26px;font-weight:700;line-height:1.3;margin-bottom:12px;}
+.featured-content p{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:24px;}
+.read-btn{display:inline-flex;align-items:center;gap:8px;color:var(--red);font-size:14px;font-weight:600;text-decoration:none;}
+.read-btn::after{content:'→';transition:transform 0.2s;}
+.featured-card:hover .read-btn::after{transform:translateX(4px);}
+
+/* POSTS GRID */
+.posts-section{max-width:1200px;margin:0 auto;padding:0 24px 80px;}
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.post-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;}
+.post-card:hover{border-color:rgba(230,57,70,0.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
+.post-card-img{height:160px;background:linear-gradient(135deg,var(--bg2),var(--surface2));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.post-card-img::after{content:attr(data-iso);position:absolute;bottom:-8px;right:16px;font-size:48px;font-weight:700;color:rgba(230,57,70,0.07);font-family:var(--mono);}
+.post-card-icon{font-size:32px;position:relative;z-index:1;}
+.post-card-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.post-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.post-card-body h3{font-size:17px;font-weight:600;line-height:1.4;margin-bottom:10px;flex:1;}
+.post-card-body p{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:16px;}
+.post-card-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;}
+.post-date{font-size:12px;color:var(--muted);}
+.post-arrow{color:var(--red);font-size:16px;transition:transform 0.2s;}
+.post-card:hover .post-arrow{transform:translateX(4px);}
+
+/* NEWSLETTER */
+.newsletter{max-width:1200px;margin:0 auto;padding:0 24px 80px;}
+.newsletter-inner{background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border);border-radius:16px;padding:48px;text-align:center;position:relative;overflow:hidden;}
+.newsletter-inner::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(230,57,70,0.1),transparent 70%);}
+.newsletter h3{font-size:28px;font-weight:700;margin-bottom:10px;}
+.newsletter p{color:var(--muted);margin-bottom:28px;font-size:16px;}
+.newsletter-form{display:flex;gap:12px;max-width:480px;margin:0 auto;justify-content:center;}
+.newsletter-form input{flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:12px 16px;border-radius:8px;font-family:var(--sans);font-size:14px;outline:none;transition:border-color 0.2s;}
+.newsletter-form input:focus{border-color:var(--red);}
+.newsletter-form button{background:var(--red);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:14px;transition:background 0.2s;white-space:nowrap;}
+.newsletter-form button:hover{background:var(--red2);}
+
+/* ARTICLE MODAL */
+.article-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);overflow-y:auto;padding:40px 24px;}
+.article-modal.open{display:flex;align-items:flex-start;justify-content:center;}
+.article-inner{background:var(--surface);border:1px solid var(--border);border-radius:20px;max-width:780px;width:100%;padding:48px;position:relative;margin:auto;}
+.article-close{position:absolute;top:20px;right:20px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.article-close:hover{color:var(--text);border-color:var(--red);}
+.article-inner h1{font-size:28px;font-weight:700;line-height:1.3;margin:16px 0 12px;}
+.article-inner .article-meta{display:flex;align-items:center;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+.article-inner .article-body{color:var(--muted);font-size:15px;line-height:1.75;}
+.article-inner .article-body h2{color:var(--text);font-size:20px;font-weight:600;margin:28px 0 12px;}
+.article-inner .article-body h3{color:var(--text);font-size:17px;font-weight:600;margin:20px 0 8px;}
+.article-inner .article-body p{margin-bottom:14px;}
+.article-inner .article-body ul{padding-left:20px;margin-bottom:14px;}
+.article-inner .article-body ul li{margin-bottom:6px;}
+.article-inner .article-body strong{color:var(--text);}
+.article-inner .article-body .highlight{background:rgba(230,57,70,0.08);border-left:3px solid var(--red);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;}
+.article-cta{margin-top:32px;background:linear-gradient(135deg,rgba(230,57,70,0.1),rgba(230,57,70,0.05));border:1px solid rgba(230,57,70,0.3);border-radius:12px;padding:24px;text-align:center;}
+.article-cta h4{font-size:18px;margin-bottom:8px;}
+.article-cta p{color:var(--muted);font-size:14px;margin-bottom:16px;}
+.article-cta a{background:var(--red);color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;display:inline-block;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;}
+footer p{color:var(--muted);font-size:13px;}
+footer a{color:var(--muted);text-decoration:none;}
+footer a:hover{color:var(--text);}
+
+/* HIDDEN class */
+.hidden{display:none!important;}
+
+@media(max-width:900px){
+  .featured-card{grid-template-columns:1fr;}
+  .posts-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .posts-grid{grid-template-columns:1fr;}
+  .newsletter-form{flex-direction:column;}
+  .article-inner{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo">
+      <div class="logo-icon">N</div>
+      <span class="logo-text">Norm<span>Wise</span></span>
+    </a>
+    <div class="nav-links">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">🇬🇧 EN</button>
+      <button class="lang-btn" onclick="setLang('de')" id="btn-de">🇩🇪 DE</button>
+      <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">🇫🇷 FR</button>
+      <a href="/demo.html" class="nav-cta" id="nav-cta-text">Try Free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="hero-chip">
+    <div class="hero-dot"></div>
+    <span id="chip-text">// normwise_blog · iso_insights</span>
+  </div>
+  <h1 id="hero-title">ISO Compliance <em>Insights</em></h1>
+  <p id="hero-sub">Expert guides on ISO 9001, 14001 & 45001. Gap analysis templates, audit preparation tips and the latest on ISO 2026.</p>
+</section>
+
+<!-- FILTERS -->
+<div class="filter-bar">
+  <span class="filter-label">// filter:</span>
+  <button class="filter-btn active" onclick="filterPosts('all')" id="filter-all">
+    <span id="f-all">All Posts</span> <span class="count-badge">6</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('de')" id="filter-de">
+    🇩🇪 <span id="f-de">Deutsch</span> <span class="count-badge">2</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('en')" id="filter-en">
+    🇬🇧 <span id="f-en">English</span> <span class="count-badge">2</span>
+  </button>
+  <button class="filter-btn" onclick="filterPosts('fr')" id="filter-fr">
+    🇫🇷 <span id="f-fr">Français</span> <span class="count-badge">2</span>
+  </button>
+</div>
+
+<!-- FEATURED -->
+<section class="featured-section">
+  <div class="section-label" id="featured-label">// featured_post</div>
+  <a class="featured-card" href="#" onclick="openArticle('post-iso9001-2026-de');return false;">
+    <div class="featured-img">
+      <div class="featured-img-text">ISO 9001:2026<br/>REVISION GUIDE</div>
+      <div class="featured-img-number">26</div>
+    </div>
+    <div class="featured-content">
+      <div class="post-meta">
+        <span class="lang-tag lang-de">🇩🇪 Deutsch</span>
+        <span class="cat-tag">ISO 9001:2026</span>
+        <span class="read-time">8 min</span>
+      </div>
+      <h2>ISO 9001:2026 — Die 7 wichtigsten Änderungen für Qualitätsmanager</h2>
+      <p>ISO 9001:2026 kommt im September 2026. Erfahren Sie jetzt die 7 wichtigsten Änderungen und wie Sie Ihr QMS vorbereiten — 18 Monate vor der Deadline.</p>
+      <span class="read-btn">Artikel lesen</span>
+    </div>
+  </a>
+</section>
+
+<!-- POSTS GRID -->
+<section class="posts-section">
+  <div class="section-label" id="all-posts-label">// all_posts</div>
+  <div class="posts-grid" id="posts-grid">
+
+    <a class="post-card" href="#" data-lang="en" onclick="openArticle('post-gap-analysis-en');return false;">
+      <div class="post-card-img" data-iso="9001">
+        <span class="post-card-icon">🔍</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="lang-tag lang-en">🇬🇧 EN</span>
+          <span class="cat-tag">Gap Analysis</span>
+          <span class="read-time">10 min</span>
+        </div>
+        <h3>ISO 9001 Gap Analysis: Complete Step-by-Step Guide (2026)</h3>
+        <p>How to conduct a clause-by-clause gap analysis. Free template included. Updated for ISO 9001:2026.</p>
+        <div class="post-card-footer">
+          <span class="post-date">April 2026</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="post-card" href="#" data-lang="fr" onclick="openArticle('post-audit-fr');return false;">
+      <div class="post-card-img" data-iso="9001">
+        <span class="post-card-icon">📋</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="lang-tag lang-fr">🇫🇷 FR</span>
+          <span class="cat-tag">Audit</span>
+          <span class="read-time">7 min</span>
+        </div>
+        <h3>Préparation Audit ISO 9001 : Guide Complet + Checklist Gratuite</h3>
+        <p>Comment préparer un audit ISO 9001 efficacement ? Guide étape par étape avec checklist pour les responsables qualité.</p>
+        <div class="post-card-footer">
+          <span class="post-date">Avril 2026</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="post-card" href="#" data-lang="de" onclick="openArticle('post-major-nc-de');return false;">
+      <div class="post-card-img" data-iso="9001">
+        <span class="post-card-icon">⚠️</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="lang-tag lang-de">🇩🇪 DE</span>
+          <span class="cat-tag">Audit</span>
+          <span class="read-time">6 min</span>
+        </div>
+        <h3>Die 5 häufigsten Major NCs bei ISO 9001 Audits — und wie Sie sie vermeiden</h3>
+        <p>Nach hunderten von Audits: Das sind die 5 häufigsten Major Non-Conformities und wie Sie sie vermeiden.</p>
+        <div class="post-card-footer">
+          <span class="post-date">April 2026</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="post-card" href="#" data-lang="en" onclick="openArticle('post-consultant-en');return false;">
+      <div class="post-card-img" data-iso="ISO">
+        <span class="post-card-icon">🚀</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="lang-tag lang-en">🇬🇧 EN</span>
+          <span class="cat-tag">Consulting</span>
+          <span class="read-time">5 min</span>
+        </div>
+        <h3>How ISO Consultants Can Handle 3x More Clients with AI in 2026</h3>
+        <p>The ISO consultants who adopt AI tools now will handle 3x more clients than those who don't. Here's how.</p>
+        <div class="post-card-footer">
+          <span class="post-date">April 2026</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="post-card" href="#" data-lang="fr" onclick="openArticle('post-14001-fr');return false;">
+      <div class="post-card-img" data-iso="14001">
+        <span class="post-card-icon">🌍</span>
+      </div>
+      <div class="post-card-body">
+        <div class="post-card-meta">
+          <span class="lang-tag lang-fr">🇫🇷 FR</span>
+          <span class="cat-tag">ISO 14001</span>
+          <span class="read-time">6 min</span>
+        </div>
+        <h3>ISO 14001 & 45001 — Les Questions les Plus Fréquentes Répondues</h3>
+        <p>Les 10 questions les plus fréquentes sur ISO 14001 et ISO 45001, répondues clause par clause par des experts.</p>
+        <div class="post-card-footer">
+          <span class="post-date">Avril 2026</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h3 id="nl-title">Get ISO Insights in Your Inbox</h3>
+    <p id="nl-sub">New articles every week. No spam. Unsubscribe anytime.</p>
+    <div class="newsletter-form">
+      <input type="email" id="nl-email" placeholder="your@email.com"/>
+      <button onclick="subscribeNewsletter()" id="nl-btn">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Unternehmensberatung Brunen · <a href="/index.html">normwise.cloud</a> · <a href="/privacy.html">Privacy</a> · <a href="/legal.html">Legal</a></p>
+</footer>
+
+<!-- ARTICLE MODAL -->
+<div class="article-modal" id="article-modal" onclick="closeArticleOutside(event)">
+  <div class="article-inner" id="article-content">
+    <button class="article-close" onclick="closeArticle()">✕</button>
+    <div id="article-body"></div>
+  </div>
+</div>
+
+<script>
+// ─── ARTICLES ───
+const articles = {
+  'post-iso9001-2026-de': {
+    lang: 'de', langTag: 'lang-de', langLabel: '🇩🇪 Deutsch', cat: 'ISO 9001:2026', readTime: '8 min',
+    title: 'ISO 9001:2026 — Die 7 wichtigsten Änderungen für Qualitätsmanager',
+    body: `
+      <div class="highlight">⚡ ISO 9001:2026 wird im September 2026 veröffentlicht. Die Übergangsfrist beträgt 3 Jahre. Wer jetzt beginnt, hat einen klaren Vorteil.</div>
+      <h2>Warum jetzt handeln?</h2>
+      <p>Viele Qualitätsmanager warten ab. Das ist ein Fehler. Die Unternehmen, die bereits heute mit der Vorbereitung beginnen, werden die Transition problemlos meistern — während andere in den letzten 6 Monaten unter Hochdruck stehen.</p>
+      <h2>Die 7 wichtigsten Änderungen in ISO 9001:2026</h2>
+      <h3>1. Klimawandel als explizite Anforderung (Amendment 1:2024)</h3>
+      <p>Bereits in Kraft: Amendment 1:2024 verlangt, dass Organisationen den <strong>Klimawandel als relevantes Thema</strong> in Klausel 4.1 und 4.2 berücksichtigen. Dies ist keine Empfehlung — es ist eine Anforderung.</p>
+      <h3>2. Stärkeres Knowledge Management (Klausel 7.1.6)</h3>
+      <p>Wissen als Ressource bekommt mehr Gewicht. Dokumentation, Wissenstransfer und der Umgang mit Wissensverlusten (z.B. bei Personalwechsel) müssen explizit adressiert werden.</p>
+      <h3>3. Präzisere Risikobeurteilung (Klausel 6.1)</h3>
+      <p>Risk-based thinking wird spezifischer. Neue Leitlinien helfen Organisationen, Risiken systematischer zu bewerten und zu priorisieren.</p>
+      <h3>4. Digitalisierung explizit adressiert</h3>
+      <p>Digitale Prozesse, elektronische Dokumentation und IT-Systeme werden erstmals explizit in der Norm erwähnt.</p>
+      <h3>5. Vereinfachte Dokumentationsanforderungen</h3>
+      <p>Weniger ist mehr: Die neue Version reduziert unnötige Dokumentationspflichten und fokussiert auf Mehrwert statt Bürokratie.</p>
+      <h3>6. Stärkerer Fokus auf Kundenzufriedenheit</h3>
+      <p>Klausel 9.1.2 wird erweitert: Kundenzufriedenheit soll systematischer gemessen und ausgewertet werden.</p>
+      <h3>7. Überarbeitete Anforderungen für externe Anbieter</h3>
+      <p>Klausel 8.4 (Externe Anbieter) wird präzisiert — mit klaren Anforderungen an Lieferantenbeurteilung und -überwachung.</p>
+      <h2>Zeitplan & Übergangsfrist</h2>
+      <ul>
+        <li><strong>Dezember 2025:</strong> DIS (Draft International Standard) genehmigt</li>
+        <li><strong>April 2026:</strong> FDIS (Final Draft) erwartet</li>
+        <li><strong>September 2026:</strong> Veröffentlichung ISO 9001:2026</li>
+        <li><strong>September 2029:</strong> Ende der Übergangsfrist</li>
+      </ul>
+      <div class="highlight">💡 <strong>Empfehlung:</strong> Beginnen Sie heute mit einer Gap-Analyse gegen ISO 9001:2026. NormWise kennt bereits alle DIS-Anforderungen.</div>
+    `
+  },
+  'post-gap-analysis-en': {
+    lang: 'en', langTag: 'lang-en', langLabel: '🇬🇧 English', cat: 'Gap Analysis', readTime: '10 min',
+    title: 'ISO 9001 Gap Analysis: Complete Step-by-Step Guide (2026)',
+    body: `
+      <div class="highlight">📥 This guide includes a free gap analysis methodology you can use immediately. Updated for ISO 9001:2026.</div>
+      <h2>What is an ISO 9001 Gap Analysis?</h2>
+      <p>A gap analysis is a systematic comparison between your organization's current management system and the requirements of ISO 9001. It identifies where you <strong>conform</strong>, where you have <strong>gaps</strong>, and what you need to do to achieve certification.</p>
+      <h2>Why Conduct One Before Certification?</h2>
+      <p>Organizations that skip the gap analysis often fail their first audit. A proper gap analysis gives you a clear roadmap, reduces audit surprises, and helps you prioritize your resources.</p>
+      <h2>Step 1: Map Your Current Processes</h2>
+      <p>Before comparing against ISO 9001, document what you currently do. Create a process map covering: quality management, customer communication, purchasing, production/service delivery, and monitoring.</p>
+      <h2>Step 2: Clause-by-Clause Comparison</h2>
+      <p>Work through each of the 10 clauses of ISO 9001 and evaluate your current practices against the requirements:</p>
+      <ul>
+        <li><strong>Clause 4:</strong> Context of the organization</li>
+        <li><strong>Clause 5:</strong> Leadership</li>
+        <li><strong>Clause 6:</strong> Planning</li>
+        <li><strong>Clause 7:</strong> Support</li>
+        <li><strong>Clause 8:</strong> Operation</li>
+        <li><strong>Clause 9:</strong> Performance evaluation</li>
+        <li><strong>Clause 10:</strong> Improvement</li>
+      </ul>
+      <h2>Step 3: Classify Your Findings</h2>
+      <p>For each clause, classify your finding:</p>
+      <ul>
+        <li>🔴 <strong>Major NC:</strong> Mandatory requirement not met — must fix before certification</li>
+        <li>🟠 <strong>Minor NC:</strong> Partial fulfillment — fix within 90 days</li>
+        <li>🟡 <strong>OFI:</strong> Opportunity for improvement — recommended</li>
+        <li>🟢 <strong>Conforms:</strong> Requirement fully met</li>
+      </ul>
+      <h2>Step 4: Build Your Action Plan</h2>
+      <p>For each gap, define: who is responsible, what action is needed, and by when. Prioritize Major NCs first — these are blocking your certification.</p>
+      <div class="highlight">⚡ <strong>Pro tip:</strong> Use NormWise to ask clause-specific questions during your gap analysis. Get auditor-perspective answers in seconds.</div>
+    `
+  },
+  'post-audit-fr': {
+    lang: 'fr', langTag: 'lang-fr', langLabel: '🇫🇷 Français', cat: 'Audit', readTime: '7 min',
+    title: 'Préparation Audit ISO 9001 : Guide Complet + Checklist Gratuite',
+    body: `
+      <div class="highlight">📋 Ce guide contient une checklist de préparation complète que vous pouvez utiliser immédiatement.</div>
+      <h2>Pourquoi la préparation est cruciale</h2>
+      <p>Les organisations qui réussissent leur audit ISO 9001 du premier coup ont toutes un point commun : elles se sont préparées systématiquement. Une préparation sérieuse réduit le risque de NC Majeures de 70%.</p>
+      <h2>Les 5 erreurs les plus courantes</h2>
+      <ul>
+        <li><strong>1. Objectifs qualité non mesurables</strong> — Clause 6.2 est souvent sous-estimée</li>
+        <li><strong>2. Revue de direction incomplète</strong> — Les 8 inputs obligatoires ne sont pas tous couverts</li>
+        <li><strong>3. Actions correctives sans vérification d'efficacité</strong> — Clause 10.2 exige une validation</li>
+        <li><strong>4. Audits internes non planifiés</strong> — Clause 9.2 exige un programme</li>
+        <li><strong>5. Preuves de compétences manquantes</strong> — Clause 7.2 est souvent négligée</li>
+      </ul>
+      <h2>Checklist 30 jours avant l'audit</h2>
+      <ul>
+        <li>✅ Politique qualité documentée et communiquée</li>
+        <li>✅ Objectifs qualité SMART définis par département</li>
+        <li>✅ Revue de direction complète avec tous les 8 inputs</li>
+        <li>✅ Audit interne réalisé dans les 12 derniers mois</li>
+        <li>✅ Toutes les NC antérieures clôturées avec preuve d'efficacité</li>
+        <li>✅ Registre des risques et opportunités à jour</li>
+        <li>✅ Preuves de compétences pour tout le personnel clé</li>
+        <li>✅ Satisfaction client mesurée et documentée</li>
+      </ul>
+      <h2>Le jour J — comment se comporter face à l'auditeur</h2>
+      <p>Répondez uniquement à ce qui est demandé. Fournissez des preuves documentées. N'improvisez jamais — si vous ne savez pas, dites-le et vérifiez.</p>
+      <div class="highlight">💡 <strong>Astuce NormWise :</strong> Avant votre audit, posez à NormWise toutes les questions que vous craignez que l'auditeur pose. Entraînez-vous aux réponses clause par clause.</div>
+    `
+  },
+  'post-major-nc-de': {
+    lang: 'de', langTag: 'lang-de', langLabel: '🇩🇪 Deutsch', cat: 'Audit', readTime: '6 min',
+    title: 'Die 5 häufigsten Major NCs bei ISO 9001 Audits — und wie Sie sie vermeiden',
+    body: `
+      <div class="highlight">🔴 Eine einzige Major NC kann zur Aussetzung oder Nichterlangung Ihrer ISO 9001 Zertifizierung führen.</div>
+      <h2>Was ist eine Major Non-Conformity?</h2>
+      <p>Eine Major NC bedeutet, dass eine <strong>Mindestanforderung der Norm nicht erfüllt</strong> ist. Das ist kein kleiner Fehler — es ist ein Versagen, eine grundlegende Anforderung zu erfüllen. Auditoren sind verpflichtet, Major NCs zu dokumentieren.</p>
+      <h2>Die 5 häufigsten Major NCs</h2>
+      <h3>🔴 1. Qualitätsziele nicht messbar (Klausel 6.2)</h3>
+      <p>Vage Ziele wie "Qualität verbessern" reichen nicht aus. ISO 9001 verlangt SMART-Ziele: spezifisch, messbar, erreichbar, relevant, terminiert. Beispiel: "Kundenzufriedenheit von 4,2 auf 4,5/5 bis Q4 2026 steigern."</p>
+      <h3>🔴 2. Managementbewertung unvollständig (Klausel 9.3)</h3>
+      <p>Die Managementbewertung muss alle 8 Pflichtinputs enthalten. Fehlt auch nur einer, ist das eine Major NC. Nutzen Sie eine Checkliste für jede Managementbewertung.</p>
+      <h3>🔴 3. Korrekturmaßnahmen ohne Wirksamkeitsprüfung (Klausel 10.2)</h3>
+      <p>Es reicht nicht, Maßnahmen zu definieren und umzusetzen. Sie müssen nachweisen, dass die Maßnahme wirksam war — durch dokumentierte Überprüfung.</p>
+      <h3>🔴 4. Interne Audits nicht planmäßig (Klausel 9.2)</h3>
+      <p>Interne Audits müssen einem dokumentierten Programm folgen. Fehlen Audits oder sind sie nicht dokumentiert, ist das eine Major NC.</p>
+      <h3>🔴 5. Kompetenznachweis fehlt (Klausel 7.2)</h3>
+      <p>Für alle Personen, die das QMS beeinflussen, müssen Kompetenz und Qualifikation nachgewiesen sein — durch Schulungsnachweise, Zertifikate oder Leistungsbeurteilungen.</p>
+      <div class="highlight">💡 <strong>Tipp:</strong> Fragen Sie NormWise: "Was prüft ein Auditor bei Klausel 9.3 Managementbewertung?" — Sie erhalten eine auditorengenaue Antwort in Sekunden.</div>
+    `
+  },
+  'post-consultant-en': {
+    lang: 'en', langTag: 'lang-en', langLabel: '🇬🇧 English', cat: 'Consulting', readTime: '5 min',
+    title: 'How ISO Consultants Can Handle 3x More Clients with AI in 2026',
+    body: `
+      <div class="highlight">🚀 The ISO consultants who adopt AI tools now will dominate their market by 2027.</div>
+      <h2>The Old Way vs. The New Way</h2>
+      <p>Traditional ISO consulting is time-intensive. A single gap analysis takes 4-8 hours of manual clause-by-clause research. Multiply that by 15 clients and you're spending most of your time on research instead of delivering strategic value.</p>
+      <h2>What AI Changes for ISO Consultants</h2>
+      <p>AI tools like NormWise handle the research layer instantly. Instead of spending 6 hours searching through the ISO 9001 standard, you ask NormWise and get a clause-exact answer in seconds.</p>
+      <h2>The 3x Client Model</h2>
+      <p>Here's how it works in practice:</p>
+      <ul>
+        <li><strong>Gap Analysis:</strong> 6 hours → 45 minutes (NormWise does clause research, you focus on findings)</li>
+        <li><strong>Client Q&A:</strong> 2 hours research → instant (ask NormWise, share the answer)</li>
+        <li><strong>Report Generation:</strong> 3 hours → 20 minutes (NormWise generates, you review)</li>
+        <li><strong>Audit Prep:</strong> 4 hours → 1 hour (NormWise knows exactly what auditors check)</li>
+      </ul>
+      <h2>What You Do with the Saved Time</h2>
+      <p>Take on more clients. Deliver higher-value strategic consulting. Build deeper client relationships. Or simply work fewer hours with the same revenue.</p>
+      <div class="highlight">💡 <strong>Try it:</strong> Give NormWise your most challenging ISO clause question. See how fast you get an auditor-perspective answer at normwise.cloud</div>
+    `
+  },
+  'post-14001-fr': {
+    lang: 'fr', langTag: 'lang-fr', langLabel: '🇫🇷 Français', cat: 'ISO 14001', readTime: '6 min',
+    title: 'ISO 14001 & 45001 — Les Questions les Plus Fréquentes Répondues',
+    body: `
+      <div class="highlight">❓ Ces questions viennent de vrais responsables QHSE. Réponses clause par clause.</div>
+      <h2>ISO 14001 — Questions Fréquentes</h2>
+      <h3>Q: Quelle est la différence entre un aspect environnemental significatif et non significatif ?</h3>
+      <p>Un aspect est <strong>significatif</strong> si son impact environnemental dépasse les critères de significativité que votre organisation a définis en clause 6.1.2. Ces critères doivent être documentés et prendre en compte : la fréquence, la gravité, la réversibilité et les exigences légales.</p>
+      <h3>Q: Doit-on auditer tous les aspects environnementaux significatifs chaque année ?</h3>
+      <p>Pas nécessairement chaque aspect individuellement, mais le programme d'audit (clause 9.2) doit couvrir tous les processus significatifs sur la période d'audit définie, en tenant compte de leur importance.</p>
+      <h3>Q: Comment gérer les aspects environnementaux des sous-traitants ?</h3>
+      <p>Clause 8.1 exige que vous contrôliez les processus externalisés qui peuvent avoir un impact significatif. Définissez des critères de sélection environnementaux pour vos fournisseurs critiques.</p>
+      <h2>ISO 45001 — Questions Fréquentes</h2>
+      <h3>Q: Comment identifier les dangers pour ISO 45001 ?</h3>
+      <p>Utilisez une approche systématique (clause 6.1.2.1) : analyse des activités de travail, revue des incidents passés, consultation des travailleurs, et évaluation des situations d'urgence potentielles.</p>
+      <h3>Q: Peut-on intégrer ISO 9001, 14001 et 45001 ?</h3>
+      <p>Oui — la structure HLS (High Level Structure) des trois normes facilite l'intégration. Un système de management intégré (SMI) réduit la duplication documentaire et simplifie les audits.</p>
+      <div class="highlight">💡 <strong>NormWise</strong> répond à toutes vos questions ISO 14001 et 45001 en temps réel, en français, avec des réponses référencées clause par clause.</div>
+    `
+  }
+};
+
+// ─── TRANSLATIONS ───
+const t = {
+  en: {
+    chip: '// normwise_blog · iso_insights',
+    title: 'ISO Compliance <em>Insights</em>',
+    sub: 'Expert guides on ISO 9001, 14001 & 45001. Gap analysis templates, audit preparation tips and the latest on ISO 2026.',
+    featuredLabel: '// featured_post',
+    allLabel: '// all_posts',
+    fAll: 'All Posts', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
+    nlTitle: 'Get ISO Insights in Your Inbox',
+    nlSub: 'New articles every week. No spam. Unsubscribe anytime.',
+    nlBtn: 'Subscribe', nlPlaceholder: 'your@email.com',
+    navCta: 'Try Free'
+  },
+  de: {
+    chip: '// normwise_blog · iso_einblicke',
+    title: 'ISO Compliance <em>Einblicke</em>',
+    sub: 'Expertenguides zu ISO 9001, 14001 & 45001. Gap-Analyse-Vorlagen, Audit-Tipps und alles zu ISO 2026.',
+    featuredLabel: '// hauptartikel',
+    allLabel: '// alle_artikel',
+    fAll: 'Alle Artikel', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
+    nlTitle: 'ISO-Insights direkt in Ihr Postfach',
+    nlSub: 'Neue Artikel jede Woche. Kein Spam. Jederzeit abmelden.',
+    nlBtn: 'Abonnieren', nlPlaceholder: 'ihre@email.de',
+    navCta: 'Kostenlos testen'
+  },
+  fr: {
+    chip: '// normwise_blog · insights_iso',
+    title: 'Conformité ISO <em>Insights</em>',
+    sub: 'Guides experts sur ISO 9001, 14001 & 45001. Modèles d\'analyse des écarts, conseils audit et actualités ISO 2026.',
+    featuredLabel: '// article_vedette',
+    allLabel: '// tous_les_articles',
+    fAll: 'Tous', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
+    nlTitle: 'Recevez les Insights ISO par Email',
+    nlSub: 'Nouveaux articles chaque semaine. Pas de spam. Désabonnement libre.',
+    nlBtn: 'S\'abonner', nlPlaceholder: 'votre@email.fr',
+    navCta: 'Essai gratuit'
+  }
+};
+
+let currentLang = 'en';
+let currentFilter = 'all';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + lang).classList.add('active');
+  const tr = t[lang];
+  document.getElementById('chip-text').textContent = tr.chip;
+  document.getElementById('hero-title').innerHTML = tr.title;
+  document.getElementById('hero-sub').textContent = tr.sub;
+  document.getElementById('featured-label').textContent = tr.featuredLabel;
+  document.getElementById('all-posts-label').textContent = tr.allLabel;
+  document.getElementById('f-all').textContent = tr.fAll;
+  document.getElementById('f-de').textContent = tr.fDe;
+  document.getElementById('f-en').textContent = tr.fEn;
+  document.getElementById('f-fr').textContent = tr.fFr;
+  document.getElementById('nl-title').textContent = tr.nlTitle;
+  document.getElementById('nl-sub').textContent = tr.nlSub;
+  document.getElementById('nl-btn').textContent = tr.nlBtn;
+  document.getElementById('nl-email').placeholder = tr.nlPlaceholder;
+  document.getElementById('nav-cta-text').textContent = tr.navCta;
+}
+
+function filterPosts(lang) {
+  currentFilter = lang;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('filter-' + lang).classList.add('active');
+  document.querySelectorAll('.post-card').forEach(card => {
+    if (lang === 'all' || card.dataset.lang === lang) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function openArticle(id) {
+  const art = articles[id];
+  if (!art) return;
+  const body = document.getElementById('article-body');
+  body.innerHTML = `
+    <div class="article-meta">
+      <span class="lang-tag ${art.langTag}">${art.langLabel}</span>
+      <span class="cat-tag">${art.cat}</span>
+      <span class="read-time">${art.readTime} read</span>
+    </div>
+    <h1>${art.title}</h1>
+    <div class="article-body">${art.body}</div>
+    <div class="article-cta">
+      <h4>Ready to simplify your ISO compliance?</h4>
+      <p>Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.</p>
+      <a href="/demo.html">Try 3 Free Questions →</a>
+    </div>
+  `;
+  document.getElementById('article-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('article-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeArticleOutside(e) {
+  if (e.target === document.getElementById('article-modal')) closeArticle();
+}
+
+function subscribeNewsletter() {
+  const email = document.getElementById('nl-email').value;
+  if (!email || !email.includes('@')) return;
+  document.getElementById('nl-btn').textContent = '✓ Subscribed!';
+  document.getElementById('nl-email').value = '';
+  setTimeout(() => {
+    document.getElementById('nl-btn').textContent = t[currentLang].nlBtn;
+  }, 3000);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+</script>
+</body>
+</html>
