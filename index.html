@@ -16,8 +16,6 @@ html,body{background-color:#070c18 !important;min-height:100svh}
 html{scroll-behavior:smooth;background-color:#070c18 !important}
 body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;overflow-x:hidden;-webkit-text-size-adjust:100%}
 body::before{content:'';position:fixed;inset:0;z-index:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px);pointer-events:none}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(7,12,24,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
@@ -30,8 +28,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-login:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 .btn-start{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;background:var(--red);border:none;padding:9px 20px;border-radius:6px;cursor:pointer;text-decoration:none;box-shadow:0 0 20px var(--red-glow);transition:all .2s}
 .btn-start:hover{background:#a93226;transform:translateY(-1px)}
-
-/* HERO */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;position:relative;z-index:1}
 .hero-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px;justify-content:center}
 .hero-chip::before,.hero-chip::after{content:'';width:32px;height:1px;background:rgba(192,57,43,.4)}
@@ -44,8 +40,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-hero-secondary{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:500;color:#fff;background:transparent;border:1px solid var(--border2);padding:16px 36px;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-hero-secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .hero-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em}
-
-/* DEMO BOX */
 .demo-wrap{width:100%;max-width:700px;margin:0 auto 0;position:relative}
 .demo-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
 .demo-bar{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
@@ -63,20 +57,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .msg-bubble strong{color:#fff}
 .msg-bubble .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:3px;margin-right:4px;margin-top:4px}
 .tag-major{background:rgba(192,57,43,.2);color:#f87171;border:1px solid rgba(192,57,43,.3)}
-.tag-minor{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
 .tag-ok{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .demo-input{padding:14px 16px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}
 .demo-input-field{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--muted2)}
 .demo-send{background:var(--red);border:none;border-radius:8px;padding:10px 16px;color:#fff;font-size:13px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600}
-
-/* STATS */
 .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:60px 32px;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stat{text-align:center}
 .stat-val{font-size:40px;font-weight:700;letter-spacing:-2px;color:#fff}
 .stat-val span{color:var(--red)}
 .stat-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
-
-/* FEATURES */
 .section{max-width:1000px;margin:0 auto;padding:80px 32px;position:relative;z-index:1}
 .section-chip{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .section-chip::before{content:'//';color:var(--muted)}
@@ -88,8 +77,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .feature-icon{font-size:28px;margin-bottom:16px}
 .feature-card h3{font-size:16px;font-weight:600;margin-bottom:10px}
 .feature-card p{font-size:13px;color:var(--muted2);line-height:1.7}
-
-/* STANDARDS */
 .standards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
 .std-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
 .std-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
@@ -97,8 +84,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .std-badge.draft{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
 .std-card h3{font-size:15px;font-weight:600;margin-bottom:8px}
 .std-card p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
 .plan-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;position:relative}
 .plan-card.featured{border-color:var(--red);box-shadow:0 0 32px rgba(192,57,43,.15)}
@@ -117,16 +102,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-plan.secondary{background:transparent;color:#fff;border:1px solid var(--border2)}
 .btn-plan.secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .trial-note{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-align:center;margin-top:20px;letter-spacing:.05em}
-
-/* HOW IT WORKS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;position:relative}
 .steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent);z-index:0}
 .step{text-align:center;position:relative;z-index:1}
 .step-num{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;color:var(--red);margin:0 auto 16px}
 .step h3{font-size:15px;font-weight:600;margin-bottom:8px}
 .step p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* TESTIMONIALS */
 .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
 .testimonial{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
 .testimonial-text{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:16px;font-style:italic}
@@ -134,13 +115,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .testimonial-avatar{width:40px;height:40px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
 .testimonial-name{font-size:14px;font-weight:600}
 .testimonial-role{font-size:12px;color:var(--muted)}
-
-/* CTA SECTION */
 .cta-section{background:linear-gradient(135deg,rgba(26,63,168,.15),rgba(192,57,43,.1));border:1px solid var(--border2);border-radius:16px;padding:64px 48px;text-align:center;margin:0 32px 80px;position:relative;z-index:1;max-width:960px;margin-left:auto;margin-right:auto}
 .cta-section h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
 .cta-section p{font-size:17px;color:var(--muted2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
-
-/* FOOTER */
 footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;position:relative;z-index:1}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1000px;margin:0 auto 40px}
 .footer-brand h3{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
@@ -154,28 +131,18 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
 .footer-langs{display:flex;gap:16px}
 .footer-langs a{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
 .footer-langs a:hover{color:#fff}
-
-/* LANG SECTIONS */
 .lang-section{display:none}
 .lang-section.active{display:block}
-
 @media(max-width:900px){.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){nav{padding:0 20px}.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials,.footer-grid{grid-template-columns:1fr}.hero{padding:100px 20px 60px}.section{padding:60px 20px}.stats{gap:32px;padding:40px 20px}.hero-cta{flex-direction:column;align-items:center}.cta-section{padding:40px 24px;margin:0 20px 60px}.footer-bottom{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
     <svg width="28" height="28" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/>
-      <circle cx="100" cy="178" r="6" fill="#1a3fa8" opacity="0.2"/>
-      <circle cx="62" cy="163" r="7" fill="#1a3fa8" opacity="0.35"/>
-      <circle cx="30" cy="136" r="7" fill="#1a3fa8" opacity="0.5"/>
-      <circle cx="14" cy="100" r="7" fill="#1a3fa8" opacity="0.65"/>
-      <circle cx="24" cy="60" r="8" fill="#1a3fa8" opacity="0.8"/>
-      <circle cx="54" cy="26" r="9" fill="#1a3fa8" opacity="0.9"/>
       <circle cx="100" cy="14" r="10" fill="#1a3fa8"/>
       <circle cx="146" cy="26" r="9" fill="#3a6fd4"/>
       <circle cx="172" cy="62" r="12" fill="#c0392b"/>
@@ -194,9 +161,25 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
   </div>
 </nav>
 
+<!-- DEMO BOX TEMPLATE (reused in all 3 languages via JS) -->
+<template id="demo-box-template">
+  <div class="demo-wrap" style="margin-top:48px">
+    <div class="demo-box">
+      <div class="demo-bar">
+        <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+        <span class="demo-title" id="demo-bar-title">// normwise_chat · iso_9001_session</span>
+      </div>
+      <div class="demo-messages" id="demo-messages-content"></div>
+      <div class="demo-input">
+        <div class="demo-input-field" id="demo-placeholder-field"></div>
+        <button class="demo-send" onclick="window.location.href='demo.html'" id="demo-send-btn">Ask →</button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <!-- ═══════════ ENGLISH ═══════════ -->
 <div class="lang-section active" id="lang-en">
-
 <section class="hero">
   <div class="hero-chip">AI-powered ISO compliance</div>
   <h1>Your <em>Compliance</em><br/>Co-Pilot</h1>
@@ -206,7 +189,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <a href="register.html" class="btn-hero-secondary">Start 7-Day Trial</a>
   </div>
   <p class="hero-note">// no_card_needed_for_demo · 7_day_free_trial · cancel_anytime</p>
-
   <div class="demo-wrap" style="margin-top:48px">
     <div class="demo-box">
       <div class="demo-bar">
@@ -214,26 +196,8 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
         <span class="demo-title">// normwise_chat · iso_9001_session</span>
       </div>
       <div class="demo-messages">
-        <div class="msg user">
-          <div class="msg-avatar user">A</div>
-          <div class="msg-bubble">What are the required inputs for a Management Review under ISO 9001 Clause 9.3?</div>
-        </div>
-        <div class="msg">
-          <div class="msg-avatar ai">N</div>
-          <div class="msg-bubble">
-            <strong>ISO 9001:2015 Clause 9.3.2 requires 8 mandatory inputs:</strong><br/><br/>
-            1. Status of actions from previous reviews<br/>
-            2. Changes in external/internal issues (Clause 4.1)<br/>
-            3. Customer satisfaction & stakeholder feedback<br/>
-            4. Quality objectives achievement<br/>
-            5. Process performance & product conformity<br/>
-            6. Nonconformities & corrective actions<br/>
-            7. Monitoring & measurement results<br/>
-            8. Audit results & external provider performance<br/><br/>
-            <span class="tag tag-major">⚠ Major NC</span> if any input is missing from your minutes.<br/>
-            <span class="tag tag-ok">✓ Best practice</span> Document each input with evidence references.
-          </div>
-        </div>
+        <div class="msg user"><div class="msg-avatar user">A</div><div class="msg-bubble">What are the required inputs for a Management Review under ISO 9001 Clause 9.3?</div></div>
+        <div class="msg"><div class="msg-avatar ai">N</div><div class="msg-bubble"><strong>ISO 9001:2015 Clause 9.3.2 requires 8 mandatory inputs:</strong><br/><br/>1. Status of actions from previous reviews<br/>2. Changes in external/internal issues (Clause 4.1)<br/>3. Customer satisfaction & stakeholder feedback<br/>4. Quality objectives achievement<br/>5. Process performance & product conformity<br/>6. Nonconformities & corrective actions<br/>7. Monitoring & measurement results<br/>8. Audit results & external provider performance<br/><br/><span class="tag tag-major">⚠ Major NC</span> if any input is missing.<br/><span class="tag tag-ok">✓ Best practice</span> Document each input with evidence.</div></div>
       </div>
       <div class="demo-input">
         <div class="demo-input-field">Ask about ISO 9001, 14001 or 45001...</div>
@@ -242,14 +206,12 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     </div>
   </div>
 </section>
-
 <div class="stats">
   <div class="stat"><div class="stat-val">2.1<span>M+</span></div><div class="stat-lbl">ISO certified companies</div></div>
   <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl">Languages EN/DE/FR</div></div>
   <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">ISO standards covered</div></div>
   <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl">Day free trial</div></div>
 </div>
-
 <div class="section">
   <div class="section-chip">features</div>
   <h2>Everything you need<br/>for ISO compliance</h2>
@@ -263,7 +225,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="feature-card"><div class="feature-icon">⚡</div><h3>Instant Answers</h3><p>Ask any compliance question and get clause-referenced answers in seconds — not hours of searching through PDFs.</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">standards</div>
   <h2>All major ISO standards<br/>+ upcoming revisions</h2>
@@ -276,7 +237,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="std-card"><div class="std-badge draft">DRAFT 2027</div><h3>ISO 45001:2027</h3><p>Committee Draft stage — NormWise tracks all developments</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">how_it_works</div>
   <h2>From question to<br/>action in 4 steps</h2>
@@ -287,69 +247,18 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="step"><div class="step-num">04</div><h3>Download Report</h3><p>Export your action plan as Word or Excel — ready to share immediately</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0" id="pricing">
   <div class="section-chip">pricing</div>
   <h2>Simple, transparent<br/>pricing</h2>
   <p class="lead">Start free. Scale as you grow. Cancel anytime.</p>
   <div class="pricing-grid">
-    <div class="plan-card">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">€79<span>/mo</span></div>
-      <div class="plan-period">1 user · 150 questions/month</div>
-      <ul class="plan-features">
-        <li>AI Q&A assistant</li>
-        <li>ISO 9001, 14001, 45001</li>
-        <li>Draft 2026/2027 knowledge</li>
-        <li>EN / DE / FR</li>
-        <li>Email support (48h)</li>
-      </ul>
-      <a href="register.html?plan=starter" class="btn-plan secondary">Start Free Trial</a>
-    </div>
-    <div class="plan-card">
-      <div class="plan-name">Professional</div>
-      <div class="plan-price">€199<span>/mo</span></div>
-      <div class="plan-period">3 users · 750 questions/month</div>
-      <ul class="plan-features">
-        <li>Everything in Starter</li>
-        <li>Word Action Plans</li>
-        <li>Excel Gap Tables</li>
-        <li>KPI Dashboard PDF</li>
-        <li>Priority support (24h)</li>
-      </ul>
-      <a href="register.html?plan=pro" class="btn-plan secondary">Start Free Trial</a>
-    </div>
-    <div class="plan-card featured">
-      <div class="plan-badge">Most Popular</div>
-      <div class="plan-name">Expert</div>
-      <div class="plan-price">€499<span>/mo</span></div>
-      <div class="plan-period">5 users · 3,000 questions/month</div>
-      <ul class="plan-features">
-        <li>Everything in Professional</li>
-        <li>Document Gap Analysis</li>
-        <li>Master Action Plan</li>
-        <li>Management Summary</li>
-        <li>Same-day support</li>
-      </ul>
-      <a href="register.html?plan=expert" class="btn-plan primary">Start Free Trial</a>
-    </div>
-    <div class="plan-card">
-      <div class="plan-name">Enterprise</div>
-      <div class="plan-price" style="font-size:28px">Custom</div>
-      <div class="plan-period">Unlimited users</div>
-      <ul class="plan-features">
-        <li>Everything in Expert</li>
-        <li>White-label branding</li>
-        <li>API access</li>
-        <li>Dedicated account manager</li>
-        <li>Custom onboarding</li>
-      </ul>
-      <a href="mailto:hello@normwise.cloud" class="btn-plan secondary">Contact Us</a>
-    </div>
+    <div class="plan-card"><div class="plan-name">Starter</div><div class="plan-price">€79<span>/mo</span></div><div class="plan-period">1 user · 150 questions/month</div><ul class="plan-features"><li>AI Q&A assistant</li><li>ISO 9001, 14001, 45001</li><li>Draft 2026/2027 knowledge</li><li>EN / DE / FR</li><li>Email support (48h)</li></ul><a href="register.html?plan=starter" class="btn-plan secondary">Start Free Trial</a></div>
+    <div class="plan-card"><div class="plan-name">Professional</div><div class="plan-price">€199<span>/mo</span></div><div class="plan-period">3 users · 750 questions/month</div><ul class="plan-features"><li>Everything in Starter</li><li>Word Action Plans</li><li>Excel Gap Tables</li><li>KPI Dashboard PDF</li><li>Priority support (24h)</li></ul><a href="register.html?plan=pro" class="btn-plan secondary">Start Free Trial</a></div>
+    <div class="plan-card featured"><div class="plan-badge">Most Popular</div><div class="plan-name">Expert</div><div class="plan-price">€499<span>/mo</span></div><div class="plan-period">5 users · 3,000 questions/month</div><ul class="plan-features"><li>Everything in Professional</li><li>Document Gap Analysis</li><li>Master Action Plan</li><li>Management Summary</li><li>Same-day support</li></ul><a href="register.html?plan=expert" class="btn-plan primary">Start Free Trial</a></div>
+    <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price" style="font-size:28px">Custom</div><div class="plan-period">Unlimited users</div><ul class="plan-features"><li>Everything in Expert</li><li>White-label branding</li><li>API access</li><li>Dedicated account manager</li><li>Custom onboarding</li></ul><a href="mailto:hello@normwise.cloud" class="btn-plan secondary">Contact Us</a></div>
   </div>
   <p class="trial-note">// all_plans_include_7_day_free_trial · no_card_needed_for_demo · cancel_anytime</p>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">testimonials</div>
   <h2>Trusted by quality<br/>professionals</h2>
@@ -359,7 +268,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="testimonial"><p class="testimonial-text">"The ISO 9001:2026 draft knowledge is a game changer. We started preparing for the transition 18 months early thanks to NormWise."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#16a34a">JD</div><div><div class="testimonial-name">Jean D.</div><div class="testimonial-role">QHSE Director · France</div></div></div></div>
   </div>
 </div>
-
 <div class="cta-section">
   <div class="section-chip" style="justify-content:center">get_started</div>
   <h2>Ready to simplify<br/>your ISO compliance?</h2>
@@ -369,7 +277,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <a href="register.html" class="btn-hero-secondary">Start 7-Day Trial</a>
   </div>
 </div>
-
 </div><!-- end lang-en -->
 
 <!-- ═══════════ DEUTSCH ═══════════ -->
@@ -383,15 +290,29 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <a href="register.html" class="btn-hero-secondary">7 Tage kostenlos testen</a>
   </div>
   <p class="hero-note">// keine_kreditkarte_für_demo · 7_tage_kostenlos · jederzeit_kündbar</p>
+  <div class="demo-wrap" style="margin-top:48px">
+    <div class="demo-box">
+      <div class="demo-bar">
+        <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+        <span class="demo-title">// normwise_ki · iso_9001_sitzung</span>
+      </div>
+      <div class="demo-messages">
+        <div class="msg user"><div class="msg-avatar user">A</div><div class="msg-bubble">Welche Pflichtinputs sind für die Managementbewertung nach ISO 9001 Klausel 9.3 erforderlich?</div></div>
+        <div class="msg"><div class="msg-avatar ai">N</div><div class="msg-bubble"><strong>ISO 9001:2015 Klausel 9.3.2 verlangt 8 Pflichtinputs:</strong><br/><br/>1. Status der Maßnahmen aus früheren Bewertungen<br/>2. Änderungen externer/interner Themen (Klausel 4.1)<br/>3. Kundenzufriedenheit & Stakeholder-Feedback<br/>4. Erreichung der Qualitätsziele<br/>5. Prozessleistung & Produktkonformität<br/>6. Nichtkonformitäten & Korrekturmaßnahmen<br/>7. Ergebnisse der Überwachung & Messung<br/>8. Auditergebnisse & Lieferantenleistung<br/><br/><span class="tag tag-major">⚠ Major NC</span> wenn ein Input fehlt.<br/><span class="tag tag-ok">✓ Best Practice</span> Jeden Input mit Nachweisen dokumentieren.</div></div>
+      </div>
+      <div class="demo-input">
+        <div class="demo-input-field">Frage zu ISO 9001, 14001 oder 45001...</div>
+        <button class="demo-send" onclick="window.location.href='demo.html'">Fragen →</button>
+      </div>
+    </div>
+  </div>
 </section>
-
 <div class="stats">
   <div class="stat"><div class="stat-val">2,1<span>M+</span></div><div class="stat-lbl">ISO-zertifizierte Unternehmen</div></div>
   <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl">Sprachen DE/EN/FR</div></div>
   <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">Abgedeckte ISO-Normen</div></div>
   <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl">Tage kostenlos testen</div></div>
 </div>
-
 <div class="section">
   <div class="section-chip">funktionen</div>
   <h2>Alles, was Sie für<br/>ISO-Compliance brauchen</h2>
@@ -405,7 +326,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="feature-card"><div class="feature-icon">⚡</div><h3>Sofortige Antworten</h3><p>Stellen Sie jede Compliance-Frage und erhalten Sie klauselreferenzierte Antworten in Sekunden — statt stundenlanger PDF-Suche.</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">normen</div>
   <h2>Alle wichtigen ISO-Normen<br/>+ kommende Revisionen</h2>
@@ -418,7 +338,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="std-card"><div class="std-badge draft">ENTWURF 2027</div><h3>ISO 45001:2027</h3><p>Committee-Draft-Stadium — NormWise verfolgt alle Entwicklungen</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">so_funktioniert_es</div>
   <h2>Von der Frage zur<br/>Maßnahme in 4 Schritten</h2>
@@ -429,7 +348,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="step"><div class="step-num">04</div><h3>Bericht herunterladen</h3><p>Maßnahmenplan als Word oder Excel exportieren — sofort teilbar</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">preise</div>
   <h2>Einfache, transparente<br/>Preisgestaltung</h2>
@@ -442,7 +360,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
   </div>
   <p class="trial-note">// alle_pläne_inkl_7_tage_gratis · keine_kreditkarte_für_demo · jederzeit_kündbar</p>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">referenzen</div>
   <h2>Vertrauen von Qualitäts-<br/>fachleuten</h2>
@@ -452,7 +369,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="testimonial"><p class="testimonial-text">„Das ISO 9001:2026 Entwurfswissen ist ein echter Gamechanger. Wir haben dank NormWise 18 Monate früher mit der Übergangsvorbereitung begonnen."</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#16a34a">JD</div><div><div class="testimonial-name">Jean D.</div><div class="testimonial-role">QHSE-Direktor · Frankreich</div></div></div></div>
   </div>
 </div>
-
 <div class="cta-section">
   <div class="section-chip" style="justify-content:center">jetzt_starten</div>
   <h2>Bereit für einfachere<br/>ISO-Compliance?</h2>
@@ -475,15 +391,29 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <a href="register.html" class="btn-hero-secondary">Essai gratuit 7 jours</a>
   </div>
   <p class="hero-note">// sans_carte_pour_la_démo · essai_7_jours · résiliation_à_tout_moment</p>
+  <div class="demo-wrap" style="margin-top:48px">
+    <div class="demo-box">
+      <div class="demo-bar">
+        <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+        <span class="demo-title">// normwise_ia · session_iso_9001</span>
+      </div>
+      <div class="demo-messages">
+        <div class="msg user"><div class="msg-avatar user">A</div><div class="msg-bubble">Quels sont les inputs obligatoires pour la revue de direction ISO 9001 Clause 9.3 ?</div></div>
+        <div class="msg"><div class="msg-avatar ai">N</div><div class="msg-bubble"><strong>ISO 9001:2015 Clause 9.3.2 exige 8 inputs obligatoires :</strong><br/><br/>1. Statut des actions des revues précédentes<br/>2. Évolutions des enjeux internes/externes (Clause 4.1)<br/>3. Satisfaction client & retours des parties intéressées<br/>4. Atteinte des objectifs qualité<br/>5. Performance des processus & conformité produit<br/>6. Non-conformités & actions correctives<br/>7. Résultats de surveillance & mesure<br/>8. Résultats d'audit & performance des prestataires<br/><br/><span class="tag tag-major">⚠ NC Majeure</span> si un input manque.<br/><span class="tag tag-ok">✓ Bonne pratique</span> Documenter chaque input avec des preuves.</div></div>
+      </div>
+      <div class="demo-input">
+        <div class="demo-input-field">Question sur ISO 9001, 14001 ou 45001...</div>
+        <button class="demo-send" onclick="window.location.href='demo.html'">Demander →</button>
+      </div>
+    </div>
+  </div>
 </section>
-
 <div class="stats">
   <div class="stat"><div class="stat-val">2,1<span>M+</span></div><div class="stat-lbl">Entreprises certifiées ISO</div></div>
   <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl">Langues FR/DE/EN</div></div>
   <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">Normes ISO couvertes</div></div>
   <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl">Jours d'essai gratuit</div></div>
 </div>
-
 <div class="section">
   <div class="section-chip">fonctionnalités</div>
   <h2>Tout ce dont vous avez besoin<br/>pour la conformité ISO</h2>
@@ -497,7 +427,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="feature-card"><div class="feature-icon">⚡</div><h3>Réponses instantanées</h3><p>Posez n'importe quelle question de conformité et obtenez des réponses référencées en quelques secondes — sans chercher dans des PDF.</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">normes</div>
   <h2>Toutes les principales normes ISO<br/>+ révisions à venir</h2>
@@ -510,7 +439,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="std-card"><div class="std-badge draft">PROJET 2027</div><h3>ISO 45001:2027</h3><p>Stade projet de comité — NormWise suit tous les développements</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">comment_ça_marche</div>
   <h2>De la question à l'action<br/>en 4 étapes</h2>
@@ -521,7 +449,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="step"><div class="step-num">04</div><h3>Téléchargez le rapport</h3><p>Exportez votre plan d'action en Word ou Excel — prêt à partager immédiatement</p></div>
   </div>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">tarifs</div>
   <h2>Tarification simple<br/>et transparente</h2>
@@ -534,7 +461,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
   </div>
   <p class="trial-note">// tous_les_plans_incluent_7_jours_gratuits · sans_carte_pour_démo · résiliation_libre</p>
 </div>
-
 <div class="section" style="padding-top:0">
   <div class="section-chip">témoignages</div>
   <h2>La confiance des professionnels<br/>de la qualité</h2>
@@ -544,7 +470,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
     <div class="testimonial"><p class="testimonial-text">« La connaissance du projet ISO 9001:2026 est un vrai atout. Nous avons commencé à préparer la transition 18 mois à l'avance grâce à NormWise. »</p><div class="testimonial-author"><div class="testimonial-avatar" style="background:#16a34a">JD</div><div><div class="testimonial-name">Jean D.</div><div class="testimonial-role">Directeur QHSE · France</div></div></div></div>
   </div>
 </div>
-
 <div class="cta-section">
   <div class="section-chip" style="justify-content:center">commencer</div>
   <h2>Prêt à simplifier votre<br/>conformité ISO ?</h2>
@@ -556,7 +481,6 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
 </div>
 </div><!-- end lang-fr -->
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -564,25 +488,9 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
       <p>Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. Available in English, German and French.</p>
       <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)">hello@normwise.cloud</p>
     </div>
-    <div class="footer-col">
-      <h4>Product</h4>
-      <a href="demo.html">Free Demo</a>
-      <a href="register.html">Sign Up</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <a href="support.html">Contact Us</a>
-      <a href="faq.html">Help Center</a>
-      <a href="mailto:hello@normwise.cloud">Email Us</a>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <a href="legal.html">Legal Notice</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-    </div>
+    <div class="footer-col"><h4>Product</h4><a href="demo.html">Free Demo</a><a href="register.html">Sign Up</a><a href="index.html#pricing">Pricing</a><a href="faq.html">FAQ</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="support.html">Contact Us</a><a href="faq.html">Help Center</a><a href="mailto:hello@normwise.cloud">Email Us</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="legal.html">Legal Notice</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Unternehmensberatung Brunen · normwise.cloud · All rights reserved</span>
@@ -606,7 +514,6 @@ function setLang(lang, btn) {
       if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
     });
   }
-  // Update nav text
   const loginBtn = document.getElementById('nav-login');
   const startBtn = document.getElementById('nav-start');
   if (lang === 'de') { loginBtn.textContent = 'Anmelden'; startBtn.textContent = 'Kostenlos testen'; }
@@ -614,21 +521,14 @@ function setLang(lang, btn) {
   else { loginBtn.textContent = 'Log in'; startBtn.textContent = 'Try for Free'; }
   localStorage.setItem('nw_lang', lang);
 }
-// Auto-detect language
 const saved = localStorage.getItem('nw_lang');
 const browser = navigator.language.substring(0,2).toLowerCase();
 const lang = saved || (['de','fr'].includes(browser) ? browser : 'en');
-const btn = document.querySelector('.nav-lang');
 setLang(lang, null);
 document.querySelectorAll('.nav-lang').forEach(b => {
-  if (b.textContent.toLowerCase().includes(lang)) { b.classList.add('active'); }
-  else { b.classList.remove('active'); }
+  if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
+  else b.classList.remove('active');
 });
 </script>
-
-<!-- IUBENDA COOKIE BANNER -->
-<!-- Replace YOUR_IUBENDA_COOKIE_SCRIPT_HERE with your actual iubenda script -->
-<!-- YOUR_IUBENDA_COOKIE_SCRIPT_HERE -->
-
 </body>
 </html>
