@@ -45,13 +45,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .msg.user .msg-bubble{background:rgba(192,57,43,.12);border-color:rgba(192,57,43,.25);color:#fff}
 .msg-bubble strong{color:#fff;display:block;margin-bottom:6px}
 .msg-bubble code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(26,63,168,.2);color:#7aa4e8;padding:2px 6px;border-radius:3px}
-.finding{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.finding:last-child{border:none}
-.finding-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;white-space:nowrap;flex-shrink:0}
-.major{background:rgba(192,57,43,.2);color:#f87171;border:1px solid rgba(192,57,43,.3)}
-.minor{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
-.ofi{background:rgba(26,63,168,.2);color:#7aa4e8;border:1px solid rgba(26,63,168,.3)}
-.ok{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .typing{display:flex;gap:4px;align-items:center;padding:8px 0}
 .typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
@@ -113,12 +106,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
   <div class="suggested-questions" id="suggested-section">
     <div class="sq-label" id="sq-label">// try_asking</div>
-    <div class="sq-buttons">
-      <button class="sq-btn" onclick="askQuestion(this.textContent)">What are the required inputs for ISO 9001 Clause 9.3 Management Review?</button>
-      <button class="sq-btn" onclick="askQuestion(this.textContent)">How do I identify environmental aspects and impacts for ISO 14001?</button>
-      <button class="sq-btn" onclick="askQuestion(this.textContent)">What is the difference between a Major NC and a Minor NC in an ISO audit?</button>
-      <button class="sq-btn" onclick="askQuestion(this.textContent)">What are the key changes in ISO 9001:2026?</button>
-    </div>
+    <div class="sq-buttons" id="sq-buttons"></div>
   </div>
 
   <div class="chat-box">
@@ -168,6 +156,12 @@ const translations = {
     subtitle: 'Ask 3 questions about ISO 9001, 14001 or 45001 — no account needed',
     counterText: (n) => n > 0 ? `${n} free question${n>1?'s':''} remaining` : 'No free questions remaining',
     sqLabel: '// try_asking',
+    questions: [
+      'What are the required inputs for ISO 9001 Clause 9.3 Management Review?',
+      'How do I identify environmental aspects and impacts for ISO 14001?',
+      'What is the difference between a Major NC and a Minor NC in an ISO audit?',
+      'What are the key changes in ISO 9001:2026?'
+    ],
     chatTitle: '// normwise_ai · iso_compliance_assistant',
     welcome: '<strong>Welcome to NormWise!</strong> Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>3 free questions</strong> — no account needed. Enjoy!',
     placeholder: 'Ask about ISO 9001, 14001 or 45001...',
@@ -185,6 +179,12 @@ const translations = {
     subtitle: '3 Fragen zu ISO 9001, 14001 oder 45001 — ohne Konto',
     counterText: (n) => n > 0 ? `Noch ${n} kostenlose Frage${n>1?'n':''}` : 'Keine kostenlosen Fragen mehr',
     sqLabel: '// beispielfragen',
+    questions: [
+      'Welche Pflichtinputs sind für die ISO 9001 Managementbewertung (Klausel 9.3) erforderlich?',
+      'Wie identifiziere ich Umweltaspekte und -auswirkungen für ISO 14001?',
+      'Was ist der Unterschied zwischen einer Major NC und einer Minor NC beim ISO-Audit?',
+      'Was sind die wichtigsten Änderungen in ISO 9001:2026?'
+    ],
     chatTitle: '// normwise_ki · iso_compliance_assistent',
     welcome: '<strong>Willkommen bei NormWise!</strong> Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>3 kostenlose Fragen</strong> — kein Konto erforderlich.',
     placeholder: 'Frage zu ISO 9001, 14001 oder 45001...',
@@ -202,6 +202,12 @@ const translations = {
     subtitle: 'Posez 3 questions sur ISO 9001, 14001 ou 45001 — sans compte',
     counterText: (n) => n > 0 ? `${n} question${n>1?'s':''} gratuite${n>1?'s':''} restante${n>1?'s':''}` : 'Plus de questions gratuites',
     sqLabel: '// exemples_de_questions',
+    questions: [
+      'Quels sont les inputs obligatoires pour la revue de direction ISO 9001 (Clause 9.3) ?',
+      'Comment identifier les aspects environnementaux et impacts pour ISO 14001 ?',
+      'Quelle est la différence entre une NC Majeure et une NC Mineure lors d\'un audit ISO ?',
+      'Quels sont les principaux changements dans ISO 9001:2026 ?'
+    ],
     chatTitle: '// normwise_ia · assistant_conformité_iso',
     welcome: '<strong>Bienvenue sur NormWise !</strong> Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>3 questions gratuites</strong> — sans compte requis.',
     placeholder: 'Question sur ISO 9001, 14001 ou 45001...',
@@ -235,6 +241,18 @@ function setDemoLang(lang, btn) {
   document.getElementById('upgrade-secondary-btn').textContent = t.upgradeSecondary;
   document.getElementById('demo-signup-btn').textContent = t.signupBtn;
   document.getElementById('disclaimer-box').textContent = t.disclaimer;
+
+  // Update example questions buttons
+  const sqButtons = document.getElementById('sq-buttons');
+  sqButtons.innerHTML = '';
+  t.questions.forEach(q => {
+    const btn2 = document.createElement('button');
+    btn2.className = 'sq-btn';
+    btn2.textContent = q;
+    btn2.onclick = () => askQuestion(q);
+    sqButtons.appendChild(btn2);
+  });
+
   localStorage.setItem('nw_lang', lang);
 }
 
@@ -272,10 +290,7 @@ async function sendMessage() {
   document.getElementById('counter-text').textContent = t.counterText(questionsLeft);
   updateDots();
 
-  // Add user message
   addMessage('user', text);
-
-  // Add typing indicator
   const typingId = addTyping();
 
   try {
