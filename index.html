@@ -14,15 +14,15 @@ html{scroll-behavior:smooth;background:#070c18}
 body{font-family:'Space Grotesk',sans-serif;background:#070c18;color:#fff;overflow-x:hidden;-webkit-text-size-adjust:100%}
 :root{
   --red:#c0392b;--red-glow:rgba(192,57,43,.35);
-  --blue:#1a3fa8;--blue-glow:rgba(26,63,168,.35);
+  --blue:#1a3fa8;
   --surface:#111827;--surface2:#161e30;
   --muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);
   --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
-  --mono:'IBM Plex Mono',monospace;--sans:'Space Grotesk',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
 }
 body::before{content:'';position:fixed;inset:0;z-index:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px);pointer-events:none}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,12,24,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
@@ -36,14 +36,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .btn-start{font-size:13px;font-weight:600;color:#fff;background:var(--red);border:none;padding:9px 20px;border-radius:6px;cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-start:hover{background:#a93226}
 
-/* ── LANGUAGE SWITCHING ── */
-.en,.de,.fr{display:none}
-body.lang-en .en{display:block}
-body.lang-de .de{display:block}
-body.lang-fr .fr{display:block}
-body.lang-en .en.flex-item,body.lang-de .de.flex-item,body.lang-fr .fr.flex-item{display:flex}
-
-/* ── HERO ── */
+/* HERO */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;position:relative;z-index:1}
 .hero-chip{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px;justify-content:center}
 .hero-chip::before,.hero-chip::after{content:'';width:32px;height:1px;background:rgba(192,57,43,.4)}
@@ -57,7 +50,7 @@ body.lang-en .en.flex-item,body.lang-de .de.flex-item,body.lang-fr .fr.flex-item
 .btn-secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .hero-note{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin-bottom:48px}
 
-/* ── DEMO BOX ── */
+/* DEMO BOX */
 .demo-wrap{width:100%;max-width:700px}
 .demo-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
 .demo-bar{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
@@ -79,21 +72,22 @@ body.lang-en .en.flex-item,body.lang-de .de.flex-item,body.lang-fr .fr.flex-item
 .demo-inp-field{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted2)}
 .demo-send{background:var(--red);border:none;border-radius:8px;padding:10px 16px;color:#fff;font-size:13px;cursor:pointer;font-weight:600}
 
-/* ── STATS ── */
+/* STATS */
 .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:60px 32px;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stat{text-align:center}
 .stat-val{font-size:40px;font-weight:700;letter-spacing:-2px}
 .stat-val span{color:var(--red)}
 .stat-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 .section{max-width:1000px;margin:0 auto;padding:80px 32px;position:relative;z-index:1}
 .section-chip{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .section-chip::before{content:'//';color:var(--muted)}
 .section h2{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
 .lead{font-size:17px;color:var(--muted2);line-height:1.7;margin-bottom:48px;max-width:600px}
 
-/* ── GRIDS ── */
+/* GRIDS */
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;transition:border-color .2s}
@@ -102,18 +96,33 @@ body.lang-en .en.flex-item,body.lang-de .de.flex-item,body.lang-fr .fr.flex-item
 .card h3{font-size:16px;font-weight:600;margin-bottom:10px}
 .card p{font-size:13px;color:var(--muted2);line-height:1.7}
 
-/* ── STANDARDS ── */
+/* PROBLEM CARD */
+.problem-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start}
+.problem-icon{font-size:24px;flex-shrink:0}
+.problem-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.problem-card p{font-size:13px;color:var(--muted2);line-height:1.6}
+
+/* STANDARDS */
 .std-badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
 .std-badge.cur{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .std-badge.dra{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
+.std-card-p{font-size:13px;color:var(--muted2);line-height:1.6}
 
-/* ── PRICING ── */
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;position:relative}
+.steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent)}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:600;color:var(--red);margin:0 auto 16px}
+.step h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted2);line-height:1.6}
+
+/* PRICING */
 .plan{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;position:relative}
 .plan.hot{border-color:var(--red);box-shadow:0 0 32px rgba(192,57,43,.15)}
-.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap}
 .plan-name{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
 .plan-price{font-size:36px;font-weight:700;letter-spacing:-2px;margin-bottom:4px}
-.plan-price span{font-size:16px;font-weight:400;color:var(--muted2);letter-spacing:0}
+.plan-price-period{font-size:16px;font-weight:400;color:var(--muted2)}
 .plan-period{font-size:13px;color:var(--muted);margin-bottom:20px}
 .plan-features{list-style:none;margin-bottom:24px}
 .plan-features li{font-size:13px;color:var(--muted2);padding:6px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
@@ -126,28 +135,20 @@ body.lang-en .en.flex-item,body.lang-de .de.flex-item,body.lang-fr .fr.flex-item
 .btn-plan.sec:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .trial-note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;margin-top:20px}
 
-/* ── STEPS ── */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;position:relative}
-.steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent)}
-.step{text-align:center;position:relative;z-index:1}
-.step-num{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:600;color:var(--red);margin:0 auto 16px}
-.step h3{font-size:15px;font-weight:600;margin-bottom:8px}
-.step p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* ── TESTIMONIALS ── */
+/* TESTIMONIALS */
 .tcard{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
-.tcard p{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:16px;font-style:italic}
+.tcard-text{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:16px;font-style:italic}
 .tauthor{display:flex;align-items:center;gap:12px}
 .tav{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:#fff}
 .tname{font-size:14px;font-weight:600}
 .trole{font-size:12px;color:var(--muted)}
 
-/* ── CTA BOX ── */
+/* CTA BOX */
 .cta-box{background:linear-gradient(135deg,rgba(26,63,168,.15),rgba(192,57,43,.1));border:1px solid var(--border2);border-radius:16px;padding:64px 48px;text-align:center;max-width:960px;margin:0 auto 80px;position:relative;z-index:1}
 .cta-box h2{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
-.cta-box p{font-size:17px;color:var(--muted2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-box-p{font-size:17px;color:var(--muted2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;position:relative;z-index:1}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1000px;margin:0 auto 40px}
 .footer-brand h3{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
@@ -162,18 +163,11 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
 .footer-langs a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;cursor:pointer}
 .footer-langs a:hover{color:#fff}
 
-/* ── PROBLEM SECTION ── */
-.problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
-.problem-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start}
-.problem-icon{font-size:24px;flex-shrink:0}
-.problem-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
-.problem-card p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-@media(max-width:900px){.grid3,.grid4,.steps,.footer-grid{grid-template-columns:1fr 1fr}.problem-grid{grid-template-columns:1fr}}
-@media(max-width:600px){nav{padding:0 16px}.grid3,.grid4,.steps,.footer-grid,.problem-grid{grid-template-columns:1fr}.hero{padding:100px 16px 60px}.section{padding:60px 16px}.stats{gap:24px;padding:40px 16px}.hero-cta{flex-direction:column;align-items:center}.cta-box{padding:40px 24px;margin:0 16px 60px}}
+@media(max-width:900px){.grid3,.grid4,.steps,.footer-grid{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){nav{padding:0 16px}.grid2,.grid3,.grid4,.steps,.footer-grid{grid-template-columns:1fr}.hero{padding:100px 16px 60px}.section{padding:60px 16px}.stats{gap:24px;padding:40px 16px}.hero-cta{flex-direction:column;align-items:center}.cta-box{padding:40px 24px;margin:0 16px 60px}}
 </style>
 </head>
-<body class="lang-en">
+<body>
 
 <!-- NAV -->
 <nav>
@@ -192,368 +186,109 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- HERO -->
-<!-- ══════════════════════════════════════════════ -->
-<section class="hero">
-
-  <!-- EN HERO -->
-  <div class="en" style="display:flex;flex-direction:column;align-items:center;width:100%">
-    <div class="hero-chip">AI-powered ISO 9001 compliance software</div>
-    <h1>ISO 9001 Software –<br/><em>AI-Powered</em> Compliance<br/>&amp; Audit Automation</h1>
-    <p class="hero-sub">Automate ISO audits, gap analysis, and documentation with an AI assistant built for ISO 9001, ISO 14001, and ISO 45001.</p>
-    <div class="hero-cta">
-      <a href="register.html" class="btn-primary">Start Free Trial →</a>
-      <a href="demo.html" class="btn-secondary">Try Free Demo</a>
-    </div>
-    <p class="hero-note">// Used by quality managers, consultants, and growing companies across Europe</p>
-    <div class="demo-wrap">
-      <div class="demo-box">
-        <div class="demo-bar"><div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div><span class="demo-bar-title">// normwise_chat · iso_9001_session</span></div>
-        <div class="demo-msgs">
-          <div class="dmsg u"><div class="dav u">A</div><div class="dbub">What are the required inputs for a Management Review under ISO 9001 Clause 9.3?</div></div>
-          <div class="dmsg"><div class="dav ai">N</div><div class="dbub"><strong>ISO 9001:2015 Clause 9.3.2 requires 8 mandatory inputs:</strong><br/><br/>1. Status of actions from previous reviews<br/>2. Changes in external/internal issues (4.1)<br/>3. Customer satisfaction &amp; stakeholder feedback<br/>4. Quality objectives achievement<br/>5. Process performance &amp; product conformity<br/>6. Nonconformities &amp; corrective actions<br/>7. Monitoring &amp; measurement results<br/>8. Audit results &amp; external provider performance<br/><br/><span class="dtag maj">⚠ Major NC</span> if any input is missing.<br/><span class="dtag ok">✓ Best practice</span> Document each with evidence.</div></div>
-        </div>
-        <div class="demo-inp"><div class="demo-inp-field">Ask about ISO 9001, 14001 or 45001...</div><button class="demo-send" onclick="location.href='demo.html'">Ask →</button></div>
+<section class="hero" id="hero-section">
+  <div class="hero-chip" id="hero-chip"></div>
+  <h1 id="hero-h1"></h1>
+  <p class="hero-sub" id="hero-sub"></p>
+  <div class="hero-cta" id="hero-cta"></div>
+  <p class="hero-note" id="hero-note"></p>
+  <div class="demo-wrap">
+    <div class="demo-box">
+      <div class="demo-bar">
+        <div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div>
+        <span class="demo-bar-title" id="demo-bar-title"></span>
+      </div>
+      <div class="demo-msgs" id="demo-msgs"></div>
+      <div class="demo-inp">
+        <div class="demo-inp-field" id="demo-placeholder"></div>
+        <button class="demo-send" id="demo-send-btn" onclick="location.href='demo.html'"></button>
       </div>
     </div>
   </div>
-
-  <!-- DE HERO -->
-  <div class="de" style="display:none;flex-direction:column;align-items:center;width:100%">
-    <div class="hero-chip">KI-gestützte ISO-Compliance</div>
-    <h1>Ihr <em>Compliance</em><br/>Co-Pilot</h1>
-    <p class="hero-sub">Gap-Analyse in Minuten. Klauselgenaue Antworten. ISO 9001, 14001 &amp; 45001. Auf Deutsch, Englisch und Französisch.</p>
-    <div class="hero-cta">
-      <a href="demo.html" class="btn-primary">3 kostenlose Fragen →</a>
-      <a href="register.html" class="btn-secondary">7 Tage kostenlos testen</a>
-    </div>
-    <p class="hero-note">// keine_kreditkarte_für_demo · 7_tage_kostenlos · jederzeit_kündbar</p>
-    <div class="demo-wrap">
-      <div class="demo-box">
-        <div class="demo-bar"><div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div><span class="demo-bar-title">// normwise_ki · iso_9001_sitzung</span></div>
-        <div class="demo-msgs">
-          <div class="dmsg u"><div class="dav u">A</div><div class="dbub">Welche Pflichtinputs sind für die Managementbewertung ISO 9001 Klausel 9.3 erforderlich?</div></div>
-          <div class="dmsg"><div class="dav ai">N</div><div class="dbub"><strong>ISO 9001:2015 Klausel 9.3.2 verlangt 8 Pflichtinputs:</strong><br/><br/>1. Status der Maßnahmen aus früheren Bewertungen<br/>2. Änderungen externer/interner Themen (4.1)<br/>3. Kundenzufriedenheit &amp; Stakeholder-Feedback<br/>4. Erreichung der Qualitätsziele<br/>5. Prozessleistung &amp; Produktkonformität<br/>6. Nichtkonformitäten &amp; Korrekturmaßnahmen<br/>7. Ergebnisse der Überwachung &amp; Messung<br/>8. Auditergebnisse &amp; Lieferantenleistung<br/><br/><span class="dtag maj">⚠ Major NC</span> wenn ein Input fehlt.<br/><span class="dtag ok">✓ Best Practice</span> Jeden Input dokumentieren.</div></div>
-        </div>
-        <div class="demo-inp"><div class="demo-inp-field">Frage zu ISO 9001, 14001 oder 45001...</div><button class="demo-send" onclick="location.href='demo.html'">Fragen →</button></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FR HERO -->
-  <div class="fr" style="display:none;flex-direction:column;align-items:center;width:100%">
-    <div class="hero-chip">Conformité ISO assistée par IA</div>
-    <h1>Votre <em>Co-Pilote</em><br/>Conformité</h1>
-    <p class="hero-sub">Analyse des écarts en minutes. Réponses clause par clause. ISO 9001, 14001 &amp; 45001. En français, allemand et anglais.</p>
-    <div class="hero-cta">
-      <a href="demo.html" class="btn-primary">3 questions gratuites →</a>
-      <a href="register.html" class="btn-secondary">Essai gratuit 7 jours</a>
-    </div>
-    <p class="hero-note">// sans_carte_pour_la_démo · essai_7_jours · résiliation_à_tout_moment</p>
-    <div class="demo-wrap">
-      <div class="demo-box">
-        <div class="demo-bar"><div class="demo-dot r"></div><div class="demo-dot y"></div><div class="demo-dot g"></div><span class="demo-bar-title">// normwise_ia · session_iso_9001</span></div>
-        <div class="demo-msgs">
-          <div class="dmsg u"><div class="dav u">A</div><div class="dbub">Quels sont les inputs obligatoires pour la revue de direction ISO 9001 Clause 9.3 ?</div></div>
-          <div class="dmsg"><div class="dav ai">N</div><div class="dbub"><strong>ISO 9001:2015 Clause 9.3.2 exige 8 inputs obligatoires :</strong><br/><br/>1. Statut des actions des revues précédentes<br/>2. Évolutions des enjeux internes/externes (4.1)<br/>3. Satisfaction client &amp; retours parties intéressées<br/>4. Atteinte des objectifs qualité<br/>5. Performance des processus &amp; conformité produit<br/>6. Non-conformités &amp; actions correctives<br/>7. Résultats de surveillance &amp; mesure<br/>8. Résultats d'audit &amp; performance prestataires<br/><br/><span class="dtag maj">⚠ NC Majeure</span> si un input manque.<br/><span class="dtag ok">✓ Bonne pratique</span> Documenter chaque input.</div></div>
-        </div>
-        <div class="demo-inp"><div class="demo-inp-field">Question sur ISO 9001, 14001 ou 45001...</div><button class="demo-send" onclick="location.href='demo.html'">Demander →</button></div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- STATS -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="stats">
-  <div class="stat"><div class="stat-val">2.1<span>M+</span></div><div class="stat-lbl en">ISO certified companies</div><div class="stat-lbl de" style="display:none">ISO-zertifizierte Unternehmen</div><div class="stat-lbl fr" style="display:none">Entreprises certifiées ISO</div></div>
-  <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl en">Languages EN/DE/FR</div><div class="stat-lbl de" style="display:none">Sprachen DE/EN/FR</div><div class="stat-lbl fr" style="display:none">Langues FR/DE/EN</div></div>
-  <div class="stat"><div class="stat-val">3</div><div class="stat-lbl en">ISO standards covered</div><div class="stat-lbl de" style="display:none">Abgedeckte ISO-Normen</div><div class="stat-lbl fr" style="display:none">Normes ISO couvertes</div></div>
-  <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl en">Day free trial</div><div class="stat-lbl de" style="display:none">Tage kostenlos testen</div><div class="stat-lbl fr" style="display:none">Jours d'essai gratuit</div></div>
+  <div class="stat"><div class="stat-val">2.1<span>M+</span></div><div class="stat-lbl" id="stat1"></div></div>
+  <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl" id="stat2"></div></div>
+  <div class="stat"><div class="stat-val">3</div><div class="stat-lbl" id="stat3"></div></div>
+  <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl" id="stat4"></div></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- PROBLEM SECTION (EN only for SEO) -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="section en">
-  <div class="section-chip">the_problem</div>
-  <h2>Struggling with ISO 9001<br/>Compliance?</h2>
-  <p class="lead">Manual documentation, complex audits, and unclear ISO requirements slow down your certification process and increase the risk of audit failure.</p>
-  <div class="problem-grid">
-    <div class="problem-card"><div class="problem-icon">⏱️</div><div><h3>Time-consuming documentation</h3><p>Manually creating ISO documents takes days of work you can't afford to lose.</p></div></div>
-    <div class="problem-card"><div class="problem-icon">😵</div><div><h3>Confusing ISO clauses</h3><p>ISO 9001 has hundreds of requirements that are hard to interpret without deep expertise.</p></div></div>
-    <div class="problem-card"><div class="problem-icon">😰</div><div><h3>Stressful audit preparation</h3><p>Audits create enormous pressure — especially when you're unsure if every requirement is covered.</p></div></div>
-    <div class="problem-card"><div class="problem-icon">📊</div><div><h3>Lack of digital tools</h3><p>Most companies still manage ISO compliance with spreadsheets and PDF checklists. There is a better way.</p></div></div>
-  </div>
+<!-- PROBLEM (EN SEO) -->
+<div class="section" id="problem-section">
+  <div class="section-chip" id="problem-chip"></div>
+  <h2 id="problem-h2"></h2>
+  <p class="lead" id="problem-lead"></p>
+  <div class="grid2" id="problem-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- SOLUTION SECTION (EN only for SEO) -->
-<!-- ══════════════════════════════════════════════ -->
-<div class="section en" style="padding-top:0">
-  <div class="section-chip">the_solution</div>
-  <h2>Your AI ISO 9001<br/>Compliance Software</h2>
-  <p class="lead">NormWise is an AI-powered ISO compliance platform that helps you manage your entire quality management system (QMS) — in English, German and French. Think of it as <strong style="color:var(--red)">ChatGPT for ISO compliance.</strong></p>
-  <div class="grid3" style="margin-top:0">
-    <div class="card"><div class="card-icon">🤖</div><h3>AI-powered ISO assistant</h3><p>Ask any ISO clause question and get instant, audit-ready answers referenced to the exact clause number.</p></div>
-    <div class="card"><div class="card-icon">🔍</div><h3>Automated gap analysis</h3><p>Identify compliance gaps clause by clause in minutes instead of days of manual review.</p></div>
-    <div class="card"><div class="card-icon">📋</div><h3>Smart audit preparation</h3><p>Prepare for certification audits with structured workflows and AI-powered recommendations.</p></div>
-  </div>
+<!-- SOLUTION (EN SEO) -->
+<div class="section" style="padding-top:0" id="solution-section">
+  <div class="section-chip" id="solution-chip"></div>
+  <h2 id="solution-h2"></h2>
+  <p class="lead" id="solution-lead"></p>
+  <div class="grid3" id="solution-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- FEATURES -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="section" style="padding-top:0">
-  <div class="section-chip">features</div>
-  <!-- EN -->
-  <div class="en"><h2>Everything you need<br/>for ISO compliance</h2><p class="lead">From quick clause questions to full document gap analysis — NormWise handles it all.</p></div>
-  <!-- DE -->
-  <div class="de" style="display:none"><h2>Alles, was Sie für<br/>ISO-Compliance brauchen</h2><p class="lead">Von schnellen Klauselfragen bis zur vollständigen Dokument-Gap-Analyse — NormWise übernimmt alles.</p></div>
-  <!-- FR -->
-  <div class="fr" style="display:none"><h2>Tout ce dont vous avez besoin<br/>pour la conformité ISO</h2><p class="lead">Des questions rapides sur les clauses à l'analyse complète des écarts — NormWise gère tout.</p></div>
-  <div class="grid3">
-    <div class="card"><div class="card-icon">🔍</div>
-      <h3 class="en">Gap Analysis Engine</h3><h3 class="de" style="display:none">Gap-Analyse-Engine</h3><h3 class="fr" style="display:none">Moteur d'analyse des écarts</h3>
-      <p class="en">Upload your documents and get a clause-by-clause gap analysis with Major NC / Minor NC / OFI classification in minutes.</p>
-      <p class="de" style="display:none">Laden Sie Ihre Dokumente hoch und erhalten Sie in Minuten eine klauselgenaue Gap-Analyse.</p>
-      <p class="fr" style="display:none">Téléchargez vos documents et obtenez une analyse clause par clause en quelques minutes.</p>
-    </div>
-    <div class="card"><div class="card-icon">🌍</div>
-      <h3 class="en">Trilingual Support</h3><h3 class="de" style="display:none">Dreisprachiger Support</h3><h3 class="fr" style="display:none">Support trilingue</h3>
-      <p class="en">Auto-detects your language and responds 100% in English, German or French — including all reports.</p>
-      <p class="de" style="display:none">Erkennt automatisch Ihre Sprache und antwortet vollständig auf Deutsch, Englisch oder Französisch.</p>
-      <p class="fr" style="display:none">Détecte automatiquement votre langue et répond à 100% en français, allemand ou anglais.</p>
-    </div>
-    <div class="card"><div class="card-icon">📋</div>
-      <h3 class="en">Audit Preparation</h3><h3 class="de" style="display:none">Auditvorbereitung</h3><h3 class="fr" style="display:none">Préparation aux audits</h3>
-      <p class="en">Know exactly what auditors check for each clause. Built with TÜV SÜD and DNV audit knowledge.</p>
-      <p class="de" style="display:none">Wissen Sie genau, was Auditoren bei jeder Klausel prüfen. Mit TÜV SÜD- und DNV-Auditwissen.</p>
-      <p class="fr" style="display:none">Sachez exactement ce que les auditeurs vérifient. Construit avec la connaissance TÜV SÜD et DNV.</p>
-    </div>
-    <div class="card"><div class="card-icon">📊</div>
-      <h3 class="en">Word &amp; Excel Reports</h3><h3 class="de" style="display:none">Word- &amp; Excel-Berichte</h3><h3 class="fr" style="display:none">Rapports Word &amp; Excel</h3>
-      <p class="en">Generate professional gap analysis reports and action plans ready to share with management.</p>
-      <p class="de" style="display:none">Erstellen Sie professionelle Gap-Analyse-Berichte und Maßnahmenpläne auf Knopfdruck.</p>
-      <p class="fr" style="display:none">Générez des rapports professionnels prêts à partager avec la direction en un clic.</p>
-    </div>
-    <div class="card"><div class="card-icon">🔮</div>
-      <h3 class="en">ISO 2026 Ready</h3><h3 class="de" style="display:none">ISO 2026 bereit</h3><h3 class="fr" style="display:none">Prêt pour ISO 2026</h3>
-      <p class="en">Includes full knowledge of ISO 9001:2026, ISO 14001:2026 and ISO 45001:2027 draft revisions.</p>
-      <p class="de" style="display:none">Enthält vollständiges Wissen zu ISO 9001:2026, ISO 14001:2026 und ISO 45001:2027 Entwürfen.</p>
-      <p class="fr" style="display:none">Inclut la connaissance complète des projets ISO 9001:2026, 14001:2026 et 45001:2027.</p>
-    </div>
-    <div class="card"><div class="card-icon">⚡</div>
-      <h3 class="en">Instant Answers</h3><h3 class="de" style="display:none">Sofortige Antworten</h3><h3 class="fr" style="display:none">Réponses instantanées</h3>
-      <p class="en">Ask any compliance question and get clause-referenced answers in seconds — not hours.</p>
-      <p class="de" style="display:none">Stellen Sie jede Compliance-Frage und erhalten Sie klauselreferenzierte Antworten in Sekunden.</p>
-      <p class="fr" style="display:none">Posez n'importe quelle question et obtenez des réponses référencées en quelques secondes.</p>
-    </div>
-  </div>
+  <div class="section-chip" id="features-chip"></div>
+  <h2 id="features-h2"></h2>
+  <p class="lead" id="features-lead"></p>
+  <div class="grid3" id="features-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- STANDARDS -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="section" style="padding-top:0">
-  <div class="section-chip">standards</div>
-  <div class="en"><h2>All major ISO standards<br/>+ upcoming revisions</h2></div>
-  <div class="de" style="display:none"><h2>Alle wichtigen ISO-Normen<br/>+ kommende Revisionen</h2></div>
-  <div class="fr" style="display:none"><h2>Toutes les principales normes ISO<br/>+ révisions à venir</h2></div>
-  <div class="grid3" style="margin-top:32px">
-    <div class="card"><div class="std-badge cur en">CURRENT</div><div class="std-badge cur de" style="display:none">AKTUELL</div><div class="std-badge cur fr" style="display:none">EN VIGUEUR</div><h3>ISO 9001:2015</h3><p class="en" style="font-size:13px;color:var(--muted2)">Quality Management Systems — incl. Amendment 1:2024</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">Qualitätsmanagementsysteme — inkl. Amendment 1:2024</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">Systèmes de management de la qualité — incl. Amendement 1:2024</p></div>
-    <div class="card"><div class="std-badge cur en">CURRENT</div><div class="std-badge cur de" style="display:none">AKTUELL</div><div class="std-badge cur fr" style="display:none">EN VIGUEUR</div><h3>ISO 14001:2015</h3><p class="en" style="font-size:13px;color:var(--muted2)">Environmental Management Systems — all clauses</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">Umweltmanagementsysteme — alle Klauseln</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">Systèmes de management environnemental</p></div>
-    <div class="card"><div class="std-badge cur en">CURRENT</div><div class="std-badge cur de" style="display:none">AKTUELL</div><div class="std-badge cur fr" style="display:none">EN VIGUEUR</div><h3>ISO 45001:2018</h3><p class="en" style="font-size:13px;color:var(--muted2)">Occupational Health &amp; Safety — full coverage</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">Arbeitsschutzmanagementsysteme — vollständige Abdeckung</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">Santé et sécurité au travail — couverture complète</p></div>
-    <div class="card"><div class="std-badge dra en">DRAFT 2026</div><div class="std-badge dra de" style="display:none">ENTWURF 2026</div><div class="std-badge dra fr" style="display:none">PROJET 2026</div><h3>ISO 9001:2026</h3><p class="en" style="font-size:13px;color:var(--muted2)">DIS approved Dec 2025 — publication Sept 2026</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">DIS genehmigt Dez 2025 — Veröffentlichung Sept 2026</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">DIS approuvé déc 2025 — publication sept 2026</p></div>
-    <div class="card"><div class="std-badge dra en">DRAFT 2026</div><div class="std-badge dra de" style="display:none">ENTWURF 2026</div><div class="std-badge dra fr" style="display:none">PROJET 2026</div><h3>ISO 14001:2026</h3><p class="en" style="font-size:13px;color:var(--muted2)">FDIS stage — publication expected April 2026</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">FDIS-Stadium — Veröffentlichung April 2026 erwartet</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">Stade FDIS — publication prévue avril 2026</p></div>
-    <div class="card"><div class="std-badge dra en">DRAFT 2027</div><div class="std-badge dra de" style="display:none">ENTWURF 2027</div><div class="std-badge dra fr" style="display:none">PROJET 2027</div><h3>ISO 45001:2027</h3><p class="en" style="font-size:13px;color:var(--muted2)">Committee Draft — NormWise tracks all developments</p><p class="de" style="display:none;font-size:13px;color:var(--muted2)">Committee-Draft — NormWise verfolgt alle Entwicklungen</p><p class="fr" style="display:none;font-size:13px;color:var(--muted2)">Projet de comité — NormWise suit tous les développements</p></div>
-  </div>
+  <div class="section-chip" id="standards-chip"></div>
+  <h2 id="standards-h2"></h2>
+  <div class="grid3" style="margin-top:32px" id="standards-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- HOW IT WORKS -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="section" style="padding-top:0">
-  <div class="section-chip">how_it_works</div>
-  <div class="en"><h2>From question to action<br/>in 4 steps</h2></div>
-  <div class="de" style="display:none"><h2>Von der Frage zur<br/>Maßnahme in 4 Schritten</h2></div>
-  <div class="fr" style="display:none"><h2>De la question à l'action<br/>en 4 étapes</h2></div>
-  <div class="steps">
-    <div class="step"><div class="step-num">01</div>
-      <h3 class="en">Ask or Upload</h3><h3 class="de" style="display:none">Fragen oder hochladen</h3><h3 class="fr" style="display:none">Demandez ou téléchargez</h3>
-      <p class="en">Type your ISO question or upload your document for gap analysis</p><p class="de" style="display:none">Stellen Sie Ihre ISO-Frage oder laden Sie Ihr Dokument hoch</p><p class="fr" style="display:none">Posez votre question ISO ou téléchargez votre document</p>
-    </div>
-    <div class="step"><div class="step-num">02</div>
-      <h3 class="en">AI Analyses</h3><h3 class="de" style="display:none">KI analysiert</h3><h3 class="fr" style="display:none">L'IA analyse</h3>
-      <p class="en">NormWise checks every clause against requirements and best practice</p><p class="de" style="display:none">NormWise prüft jede Klausel gegen Anforderungen und Best Practices</p><p class="fr" style="display:none">NormWise vérifie chaque clause par rapport aux exigences</p>
-    </div>
-    <div class="step"><div class="step-num">03</div>
-      <h3 class="en">Get Findings</h3><h3 class="de" style="display:none">Ergebnisse erhalten</h3><h3 class="fr" style="display:none">Obtenez les résultats</h3>
-      <p class="en">Receive clause-level findings with Major NC / Minor NC / OFI classification</p><p class="de" style="display:none">Klauselgenaue Befunde mit Major NC / Minor NC / VfV-Klassifikation</p><p class="fr" style="display:none">Recevez les conclusions par clause avec classification NC Majeure / Mineure / OFI</p>
-    </div>
-    <div class="step"><div class="step-num">04</div>
-      <h3 class="en">Download Report</h3><h3 class="de" style="display:none">Bericht herunterladen</h3><h3 class="fr" style="display:none">Téléchargez le rapport</h3>
-      <p class="en">Export your action plan as Word or Excel — ready to share immediately</p><p class="de" style="display:none">Maßnahmenplan als Word oder Excel exportieren — sofort teilbar</p><p class="fr" style="display:none">Exportez votre plan d'action en Word ou Excel — prêt à partager</p>
-    </div>
-  </div>
+  <div class="section-chip" id="steps-chip"></div>
+  <h2 id="steps-h2"></h2>
+  <div class="steps" id="steps-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- PRICING -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="section" style="padding-top:0" id="pricing">
-  <div class="section-chip">pricing</div>
-  <div class="en"><h2>Simple, transparent pricing</h2><p class="lead">Start free. Scale as you grow. Cancel anytime.</p></div>
-  <div class="de" style="display:none"><h2>Einfache, transparente Preisgestaltung</h2><p class="lead">Kostenlos starten. Nach Bedarf skalieren. Jederzeit kündbar.</p></div>
-  <div class="fr" style="display:none"><h2>Tarification simple et transparente</h2><p class="lead">Commencez gratuitement. Évoluez selon vos besoins. Résiliez à tout moment.</p></div>
-  <div class="grid4">
-    <div class="plan">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">€79<span class="en">/mo</span><span class="de" style="display:none">/Mo</span><span class="fr" style="display:none">/mois</span></div>
-      <div class="plan-period en">1 user · 150 questions/month</div><div class="plan-period de" style="display:none">1 Nutzer · 150 Fragen/Monat</div><div class="plan-period fr" style="display:none">1 utilisateur · 150 questions/mois</div>
-      <ul class="plan-features">
-        <li class="en">AI Q&amp;A assistant</li><li class="de" style="display:none">KI-Q&amp;A-Assistent</li><li class="fr" style="display:none">Assistant IA Q&amp;R</li>
-        <li>ISO 9001, 14001, 45001</li>
-        <li class="en">Draft 2026/2027 knowledge</li><li class="de" style="display:none">Entwurf 2026/2027</li><li class="fr" style="display:none">Projets 2026/2027</li>
-        <li>EN / DE / FR</li>
-        <li class="en">Email support (48h)</li><li class="de" style="display:none">E-Mail-Support (48h)</li><li class="fr" style="display:none">Support e-mail (48h)</li>
-      </ul>
-      <a href="register.html?plan=starter" class="btn-plan sec en">Start Free Trial</a>
-      <a href="register.html?plan=starter" class="btn-plan sec de" style="display:none">Kostenlos testen</a>
-      <a href="register.html?plan=starter" class="btn-plan sec fr" style="display:none">Essai gratuit</a>
-    </div>
-    <div class="plan">
-      <div class="plan-name">Professional</div>
-      <div class="plan-price">€199<span class="en">/mo</span><span class="de" style="display:none">/Mo</span><span class="fr" style="display:none">/mois</span></div>
-      <div class="plan-period en">3 users · 750 questions/month</div><div class="plan-period de" style="display:none">3 Nutzer · 750 Fragen/Monat</div><div class="plan-period fr" style="display:none">3 utilisateurs · 750 questions/mois</div>
-      <ul class="plan-features">
-        <li class="en">Everything in Starter</li><li class="de" style="display:none">Alles aus Starter</li><li class="fr" style="display:none">Tout du Starter</li>
-        <li class="en">Word Action Plans</li><li class="de" style="display:none">Word-Maßnahmenpläne</li><li class="fr" style="display:none">Plans d'action Word</li>
-        <li class="en">Excel Gap Tables</li><li class="de" style="display:none">Excel-Gap-Tabellen</li><li class="fr" style="display:none">Tableaux Excel</li>
-        <li class="en">KPI Dashboard PDF</li><li class="de" style="display:none">KPI-Dashboard PDF</li><li class="fr" style="display:none">Dashboard KPI PDF</li>
-        <li class="en">Priority support (24h)</li><li class="de" style="display:none">Prioritäts-Support (24h)</li><li class="fr" style="display:none">Support prioritaire (24h)</li>
-      </ul>
-      <a href="register.html?plan=pro" class="btn-plan sec en">Start Free Trial</a>
-      <a href="register.html?plan=pro" class="btn-plan sec de" style="display:none">Kostenlos testen</a>
-      <a href="register.html?plan=pro" class="btn-plan sec fr" style="display:none">Essai gratuit</a>
-    </div>
-    <div class="plan hot">
-      <div class="plan-badge en">Most Popular</div><div class="plan-badge de" style="display:none">Beliebteste</div><div class="plan-badge fr" style="display:none">Plus populaire</div>
-      <div class="plan-name">Expert</div>
-      <div class="plan-price">€499<span class="en">/mo</span><span class="de" style="display:none">/Mo</span><span class="fr" style="display:none">/mois</span></div>
-      <div class="plan-period en">5 users · 3,000 questions/month</div><div class="plan-period de" style="display:none">5 Nutzer · 3.000 Fragen/Monat</div><div class="plan-period fr" style="display:none">5 utilisateurs · 3 000 questions/mois</div>
-      <ul class="plan-features">
-        <li class="en">Everything in Professional</li><li class="de" style="display:none">Alles aus Professional</li><li class="fr" style="display:none">Tout du Professional</li>
-        <li class="en">Document Gap Analysis</li><li class="de" style="display:none">Dokument-Gap-Analyse</li><li class="fr" style="display:none">Analyse des écarts</li>
-        <li class="en">Master Action Plan</li><li class="de" style="display:none">Master-Maßnahmenplan</li><li class="fr" style="display:none">Plan d'action maître</li>
-        <li class="en">Management Summary</li><li class="de" style="display:none">Management-Summary</li><li class="fr" style="display:none">Synthèse direction</li>
-        <li class="en">Same-day support</li><li class="de" style="display:none">Same-Day-Support</li><li class="fr" style="display:none">Support même jour</li>
-      </ul>
-      <a href="register.html?plan=expert" class="btn-plan pri en">Start Free Trial</a>
-      <a href="register.html?plan=expert" class="btn-plan pri de" style="display:none">Kostenlos testen</a>
-      <a href="register.html?plan=expert" class="btn-plan pri fr" style="display:none">Essai gratuit</a>
-    </div>
-    <div class="plan">
-      <div class="plan-name">Enterprise</div>
-      <div class="plan-price" style="font-size:28px"><span class="en">Custom</span><span class="de" style="display:none">Individuell</span><span class="fr" style="display:none">Sur mesure</span></div>
-      <div class="plan-period en">Unlimited users</div><div class="plan-period de" style="display:none">Unbegrenzte Nutzer</div><div class="plan-period fr" style="display:none">Utilisateurs illimités</div>
-      <ul class="plan-features">
-        <li class="en">Everything in Expert</li><li class="de" style="display:none">Alles aus Expert</li><li class="fr" style="display:none">Tout du Expert</li>
-        <li class="en">White-label branding</li><li class="de" style="display:none">White-Label-Branding</li><li class="fr" style="display:none">Marque blanche</li>
-        <li class="en">API access</li><li class="de" style="display:none">API-Zugang</li><li class="fr" style="display:none">Accès API</li>
-        <li class="en">Dedicated account manager</li><li class="de" style="display:none">Dedizierter Ansprechpartner</li><li class="fr" style="display:none">Gestionnaire dédié</li>
-        <li class="en">Custom onboarding</li><li class="de" style="display:none">Custom Onboarding</li><li class="fr" style="display:none">Onboarding personnalisé</li>
-      </ul>
-      <a href="mailto:hello@normwise.cloud" class="btn-plan sec en">Contact Us</a>
-      <a href="mailto:hello@normwise.cloud" class="btn-plan sec de" style="display:none">Kontakt aufnehmen</a>
-      <a href="mailto:hello@normwise.cloud" class="btn-plan sec fr" style="display:none">Nous contacter</a>
-    </div>
-  </div>
-  <p class="trial-note en">// all_plans_include_7_day_free_trial · no_card_needed_for_demo · cancel_anytime</p>
-  <p class="trial-note de" style="display:none">// alle_pläne_inkl_7_tage_gratis · keine_kreditkarte_für_demo · jederzeit_kündbar</p>
-  <p class="trial-note fr" style="display:none">// tous_les_plans_incluent_7_jours_gratuits · sans_carte_pour_démo · résiliation_libre</p>
+  <div class="section-chip" id="pricing-chip"></div>
+  <h2 id="pricing-h2"></h2>
+  <p class="lead" id="pricing-lead"></p>
+  <div class="grid4" id="pricing-grid"></div>
+  <p class="trial-note" id="trial-note"></p>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- TESTIMONIALS -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="section" style="padding-top:0">
-  <div class="section-chip">testimonials</div>
-  <div class="en"><h2>Trusted by quality professionals</h2></div>
-  <div class="de" style="display:none"><h2>Vertrauen von Qualitätsfachleuten</h2></div>
-  <div class="fr" style="display:none"><h2>La confiance des professionnels de la qualité</h2></div>
-  <div class="grid3" style="margin-top:32px">
-    <div class="tcard">
-      <p class="en">"NormWise saved me 2 days of audit preparation. The gap analysis was incredibly accurate and the action plan was ready to present to management immediately."</p>
-      <p class="de" style="display:none">„NormWise hat mir 2 Tage Auditvorbereitung erspart. Die Gap-Analyse war unglaublich präzise und der Maßnahmenplan war sofort präsentationsfertig."</p>
-      <p class="fr" style="display:none">« NormWise m'a économisé 2 jours de préparation d'audit. L'analyse était incroyablement précise et le plan d'action prêt à présenter à la direction. »</p>
-      <div class="tauthor"><div class="tav" style="background:#1a3fa8">MK</div><div><div class="tname">Michael K.</div><div class="trole en">Quality Manager · Germany</div><div class="trole de" style="display:none">Qualitätsmanager · Deutschland</div><div class="trole fr" style="display:none">Responsable qualité · Allemagne</div></div></div>
-    </div>
-    <div class="tcard">
-      <p class="en">"As an ISO consultant managing 15 clients, NormWise has transformed my workflow. The trilingual support means I can serve German, French and English clients with one tool."</p>
-      <p class="de" style="display:none">„Als ISO-Beraterin mit 15 Kunden hat NormWise meine Arbeitsabläufe revolutioniert. Der dreisprachige Support bedeutet, dass ich alle Kunden mit einem Tool bedienen kann."</p>
-      <p class="fr" style="display:none">« En tant que consultante ISO avec 15 clients, NormWise a transformé mon flux de travail. Le support trilingue me permet de servir tous mes clients avec un seul outil. »</p>
-      <div class="tauthor"><div class="tav" style="background:#c0392b">SL</div><div><div class="tname">Sophie L.</div><div class="trole en">ISO Consultant · Switzerland</div><div class="trole de" style="display:none">ISO-Beraterin · Schweiz</div><div class="trole fr" style="display:none">Consultante ISO · Suisse</div></div></div>
-    </div>
-    <div class="tcard">
-      <p class="en">"The ISO 9001:2026 draft knowledge is a game changer. We started preparing for the transition 18 months early thanks to NormWise."</p>
-      <p class="de" style="display:none">„Das ISO 9001:2026 Entwurfswissen ist ein echter Gamechanger. Wir haben dank NormWise 18 Monate früher mit der Übergangsvorbereitung begonnen."</p>
-      <p class="fr" style="display:none">« La connaissance du projet ISO 9001:2026 est un vrai atout. Nous avons commencé à préparer la transition 18 mois à l'avance grâce à NormWise. »</p>
-      <div class="tauthor"><div class="tav" style="background:#16a34a">JD</div><div><div class="tname">Jean D.</div><div class="trole en">QHSE Director · France</div><div class="trole de" style="display:none">QHSE-Direktor · Frankreich</div><div class="trole fr" style="display:none">Directeur QHSE · France</div></div></div>
-    </div>
-  </div>
+  <div class="section-chip" id="testimonials-chip"></div>
+  <h2 id="testimonials-h2"></h2>
+  <div class="grid3" style="margin-top:32px" id="testimonials-grid"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- CTA -->
-<!-- ══════════════════════════════════════════════ -->
 <div class="cta-box">
-  <div class="section-chip" style="justify-content:center">get_started</div>
-  <div class="en"><h2>Start Your ISO Journey Today</h2><p>Stop wasting time on manual processes. Start using AI to manage your ISO compliance — free for 7 days.</p></div>
-  <div class="de" style="display:none"><h2>Bereit für einfachere ISO-Compliance?</h2><p>Starten Sie mit 3 kostenlosen Fragen — kein Konto erforderlich.</p></div>
-  <div class="fr" style="display:none"><h2>Prêt à simplifier votre conformité ISO ?</h2><p>Commencez avec 3 questions gratuites — sans compte requis.</p></div>
-  <div class="hero-cta" style="margin-bottom:0">
-    <a href="register.html" class="btn-primary en">Start Free Trial →</a>
-    <a href="demo.html" class="btn-primary de" style="display:none">3 kostenlose Fragen →</a>
-    <a href="demo.html" class="btn-primary fr" style="display:none">3 questions gratuites →</a>
-    <a href="demo.html" class="btn-secondary en">Try Free Demo</a>
-    <a href="register.html" class="btn-secondary de" style="display:none">7 Tage kostenlos testen</a>
-    <a href="register.html" class="btn-secondary fr" style="display:none">Essai gratuit 7 jours</a>
-  </div>
+  <div class="section-chip" style="justify-content:center" id="cta-chip"></div>
+  <h2 id="cta-h2"></h2>
+  <p class="cta-box-p" id="cta-p"></p>
+  <div class="hero-cta" style="margin-bottom:0" id="cta-btns"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
 <!-- FOOTER -->
-<!-- ══════════════════════════════════════════════ -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <h3>Norm<span>Wise</span></h3>
-      <p>Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. Available in English, German and French.</p>
+      <p>Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. EN / DE / FR.</p>
       <p style="font-family:var(--mono);font-size:11px;color:var(--muted)">hello@normwise.cloud</p>
     </div>
-    <div class="footer-col">
-      <h4 class="en">Product</h4><h4 class="de" style="display:none">Produkt</h4><h4 class="fr" style="display:none">Produit</h4>
-      <a href="demo.html" class="en">Free Demo</a><a href="demo.html" class="de" style="display:none">Kostenlose Demo</a><a href="demo.html" class="fr" style="display:none">Démo gratuite</a>
-      <a href="register.html" class="en">Sign Up</a><a href="register.html" class="de" style="display:none">Registrieren</a><a href="register.html" class="fr" style="display:none">S'inscrire</a>
-      <a href="blog.html" class="en">Blog</a><a href="blog.html" class="de" style="display:none">Blog</a><a href="blog.html" class="fr" style="display:none">Blog</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <h4 class="en">Support</h4><h4 class="de" style="display:none">Support</h4><h4 class="fr" style="display:none">Support</h4>
-      <a href="support.html" class="en">Contact Us</a><a href="support.html" class="de" style="display:none">Kontakt</a><a href="support.html" class="fr" style="display:none">Nous contacter</a>
-      <a href="faq.html" class="en">Help Center</a><a href="faq.html" class="de" style="display:none">Hilfe-Center</a><a href="faq.html" class="fr" style="display:none">Centre d'aide</a>
-      <a href="mailto:hello@normwise.cloud">hello@normwise.cloud</a>
-    </div>
-    <div class="footer-col">
-      <h4 class="en">Legal</h4><h4 class="de" style="display:none">Rechtliches</h4><h4 class="fr" style="display:none">Légal</h4>
-      <a href="legal.html" class="en">Legal Notice</a><a href="legal.html" class="de" style="display:none">Impressum</a><a href="legal.html" class="fr" style="display:none">Mentions légales</a>
-      <a href="privacy.html" class="en">Privacy Policy</a><a href="privacy.html" class="de" style="display:none">Datenschutz</a><a href="privacy.html" class="fr" style="display:none">Confidentialité</a>
-      <a href="terms.html" class="en">Terms of Service</a><a href="terms.html" class="de" style="display:none">AGB</a><a href="terms.html" class="fr" style="display:none">CGU</a>
-    </div>
+    <div class="footer-col" id="footer-col1"></div>
+    <div class="footer-col" id="footer-col2"></div>
+    <div class="footer-col" id="footer-col3"></div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Unternehmensberatung Brunen · normwise.cloud · All rights reserved</span>
@@ -566,44 +301,328 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
 </footer>
 
 <script>
+const T = {
+  en: {
+    navLogin:'Log in', navStart:'Try for Free',
+    heroChip:'AI-powered ISO 9001 compliance software',
+    heroH1:'ISO 9001 Software –<br/><em>AI-Powered</em> Compliance<br/>&amp; Audit Automation',
+    heroSub:'Automate ISO audits, gap analysis, and documentation with an AI assistant built for ISO 9001, ISO 14001, and ISO 45001.',
+    heroCta:'<a href="register.html" class="btn-primary">Start Free Trial →</a><a href="demo.html" class="btn-secondary">Try Free Demo</a>',
+    heroNote:'// Used by quality managers, consultants, and growing companies across Europe',
+    demoTitle:'// normwise_chat · iso_9001_session',
+    demoQ:'What are the required inputs for a Management Review under ISO 9001 Clause 9.3?',
+    demoA:'<strong>ISO 9001:2015 Clause 9.3.2 requires 8 mandatory inputs:</strong><br/><br/>1. Status of actions from previous reviews<br/>2. Changes in external/internal issues (4.1)<br/>3. Customer satisfaction &amp; stakeholder feedback<br/>4. Quality objectives achievement<br/>5. Process performance &amp; product conformity<br/>6. Nonconformities &amp; corrective actions<br/>7. Monitoring &amp; measurement results<br/>8. Audit results &amp; external provider performance<br/><br/><span class="dtag maj">⚠ Major NC</span> if any input is missing.<br/><span class="dtag ok">✓ Best practice</span> Document each with evidence.',
+    demoPlaceholder:'Ask about ISO 9001, 14001 or 45001...',
+    demoSend:'Ask →',
+    stat1:'ISO certified companies', stat2:'Languages EN/DE/FR', stat3:'ISO standards covered', stat4:'Day free trial',
+    problemChip:'the_problem', problemH2:'Struggling with ISO 9001<br/>Compliance?',
+    problemLead:'Manual documentation, complex audits, and unclear ISO requirements slow down your certification process.',
+    problems:[
+      {icon:'⏱️',h:'Time-consuming documentation',p:'Manually creating ISO documents takes days of work you cannot afford.'},
+      {icon:'😵',h:'Confusing ISO clauses',p:'ISO 9001 has hundreds of requirements that are hard to interpret without expertise.'},
+      {icon:'😰',h:'Stressful audit preparation',p:'Audits create enormous pressure when you\'re unsure every requirement is covered.'},
+      {icon:'📊',h:'Lack of digital tools',p:'Most companies still use spreadsheets and PDF checklists. There is a better way.'}
+    ],
+    solutionChip:'the_solution', solutionH2:'Your AI ISO 9001<br/>Compliance Software',
+    solutionLead:'NormWise is an AI-powered ISO compliance platform for your entire QMS — in English, German and French. Think of it as <strong style="color:var(--red)">ChatGPT for ISO compliance.</strong>',
+    solutions:[
+      {icon:'🤖',h:'AI-powered ISO assistant',p:'Ask any ISO clause question and get instant, audit-ready answers referenced to the exact clause number.'},
+      {icon:'🔍',h:'Automated gap analysis',p:'Identify compliance gaps clause by clause in minutes instead of days of manual review.'},
+      {icon:'📋',h:'Smart audit preparation',p:'Prepare for certification audits with structured workflows and AI-powered recommendations.'}
+    ],
+    featuresChip:'features', featuresH2:'Everything you need<br/>for ISO compliance',
+    featuresLead:'From quick clause questions to full document gap analysis — NormWise handles it all.',
+    features:[
+      {icon:'🔍',h:'Gap Analysis Engine',p:'Upload your documents and get a clause-by-clause gap analysis with Major NC / Minor NC / OFI classification in minutes.'},
+      {icon:'🌍',h:'Trilingual Support',p:'Auto-detects your language and responds 100% in English, German or French — including all reports.'},
+      {icon:'📋',h:'Audit Preparation',p:'Know exactly what auditors check for each clause. Built with TÜV SÜD and DNV audit knowledge.'},
+      {icon:'📊',h:'Word &amp; Excel Reports',p:'Generate professional gap analysis reports and action plans ready to share with management.'},
+      {icon:'🔮',h:'ISO 2026 Ready',p:'Includes full knowledge of ISO 9001:2026, ISO 14001:2026 and ISO 45001:2027 draft revisions.'},
+      {icon:'⚡',h:'Instant Answers',p:'Ask any compliance question and get clause-referenced answers in seconds — not hours.'}
+    ],
+    standardsChip:'standards', standardsH2:'All major ISO standards<br/>+ upcoming revisions',
+    standards:[
+      {badge:'CURRENT',type:'cur',h:'ISO 9001:2015',p:'Quality Management Systems — incl. Amendment 1:2024 on climate change'},
+      {badge:'CURRENT',type:'cur',h:'ISO 14001:2015',p:'Environmental Management Systems — all clauses with practical examples'},
+      {badge:'CURRENT',type:'cur',h:'ISO 45001:2018',p:'Occupational Health &amp; Safety Management Systems — full coverage'},
+      {badge:'DRAFT 2026',type:'dra',h:'ISO 9001:2026',p:'DIS approved December 2025 — publication expected September 2026'},
+      {badge:'DRAFT 2026',type:'dra',h:'ISO 14001:2026',p:'FDIS stage — publication expected April 2026 — prepare now'},
+      {badge:'DRAFT 2027',type:'dra',h:'ISO 45001:2027',p:'Committee Draft stage — NormWise tracks all developments'}
+    ],
+    stepsChip:'how_it_works', stepsH2:'From question to action<br/>in 4 steps',
+    steps:[
+      {h:'Ask or Upload',p:'Type your ISO question or upload your document for gap analysis'},
+      {h:'AI Analyses',p:'NormWise checks every clause against requirements and best practice'},
+      {h:'Get Findings',p:'Receive clause-level findings with Major NC / Minor NC / OFI classification'},
+      {h:'Download Report',p:'Export your action plan as Word or Excel — ready to share immediately'}
+    ],
+    pricingChip:'pricing', pricingH2:'Simple, transparent pricing',
+    pricingLead:'Start free. Scale as you grow. Cancel anytime.',
+    plans:[
+      {name:'Starter',price:'€79',period:'/mo',users:'1 user · 150 questions/month',features:['AI Q&A assistant','ISO 9001, 14001, 45001','Draft 2026/2027 knowledge','EN / DE / FR','Email support (48h)'],btn:'Start Free Trial',btnClass:'sec',link:'register.html?plan=starter'},
+      {name:'Professional',price:'€199',period:'/mo',users:'3 users · 750 questions/month',features:['Everything in Starter','Word Action Plans','Excel Gap Tables','KPI Dashboard PDF','Priority support (24h)'],btn:'Start Free Trial',btnClass:'sec',link:'register.html?plan=pro'},
+      {name:'Expert',price:'€499',period:'/mo',users:'5 users · 3,000 questions/month',features:['Everything in Professional','Document Gap Analysis','Master Action Plan','Management Summary','Same-day support'],btn:'Start Free Trial',btnClass:'pri',link:'register.html?plan=expert',hot:true,badge:'Most Popular'},
+      {name:'Enterprise',price:'Custom',period:'',users:'Unlimited users',features:['Everything in Expert','White-label branding','API access','Dedicated account manager','Custom onboarding'],btn:'Contact Us',btnClass:'sec',link:'mailto:hello@normwise.cloud'}
+    ],
+    trialNote:'// all_plans_include_7_day_free_trial · no_card_needed_for_demo · cancel_anytime',
+    testimonialsChip:'testimonials', testimonialsH2:'Trusted by quality professionals',
+    testimonials:[
+      {q:'"NormWise saved me 2 days of audit preparation. The gap analysis was incredibly accurate and the action plan was ready to present to management immediately."',name:'Michael K.',role:'Quality Manager · Germany',av:'MK',bg:'#1a3fa8'},
+      {q:'"As an ISO consultant managing 15 clients, NormWise has transformed my workflow. The trilingual support means I can serve German, French and English clients with one tool."',name:'Sophie L.',role:'ISO Consultant · Switzerland',av:'SL',bg:'#c0392b'},
+      {q:'"The ISO 9001:2026 draft knowledge is a game changer. We started preparing for the transition 18 months early thanks to NormWise."',name:'Jean D.',role:'QHSE Director · France',av:'JD',bg:'#16a34a'}
+    ],
+    ctaChip:'get_started', ctaH2:'Start Your ISO Journey Today',
+    ctaP:'Stop wasting time on manual processes. Start using AI to manage your ISO compliance — free for 7 days.',
+    ctaBtns:'<a href="register.html" class="btn-primary">Start Free Trial →</a><a href="demo.html" class="btn-secondary">Try Free Demo</a>',
+    footerCol1:'<h4>Product</h4><a href="demo.html">Free Demo</a><a href="register.html">Sign Up</a><a href="blog.html">Blog</a><a href="index.html#pricing">Pricing</a><a href="faq.html">FAQ</a>',
+    footerCol2:'<h4>Support</h4><a href="support.html">Contact Us</a><a href="faq.html">Help Center</a><a href="mailto:hello@normwise.cloud">Email Us</a>',
+    footerCol3:'<h4>Legal</h4><a href="legal.html">Legal Notice</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a>'
+  },
+  de: {
+    navLogin:'Anmelden', navStart:'Kostenlos testen',
+    heroChip:'KI-gestützte ISO-Compliance',
+    heroH1:'Ihr <em>Compliance</em><br/>Co-Pilot',
+    heroSub:'Gap-Analyse in Minuten. Klauselgenaue Antworten. ISO 9001, 14001 &amp; 45001. Auf Deutsch, Englisch und Französisch.',
+    heroCta:'<a href="demo.html" class="btn-primary">3 kostenlose Fragen →</a><a href="register.html" class="btn-secondary">7 Tage kostenlos testen</a>',
+    heroNote:'// keine_kreditkarte_für_demo · 7_tage_kostenlos · jederzeit_kündbar',
+    demoTitle:'// normwise_ki · iso_9001_sitzung',
+    demoQ:'Welche Pflichtinputs sind für die Managementbewertung nach ISO 9001 Klausel 9.3 erforderlich?',
+    demoA:'<strong>ISO 9001:2015 Klausel 9.3.2 verlangt 8 Pflichtinputs:</strong><br/><br/>1. Status der Maßnahmen aus früheren Bewertungen<br/>2. Änderungen externer/interner Themen (4.1)<br/>3. Kundenzufriedenheit &amp; Stakeholder-Feedback<br/>4. Erreichung der Qualitätsziele<br/>5. Prozessleistung &amp; Produktkonformität<br/>6. Nichtkonformitäten &amp; Korrekturmaßnahmen<br/>7. Ergebnisse der Überwachung &amp; Messung<br/>8. Auditergebnisse &amp; Lieferantenleistung<br/><br/><span class="dtag maj">⚠ Major NC</span> wenn ein Input fehlt.<br/><span class="dtag ok">✓ Best Practice</span> Jeden Input dokumentieren.',
+    demoPlaceholder:'Frage zu ISO 9001, 14001 oder 45001...',
+    demoSend:'Fragen →',
+    stat1:'ISO-zertifizierte Unternehmen', stat2:'Sprachen DE/EN/FR', stat3:'Abgedeckte ISO-Normen', stat4:'Tage kostenlos testen',
+    problemChip:null,
+    featuresChip:'funktionen', featuresH2:'Alles, was Sie für<br/>ISO-Compliance brauchen',
+    featuresLead:'Von schnellen Klauselfragen bis zur vollständigen Dokument-Gap-Analyse — NormWise übernimmt alles.',
+    features:[
+      {icon:'🔍',h:'Gap-Analyse-Engine',p:'Laden Sie Ihre Dokumente hoch und erhalten Sie in Minuten eine klauselgenaue Gap-Analyse mit Major NC / Minor NC / VfV-Klassifikation.'},
+      {icon:'🌍',h:'Dreisprachiger Support',p:'Erkennt automatisch Ihre Sprache und antwortet vollständig auf Deutsch, Englisch oder Französisch.'},
+      {icon:'📋',h:'Auditvorbereitung',p:'Wissen Sie genau, was Auditoren bei jeder Klausel prüfen. Mit TÜV SÜD- und DNV-Auditwissen.'},
+      {icon:'📊',h:'Word- &amp; Excel-Berichte',p:'Erstellen Sie professionelle Gap-Analyse-Berichte und Maßnahmenpläne auf Knopfdruck.'},
+      {icon:'🔮',h:'ISO 2026 bereit',p:'Enthält vollständiges Wissen zu ISO 9001:2026, ISO 14001:2026 und ISO 45001:2027 Entwürfen.'},
+      {icon:'⚡',h:'Sofortige Antworten',p:'Stellen Sie jede Compliance-Frage und erhalten Sie klauselreferenzierte Antworten in Sekunden.'}
+    ],
+    standardsChip:'normen', standardsH2:'Alle wichtigen ISO-Normen<br/>+ kommende Revisionen',
+    standards:[
+      {badge:'AKTUELL',type:'cur',h:'ISO 9001:2015',p:'Qualitätsmanagementsysteme — inkl. Amendment 1:2024 zu Klimawandel'},
+      {badge:'AKTUELL',type:'cur',h:'ISO 14001:2015',p:'Umweltmanagementsysteme — alle Klauseln mit Praxisbeispielen'},
+      {badge:'AKTUELL',type:'cur',h:'ISO 45001:2018',p:'Arbeitsschutzmanagementsysteme — vollständige Abdeckung'},
+      {badge:'ENTWURF 2026',type:'dra',h:'ISO 9001:2026',p:'DIS genehmigt Dezember 2025 — Veröffentlichung September 2026 erwartet'},
+      {badge:'ENTWURF 2026',type:'dra',h:'ISO 14001:2026',p:'FDIS-Stadium — Veröffentlichung April 2026 erwartet'},
+      {badge:'ENTWURF 2027',type:'dra',h:'ISO 45001:2027',p:'Committee-Draft-Stadium — NormWise verfolgt alle Entwicklungen'}
+    ],
+    stepsChip:'so_funktioniert_es', stepsH2:'Von der Frage zur<br/>Maßnahme in 4 Schritten',
+    steps:[
+      {h:'Fragen oder hochladen',p:'Stellen Sie Ihre ISO-Frage oder laden Sie Ihr Dokument für die Gap-Analyse hoch'},
+      {h:'KI analysiert',p:'NormWise prüft jede Klausel gegen Anforderungen und Best Practices'},
+      {h:'Ergebnisse erhalten',p:'Klauselgenaue Befunde mit Major NC / Minor NC / VfV-Klassifikation'},
+      {h:'Bericht herunterladen',p:'Maßnahmenplan als Word oder Excel exportieren — sofort teilbar'}
+    ],
+    pricingChip:'preise', pricingH2:'Einfache, transparente Preisgestaltung',
+    pricingLead:'Kostenlos starten. Nach Bedarf skalieren. Jederzeit kündbar.',
+    plans:[
+      {name:'Starter',price:'€79',period:'/Mo',users:'1 Nutzer · 150 Fragen/Monat',features:['KI-Q&A-Assistent','ISO 9001, 14001, 45001','Entwurf 2026/2027','DE / EN / FR','E-Mail-Support (48h)'],btn:'Kostenlos testen',btnClass:'sec',link:'register.html?plan=starter'},
+      {name:'Professional',price:'€199',period:'/Mo',users:'3 Nutzer · 750 Fragen/Monat',features:['Alles aus Starter','Word-Maßnahmenpläne','Excel-Gap-Tabellen','KPI-Dashboard PDF','Prioritäts-Support (24h)'],btn:'Kostenlos testen',btnClass:'sec',link:'register.html?plan=pro'},
+      {name:'Expert',price:'€499',period:'/Mo',users:'5 Nutzer · 3.000 Fragen/Monat',features:['Alles aus Professional','Dokument-Gap-Analyse','Master-Maßnahmenplan','Management-Summary','Same-Day-Support'],btn:'Kostenlos testen',btnClass:'pri',link:'register.html?plan=expert',hot:true,badge:'Beliebteste'},
+      {name:'Enterprise',price:'Individuell',period:'',users:'Unbegrenzte Nutzer',features:['Alles aus Expert','White-Label-Branding','API-Zugang','Dedizierter Ansprechpartner','Custom Onboarding'],btn:'Kontakt aufnehmen',btnClass:'sec',link:'mailto:hello@normwise.cloud'}
+    ],
+    trialNote:'// alle_pläne_inkl_7_tage_gratis · keine_kreditkarte_für_demo · jederzeit_kündbar',
+    testimonialsChip:'referenzen', testimonialsH2:'Vertrauen von Qualitätsfachleuten',
+    testimonials:[
+      {q:'„NormWise hat mir 2 Tage Auditvorbereitung erspart. Die Gap-Analyse war unglaublich präzise und der Maßnahmenplan war sofort präsentationsfertig."',name:'Michael K.',role:'Qualitätsmanager · Deutschland',av:'MK',bg:'#1a3fa8'},
+      {q:'„Als ISO-Beraterin mit 15 Kunden hat NormWise meine Arbeitsabläufe revolutioniert. Der dreisprachige Support bedeutet, dass ich alle Kunden mit einem Tool bedienen kann."',name:'Sophie L.',role:'ISO-Beraterin · Schweiz',av:'SL',bg:'#c0392b'},
+      {q:'„Das ISO 9001:2026 Entwurfswissen ist ein echter Gamechanger. Wir haben dank NormWise 18 Monate früher mit der Übergangsvorbereitung begonnen."',name:'Jean D.',role:'QHSE-Direktor · Frankreich',av:'JD',bg:'#16a34a'}
+    ],
+    ctaChip:'jetzt_starten', ctaH2:'Bereit für einfachere ISO-Compliance?',
+    ctaP:'Starten Sie mit 3 kostenlosen Fragen — kein Konto erforderlich. Erleben Sie NormWise, bevor Sie sich anmelden.',
+    ctaBtns:'<a href="demo.html" class="btn-primary">3 kostenlose Fragen →</a><a href="register.html" class="btn-secondary">7 Tage kostenlos testen</a>',
+    footerCol1:'<h4>Produkt</h4><a href="demo.html">Kostenlose Demo</a><a href="register.html">Registrieren</a><a href="blog.html">Blog</a><a href="index.html#pricing">Preise</a><a href="faq.html">FAQ</a>',
+    footerCol2:'<h4>Support</h4><a href="support.html">Kontakt</a><a href="faq.html">Hilfe-Center</a><a href="mailto:hello@normwise.cloud">E-Mail</a>',
+    footerCol3:'<h4>Rechtliches</h4><a href="legal.html">Impressum</a><a href="privacy.html">Datenschutz</a><a href="terms.html">AGB</a>'
+  },
+  fr: {
+    navLogin:'Connexion', navStart:'Essai gratuit',
+    heroChip:'Conformité ISO assistée par IA',
+    heroH1:'Votre <em>Co-Pilote</em><br/>Conformité',
+    heroSub:'Analyse des écarts en minutes. Réponses clause par clause. ISO 9001, 14001 &amp; 45001. En français, allemand et anglais.',
+    heroCta:'<a href="demo.html" class="btn-primary">3 questions gratuites →</a><a href="register.html" class="btn-secondary">Essai gratuit 7 jours</a>',
+    heroNote:'// sans_carte_pour_la_démo · essai_7_jours · résiliation_à_tout_moment',
+    demoTitle:'// normwise_ia · session_iso_9001',
+    demoQ:'Quels sont les inputs obligatoires pour la revue de direction ISO 9001 Clause 9.3 ?',
+    demoA:'<strong>ISO 9001:2015 Clause 9.3.2 exige 8 inputs obligatoires :</strong><br/><br/>1. Statut des actions des revues précédentes<br/>2. Évolutions des enjeux internes/externes (4.1)<br/>3. Satisfaction client &amp; retours parties intéressées<br/>4. Atteinte des objectifs qualité<br/>5. Performance des processus &amp; conformité produit<br/>6. Non-conformités &amp; actions correctives<br/>7. Résultats de surveillance &amp; mesure<br/>8. Résultats d\'audit &amp; performance prestataires<br/><br/><span class="dtag maj">⚠ NC Majeure</span> si un input manque.<br/><span class="dtag ok">✓ Bonne pratique</span> Documenter chaque input.',
+    demoPlaceholder:'Question sur ISO 9001, 14001 ou 45001...',
+    demoSend:'Demander →',
+    stat1:'Entreprises certifiées ISO', stat2:'Langues FR/DE/EN', stat3:'Normes ISO couvertes', stat4:"Jours d'essai gratuit",
+    problemChip:null,
+    featuresChip:'fonctionnalités', featuresH2:'Tout ce dont vous avez besoin<br/>pour la conformité ISO',
+    featuresLead:"Des questions rapides sur les clauses à l'analyse complète des écarts — NormWise gère tout.",
+    features:[
+      {icon:'🔍',h:"Moteur d'analyse des écarts",p:'Téléchargez vos documents et obtenez une analyse clause par clause avec classification NC Majeure / Mineure / OFI en quelques minutes.'},
+      {icon:'🌍',h:'Support trilingue',p:"Détecte automatiquement votre langue et répond à 100% en français, allemand ou anglais — y compris tous les rapports."},
+      {icon:'📋',h:'Préparation aux audits',p:'Sachez exactement ce que les auditeurs vérifient pour chaque clause. Construit avec la connaissance TÜV SÜD et DNV.'},
+      {icon:'📊',h:'Rapports Word &amp; Excel',p:'Générez des rapports professionnels et plans d\'action prêts à partager avec la direction en un clic.'},
+      {icon:'🔮',h:'Prêt pour ISO 2026',p:'Inclut la connaissance complète des projets ISO 9001:2026, 14001:2026 et 45001:2027.'},
+      {icon:'⚡',h:'Réponses instantanées',p:'Posez n\'importe quelle question et obtenez des réponses référencées en quelques secondes.'}
+    ],
+    standardsChip:'normes', standardsH2:'Toutes les principales normes ISO<br/>+ révisions à venir',
+    standards:[
+      {badge:'EN VIGUEUR',type:'cur',h:'ISO 9001:2015',p:'Systèmes de management de la qualité — incl. Amendement 1:2024 sur le changement climatique'},
+      {badge:'EN VIGUEUR',type:'cur',h:'ISO 14001:2015',p:'Systèmes de management environnemental — toutes les clauses avec exemples pratiques'},
+      {badge:'EN VIGUEUR',type:'cur',h:'ISO 45001:2018',p:'Systèmes de management de la santé et sécurité — couverture complète'},
+      {badge:'PROJET 2026',type:'dra',h:'ISO 9001:2026',p:'DIS approuvé décembre 2025 — publication prévue septembre 2026'},
+      {badge:'PROJET 2026',type:'dra',h:'ISO 14001:2026',p:'Stade FDIS — publication prévue avril 2026 — préparez-vous maintenant'},
+      {badge:'PROJET 2027',type:'dra',h:'ISO 45001:2027',p:'Stade projet de comité — NormWise suit tous les développements'}
+    ],
+    stepsChip:'comment_ça_marche', stepsH2:"De la question à l'action<br/>en 4 étapes",
+    steps:[
+      {h:'Demandez ou téléchargez',p:'Posez votre question ISO ou téléchargez votre document pour une analyse des écarts'},
+      {h:"L'IA analyse",p:'NormWise vérifie chaque clause par rapport aux exigences et aux bonnes pratiques'},
+      {h:'Obtenez les résultats',p:'Recevez les conclusions par clause avec classification NC Majeure / Mineure / OFI'},
+      {h:'Téléchargez le rapport',p:'Exportez votre plan d\'action en Word ou Excel — prêt à partager immédiatement'}
+    ],
+    pricingChip:'tarifs', pricingH2:'Tarification simple et transparente',
+    pricingLead:'Commencez gratuitement. Évoluez selon vos besoins. Résiliez à tout moment.',
+    plans:[
+      {name:'Starter',price:'€79',period:'/mois',users:'1 utilisateur · 150 questions/mois',features:['Assistant IA Q&R','ISO 9001, 14001, 45001','Projets 2026/2027','FR / DE / EN','Support e-mail (48h)'],btn:'Essai gratuit',btnClass:'sec',link:'register.html?plan=starter'},
+      {name:'Professional',price:'€199',period:'/mois',users:'3 utilisateurs · 750 questions/mois',features:["Tout du Starter","Plans d'action Word","Tableaux Excel","Dashboard KPI PDF","Support prioritaire (24h)"],btn:'Essai gratuit',btnClass:'sec',link:'register.html?plan=pro'},
+      {name:'Expert',price:'€499',period:'/mois',users:'5 utilisateurs · 3 000 questions/mois',features:['Tout du Professional','Analyse des écarts','Plan d\'action maître','Synthèse direction','Support même jour'],btn:'Essai gratuit',btnClass:'pri',link:'register.html?plan=expert',hot:true,badge:'Plus populaire'},
+      {name:'Enterprise',price:'Sur mesure',period:'',users:'Utilisateurs illimités',features:['Tout du Expert','Marque blanche','Accès API','Gestionnaire dédié','Onboarding personnalisé'],btn:'Nous contacter',btnClass:'sec',link:'mailto:hello@normwise.cloud'}
+    ],
+    trialNote:'// tous_les_plans_incluent_7_jours_gratuits · sans_carte_pour_démo · résiliation_libre',
+    testimonialsChip:'témoignages', testimonialsH2:'La confiance des professionnels de la qualité',
+    testimonials:[
+      {q:"« NormWise m'a économisé 2 jours de préparation d'audit. L'analyse était incroyablement précise et le plan d'action prêt à présenter à la direction. »",name:'Michael K.',role:'Responsable qualité · Allemagne',av:'MK',bg:'#1a3fa8'},
+      {q:"« En tant que consultante ISO avec 15 clients, NormWise a transformé mon flux de travail. Le support trilingue me permet de servir tous mes clients avec un seul outil. »",name:'Sophie L.',role:'Consultante ISO · Suisse',av:'SL',bg:'#c0392b'},
+      {q:"« La connaissance du projet ISO 9001:2026 est un vrai atout. Nous avons commencé à préparer la transition 18 mois à l'avance grâce à NormWise. »",name:'Jean D.',role:'Directeur QHSE · France',av:'JD',bg:'#16a34a'}
+    ],
+    ctaChip:'commencer', ctaH2:'Prêt à simplifier votre conformité ISO ?',
+    ctaP:'Commencez avec 3 questions gratuites — sans compte. Découvrez NormWise avant de vous inscrire.',
+    ctaBtns:'<a href="demo.html" class="btn-primary">3 questions gratuites →</a><a href="register.html" class="btn-secondary">Essai gratuit 7 jours</a>',
+    footerCol1:"<h4>Produit</h4><a href='demo.html'>Démo gratuite</a><a href='register.html'>S'inscrire</a><a href='blog.html'>Blog</a><a href='index.html#pricing'>Tarifs</a><a href='faq.html'>FAQ</a>",
+    footerCol2:"<h4>Support</h4><a href='support.html'>Nous contacter</a><a href='faq.html'>Centre d'aide</a><a href='mailto:hello@normwise.cloud'>E-mail</a>",
+    footerCol3:"<h4>Légal</h4><a href='legal.html'>Mentions légales</a><a href='privacy.html'>Confidentialité</a><a href='terms.html'>CGU</a>"
+  }
+};
+
+function renderCard(c) {
+  return `<div class="card"><div class="card-icon">${c.icon}</div><h3>${c.h}</h3><p>${c.p}</p></div>`;
+}
+
 function setLang(lang, btn) {
-  // Set body class
-  document.body.className = 'lang-' + lang;
+  const t = T[lang];
 
-  // Update nav buttons
+  // Nav
+  document.getElementById('nav-login').textContent = t.navLogin;
+  document.getElementById('nav-start').textContent = t.navStart;
   document.querySelectorAll('.nav-lang').forEach(b => b.classList.remove('active'));
-  if (btn) {
-    btn.classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.nav-lang').forEach(b => {
+    if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
+  });
+
+  // Hero
+  document.getElementById('hero-chip').innerHTML = t.heroChip;
+  document.getElementById('hero-h1').innerHTML = t.heroH1;
+  document.getElementById('hero-sub').innerHTML = t.heroSub;
+  document.getElementById('hero-cta').innerHTML = t.heroCta;
+  document.getElementById('hero-note').textContent = t.heroNote;
+  document.getElementById('demo-bar-title').textContent = t.demoTitle;
+  document.getElementById('demo-msgs').innerHTML = `
+    <div class="dmsg u"><div class="dav u">A</div><div class="dbub">${t.demoQ}</div></div>
+    <div class="dmsg"><div class="dav ai">N</div><div class="dbub">${t.demoA}</div></div>`;
+  document.getElementById('demo-placeholder').textContent = t.demoPlaceholder;
+  document.getElementById('demo-send-btn').textContent = t.demoSend;
+
+  // Stats
+  document.getElementById('stat1').textContent = t.stat1;
+  document.getElementById('stat2').textContent = t.stat2;
+  document.getElementById('stat3').textContent = t.stat3;
+  document.getElementById('stat4').textContent = t.stat4;
+
+  // Problem/Solution (EN only)
+  const problemSection = document.getElementById('problem-section');
+  const solutionSection = document.getElementById('solution-section');
+  if (lang === 'en') {
+    problemSection.style.display = '';
+    solutionSection.style.display = '';
+    document.getElementById('problem-chip').textContent = t.problemChip;
+    document.getElementById('problem-h2').innerHTML = t.problemH2;
+    document.getElementById('problem-lead').textContent = t.problemLead;
+    document.getElementById('problem-grid').innerHTML = t.problems.map(p =>
+      `<div class="problem-card"><div class="problem-icon">${p.icon}</div><div><h3>${p.h}</h3><p>${p.p}</p></div></div>`
+    ).join('');
+    document.getElementById('solution-chip').textContent = t.solutionChip;
+    document.getElementById('solution-h2').innerHTML = t.solutionH2;
+    document.getElementById('solution-lead').innerHTML = t.solutionLead;
+    document.getElementById('solution-grid').innerHTML = t.solutions.map(renderCard).join('');
   } else {
-    document.querySelectorAll('.nav-lang').forEach(b => {
-      if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
-    });
+    problemSection.style.display = 'none';
+    solutionSection.style.display = 'none';
   }
 
-  // Update nav CTA text
-  const loginBtn = document.getElementById('nav-login');
-  const startBtn = document.getElementById('nav-start');
-  if (lang === 'de') {
-    loginBtn.textContent = 'Anmelden';
-    startBtn.textContent = 'Kostenlos testen';
-  } else if (lang === 'fr') {
-    loginBtn.textContent = 'Connexion';
-    startBtn.textContent = 'Essai gratuit';
-  } else {
-    loginBtn.textContent = 'Log in';
-    startBtn.textContent = 'Try for Free';
-  }
+  // Features
+  document.getElementById('features-chip').textContent = t.featuresChip;
+  document.getElementById('features-h2').innerHTML = t.featuresH2;
+  document.getElementById('features-lead').innerHTML = t.featuresLead;
+  document.getElementById('features-grid').innerHTML = t.features.map(renderCard).join('');
 
-  // Save preference
+  // Standards
+  document.getElementById('standards-chip').textContent = t.standardsChip;
+  document.getElementById('standards-h2').innerHTML = t.standardsH2;
+  document.getElementById('standards-grid').innerHTML = t.standards.map(s =>
+    `<div class="card"><div class="std-badge ${s.type}">${s.badge}</div><h3>${s.h}</h3><p class="std-card-p">${s.p}</p></div>`
+  ).join('');
+
+  // Steps
+  document.getElementById('steps-chip').textContent = t.stepsChip;
+  document.getElementById('steps-h2').innerHTML = t.stepsH2;
+  document.getElementById('steps-grid').innerHTML = t.steps.map((s,i) =>
+    `<div class="step"><div class="step-num">0${i+1}</div><h3>${s.h}</h3><p>${s.p}</p></div>`
+  ).join('');
+
+  // Pricing
+  document.getElementById('pricing-chip').textContent = t.pricingChip;
+  document.getElementById('pricing-h2').innerHTML = t.pricingH2;
+  document.getElementById('pricing-lead').innerHTML = t.pricingLead;
+  document.getElementById('pricing-grid').innerHTML = t.plans.map(p => `
+    <div class="plan${p.hot?' hot':''}">
+      ${p.badge ? `<div class="plan-badge">${p.badge}</div>` : ''}
+      <div class="plan-name">${p.name}</div>
+      <div class="plan-price">${p.price}<span class="plan-price-period">${p.period}</span></div>
+      <div class="plan-period">${p.users}</div>
+      <ul class="plan-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <a href="${p.link}" class="btn-plan ${p.btnClass}">${p.btn}</a>
+    </div>`).join('');
+  document.getElementById('trial-note').textContent = t.trialNote;
+
+  // Testimonials
+  document.getElementById('testimonials-chip').textContent = t.testimonialsChip;
+  document.getElementById('testimonials-h2').innerHTML = t.testimonialsH2;
+  document.getElementById('testimonials-grid').innerHTML = t.testimonials.map(t => `
+    <div class="tcard">
+      <p class="tcard-text">${t.q}</p>
+      <div class="tauthor"><div class="tav" style="background:${t.bg}">${t.av}</div>
+      <div><div class="tname">${t.name}</div><div class="trole">${t.role}</div></div></div>
+    </div>`).join('');
+
+  // CTA
+  document.getElementById('cta-chip').textContent = t.ctaChip;
+  document.getElementById('cta-h2').innerHTML = t.ctaH2;
+  document.getElementById('cta-p').innerHTML = t.ctaP;
+  document.getElementById('cta-btns').innerHTML = t.ctaBtns;
+
+  // Footer
+  document.getElementById('footer-col1').innerHTML = t.footerCol1;
+  document.getElementById('footer-col2').innerHTML = t.footerCol2;
+  document.getElementById('footer-col3').innerHTML = t.footerCol3;
+
   localStorage.setItem('nw_lang', lang);
 }
 
-// Init on load
+// Init
 const saved = localStorage.getItem('nw_lang');
 const browser = (navigator.language || 'en').substring(0,2).toLowerCase();
-const initLang = saved || (['de','fr'].includes(browser) ? browser : 'en');
-setLang(initLang, null);
+setLang(saved || (['de','fr'].includes(browser) ? browser : 'en'), null);
 </script>
-
 </body>
 </html>
