@@ -132,8 +132,8 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
 .footer-langs{display:flex;gap:16px}
 .footer-langs a{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
 .footer-langs a:hover{color:#fff}
-.lang-section{display:none}
-.lang-section.active{display:block}
+.lang-section{display:none !important}
+.lang-section.active{display:block !important}
 @media(max-width:900px){.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){nav{padding:0 20px}.features-grid,.pricing-grid,.steps,.standards-grid,.testimonials,.footer-grid{grid-template-columns:1fr}.hero{padding:100px 20px 60px}.section{padding:60px 20px}.stats{gap:32px;padding:40px 20px}.hero-cta{flex-direction:column;align-items:center}.cta-section{padding:40px 24px;margin:0 20px 60px}.footer-bottom{flex-direction:column;align-items:flex-start}}
 </style>
@@ -221,7 +221,7 @@ footer{background:var(--ink);border-top:1px solid var(--border2);padding:48px;po
 </div>
 
 <!-- SOLUTION SECTION -->
-<div class="section" style="padding-top:0;padding-bottom:40px;background:rgba(26,63,168,0.05);border-radius:16px;margin:0 0 0 0">
+<div class="section" style="padding-top:0;padding-bottom:40px">
   <div class="section-chip">the_solution</div>
   <h2>Your AI ISO 9001<br/>Compliance Software</h2>
   <p class="lead">NormWise is an AI-powered ISO compliance platform that helps you manage your entire quality management system (QMS) in one place — in English, German and French.</p>
