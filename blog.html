@@ -603,9 +603,9 @@ function openArticle(id) {
     <h1>${art.title}</h1>
     <div class="article-body">${art.body}</div>
     <div class="article-cta">
-      <h4>Ready to simplify your ISO compliance?</h4>
-      <p>Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.</p>
-      <a href="/demo.html">Try 3 Free Questions →</a>
+      <h4>${art.lang === 'de' ? 'Bereit, Ihre ISO-Compliance zu vereinfachen?' : art.lang === 'fr' ? 'Prêt à simplifier votre conformité ISO ?' : 'Ready to simplify your ISO compliance?'}</h4>
+      <p>${art.lang === 'de' ? 'Stellen Sie NormWise jede ISO-Frage — klauselgenaue Antworten in Sekunden. Kostenlos testen.' : art.lang === 'fr' ? 'Posez à NormWise n\'importe quelle question ISO — réponses clause par clause en secondes. Gratuit.' : 'Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.'}</p>
+      <a href="/demo.html">${art.lang === 'de' ? '3 kostenlose Fragen →' : art.lang === 'fr' ? '3 questions gratuites →' : 'Try 3 Free Questions →'}</a>
     </div>
   `;
   document.getElementById('article-modal').classList.add('open');
