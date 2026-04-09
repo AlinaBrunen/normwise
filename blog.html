@@ -85,6 +85,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,12,24,0.92
 .read-btn::after{content:'→';transition:transform 0.2s;}
 .featured-card:hover .read-btn::after{transform:translateX(4px);}
 
+/* NEW ARTICLES BANNER */
+.new-articles{max-width:1200px;margin:0 auto;padding:0 24px 32px;}
+.new-articles-label{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;}
+.new-articles-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.new-article-card{background:linear-gradient(135deg,rgba(230,57,70,0.08),rgba(26,63,168,0.08));border:1px solid rgba(230,57,70,0.25);border-radius:12px;padding:24px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:20px;transition:all 0.2s;}
+.new-article-card:hover{border-color:rgba(230,57,70,0.5);transform:translateY(-2px);}
+.new-article-icon{font-size:32px;flex-shrink:0;}
+.new-article-badge{font-family:var(--mono);font-size:10px;background:var(--red);color:#fff;padding:2px 8px;border-radius:4px;margin-bottom:6px;display:inline-block;}
+.new-article-card h3{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:4px;}
+.new-article-card p{font-size:12px;color:var(--muted);}
+.new-article-arrow{color:var(--red);font-size:20px;margin-left:auto;flex-shrink:0;transition:transform 0.2s;}
+.new-article-card:hover .new-article-arrow{transform:translateX(4px);}
+
 /* POSTS GRID */
 .posts-section{max-width:1200px;margin:0 auto;padding:0 24px 80px;}
 .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -141,12 +154,12 @@ footer p{color:var(--muted);font-size:13px;}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
 
-/* HIDDEN class */
 .hidden{display:none!important;}
 
 @media(max-width:900px){
   .featured-card{grid-template-columns:1fr;}
   .posts-grid{grid-template-columns:1fr 1fr;}
+  .new-articles-grid{grid-template-columns:1fr;}
 }
 @media(max-width:600px){
   .posts-grid{grid-template-columns:1fr;}
@@ -186,13 +199,13 @@ footer a:hover{color:var(--text);}
 <div class="filter-bar">
   <span class="filter-label">// filter:</span>
   <button class="filter-btn active" onclick="filterPosts('all')" id="filter-all">
-    <span id="f-all">All Posts</span> <span class="count-badge">6</span>
+    <span id="f-all">All Posts</span> <span class="count-badge">8</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('de')" id="filter-de">
-    🇩🇪 <span id="f-de">Deutsch</span> <span class="count-badge">2</span>
+    🇩🇪 <span id="f-de">Deutsch</span> <span class="count-badge">3</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('en')" id="filter-en">
-    🇬🇧 <span id="f-en">English</span> <span class="count-badge">2</span>
+    🇬🇧 <span id="f-en">English</span> <span class="count-badge">3</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('fr')" id="filter-fr">
     🇫🇷 <span id="f-fr">Français</span> <span class="count-badge">2</span>
@@ -219,6 +232,49 @@ footer a:hover{color:var(--text);}
     </div>
   </a>
 </section>
+
+<!-- NEW INDIVIDUAL ARTICLES -->
+<div class="new-articles">
+  <div class="new-articles-label" id="new-label">// new · individual_seo_articles</div>
+  <div class="new-articles-grid">
+    <a class="new-article-card" href="blog-iso-9001-audit-preparation-en.html">
+      <div class="new-article-icon">📋</div>
+      <div>
+        <div class="new-article-badge">🇬🇧 EN · NEW</div>
+        <h3>ISO 9001 Audit Preparation: The Complete Guide (2025/2026)</h3>
+        <p>Step-by-step · Clause checklist · Pre-audit checklist · 8 min read</p>
+      </div>
+      <div class="new-article-arrow">→</div>
+    </a>
+    <a class="new-article-card" href="blog-iso-9001-auditvorbereitung-de.html">
+      <div class="new-article-icon">📋</div>
+      <div>
+        <div class="new-article-badge">🇩🇪 DE · NEU</div>
+        <h3>ISO 9001 Auditvorbereitung: Der komplette Leitfaden (2025/2026)</h3>
+        <p>Schritt-für-Schritt · Klausel-Checkliste · Vor-Audit-Checkliste · 8 Min.</p>
+      </div>
+      <div class="new-article-arrow">→</div>
+    </a>
+    <a class="new-article-card" href="blog-iso-9001-gap-analysis-en.html">
+      <div class="new-article-icon">🔍</div>
+      <div>
+        <div class="new-article-badge">🇬🇧 EN · NEW</div>
+        <h3>ISO 9001 Gap Analysis: How to Find Compliance Gaps Fast (2026)</h3>
+        <p>Clause-by-clause · NC classification · Action plan · 8 min read</p>
+      </div>
+      <div class="new-article-arrow">→</div>
+    </a>
+    <a class="new-article-card" href="blog-iso-9001-gap-analyse-de.html">
+      <div class="new-article-icon">🔍</div>
+      <div>
+        <div class="new-article-badge">🇩🇪 DE · NEU</div>
+        <h3>ISO 9001 Gap-Analyse: Compliance-Lücken schnell identifizieren (2026)</h3>
+        <p>Klauselgenau · NC-Klassifikation · Maßnahmenplan · 8 Min.</p>
+      </div>
+      <div class="new-article-arrow">→</div>
+    </a>
+  </div>
+</div>
 
 <!-- POSTS GRID -->
 <section class="posts-section">
@@ -348,7 +404,6 @@ footer a:hover{color:var(--text);}
 </div>
 
 <script>
-// ─── ARTICLES ───
 const articles = {
   'post-iso9001-2026-de': {
     lang: 'de', langTag: 'lang-de', langLabel: '🇩🇪 Deutsch', cat: 'ISO 9001:2026', readTime: '8 min',
@@ -359,23 +414,22 @@ const articles = {
       <p>Viele Qualitätsmanager warten ab. Das ist ein Fehler. Die Unternehmen, die bereits heute mit der Vorbereitung beginnen, werden die Transition problemlos meistern — während andere in den letzten 6 Monaten unter Hochdruck stehen.</p>
       <h2>Die 7 wichtigsten Änderungen in ISO 9001:2026</h2>
       <h3>1. Klimawandel als explizite Anforderung (Amendment 1:2024)</h3>
-      <p>Bereits in Kraft: Amendment 1:2024 verlangt, dass Organisationen den <strong>Klimawandel als relevantes Thema</strong> in Klausel 4.1 und 4.2 berücksichtigen. Dies ist keine Empfehlung — es ist eine Anforderung.</p>
+      <p>Bereits in Kraft: Amendment 1:2024 verlangt, dass Organisationen den <strong>Klimawandel als relevantes Thema</strong> in Klausel 4.1 und 4.2 berücksichtigen.</p>
       <h3>2. Stärkeres Knowledge Management (Klausel 7.1.6)</h3>
-      <p>Wissen als Ressource bekommt mehr Gewicht. Dokumentation, Wissenstransfer und der Umgang mit Wissensverlusten (z.B. bei Personalwechsel) müssen explizit adressiert werden.</p>
+      <p>Wissen als Ressource bekommt mehr Gewicht. Dokumentation, Wissenstransfer und der Umgang mit Wissensverlusten müssen explizit adressiert werden.</p>
       <h3>3. Präzisere Risikobeurteilung (Klausel 6.1)</h3>
       <p>Risk-based thinking wird spezifischer. Neue Leitlinien helfen Organisationen, Risiken systematischer zu bewerten und zu priorisieren.</p>
       <h3>4. Digitalisierung explizit adressiert</h3>
       <p>Digitale Prozesse, elektronische Dokumentation und IT-Systeme werden erstmals explizit in der Norm erwähnt.</p>
       <h3>5. Vereinfachte Dokumentationsanforderungen</h3>
-      <p>Weniger ist mehr: Die neue Version reduziert unnötige Dokumentationspflichten und fokussiert auf Mehrwert statt Bürokratie.</p>
+      <p>Die neue Version reduziert unnötige Dokumentationspflichten und fokussiert auf Mehrwert statt Bürokratie.</p>
       <h3>6. Stärkerer Fokus auf Kundenzufriedenheit</h3>
       <p>Klausel 9.1.2 wird erweitert: Kundenzufriedenheit soll systematischer gemessen und ausgewertet werden.</p>
       <h3>7. Überarbeitete Anforderungen für externe Anbieter</h3>
-      <p>Klausel 8.4 (Externe Anbieter) wird präzisiert — mit klaren Anforderungen an Lieferantenbeurteilung und -überwachung.</p>
+      <p>Klausel 8.4 wird präzisiert — mit klaren Anforderungen an Lieferantenbeurteilung und -überwachung.</p>
       <h2>Zeitplan & Übergangsfrist</h2>
       <ul>
-        <li><strong>Dezember 2025:</strong> DIS (Draft International Standard) genehmigt</li>
-        <li><strong>April 2026:</strong> FDIS (Final Draft) erwartet</li>
+        <li><strong>Dezember 2025:</strong> DIS genehmigt</li>
         <li><strong>September 2026:</strong> Veröffentlichung ISO 9001:2026</li>
         <li><strong>September 2029:</strong> Ende der Übergangsfrist</li>
       </ul>
@@ -389,12 +443,9 @@ const articles = {
       <div class="highlight">📥 This guide includes a free gap analysis methodology you can use immediately. Updated for ISO 9001:2026.</div>
       <h2>What is an ISO 9001 Gap Analysis?</h2>
       <p>A gap analysis is a systematic comparison between your organization's current management system and the requirements of ISO 9001. It identifies where you <strong>conform</strong>, where you have <strong>gaps</strong>, and what you need to do to achieve certification.</p>
-      <h2>Why Conduct One Before Certification?</h2>
-      <p>Organizations that skip the gap analysis often fail their first audit. A proper gap analysis gives you a clear roadmap, reduces audit surprises, and helps you prioritize your resources.</p>
       <h2>Step 1: Map Your Current Processes</h2>
       <p>Before comparing against ISO 9001, document what you currently do. Create a process map covering: quality management, customer communication, purchasing, production/service delivery, and monitoring.</p>
       <h2>Step 2: Clause-by-Clause Comparison</h2>
-      <p>Work through each of the 10 clauses of ISO 9001 and evaluate your current practices against the requirements:</p>
       <ul>
         <li><strong>Clause 4:</strong> Context of the organization</li>
         <li><strong>Clause 5:</strong> Leadership</li>
@@ -405,15 +456,14 @@ const articles = {
         <li><strong>Clause 10:</strong> Improvement</li>
       </ul>
       <h2>Step 3: Classify Your Findings</h2>
-      <p>For each clause, classify your finding:</p>
       <ul>
-        <li>🔴 <strong>Major NC:</strong> Mandatory requirement not met — must fix before certification</li>
-        <li>🟠 <strong>Minor NC:</strong> Partial fulfillment — fix within 90 days</li>
-        <li>🟡 <strong>OFI:</strong> Opportunity for improvement — recommended</li>
+        <li>🔴 <strong>Major NC:</strong> Mandatory requirement not met</li>
+        <li>🟠 <strong>Minor NC:</strong> Partial fulfillment</li>
+        <li>🟡 <strong>OFI:</strong> Opportunity for improvement</li>
         <li>🟢 <strong>Conforms:</strong> Requirement fully met</li>
       </ul>
       <h2>Step 4: Build Your Action Plan</h2>
-      <p>For each gap, define: who is responsible, what action is needed, and by when. Prioritize Major NCs first — these are blocking your certification.</p>
+      <p>For each gap, define: who is responsible, what action is needed, and by when. Prioritize Major NCs first.</p>
       <div class="highlight">⚡ <strong>Pro tip:</strong> Use NormWise to ask clause-specific questions during your gap analysis. Get auditor-perspective answers in seconds.</div>
     `
   },
@@ -423,7 +473,7 @@ const articles = {
     body: `
       <div class="highlight">📋 Ce guide contient une checklist de préparation complète que vous pouvez utiliser immédiatement.</div>
       <h2>Pourquoi la préparation est cruciale</h2>
-      <p>Les organisations qui réussissent leur audit ISO 9001 du premier coup ont toutes un point commun : elles se sont préparées systématiquement. Une préparation sérieuse réduit le risque de NC Majeures de 70%.</p>
+      <p>Les organisations qui réussissent leur audit ISO 9001 du premier coup ont toutes un point commun : elles se sont préparées systématiquement.</p>
       <h2>Les 5 erreurs les plus courantes</h2>
       <ul>
         <li><strong>1. Objectifs qualité non mesurables</strong> — Clause 6.2 est souvent sous-estimée</li>
@@ -435,38 +485,32 @@ const articles = {
       <h2>Checklist 30 jours avant l'audit</h2>
       <ul>
         <li>✅ Politique qualité documentée et communiquée</li>
-        <li>✅ Objectifs qualité SMART définis par département</li>
+        <li>✅ Objectifs qualité SMART définis</li>
         <li>✅ Revue de direction complète avec tous les 8 inputs</li>
         <li>✅ Audit interne réalisé dans les 12 derniers mois</li>
-        <li>✅ Toutes les NC antérieures clôturées avec preuve d'efficacité</li>
-        <li>✅ Registre des risques et opportunités à jour</li>
-        <li>✅ Preuves de compétences pour tout le personnel clé</li>
-        <li>✅ Satisfaction client mesurée et documentée</li>
+        <li>✅ Toutes les NC antérieures clôturées</li>
+        <li>✅ Registre des risques à jour</li>
       </ul>
-      <h2>Le jour J — comment se comporter face à l'auditeur</h2>
-      <p>Répondez uniquement à ce qui est demandé. Fournissez des preuves documentées. N'improvisez jamais — si vous ne savez pas, dites-le et vérifiez.</p>
-      <div class="highlight">💡 <strong>Astuce NormWise :</strong> Avant votre audit, posez à NormWise toutes les questions que vous craignez que l'auditeur pose. Entraînez-vous aux réponses clause par clause.</div>
+      <div class="highlight">💡 <strong>Astuce NormWise :</strong> Avant votre audit, posez à NormWise toutes les questions que vous craignez. Entraînez-vous aux réponses clause par clause.</div>
     `
   },
   'post-major-nc-de': {
     lang: 'de', langTag: 'lang-de', langLabel: '🇩🇪 Deutsch', cat: 'Audit', readTime: '6 min',
     title: 'Die 5 häufigsten Major NCs bei ISO 9001 Audits — und wie Sie sie vermeiden',
     body: `
-      <div class="highlight">🔴 Eine einzige Major NC kann zur Aussetzung oder Nichterlangung Ihrer ISO 9001 Zertifizierung führen.</div>
-      <h2>Was ist eine Major Non-Conformity?</h2>
-      <p>Eine Major NC bedeutet, dass eine <strong>Mindestanforderung der Norm nicht erfüllt</strong> ist. Das ist kein kleiner Fehler — es ist ein Versagen, eine grundlegende Anforderung zu erfüllen. Auditoren sind verpflichtet, Major NCs zu dokumentieren.</p>
+      <div class="highlight">🔴 Eine einzige Major NC kann zur Aussetzung Ihrer ISO 9001 Zertifizierung führen.</div>
       <h2>Die 5 häufigsten Major NCs</h2>
       <h3>🔴 1. Qualitätsziele nicht messbar (Klausel 6.2)</h3>
-      <p>Vage Ziele wie "Qualität verbessern" reichen nicht aus. ISO 9001 verlangt SMART-Ziele: spezifisch, messbar, erreichbar, relevant, terminiert. Beispiel: "Kundenzufriedenheit von 4,2 auf 4,5/5 bis Q4 2026 steigern."</p>
+      <p>Vage Ziele reichen nicht aus. ISO 9001 verlangt SMART-Ziele: spezifisch, messbar, erreichbar, relevant, terminiert.</p>
       <h3>🔴 2. Managementbewertung unvollständig (Klausel 9.3)</h3>
-      <p>Die Managementbewertung muss alle 8 Pflichtinputs enthalten. Fehlt auch nur einer, ist das eine Major NC. Nutzen Sie eine Checkliste für jede Managementbewertung.</p>
+      <p>Alle 8 Pflichtinputs müssen enthalten sein. Fehlt auch nur einer, ist das eine Major NC.</p>
       <h3>🔴 3. Korrekturmaßnahmen ohne Wirksamkeitsprüfung (Klausel 10.2)</h3>
-      <p>Es reicht nicht, Maßnahmen zu definieren und umzusetzen. Sie müssen nachweisen, dass die Maßnahme wirksam war — durch dokumentierte Überprüfung.</p>
+      <p>Sie müssen nachweisen, dass die Maßnahme wirksam war — durch dokumentierte Überprüfung.</p>
       <h3>🔴 4. Interne Audits nicht planmäßig (Klausel 9.2)</h3>
-      <p>Interne Audits müssen einem dokumentierten Programm folgen. Fehlen Audits oder sind sie nicht dokumentiert, ist das eine Major NC.</p>
+      <p>Interne Audits müssen einem dokumentierten Programm folgen.</p>
       <h3>🔴 5. Kompetenznachweis fehlt (Klausel 7.2)</h3>
-      <p>Für alle Personen, die das QMS beeinflussen, müssen Kompetenz und Qualifikation nachgewiesen sein — durch Schulungsnachweise, Zertifikate oder Leistungsbeurteilungen.</p>
-      <div class="highlight">💡 <strong>Tipp:</strong> Fragen Sie NormWise: "Was prüft ein Auditor bei Klausel 9.3 Managementbewertung?" — Sie erhalten eine auditorengenaue Antwort in Sekunden.</div>
+      <p>Kompetenz und Qualifikation müssen für alle relevanten Personen nachgewiesen sein.</p>
+      <div class="highlight">💡 <strong>Tipp:</strong> Fragen Sie NormWise: "Was prüft ein Auditor bei Klausel 9.3?" — auditorengenaue Antwort in Sekunden.</div>
     `
   },
   'post-consultant-en': {
@@ -475,20 +519,15 @@ const articles = {
     body: `
       <div class="highlight">🚀 The ISO consultants who adopt AI tools now will dominate their market by 2027.</div>
       <h2>The Old Way vs. The New Way</h2>
-      <p>Traditional ISO consulting is time-intensive. A single gap analysis takes 4-8 hours of manual clause-by-clause research. Multiply that by 15 clients and you're spending most of your time on research instead of delivering strategic value.</p>
-      <h2>What AI Changes for ISO Consultants</h2>
-      <p>AI tools like NormWise handle the research layer instantly. Instead of spending 6 hours searching through the ISO 9001 standard, you ask NormWise and get a clause-exact answer in seconds.</p>
+      <p>Traditional ISO consulting is time-intensive. A single gap analysis takes 4-8 hours of manual clause-by-clause research.</p>
       <h2>The 3x Client Model</h2>
-      <p>Here's how it works in practice:</p>
       <ul>
-        <li><strong>Gap Analysis:</strong> 6 hours → 45 minutes (NormWise does clause research, you focus on findings)</li>
-        <li><strong>Client Q&A:</strong> 2 hours research → instant (ask NormWise, share the answer)</li>
-        <li><strong>Report Generation:</strong> 3 hours → 20 minutes (NormWise generates, you review)</li>
-        <li><strong>Audit Prep:</strong> 4 hours → 1 hour (NormWise knows exactly what auditors check)</li>
+        <li><strong>Gap Analysis:</strong> 6 hours → 45 minutes</li>
+        <li><strong>Client Q&A:</strong> 2 hours research → instant</li>
+        <li><strong>Report Generation:</strong> 3 hours → 20 minutes</li>
+        <li><strong>Audit Prep:</strong> 4 hours → 1 hour</li>
       </ul>
-      <h2>What You Do with the Saved Time</h2>
-      <p>Take on more clients. Deliver higher-value strategic consulting. Build deeper client relationships. Or simply work fewer hours with the same revenue.</p>
-      <div class="highlight">💡 <strong>Try it:</strong> Give NormWise your most challenging ISO clause question. See how fast you get an auditor-perspective answer at normwise.cloud</div>
+      <div class="highlight">💡 <strong>Try it:</strong> Give NormWise your most challenging ISO clause question at normwise.cloud</div>
     `
   },
   'post-14001-fr': {
@@ -498,22 +537,19 @@ const articles = {
       <div class="highlight">❓ Ces questions viennent de vrais responsables QHSE. Réponses clause par clause.</div>
       <h2>ISO 14001 — Questions Fréquentes</h2>
       <h3>Q: Quelle est la différence entre un aspect environnemental significatif et non significatif ?</h3>
-      <p>Un aspect est <strong>significatif</strong> si son impact environnemental dépasse les critères de significativité que votre organisation a définis en clause 6.1.2. Ces critères doivent être documentés et prendre en compte : la fréquence, la gravité, la réversibilité et les exigences légales.</p>
-      <h3>Q: Doit-on auditer tous les aspects environnementaux significatifs chaque année ?</h3>
-      <p>Pas nécessairement chaque aspect individuellement, mais le programme d'audit (clause 9.2) doit couvrir tous les processus significatifs sur la période d'audit définie, en tenant compte de leur importance.</p>
+      <p>Un aspect est <strong>significatif</strong> si son impact dépasse les critères de significativité définis en clause 6.1.2.</p>
       <h3>Q: Comment gérer les aspects environnementaux des sous-traitants ?</h3>
-      <p>Clause 8.1 exige que vous contrôliez les processus externalisés qui peuvent avoir un impact significatif. Définissez des critères de sélection environnementaux pour vos fournisseurs critiques.</p>
+      <p>Clause 8.1 exige que vous contrôliez les processus externalisés ayant un impact significatif.</p>
       <h2>ISO 45001 — Questions Fréquentes</h2>
       <h3>Q: Comment identifier les dangers pour ISO 45001 ?</h3>
-      <p>Utilisez une approche systématique (clause 6.1.2.1) : analyse des activités de travail, revue des incidents passés, consultation des travailleurs, et évaluation des situations d'urgence potentielles.</p>
+      <p>Utilisez une approche systématique (clause 6.1.2.1) : analyse des activités, revue des incidents, consultation des travailleurs.</p>
       <h3>Q: Peut-on intégrer ISO 9001, 14001 et 45001 ?</h3>
-      <p>Oui — la structure HLS (High Level Structure) des trois normes facilite l'intégration. Un système de management intégré (SMI) réduit la duplication documentaire et simplifie les audits.</p>
-      <div class="highlight">💡 <strong>NormWise</strong> répond à toutes vos questions ISO 14001 et 45001 en temps réel, en français, avec des réponses référencées clause par clause.</div>
+      <p>Oui — la structure HLS facilite l'intégration en un système de management intégré (SMI).</p>
+      <div class="highlight">💡 <strong>NormWise</strong> répond à toutes vos questions ISO 14001 et 45001 en temps réel, en français, clause par clause.</div>
     `
   }
 };
 
-// ─── TRANSLATIONS ───
 const t = {
   en: {
     chip: '// normwise_blog · iso_insights',
@@ -521,6 +557,7 @@ const t = {
     sub: 'Expert guides on ISO 9001, 14001 & 45001. Gap analysis templates, audit preparation tips and the latest on ISO 2026.',
     featuredLabel: '// featured_post',
     allLabel: '// all_posts',
+    newLabel: '// new · individual_seo_articles',
     fAll: 'All Posts', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
     nlTitle: 'Get ISO Insights in Your Inbox',
     nlSub: 'New articles every week. No spam. Unsubscribe anytime.',
@@ -533,6 +570,7 @@ const t = {
     sub: 'Expertenguides zu ISO 9001, 14001 & 45001. Gap-Analyse-Vorlagen, Audit-Tipps und alles zu ISO 2026.',
     featuredLabel: '// hauptartikel',
     allLabel: '// alle_artikel',
+    newLabel: '// neu · seo_einzelartikel',
     fAll: 'Alle Artikel', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
     nlTitle: 'ISO-Insights direkt in Ihr Postfach',
     nlSub: 'Neue Artikel jede Woche. Kein Spam. Jederzeit abmelden.',
@@ -545,6 +583,7 @@ const t = {
     sub: 'Guides experts sur ISO 9001, 14001 & 45001. Modèles d\'analyse des écarts, conseils audit et actualités ISO 2026.',
     featuredLabel: '// article_vedette',
     allLabel: '// tous_les_articles',
+    newLabel: '// nouveau · articles_seo_individuels',
     fAll: 'Tous', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
     nlTitle: 'Recevez les Insights ISO par Email',
     nlSub: 'Nouveaux articles chaque semaine. Pas de spam. Désabonnement libre.',
@@ -566,6 +605,7 @@ function setLang(lang) {
   document.getElementById('hero-sub').textContent = tr.sub;
   document.getElementById('featured-label').textContent = tr.featuredLabel;
   document.getElementById('all-posts-label').textContent = tr.allLabel;
+  document.getElementById('new-label').textContent = tr.newLabel;
   document.getElementById('f-all').textContent = tr.fAll;
   document.getElementById('f-de').textContent = tr.fDe;
   document.getElementById('f-en').textContent = tr.fEn;
@@ -604,7 +644,7 @@ function openArticle(id) {
     <div class="article-body">${art.body}</div>
     <div class="article-cta">
       <h4>${art.lang === 'de' ? 'Bereit, Ihre ISO-Compliance zu vereinfachen?' : art.lang === 'fr' ? 'Prêt à simplifier votre conformité ISO ?' : 'Ready to simplify your ISO compliance?'}</h4>
-      <p>${art.lang === 'de' ? 'Stellen Sie NormWise jede ISO-Frage — klauselgenaue Antworten in Sekunden. Kostenlos testen.' : art.lang === 'fr' ? 'Posez à NormWise n\'importe quelle question ISO — réponses clause par clause en secondes. Gratuit.' : 'Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.'}</p>
+      <p>${art.lang === 'de' ? 'Stellen Sie NormWise jede ISO-Frage — klauselgenaue Antworten in Sekunden.' : art.lang === 'fr' ? 'Posez à NormWise n\'importe quelle question ISO — réponses clause par clause en secondes.' : 'Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.'}</p>
       <a href="/demo.html">${art.lang === 'de' ? '3 kostenlose Fragen →' : art.lang === 'fr' ? '3 questions gratuites →' : 'Try 3 Free Questions →'}</a>
     </div>
   `;
