@@ -41,10 +41,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .auth-footer a:hover{text-decoration:underline}
 .trial-info{background:rgba(26,63,168,.1);border:1px solid rgba(26,63,168,.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--muted2);line-height:1.6}
 .trial-info strong{color:#7aa4e8}
-.success-box{display:none;text-align:center;padding:20px}
-.success-box .icon{font-size:48px;margin-bottom:16px}
-.success-box h2{font-size:22px;font-weight:700;letter-spacing:-1px;margin-bottom:8px}
-.success-box p{font-size:14px;color:var(--muted2);line-height:1.7}
 .alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
 .alert.error{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);color:#f87171}
 .alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
@@ -112,12 +108,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
         <a href="login.html" id="login-link">Log in to NormWise</a>
       </div>
     </div>
-
-    <div class="success-box" id="success-section">
-      <div class="icon">✅</div>
-      <h2 id="success-title">Account Created!</h2>
-      <p id="success-text">Check your email — we've sent you a confirmation link. Click it to activate your account and start your 7-day free trial.</p>
-    </div>
   </div>
 </div>
 
@@ -125,6 +115,13 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 // Supabase configuration
 const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+
+// ⬇️ PASTE YOUR STRIPE PAYMENT LINKS HERE
+const stripeLinks = {
+  starter:      'https://buy.stripe.com/REPLACE_STARTER_LINK',
+  pro:          'https://buy.stripe.com/REPLACE_PRO_LINK',
+  expert:       'https://buy.stripe.com/REPLACE_EXPERT_LINK'
+};
 
 const translations = {
   en: {
@@ -137,7 +134,6 @@ const translations = {
     errPassword: 'Password must be at least 8 characters',
     termsNote: 'By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.',
     divider: 'already have an account?', loginLink: 'Log in to NormWise',
-    successTitle: 'Account Created!', successText: 'Check your email for a confirmation link to activate your 7-day free trial.',
     placeholderName: 'Your full name', placeholderEmail: 'you@company.com',
     placeholderPassword: 'Minimum 8 characters', placeholderCompany: 'Your company name'
   },
@@ -151,7 +147,6 @@ const translations = {
     errPassword: 'Das Passwort muss mindestens 8 Zeichen lang sein',
     termsNote: 'Mit der Kontoerstellung stimmen Sie unseren <a href="terms.html">Nutzungsbedingungen</a> und unserer <a href="privacy.html">Datenschutzerklärung</a> zu.',
     divider: 'bereits ein Konto?', loginLink: 'Bei NormWise anmelden',
-    successTitle: 'Konto erstellt!', successText: 'Prüfen Sie Ihre E-Mail — wir haben Ihnen einen Bestätigungslink gesendet.',
     placeholderName: 'Ihr vollständiger Name', placeholderEmail: 'sie@unternehmen.de',
     placeholderPassword: 'Mindestens 8 Zeichen', placeholderCompany: 'Ihr Unternehmen'
   },
@@ -165,7 +160,6 @@ const translations = {
     errPassword: 'Le mot de passe doit contenir au moins 8 caractères',
     termsNote: 'En créant un compte, vous acceptez nos <a href="terms.html">Conditions d\'utilisation</a> et notre <a href="privacy.html">Politique de confidentialité</a>.',
     divider: 'vous avez déjà un compte ?', loginLink: 'Se connecter à NormWise',
-    successTitle: 'Compte créé !', successText: 'Vérifiez votre e-mail — nous vous avons envoyé un lien de confirmation.',
     placeholderName: 'Votre nom complet', placeholderEmail: 'vous@entreprise.fr',
     placeholderPassword: 'Minimum 8 caractères', placeholderCompany: 'Votre entreprise'
   }
@@ -189,8 +183,6 @@ function applyLang(lang) {
   document.getElementById('terms-note').innerHTML = t.termsNote;
   document.getElementById('divider-text').textContent = t.divider;
   document.getElementById('login-link').textContent = t.loginLink;
-  document.getElementById('success-title').textContent = t.successTitle;
-  document.getElementById('success-text').textContent = t.successText;
   document.getElementById('fullname').placeholder = t.placeholderName;
   document.getElementById('email').placeholder = t.placeholderEmail;
   document.getElementById('password').placeholder = t.placeholderPassword;
@@ -200,7 +192,11 @@ function applyLang(lang) {
 // Show selected plan
 const urlParams = new URLSearchParams(window.location.search);
 const plan = urlParams.get('plan');
-const planNames = { starter: 'NormWise Starter — €79/mo', pro: 'NormWise Professional — €199/mo', expert: 'NormWise Expert — €499/mo' };
+const planNames = {
+  starter: 'NormWise Starter — €79/mo',
+  pro: 'NormWise Professional — €199/mo',
+  expert: 'NormWise Expert — €499/mo'
+};
 if (plan && planNames[plan]) {
   document.getElementById('plan-display').style.display = 'flex';
   document.getElementById('plan-name').textContent = planNames[plan];
@@ -241,8 +237,10 @@ async function handleRegister() {
       btn.disabled = false;
       btnText.textContent = translations[localStorage.getItem('nw_lang')||'en'].btnText;
     } else {
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('success-section').style.display = 'block';
+      // ✅ Account created — now redirect to Stripe checkout
+      const selectedPlan = plan || 'starter';
+      const stripeUrl = stripeLinks[selectedPlan] || stripeLinks.starter;
+      window.location.href = stripeUrl + '?prefilled_email=' + encodeURIComponent(email);
     }
   } catch(e) {
     document.getElementById('alert-error').textContent = 'Connection error. Please try again.';
