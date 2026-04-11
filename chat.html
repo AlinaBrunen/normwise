@@ -12,6 +12,26 @@ html,body{background-color:#070c18 !important;min-height:100svh;height:100%}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:#fff;height:100svh;display:flex;flex-direction:column;-webkit-text-size-adjust:100%}
 
+/* LOADING SCREEN */
+#loading-screen{position:fixed;inset:0;background:#070c18;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+#loading-screen p{font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.1em}
+
+/* PAYWALL */
+#paywall-screen{position:fixed;inset:0;background:#070c18;z-index:9998;display:none;align-items:center;justify-content:center;padding:24px}
+.paywall-box{background:#111827;border:1px solid rgba(255,255,255,.11);border-radius:16px;padding:48px 40px;text-align:center;max-width:480px;width:100%}
+.paywall-box h2{font-size:26px;font-weight:700;letter-spacing:-1px;margin-bottom:12px}
+.paywall-box p{font-size:14px;color:rgba(255,255,255,.68);line-height:1.7;margin-bottom:28px}
+.paywall-plans{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.paywall-plan-btn{display:block;width:100%;padding:14px;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#fff;text-decoration:none;transition:all .2s}
+.paywall-plan-btn.starter{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
+.paywall-plan-btn.starter:hover{background:rgba(255,255,255,.14)}
+.paywall-plan-btn.pro{background:rgba(26,63,168,.3);border:1px solid rgba(26,63,168,.5)}
+.paywall-plan-btn.pro:hover{background:rgba(26,63,168,.5)}
+.paywall-plan-btn.expert{background:#c0392b;border:none;box-shadow:0 0 24px rgba(192,57,43,.35)}
+.paywall-plan-btn.expert:hover{background:#a93226}
+.paywall-login-link{font-size:13px;color:rgba(255,255,255,.4)}
+.paywall-login-link a{color:#6a9fd8;text-decoration:none}
+
 /* HEADER */
 .chat-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;background:rgba(7,12,24,.95);border-bottom:1px solid var(--border2);flex-shrink:0}
 .header-left{display:flex;align-items:center;gap:12px}
@@ -25,7 +45,7 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .header-usage.warning{color:#fbbf24;border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08)}
 .lang-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);padding:5px 8px;border-radius:5px;border:1px solid transparent;cursor:pointer;background:none;transition:all .2s}
 .lang-btn.active,.lang-btn:hover{border-color:var(--border2);color:var(--muted2)}
-.btn-logout{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;border:1px solid var(--border2);transition:all .2s}
+.btn-logout{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;border:1px solid var(--border2);transition:all .2s;cursor:pointer;background:none}
 .btn-logout:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 
 /* SIDEBAR */
@@ -46,7 +66,7 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .usage-bar{height:4px;background:var(--border2);border-radius:2px;overflow:hidden}
 .usage-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .3s}
 .usage-fill.warning{background:var(--red)}
-.btn-upgrade{display:block;text-align:center;margin-top:10px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:#fff;background:var(--red);border:none;padding:8px;border-radius:6px;text-decoration:none;cursor:pointer;transition:all .2s;display:none}
+.btn-upgrade{display:none;text-align:center;margin-top:10px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:#fff;background:var(--red);border:none;padding:8px;border-radius:6px;text-decoration:none;cursor:pointer;transition:all .2s}
 .btn-upgrade:hover{background:#a93226}
 
 /* MAIN CHAT */
@@ -68,8 +88,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .msg-bubble ul,.msg-bubble ol{padding-left:18px;margin:8px 0}
 .msg-bubble li{margin-bottom:4px}
 .msg-bubble code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(26,63,168,.2);color:#7aa4e8;padding:2px 7px;border-radius:3px}
-.msg-bubble .finding-row{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.msg-bubble .finding-row:last-child{border:none}
 .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;white-space:nowrap;flex-shrink:0}
 .badge.major{background:rgba(192,57,43,.2);color:#f87171;border:1px solid rgba(192,57,43,.3)}
 .badge.minor{background:rgba(217,119,6,.2);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
@@ -105,12 +123,11 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .input-hint{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin-top:8px;max-width:860px;margin-left:auto;margin-right:auto}
 
 /* UPGRADE BANNER */
-.upgrade-banner{background:linear-gradient(90deg,rgba(192,57,43,.15),rgba(26,63,168,.1));border-top:1px solid rgba(192,57,43,.3);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;display:none}
+.upgrade-banner{background:linear-gradient(90deg,rgba(192,57,43,.15),rgba(26,63,168,.1));border-top:1px solid rgba(192,57,43,.3);padding:14px 20px;display:none;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0}
 .upgrade-banner p{font-size:13px;color:var(--muted2)}
 .upgrade-banner strong{color:#fff}
 .btn-upgrade-banner{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;background:var(--red);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;text-decoration:none;white-space:nowrap;box-shadow:0 0 12px var(--red-glow)}
 
-/* MOBILE */
 @media(max-width:768px){
   .sidebar{display:none}
   .chat-header{padding:0 14px}
@@ -123,6 +140,27 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 </style>
 </head>
 <body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <svg width="36" height="36" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
+  <p>// checking access...</p>
+</div>
+
+<!-- PAYWALL SCREEN -->
+<div id="paywall-screen">
+  <div class="paywall-box">
+    <div style="font-size:40px;margin-bottom:16px">🔒</div>
+    <h2>Choose Your Plan</h2>
+    <p>Start your 7-day free trial. Full access from day one. Cancel anytime before the trial ends and you won't be charged.</p>
+    <div class="paywall-plans">
+      <a href="https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00" class="paywall-plan-btn starter">Starter — €79/mo · 150 questions</a>
+      <a href="https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01" class="paywall-plan-btn pro">Professional — €199/mo · 750 questions</a>
+      <a href="https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02" class="paywall-plan-btn expert">Expert — €499/mo · 3,000 questions ⭐</a>
+    </div>
+    <p class="paywall-login-link">Already paid? <a href="login.html">Log in again</a> to refresh your access.</p>
+  </div>
+</div>
 
 <!-- HEADER -->
 <div class="chat-header">
@@ -139,14 +177,12 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
     <button class="lang-btn" onclick="setChatLang('en',this)">🇬🇧</button>
     <button class="lang-btn" onclick="setChatLang('de',this)">🇩🇪</button>
     <button class="lang-btn" onclick="setChatLang('fr',this)">🇫🇷</button>
-    <a href="index.html" class="btn-logout" onclick="logout()">← Exit</a>
+    <button class="btn-logout" onclick="logout()">← Exit</button>
   </div>
 </div>
 
 <!-- LAYOUT -->
 <div class="chat-layout">
-
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-header">
       <h3 id="sb-new-label">New Session</h3>
@@ -176,7 +212,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="chat-main">
     <div class="chat-messages" id="chat-messages">
       <div class="welcome-state" id="welcome-state">
@@ -216,8 +251,16 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 </div>
 
 <script>
-const SUPABASE_URL = 'YOUR_SUPABASE_URL_HERE';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+// ✅ Supabase config
+const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+
+// ✅ Stripe payment links
+const stripeLinks = {
+  starter:      'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00',
+  professional: 'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01',
+  expert:       'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
+};
 
 let currentLang = localStorage.getItem('nw_lang') || 'en';
 let conversationHistory = [];
@@ -226,9 +269,80 @@ let questionsLimit = 150;
 let isLoading = false;
 let userPlan = 'starter';
 
-// Plan limits
 const planLimits = { starter: 150, professional: 750, expert: 3000 };
-const planNames = { starter: 'STARTER', professional: 'PROFESSIONAL', expert: 'EXPERT' };
+const planNames  = { starter: 'STARTER', professional: 'PROFESSIONAL', expert: 'EXPERT' };
+
+// ✅ CHECK ACCESS ON LOAD
+async function checkAccess() {
+  const loadingScreen = document.getElementById('loading-screen');
+  const paywallScreen = document.getElementById('paywall-screen');
+
+  try {
+    // 1. Check if user is logged in via Supabase session
+    const sessionRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + (localStorage.getItem('nw_access_token') || '')
+      }
+    });
+
+    if (!sessionRes.ok) {
+      // Not logged in → go to login
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const sessionData = await sessionRes.json();
+    const userEmail = sessionData.email;
+
+    if (!userEmail) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // 2. Check users table for active status
+    const dbRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(userEmail)}&select=plan,status`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + (localStorage.getItem('nw_access_token') || '')
+        }
+      }
+    );
+
+    const dbData = await dbRes.json();
+    const userRecord = dbData && dbData[0];
+
+    if (!userRecord || userRecord.status !== 'active') {
+      // Not paid → show paywall
+      loadingScreen.style.display = 'none';
+      paywallScreen.style.display = 'flex';
+      return;
+    }
+
+    // 3. Access granted — set plan
+    const plan = userRecord.plan || 'starter';
+    userPlan = plan;
+    questionsLimit = planLimits[plan] || 150;
+
+    const planLabel = document.getElementById('header-plan-label');
+    if (planLabel) planLabel.textContent = planNames[plan] + ' PLAN';
+    const planInfoName = document.getElementById('plan-info-name');
+    if (planInfoName) planInfoName.textContent = planNames[plan] + ' PLAN';
+
+    updateUsageDisplay();
+    updateLangUI();
+
+    // Hide loading, show app
+    loadingScreen.style.display = 'none';
+
+  } catch(e) {
+    console.error('Access check failed:', e);
+    // On error, redirect to login
+    window.location.href = 'login.html';
+  }
+}
 
 const systemPrompt = `You are NormWise, an expert AI compliance co-pilot specializing in ISO management systems. You are professional, precise, and practical.
 
@@ -254,26 +368,7 @@ RESPONSE FORMAT:
 - Structure responses clearly with headers when helpful
 - For corrective actions, use 8D / PDCA / 5 Why as requested
 
-AUDIT PERSPECTIVE (TÜV SÜD / DNV approach):
-- Clause 4: Are internal/external issues formally documented and reviewed?
-- Clause 5: Can management demonstrate visible commitment — not just signatures?
-- Clause 6: Are risks quantified? Are opportunities actively pursued?
-- Clause 7: Are all resources (people, infrastructure, knowledge) formally managed?
-- Clause 8: Are operational controls documented and implemented consistently?
-- Clause 9: Are KPIs measured, analyzed and used for decision-making?
-- Clause 9.3: Are ALL 8 Management Review inputs documented with evidence?
-- Clause 10: Are NCs analyzed for root cause? Are actions verified effective?
-
-ISO 9001:2026 KEY CHANGES:
-1. Climate change now explicitly in Clause 4 context
-2. New Clause 5 quality culture and ethical behaviour requirements
-3. Clearer separation of risks and opportunities in Clause 6
-4. New Annex A — 15 pages of implementation guidance (first ever)
-5. Stronger emphasis on process effectiveness vs just conformance
-
-DISCLAIMER: End every response with: "⚠️ This is informational guidance. Verify all compliance matters with a certified auditor."
-
-IMPORTANT: You are talking to quality managers, ISO consultants and QHSE directors. They are experts — be precise and technical.`;
+DISCLAIMER: End every response with: "⚠️ This is informational guidance. Verify all compliance matters with a certified auditor."`;
 
 function setChatLang(lang, btn) {
   currentLang = lang;
@@ -286,11 +381,17 @@ function setChatLang(lang, btn) {
 function updateLangUI() {
   const lang = currentLang;
   const ui = {
-    en: { placeholder: 'Ask about ISO 9001, 14001 or 45001...', sendBtn: 'Send →', welcomeTitle: 'Ask NormWise anything', welcomeSub: 'Your AI-powered ISO compliance co-pilot. Clause-referenced answers in English, German or French.', inputHint: '// normwise_ai · iso_9001 · iso_14001 · iso_45001 · responds_in_en_de_fr', newBtn: '+ New Chat', newLabel: 'New Session', standardsLabel: 'Standards', topicsLabel: 'Quick Topics', upgradeText: '<strong>You\'ve used 80% of your monthly questions.</strong> Upgrade to keep going.', upgradeBtn: 'Upgrade Now →', exitBtn: '← Exit' },
-    de: { placeholder: 'Frage zu ISO 9001, 14001 oder 45001...', sendBtn: 'Senden →', welcomeTitle: 'Stellen Sie NormWise eine Frage', welcomeSub: 'Ihr KI-gestützter ISO-Compliance-Co-Pilot. Klauselgenaue Antworten auf Deutsch, Englisch oder Französisch.', inputHint: '// normwise_ki · iso_9001 · iso_14001 · iso_45001 · antwortet_auf_de_en_fr', newBtn: '+ Neuer Chat', newLabel: 'Neue Sitzung', standardsLabel: 'Normen', topicsLabel: 'Schnellthemen', upgradeText: '<strong>Sie haben 80% Ihrer monatlichen Fragen verbraucht.</strong> Upgraden Sie jetzt.', upgradeBtn: 'Jetzt upgraden →', exitBtn: '← Zurück' },
-    fr: { placeholder: 'Question sur ISO 9001, 14001 ou 45001...', sendBtn: 'Envoyer →', welcomeTitle: 'Posez une question à NormWise', welcomeSub: 'Votre co-pilote IA pour la conformité ISO. Réponses référencées clause par clause en français, allemand ou anglais.', inputHint: '// normwise_ia · iso_9001 · iso_14001 · iso_45001 · répond_en_fr_de_en', newBtn: '+ Nouveau chat', newLabel: 'Nouvelle session', standardsLabel: 'Normes', topicsLabel: 'Sujets rapides', upgradeText: '<strong>Vous avez utilisé 80% de vos questions mensuelles.</strong> Passez au plan supérieur.', upgradeBtn: 'Mettre à niveau →', exitBtn: '← Retour' }
+    en: { placeholder: 'Ask about ISO 9001, 14001 or 45001...', sendBtn: 'Send →', welcomeTitle: 'Ask NormWise anything', welcomeSub: 'Your AI-powered ISO compliance co-pilot. Clause-referenced answers in English, German or French.', inputHint: '// normwise_ai · iso_9001 · iso_14001 · iso_45001 · responds_in_en_de_fr', newBtn: '+ New Chat', newLabel: 'New Session', standardsLabel: 'Standards', topicsLabel: 'Quick Topics' },
+    de: { placeholder: 'Frage zu ISO 9001, 14001 oder 45001...', sendBtn: 'Senden →', welcomeTitle: 'Stellen Sie NormWise eine Frage', welcomeSub: 'Ihr KI-gestützter ISO-Compliance-Co-Pilot. Klauselgenaue Antworten auf Deutsch, Englisch oder Französisch.', inputHint: '// normwise_ki · iso_9001 · iso_14001 · iso_45001 · antwortet_auf_de_en_fr', newBtn: '+ Neuer Chat', newLabel: 'Neue Sitzung', standardsLabel: 'Normen', topicsLabel: 'Schnellthemen' },
+    fr: { placeholder: 'Question sur ISO 9001, 14001 ou 45001...', sendBtn: 'Envoyer →', welcomeTitle: 'Posez une question à NormWise', welcomeSub: 'Votre co-pilote IA pour la conformité ISO. Réponses référencées clause par clause en français, allemand ou anglais.', inputHint: '// normwise_ia · iso_9001 · iso_14001 · iso_45001 · répond_en_fr_de_en', newBtn: '+ Nouveau chat', newLabel: 'Nouvelle session', standardsLabel: 'Normes', topicsLabel: 'Sujets rapides' }
   };
   const t = ui[lang] || ui.en;
+  const els = {
+    'chat-input': 'placeholder', 'welcome-title': 'textContent',
+    'welcome-subtitle': 'textContent', 'input-hint': 'textContent',
+    'sb-new-btn': 'textContent', 'sb-new-label': 'textContent',
+    'sb-standards-label': 'textContent', 'sb-topics-label': 'textContent'
+  };
   const inp = document.getElementById('chat-input');
   if (inp) inp.placeholder = t.placeholder;
   const sb = document.getElementById('send-btn');
@@ -309,10 +410,6 @@ function updateLangUI() {
   if (sl) sl.textContent = t.standardsLabel;
   const tl = document.getElementById('sb-topics-label');
   if (tl) tl.textContent = t.topicsLabel;
-  const ubt = document.getElementById('upgrade-banner-text');
-  if (ubt) ubt.innerHTML = t.upgradeText;
-  const ubb = document.getElementById('upgrade-banner-btn');
-  if (ubb) ubb.textContent = t.upgradeBtn;
 }
 
 function updateUsageDisplay() {
@@ -323,12 +420,11 @@ function updateUsageDisplay() {
   const infoEl = document.getElementById('plan-info-usage');
   const upgradeBtn = document.getElementById('sidebar-upgrade-btn');
   const upgradeBanner = document.getElementById('upgrade-banner');
-
-  if (usageEl) { usageEl.textContent = `${remaining} questions left`; }
+  if (usageEl) usageEl.textContent = `${remaining} questions left`;
   if (fillEl) { fillEl.style.width = `${100 - pct}%`; if (pct >= 80) fillEl.classList.add('warning'); }
-  if (infoEl) { infoEl.textContent = `${remaining} / ${questionsLimit} remaining`; }
-  if (pct >= 80 && upgradeBtn) { upgradeBtn.style.display = 'block'; }
-  if (pct >= 80 && upgradeBanner) { upgradeBanner.style.display = 'flex'; }
+  if (infoEl) infoEl.textContent = `${remaining} / ${questionsLimit} remaining`;
+  if (pct >= 80 && upgradeBtn) upgradeBtn.style.display = 'block';
+  if (pct >= 80 && upgradeBanner) upgradeBanner.style.display = 'flex';
   if (usageEl && pct >= 80) usageEl.classList.add('warning');
 }
 
@@ -340,21 +436,18 @@ function quickAsk(text) {
 function newChat() {
   conversationHistory = [];
   document.getElementById('chat-messages').innerHTML = '';
-  const ws = document.getElementById('welcome-state');
-  if (!ws) {
-    const msgs = document.getElementById('chat-messages');
-    msgs.insertAdjacentHTML('afterbegin', `<div class="welcome-state" id="welcome-state">
-      <div class="welcome-icon">⚡</div>
-      <h2 id="welcome-title">Ask NormWise anything</h2>
-      <p id="welcome-subtitle">Your AI-powered ISO compliance co-pilot.</p>
-      <div class="starter-prompts">
-        <button class="starter-prompt" onclick="quickAsk('What are the required inputs for ISO 9001 Clause 9.3?')"><span class="prompt-icon">📋</span>What are the required inputs for ISO 9001 Clause 9.3?</button>
-        <button class="starter-prompt" onclick="quickAsk('How do I perform a Gap Analysis for ISO 14001?')"><span class="prompt-icon">🔍</span>How do I perform a Gap Analysis for ISO 14001?</button>
-        <button class="starter-prompt" onclick="quickAsk('What are the key changes in ISO 9001:2026?')"><span class="prompt-icon">🔮</span>What are the key changes in ISO 9001:2026?</button>
-        <button class="starter-prompt" onclick="quickAsk('How do I write a corrective action using 8D?')"><span class="prompt-icon">🔧</span>How do I write a corrective action using 8D?</button>
-      </div>
-    </div>`);
-  }
+  const msgs = document.getElementById('chat-messages');
+  msgs.insertAdjacentHTML('afterbegin', `<div class="welcome-state" id="welcome-state">
+    <div class="welcome-icon">⚡</div>
+    <h2 id="welcome-title">Ask NormWise anything</h2>
+    <p id="welcome-subtitle">Your AI-powered ISO compliance co-pilot.</p>
+    <div class="starter-prompts">
+      <button class="starter-prompt" onclick="quickAsk('What are the required inputs for ISO 9001 Clause 9.3?')"><span class="prompt-icon">📋</span>What are the required inputs for ISO 9001 Clause 9.3?</button>
+      <button class="starter-prompt" onclick="quickAsk('How do I perform a Gap Analysis for ISO 14001?')"><span class="prompt-icon">🔍</span>How do I perform a Gap Analysis for ISO 14001?</button>
+      <button class="starter-prompt" onclick="quickAsk('What are the key changes in ISO 9001:2026?')"><span class="prompt-icon">🔮</span>What are the key changes in ISO 9001:2026?</button>
+      <button class="starter-prompt" onclick="quickAsk('How do I write a corrective action using 8D?')"><span class="prompt-icon">🔧</span>How do I write a corrective action using 8D?</button>
+    </div>
+  </div>`);
   updateLangUI();
 }
 
@@ -376,40 +469,25 @@ async function sendMessage() {
   const input = document.getElementById('chat-input');
   const text = input.value.trim();
   if (!text) return;
-
-  // Hide welcome state
   const ws = document.getElementById('welcome-state');
   if (ws) ws.remove();
-
   isLoading = true;
   input.value = '';
   input.style.height = 'auto';
   input.disabled = true;
   document.getElementById('send-btn').disabled = true;
-
-  // Add user message
   const now = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
   addMessage('user', text, now);
-
-  // Add to history
   conversationHistory.push({ role: 'user', content: text });
-
-  // Show typing
   const typingId = addTyping();
-
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system: systemPrompt,
-        messages: conversationHistory
-      })
+      body: JSON.stringify({ system: systemPrompt, messages: conversationHistory })
     });
-
     const data = await response.json();
     removeTyping(typingId);
-
     if (data.content && data.content[0]) {
       const reply = data.content[0].text;
       conversationHistory.push({ role: 'assistant', content: reply });
@@ -423,7 +501,6 @@ async function sendMessage() {
     removeTyping(typingId);
     addMessage('ai', 'Connection error. Please check your internet connection and try again.', now);
   }
-
   isLoading = false;
   input.disabled = false;
   document.getElementById('send-btn').disabled = false;
@@ -441,7 +518,6 @@ function addMessage(role, text, time) {
   content.className = 'msg-content';
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
-  // Format markdown-like text
   let formatted = text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/`(.*?)`/g, '<code>$1</code>')
@@ -481,11 +557,12 @@ function removeTyping(id) {
 }
 
 function logout() {
-  localStorage.removeItem('nw_token');
+  localStorage.removeItem('nw_access_token');
   localStorage.removeItem('nw_user');
+  window.location.href = 'login.html';
 }
 
-// Init
+// Init lang buttons
 const savedLang = localStorage.getItem('nw_lang') || 'en';
 currentLang = savedLang;
 document.querySelectorAll('.lang-btn').forEach(b => {
@@ -493,23 +570,8 @@ document.querySelectorAll('.lang-btn').forEach(b => {
   if (map[b.textContent] === savedLang) b.classList.add('active');
 });
 
-// Load user data
-const userData = localStorage.getItem('nw_user');
-if (userData) {
-  try {
-    const user = JSON.parse(userData);
-    const plan = user.user_metadata?.plan || 'starter';
-    userPlan = plan;
-    questionsLimit = planLimits[plan] || 150;
-    const planLabel = document.getElementById('header-plan-label');
-    if (planLabel) planLabel.textContent = planNames[plan] + ' PLAN';
-    const planInfoName = document.getElementById('plan-info-name');
-    if (planInfoName) planInfoName.textContent = planNames[plan] + ' PLAN';
-  } catch(e) {}
-}
-
-updateUsageDisplay();
-updateLangUI();
+// ✅ Run access check on load
+checkAccess();
 </script>
 </body>
 </html>
