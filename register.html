@@ -90,6 +90,14 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
         <input type="password" id="password" placeholder="Minimum 8 characters" autocomplete="new-password"/>
         <div class="error-msg" id="err-password">Password must be at least 8 characters</div>
       </div>
+
+      <!-- ✅ NEW: Confirm Password field -->
+      <div class="form-group">
+        <label id="label-confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Repeat your password" autocomplete="new-password"/>
+        <div class="error-msg" id="err-confirm-password">Passwords do not match</div>
+      </div>
+
       <div class="form-group">
         <label id="label-company">Company (Optional)</label>
         <input type="text" id="company" placeholder="Your company name" autocomplete="organization"/>
@@ -116,7 +124,7 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
-// ⬇️ PASTE YOUR STRIPE PAYMENT LINKS HERE
+// Stripe Payment Links
 const stripeLinks = {
   starter:      'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00',
   pro:          'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01',
@@ -128,40 +136,49 @@ const translations = {
     chip: '// create_account', title: 'Start your free trial',
     subtitle: '7 days free — no credit card needed for the first 3 questions.',
     trialInfo: '✅ <strong>7-day free trial</strong> — cancel anytime before it ends and you won\'t be charged.',
-    labelName: 'Full Name', labelEmail: 'Work Email', labelPassword: 'Password', labelCompany: 'Company (Optional)',
+    labelName: 'Full Name', labelEmail: 'Work Email', labelPassword: 'Password',
+    labelConfirmPassword: 'Confirm Password', labelCompany: 'Company (Optional)',
     btnText: 'Create Account & Start Trial', planLabel: 'SELECTED PLAN',
     errName: 'Please enter your full name', errEmail: 'Please enter a valid email',
     errPassword: 'Password must be at least 8 characters',
+    errConfirmPassword: 'Passwords do not match',
     termsNote: 'By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.',
     divider: 'already have an account?', loginLink: 'Log in to NormWise',
     placeholderName: 'Your full name', placeholderEmail: 'you@company.com',
-    placeholderPassword: 'Minimum 8 characters', placeholderCompany: 'Your company name'
+    placeholderPassword: 'Minimum 8 characters', placeholderConfirmPassword: 'Repeat your password',
+    placeholderCompany: 'Your company name'
   },
   de: {
     chip: '// konto_erstellen', title: 'Kostenlosen Test starten',
     subtitle: '7 Tage kostenlos — keine Kreditkarte für die ersten 3 Fragen erforderlich.',
     trialInfo: '✅ <strong>7 Tage kostenlos</strong> — jederzeit vor Ablauf kündbar, keine Kosten.',
-    labelName: 'Vollständiger Name', labelEmail: 'Geschäftliche E-Mail', labelPassword: 'Passwort', labelCompany: 'Unternehmen (Optional)',
+    labelName: 'Vollständiger Name', labelEmail: 'Geschäftliche E-Mail', labelPassword: 'Passwort',
+    labelConfirmPassword: 'Passwort bestätigen', labelCompany: 'Unternehmen (Optional)',
     btnText: 'Konto erstellen & Test starten', planLabel: 'AUSGEWÄHLTER PLAN',
     errName: 'Bitte geben Sie Ihren vollständigen Namen ein', errEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
     errPassword: 'Das Passwort muss mindestens 8 Zeichen lang sein',
+    errConfirmPassword: 'Passwörter stimmen nicht überein',
     termsNote: 'Mit der Kontoerstellung stimmen Sie unseren <a href="terms.html">Nutzungsbedingungen</a> und unserer <a href="privacy.html">Datenschutzerklärung</a> zu.',
     divider: 'bereits ein Konto?', loginLink: 'Bei NormWise anmelden',
     placeholderName: 'Ihr vollständiger Name', placeholderEmail: 'sie@unternehmen.de',
-    placeholderPassword: 'Mindestens 8 Zeichen', placeholderCompany: 'Ihr Unternehmen'
+    placeholderPassword: 'Mindestens 8 Zeichen', placeholderConfirmPassword: 'Passwort wiederholen',
+    placeholderCompany: 'Ihr Unternehmen'
   },
   fr: {
     chip: '// créer_un_compte', title: 'Démarrer votre essai gratuit',
     subtitle: '7 jours gratuits — aucune carte bancaire requise pour les 3 premières questions.',
     trialInfo: '✅ <strong>Essai gratuit 7 jours</strong> — résiliez à tout moment avant la fin sans frais.',
-    labelName: 'Nom complet', labelEmail: 'E-mail professionnel', labelPassword: 'Mot de passe', labelCompany: 'Entreprise (Optionnel)',
+    labelName: 'Nom complet', labelEmail: 'E-mail professionnel', labelPassword: 'Mot de passe',
+    labelConfirmPassword: 'Confirmer le mot de passe', labelCompany: 'Entreprise (Optionnel)',
     btnText: 'Créer un compte et démarrer', planLabel: 'PLAN SÉLECTIONNÉ',
     errName: 'Veuillez entrer votre nom complet', errEmail: 'Veuillez entrer un e-mail valide',
     errPassword: 'Le mot de passe doit contenir au moins 8 caractères',
+    errConfirmPassword: 'Les mots de passe ne correspondent pas',
     termsNote: 'En créant un compte, vous acceptez nos <a href="terms.html">Conditions d\'utilisation</a> et notre <a href="privacy.html">Politique de confidentialité</a>.',
     divider: 'vous avez déjà un compte ?', loginLink: 'Se connecter à NormWise',
     placeholderName: 'Votre nom complet', placeholderEmail: 'vous@entreprise.fr',
-    placeholderPassword: 'Minimum 8 caractères', placeholderCompany: 'Votre entreprise'
+    placeholderPassword: 'Minimum 8 caractères', placeholderConfirmPassword: 'Répétez votre mot de passe',
+    placeholderCompany: 'Votre entreprise'
   }
 };
 
@@ -174,18 +191,21 @@ function applyLang(lang) {
   document.getElementById('label-name').textContent = t.labelName;
   document.getElementById('label-email').textContent = t.labelEmail;
   document.getElementById('label-password').textContent = t.labelPassword;
+  document.getElementById('label-confirm-password').textContent = t.labelConfirmPassword;
   document.getElementById('label-company').textContent = t.labelCompany;
   document.getElementById('btn-text').textContent = t.btnText;
   document.getElementById('plan-label').textContent = t.planLabel;
   document.getElementById('err-name').textContent = t.errName;
   document.getElementById('err-email').textContent = t.errEmail;
   document.getElementById('err-password').textContent = t.errPassword;
+  document.getElementById('err-confirm-password').textContent = t.errConfirmPassword;
   document.getElementById('terms-note').innerHTML = t.termsNote;
   document.getElementById('divider-text').textContent = t.divider;
   document.getElementById('login-link').textContent = t.loginLink;
   document.getElementById('fullname').placeholder = t.placeholderName;
   document.getElementById('email').placeholder = t.placeholderEmail;
   document.getElementById('password').placeholder = t.placeholderPassword;
+  document.getElementById('confirm-password').placeholder = t.placeholderConfirmPassword;
   document.getElementById('company').placeholder = t.placeholderCompany;
 }
 
@@ -202,20 +222,65 @@ if (plan && planNames[plan]) {
   document.getElementById('plan-name').textContent = planNames[plan];
 }
 
+function showError(msg) {
+  const el = document.getElementById('alert-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function hideError() {
+  document.getElementById('alert-error').style.display = 'none';
+}
+
 async function handleRegister() {
-  const name = document.getElementById('fullname').value.trim();
-  const email = document.getElementById('email').value.trim();
+  hideError();
+
+  const name    = document.getElementById('fullname').value.trim();
+  const email   = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
   const company = document.getElementById('company').value.trim();
 
-  // Validate
+  // Validate all fields
   let valid = true;
-  if (!name) { document.getElementById('err-name').style.display='block'; document.getElementById('fullname').classList.add('error'); valid=false; }
-  else { document.getElementById('err-name').style.display='none'; document.getElementById('fullname').classList.remove('error'); }
-  if (!email || !email.includes('@')) { document.getElementById('err-email').style.display='block'; document.getElementById('email').classList.add('error'); valid=false; }
-  else { document.getElementById('err-email').style.display='none'; document.getElementById('email').classList.remove('error'); }
-  if (password.length < 8) { document.getElementById('err-password').style.display='block'; document.getElementById('password').classList.add('error'); valid=false; }
-  else { document.getElementById('err-password').style.display='none'; document.getElementById('password').classList.remove('error'); }
+
+  if (!name) {
+    document.getElementById('err-name').style.display = 'block';
+    document.getElementById('fullname').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('err-name').style.display = 'none';
+    document.getElementById('fullname').classList.remove('error');
+  }
+
+  if (!email || !email.includes('@')) {
+    document.getElementById('err-email').style.display = 'block';
+    document.getElementById('email').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('err-email').style.display = 'none';
+    document.getElementById('email').classList.remove('error');
+  }
+
+  if (password.length < 8) {
+    document.getElementById('err-password').style.display = 'block';
+    document.getElementById('password').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('err-password').style.display = 'none';
+    document.getElementById('password').classList.remove('error');
+  }
+
+  // ✅ NEW: Check passwords match
+  if (password !== confirmPassword) {
+    document.getElementById('err-confirm-password').style.display = 'block';
+    document.getElementById('confirm-password').classList.add('error');
+    valid = false;
+  } else {
+    document.getElementById('err-confirm-password').style.display = 'none';
+    document.getElementById('confirm-password').classList.remove('error');
+  }
+
   if (!valid) return;
 
   const btn = document.getElementById('submit-btn');
@@ -224,29 +289,48 @@ async function handleRegister() {
   btnText.textContent = '...';
 
   try {
+    // ✅ STEP 1: Create Supabase account
     const res = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY },
-      body: JSON.stringify({ email, password, data: { full_name: name, company, plan: plan || 'starter' } })
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        data: { full_name: name, company, plan: plan || 'starter' }
+      })
     });
+
     const data = await res.json();
 
+    // ✅ Handle "user already exists" gracefully
     if (data.error) {
-      document.getElementById('alert-error').textContent = data.error.message || 'Registration failed. Please try again.';
-      document.getElementById('alert-error').style.display = 'block';
+      if (data.error.message && data.error.message.toLowerCase().includes('already registered')) {
+        showError('An account with this email already exists. Please log in instead.');
+      } else {
+        showError(data.error.message || 'Registration failed. Please try again.');
+      }
       btn.disabled = false;
-      btnText.textContent = translations[localStorage.getItem('nw_lang')||'en'].btnText;
-    } else {
-      // ✅ Account created — now redirect to Stripe checkout
-      const selectedPlan = plan || 'starter';
-      const stripeUrl = stripeLinks[selectedPlan] || stripeLinks.starter;
-      window.location.href = stripeUrl + '?prefilled_email=' + encodeURIComponent(email);
+      btnText.textContent = translations[localStorage.getItem('nw_lang') || 'en'].btnText;
+      return;
     }
+
+    // ✅ STEP 2: Account created — redirect to Stripe with email pre-filled
+    const selectedPlan = plan || 'starter';
+    const baseUrl = stripeLinks[selectedPlan] || stripeLinks.starter;
+
+    // Build Stripe URL correctly (handle existing query params)
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    const stripeUrl = baseUrl + separator + 'prefilled_email=' + encodeURIComponent(email);
+
+    window.location.href = stripeUrl;
+
   } catch(e) {
-    document.getElementById('alert-error').textContent = 'Connection error. Please try again.';
-    document.getElementById('alert-error').style.display = 'block';
+    showError('Connection error. Please check your internet connection and try again.');
     btn.disabled = false;
-    btnText.textContent = translations[localStorage.getItem('nw_lang')||'en'].btnText;
+    btnText.textContent = translations[localStorage.getItem('nw_lang') || 'en'].btnText;
   }
 }
 
