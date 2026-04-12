@@ -43,6 +43,20 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
 .terms-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
 .terms-note a{color:var(--muted2);text-decoration:underline}
+
+/* ── EMAIL CONFIRMATION SCREEN ── */
+.confirm-screen{display:none;text-align:center;padding:8px 0}
+.confirm-icon{font-size:56px;margin-bottom:20px}
+.confirm-screen h1{font-size:24px;font-weight:700;letter-spacing:-1px;margin-bottom:12px}
+.confirm-screen p{font-size:14px;color:var(--muted2);line-height:1.7;margin-bottom:8px}
+.confirm-email-badge{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#7aa4e8;margin:16px 0;word-break:break-all}
+.confirm-tips{background:rgba(26,63,168,.08);border:1px solid rgba(26,63,168,.15);border-radius:8px;padding:14px 16px;margin-top:20px;text-align:left}
+.confirm-tips p{font-size:12px;color:var(--muted2);margin-bottom:6px;line-height:1.6}
+.confirm-tips p:last-child{margin-bottom:0}
+.confirm-tips strong{color:#7aa4e8}
+.btn-resend{width:100%;background:transparent;border:1px solid var(--border2);border-radius:8px;padding:12px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--muted2);cursor:pointer;transition:all .2s;margin-top:20px}
+.btn-resend:hover{border-color:rgba(255,255,255,.3);color:#fff}
+.btn-resend:disabled{opacity:.4;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -55,6 +69,8 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
   </div>
 
   <div class="auth-box">
+
+    <!-- REGISTRATION FORM -->
     <div id="form-section">
       <div class="auth-chip" id="reg-chip">// create_account</div>
       <h1 id="reg-title">Start your free trial</h1>
@@ -65,7 +81,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
       </div>
 
       <div class="alert error" id="alert-error"></div>
-      <div class="alert success" id="alert-success"></div>
 
       <div class="form-group">
         <label id="label-name">Full Name</label>
@@ -105,12 +120,39 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
         <a href="login.html" id="login-link">Log in to NormWise</a>
       </div>
     </div>
+
+    <!-- EMAIL CONFIRMATION SCREEN (shown after successful registration) -->
+    <div class="confirm-screen" id="confirm-section">
+      <div class="confirm-icon">📧</div>
+      <h1 id="confirm-title">Check your email</h1>
+      <p id="confirm-sub">We sent a confirmation link to:</p>
+      <div class="confirm-email-badge" id="confirm-email-display"></div>
+      <p id="confirm-sub2">Click the link in the email to confirm your account and start your free trial.</p>
+
+      <div class="confirm-tips">
+        <p>💡 <strong>Can't find it?</strong> Check your spam or junk folder.</p>
+        <p>📬 The email comes from <strong>hello@normwise.cloud</strong></p>
+        <p>⏱ The link expires after <strong>24 hours</strong></p>
+      </div>
+
+      <button class="btn-resend" id="resend-btn" onclick="resendEmail()">
+        <span id="resend-text">Resend confirmation email</span>
+      </button>
+
+      <div class="auth-divider" style="margin-top:24px"><span id="confirm-divider">already confirmed?</span></div>
+      <div class="auth-footer">
+        <a href="login.html" id="confirm-login-link">Log in to NormWise</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-const SUPABASE_URL     = 'https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_URL      = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+
+let registeredEmail = '';
 
 const translations = {
   en: {
@@ -127,7 +169,12 @@ const translations = {
     divider:'already have an account?', loginLink:'Log in to NormWise',
     placeholderName:'Your full name', placeholderEmail:'you@company.com',
     placeholderPassword:'Minimum 8 characters', placeholderConfirmPassword:'Repeat your password',
-    placeholderCompany:'Your company name'
+    placeholderCompany:'Your company name',
+    confirmTitle:'Check your email',
+    confirmSub:'We sent a confirmation link to:',
+    confirmSub2:'Click the link in the email to confirm your account and start your free trial.',
+    confirmDivider:'already confirmed?', confirmLogin:'Log in to NormWise',
+    resendBtn:'Resend confirmation email', resendSent:'Email sent! Check your inbox.',
   },
   de: {
     chip:'// konto_erstellen', title:'Kostenlosen Test starten',
@@ -143,7 +190,12 @@ const translations = {
     divider:'bereits ein Konto?', loginLink:'Bei NormWise anmelden',
     placeholderName:'Ihr vollständiger Name', placeholderEmail:'sie@unternehmen.de',
     placeholderPassword:'Mindestens 8 Zeichen', placeholderConfirmPassword:'Passwort wiederholen',
-    placeholderCompany:'Ihr Unternehmen'
+    placeholderCompany:'Ihr Unternehmen',
+    confirmTitle:'E-Mail bestätigen',
+    confirmSub:'Wir haben einen Bestätigungslink gesendet an:',
+    confirmSub2:'Klicken Sie auf den Link in der E-Mail, um Ihr Konto zu bestätigen und die kostenlose Testversion zu starten.',
+    confirmDivider:'bereits bestätigt?', confirmLogin:'Bei NormWise anmelden',
+    resendBtn:'Bestätigungs-E-Mail erneut senden', resendSent:'E-Mail gesendet! Prüfen Sie Ihren Posteingang.',
   },
   fr: {
     chip:'// créer_un_compte', title:'Démarrer votre essai gratuit',
@@ -159,7 +211,12 @@ const translations = {
     divider:'vous avez déjà un compte ?', loginLink:'Se connecter à NormWise',
     placeholderName:'Votre nom complet', placeholderEmail:'vous@entreprise.fr',
     placeholderPassword:'Minimum 8 caractères', placeholderConfirmPassword:'Répétez votre mot de passe',
-    placeholderCompany:'Votre entreprise'
+    placeholderCompany:'Votre entreprise',
+    confirmTitle:'Vérifiez votre e-mail',
+    confirmSub:'Nous avons envoyé un lien de confirmation à :',
+    confirmSub2:'Cliquez sur le lien dans l\'e-mail pour confirmer votre compte et démarrer votre essai gratuit.',
+    confirmDivider:'déjà confirmé ?', confirmLogin:'Se connecter à NormWise',
+    resendBtn:'Renvoyer l\'e-mail de confirmation', resendSent:'E-mail envoyé ! Vérifiez votre boîte de réception.',
   }
 };
 
@@ -187,12 +244,24 @@ function applyLang(lang) {
   document.getElementById('password').placeholder = t.placeholderPassword;
   document.getElementById('confirm-password').placeholder = t.placeholderConfirmPassword;
   document.getElementById('company').placeholder = t.placeholderCompany;
+  document.getElementById('confirm-title').textContent = t.confirmTitle;
+  document.getElementById('confirm-sub').textContent = t.confirmSub;
+  document.getElementById('confirm-sub2').textContent = t.confirmSub2;
+  document.getElementById('confirm-divider').textContent = t.confirmDivider;
+  document.getElementById('confirm-login-link').textContent = t.confirmLogin;
+  document.getElementById('resend-text').textContent = t.resendBtn;
 }
 
 function showError(msg) {
   const el = document.getElementById('alert-error');
   el.textContent = msg;
   el.style.display = 'block';
+}
+
+function showConfirmScreen(email) {
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('confirm-section').style.display = 'block';
+  document.getElementById('confirm-email-display').textContent = email;
 }
 
 async function handleRegister() {
@@ -205,19 +274,14 @@ async function handleRegister() {
   const company         = document.getElementById('company').value.trim();
 
   let valid = true;
-
   if (!name) { document.getElementById('err-name').style.display='block'; document.getElementById('fullname').classList.add('error'); valid=false; }
   else { document.getElementById('err-name').style.display='none'; document.getElementById('fullname').classList.remove('error'); }
-
   if (!email || !email.includes('@')) { document.getElementById('err-email').style.display='block'; document.getElementById('email').classList.add('error'); valid=false; }
   else { document.getElementById('err-email').style.display='none'; document.getElementById('email').classList.remove('error'); }
-
   if (password.length < 8) { document.getElementById('err-password').style.display='block'; document.getElementById('password').classList.add('error'); valid=false; }
   else { document.getElementById('err-password').style.display='none'; document.getElementById('password').classList.remove('error'); }
-
   if (password !== confirmPassword) { document.getElementById('err-confirm-password').style.display='block'; document.getElementById('confirm-password').classList.add('error'); valid=false; }
   else { document.getElementById('err-confirm-password').style.display='none'; document.getElementById('confirm-password').classList.remove('error'); }
-
   if (!valid) return;
 
   const btn     = document.getElementById('submit-btn');
@@ -226,13 +290,15 @@ async function handleRegister() {
   btnText.textContent = '...';
 
   try {
-    // STEP 1 — Create Supabase account
     const res = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY },
       body: JSON.stringify({
         email,
         password,
+        options: {
+          emailRedirectTo: 'https://normwise.cloud/dashboard.html'
+        },
         data: { full_name: name, company }
       })
     });
@@ -249,22 +315,38 @@ async function handleRegister() {
       return;
     }
 
-    // STEP 2 — Save session so user is logged in immediately
-    if (data.access_token) {
-      localStorage.setItem('sb-iasasvucmmvehppvbwtm-auth-token', JSON.stringify({
-        access_token:  data.access_token,
-        refresh_token: data.refresh_token,
-        user:          data.user
-      }));
-    }
-
-    // STEP 3 — Go to dashboard (free trial starts there, Stripe only if they choose to upgrade)
-    window.location.href = 'dashboard.html';
+    // ✅ Account created — show "check your email" screen
+    registeredEmail = email;
+    showConfirmScreen(email);
 
   } catch(e) {
     showError('Connection error. Please check your internet connection and try again.');
     btn.disabled = false;
     btnText.textContent = translations[localStorage.getItem('nw_lang') || 'en'].btnText;
+  }
+}
+
+async function resendEmail() {
+  if (!registeredEmail) return;
+  const btn = document.getElementById('resend-btn');
+  const txt = document.getElementById('resend-text');
+  btn.disabled = true;
+  txt.textContent = '...';
+  try {
+    await fetch(`${SUPABASE_URL}/auth/v1/resend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY },
+      body: JSON.stringify({ type: 'signup', email: registeredEmail })
+    });
+    const lang = localStorage.getItem('nw_lang') || 'en';
+    txt.textContent = translations[lang].resendSent;
+    setTimeout(() => {
+      btn.disabled = false;
+      txt.textContent = translations[lang].resendBtn;
+    }, 30000);
+  } catch(e) {
+    btn.disabled = false;
+    txt.textContent = translations[localStorage.getItem('nw_lang') || 'en'].resendBtn;
   }
 }
 
