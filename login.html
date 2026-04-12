@@ -81,7 +81,7 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 </div>
 
 <script>
-const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_URL     = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
 const t = {
@@ -107,7 +107,7 @@ function applyLang(lang) {
 }
 
 async function handleLogin() {
-  const email = document.getElementById('email').value.trim();
+  const email    = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   if (!email || !password) return;
 
@@ -131,9 +131,17 @@ async function handleLogin() {
       const lang = localStorage.getItem('nw_lang') || 'en';
       document.getElementById('btn-text').textContent = t[lang].btn;
     } else {
+      // Save session token
+      localStorage.setItem('sb-iasasvucmmvehppvbwtm-auth-token', JSON.stringify({
+        access_token:  data.access_token,
+        refresh_token: data.refresh_token,
+        user:          data.user
+      }));
       localStorage.setItem('nw_token', data.access_token);
       localStorage.setItem('nw_user', JSON.stringify(data.user));
-      window.location.href = 'chat.html';
+
+      // ✅ FIXED: redirect to dashboard, not chat.html
+      window.location.href = 'dashboard.html';
     }
   } catch(e) {
     document.getElementById('alert-error').textContent = 'Connection error. Please try again.';
