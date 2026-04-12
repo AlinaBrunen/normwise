@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#070c18"/>
+<title>NormWise — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --red:#c0392b;--red-glow:rgba(192,57,43,.35);--blue:#1a3fa8;
+  --ink:#070c18;--surface:#111827;--surface2:#161e30;--surface3:#1c2640;
+  --muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
+  --green:#16a34a;--green-bg:rgba(22,163,74,.12);--green-border:rgba(22,163,74,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grotesk',sans-serif}
+
+/* ── NAVBAR ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border2);background:#070c18;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
+.nav-wordmark span{color:var(--red)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-size:13px;color:var(--muted2);font-family:'IBM Plex Mono',monospace}
+.btn-logout{background:transparent;border:1px solid var(--border2);border-radius:6px;padding:7px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--muted2);cursor:pointer;transition:all .2s}
+.btn-logout:hover{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ── LAYOUT ── */
+.main{max-width:1100px;margin:0 auto;padding:40px 24px}
+
+/* ── TRIAL BANNER ── */
+.trial-banner{background:var(--green-bg);border:1px solid var(--green-border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+.trial-banner-left{display:flex;align-items:center;gap:12px}
+.trial-dot{width:10px;height:10px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 8px rgba(74,222,128,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.trial-text strong{color:#4ade80;font-size:14px}
+.trial-text p{font-size:13px;color:var(--muted2);margin-top:2px}
+.btn-upgrade-small{background:var(--red);border:none;border-radius:7px;padding:9px 20px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block}
+.btn-upgrade-small:hover{background:#a93226;transform:translateY(-1px)}
+
+/* ── UPGRADE BANNER (shown when plan=none and used=paid) ── */
+.upgrade-banner{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;display:none}
+.upgrade-banner-left strong{color:#f87171;font-size:14px}
+.upgrade-banner-left p{font-size:13px;color:var(--muted2);margin-top:2px}
+
+/* ── QUESTION COUNTER ── */
+.counter-row{display:flex;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.counter-card{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:16px 22px;display:flex;align-items:center;gap:14px}
+.counter-num{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:#fff}
+.counter-num span{color:var(--muted);font-size:18px}
+.counter-label{font-size:12px;color:var(--muted2);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.counter-bar-wrap{flex:1;min-width:180px}
+.counter-bar-bg{background:var(--surface2);border-radius:99px;height:8px;overflow:hidden;margin-top:6px}
+.counter-bar-fill{height:8px;border-radius:99px;background:var(--red);transition:width .5s ease}
+.counter-bar-fill.green{background:#16a34a}
+
+/* ── CHAT AREA ── */
+.chat-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;margin-bottom:32px}
+.chat-header{padding:18px 24px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px}
+.chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red-glow)}
+.chat-header h2{font-size:15px;font-weight:600;letter-spacing:-.3px}
+.chat-header span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-left:auto}
+.chat-messages{padding:24px;min-height:320px;max-height:460px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-track{background:transparent}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.msg{max-width:82%;display:flex;flex-direction:column;gap:4px}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg.ai{align-self:flex-start}
+.msg-bubble{padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.6}
+.msg.user .msg-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px}
+.msg.ai .msg-bubble{background:var(--surface2);color:#fff;border-bottom-left-radius:4px;border:1px solid var(--border2)}
+.msg-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.welcome-msg{text-align:center;padding:32px 24px;color:var(--muted2)}
+.welcome-msg .welcome-icon{font-size:36px;margin-bottom:12px}
+.welcome-msg h3{font-size:17px;font-weight:600;color:#fff;margin-bottom:6px}
+.welcome-msg p{font-size:13px;line-height:1.6}
+.typing{display:flex;align-items:center;gap:4px;padding:12px 16px;background:var(--surface2);border-radius:12px;border-bottom-left-radius:4px;border:1px solid var(--border2);width:fit-content}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--muted2);animation:bounce .8s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* ── CHAT INPUT ── */
+.chat-input-area{padding:16px 20px;border-top:1px solid var(--border2);display:flex;gap:10px;align-items:flex-end}
+.chat-input{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:#fff;outline:none;resize:none;min-height:48px;max-height:120px;transition:border-color .2s;line-height:1.5}
+.chat-input::placeholder{color:var(--muted)}
+.chat-input:focus{border-color:rgba(26,63,168,.5)}
+.chat-input:disabled{opacity:.5;cursor:not-allowed}
+.btn-send{background:var(--red);border:none;border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;box-shadow:0 0 16px var(--red-glow)}
+.btn-send:hover{background:#a93226;transform:translateY(-1px)}
+.btn-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-send svg{width:20px;height:20px;fill:#fff}
+
+/* ── UPGRADE WALL ── */
+.upgrade-wall{display:none;text-align:center;padding:40px 24px;background:var(--surface);border:1px solid rgba(192,57,43,.3);border-radius:14px;margin-bottom:32px}
+.upgrade-wall h2{font-size:24px;font-weight:700;margin-bottom:10px;letter-spacing:-.5px}
+.upgrade-wall p{font-size:14px;color:var(--muted2);margin-bottom:32px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* ── PRICING CARDS ── */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
+.plan-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s}
+.plan-card:hover{border-color:rgba(255,255,255,.2)}
+.plan-card.featured{border-color:rgba(192,57,43,.4);background:linear-gradient(135deg,rgba(192,57,43,.08),var(--surface))}
+.plan-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.12em;text-transform:uppercase}
+.plan-name{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.plan-price{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;color:#fff}
+.plan-price span{font-size:13px;color:var(--muted);font-weight:400}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:8px;flex:1}
+.plan-features li{font-size:13px;color:var(--muted2);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.plan-features li::before{content:'✓';color:#4ade80;font-weight:700;flex-shrink:0;margin-top:1px}
+.btn-plan{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:12px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;text-decoration:none;display:block;text-align:center;margin-top:4px}
+.btn-plan:hover{background:var(--surface3);border-color:rgba(255,255,255,.2)}
+.btn-plan.primary{background:var(--red);border-color:var(--red);box-shadow:0 0 20px var(--red-glow)}
+.btn-plan.primary:hover{background:#a93226}
+
+/* ── UPGRADE MODAL OVERLAY ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,12,24,.85);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:36px;max-width:560px;width:100%;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.modal-close:hover{color:#fff}
+.modal h2{font-size:22px;font-weight:700;margin-bottom:8px;letter-spacing:-.5px}
+.modal p{font-size:14px;color:var(--muted2);margin-bottom:24px;line-height:1.6}
+
+@media(max-width:600px){
+  .nav{padding:14px 16px}
+  .main{padding:24px 16px}
+  .trial-banner{flex-direction:column;align-items:flex-start}
+  .chat-messages{min-height:250px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="26" height="26" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
+    <span class="nav-wordmark">Norm<span>Wise</span></span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-user" id="nav-email">Loading...</span>
+    <button class="btn-logout" onclick="handleLogout()">Log out</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- Trial active banner -->
+  <div class="trial-banner" id="trial-banner">
+    <div class="trial-banner-left">
+      <div class="trial-dot"></div>
+      <div class="trial-text">
+        <strong>Free Trial Active</strong>
+        <p id="trial-remaining">You have <strong id="questions-left">25</strong> free questions remaining.</p>
+      </div>
+    </div>
+    <a href="#" class="btn-upgrade-small" onclick="openUpgradeModal(event)">Upgrade Plan →</a>
+  </div>
+
+  <!-- Upgrade required banner (shown when trial exhausted) -->
+  <div class="upgrade-banner" id="upgrade-banner">
+    <div class="upgrade-banner-left">
+      <strong>🔒 Trial ended — choose a plan to continue</strong>
+      <p>You've used all 25 free questions. Upgrade to keep going.</p>
+    </div>
+    <a href="#" class="btn-upgrade-small" onclick="openUpgradeModal(event)">Choose a Plan →</a>
+  </div>
+
+  <!-- Question counter -->
+  <div class="counter-row">
+    <div class="counter-card">
+      <div>
+        <div class="counter-label">Questions used</div>
+        <div class="counter-num"><span id="used-count">0</span> <span>/ 25</span></div>
+      </div>
+    </div>
+    <div class="counter-bar-wrap">
+      <div class="counter-label">Trial usage</div>
+      <div class="counter-bar-bg">
+        <div class="counter-bar-fill" id="usage-bar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="chat-section" id="chat-section">
+    <div class="chat-header">
+      <div class="chat-header-dot"></div>
+      <h2>ISO Compliance Assistant</h2>
+      <span id="chat-status">// free_trial</span>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="welcome-msg">
+        <div class="welcome-icon">🤖</div>
+        <h3>Welcome to NormWise!</h3>
+        <p>Ask me anything about ISO standards, compliance, audits, or gap analysis.<br/>You have <strong id="welcome-questions-left">25</strong> free questions to explore.</p>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <textarea class="chat-input" id="chat-input" placeholder="Ask about ISO 9001, audits, gap analysis..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="btn-send" id="send-btn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- UPGRADE WALL (shown when trial exhausted) -->
+  <div class="upgrade-wall" id="upgrade-wall">
+    <h2>Your free trial is complete 🎯</h2>
+    <p>You've used all 25 free questions. Choose a plan below to continue getting expert ISO compliance guidance.</p>
+    <div class="plans">
+      <div class="plan-card">
+        <div class="plan-badge">// starter</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">€79 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Unlimited AI compliance questions</li>
+          <li>ISO 9001 audit preparation</li>
+          <li>Gap analysis guidance</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00" class="btn-plan" id="stripe-starter">Get Starter →</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">// most popular</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">€199 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>Word action plan template</li>
+          <li>Excel gap analysis tracker</li>
+          <li>Priority support</li>
+          <li>Multi-standard coverage</li>
+        </ul>
+        <a href="https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01" class="btn-plan primary" id="stripe-pro">Get Professional →</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge">// expert</div>
+        <div class="plan-name">Expert</div>
+        <div class="plan-price">€499 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Professional</li>
+          <li>Dedicated compliance expert</li>
+          <li>Custom templates</li>
+          <li>Phone support</li>
+          <li>Unlimited standards</li>
+        </ul>
+        <a href="https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02" class="btn-plan" id="stripe-expert">Get Expert →</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- UPGRADE MODAL -->
+<div class="modal-overlay" id="upgrade-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeUpgradeModal()">✕</button>
+    <h2>Choose your plan</h2>
+    <p>Upgrade anytime to get unlimited access to NormWise AI and all premium features.</p>
+    <div class="plans">
+      <div class="plan-card">
+        <div class="plan-badge">// starter</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">€79 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Unlimited AI questions</li>
+          <li>ISO 9001 guidance</li>
+          <li>Gap analysis</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00" class="btn-plan" id="modal-stripe-starter">Get Starter →</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">// popular</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">€199 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Starter</li>
+          <li>Word & Excel templates</li>
+          <li>Priority support</li>
+          <li>Multi-standard</li>
+        </ul>
+        <a href="https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01" class="btn-plan primary" id="modal-stripe-pro">Get Professional →</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-badge">// expert</div>
+        <div class="plan-name">Expert</div>
+        <div class="plan-price">€499 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Pro</li>
+          <li>Dedicated expert</li>
+          <li>Custom templates</li>
+          <li>Phone support</li>
+        </ul>
+        <a href="https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02" class="btn-plan" id="modal-stripe-expert">Get Expert →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL  = 'https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+const FREE_LIMIT = 25;
+const STORAGE_KEY = 'nw_questions_used';
+
+let currentUser  = null;
+let questionsUsed = 0;
+let isPaidUser   = false;
+
+// ── AUTH CHECK ──────────────────────────────────────────
+async function checkAuth() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() }
+    });
+    const data = await res.json();
+    if (!data.id) { window.location.href = 'login.html'; return; }
+    currentUser = data;
+    document.getElementById('nav-email').textContent = data.email;
+
+    // Pre-fill email in Stripe links
+    const enc = encodeURIComponent(data.email);
+    ['stripe-starter','stripe-pro','stripe-expert','modal-stripe-starter','modal-stripe-pro','modal-stripe-expert'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = el.href + '?prefilled_email=' + enc;
+    });
+
+    // Check plan in Supabase users table
+    await checkPlan(data.email);
+    loadUsage();
+    updateUI();
+  } catch(e) {
+    window.location.href = 'login.html';
+  }
+}
+
+function getToken() {
+  try {
+    const raw = localStorage.getItem(`sb-iasasvucmmvehppvbwtm-auth-token`);
+    if (raw) return JSON.parse(raw).access_token;
+  } catch(e){}
+  // fallback: search all localStorage keys
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.includes('auth-token')) {
+      try { return JSON.parse(localStorage.getItem(k)).access_token; } catch(e){}
+    }
+  }
+  return '';
+}
+
+async function checkPlan(email) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(email)}&select=plan,status`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + getToken()
+      }
+    });
+    const rows = await res.json();
+    if (rows && rows.length > 0 && rows[0].status === 'active') {
+      isPaidUser = true;
+    }
+  } catch(e) { /* treat as free */ }
+}
+
+// ── USAGE TRACKING ──────────────────────────────────────
+function loadUsage() {
+  const stored = localStorage.getItem(STORAGE_KEY + '_' + (currentUser?.id || 'guest'));
+  questionsUsed = stored ? parseInt(stored) : 0;
+}
+
+function saveUsage() {
+  localStorage.setItem(STORAGE_KEY + '_' + (currentUser?.id || 'guest'), questionsUsed);
+}
+
+function updateUI() {
+  const left = Math.max(0, FREE_LIMIT - questionsUsed);
+  const pct  = Math.min(100, (questionsUsed / FREE_LIMIT) * 100);
+
+  document.getElementById('used-count').textContent       = questionsUsed;
+  document.getElementById('questions-left').textContent   = left;
+  document.getElementById('welcome-questions-left').textContent = left;
+  document.getElementById('usage-bar').style.width        = pct + '%';
+
+  // Color bar red when running low
+  const bar = document.getElementById('usage-bar');
+  bar.classList.toggle('green', pct < 50);
+
+  if (isPaidUser) {
+    // Paid user — hide trial stuff, show unlimited
+    document.getElementById('trial-banner').style.display  = 'none';
+    document.getElementById('upgrade-banner').style.display = 'none';
+    document.getElementById('upgrade-wall').style.display  = 'none';
+    document.getElementById('chat-section').style.display  = 'block';
+    document.getElementById('chat-status').textContent     = '// paid_plan';
+    enableChat();
+  } else if (questionsUsed >= FREE_LIMIT) {
+    // Trial exhausted
+    document.getElementById('trial-banner').style.display  = 'none';
+    document.getElementById('upgrade-banner').style.display = 'flex';
+    document.getElementById('upgrade-wall').style.display  = 'block';
+    document.getElementById('chat-section').style.display  = 'none';
+  } else {
+    // Free trial active
+    document.getElementById('trial-banner').style.display  = 'flex';
+    document.getElementById('upgrade-banner').style.display = 'none';
+    document.getElementById('upgrade-wall').style.display  = 'none';
+    document.getElementById('chat-section').style.display  = 'block';
+    enableChat();
+  }
+}
+
+function enableChat() {
+  document.getElementById('chat-input').disabled = false;
+  document.getElementById('send-btn').disabled   = false;
+}
+
+// ── CHAT ────────────────────────────────────────────────
+const messages = [];
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+async function sendMessage() {
+  if (!isPaidUser && questionsUsed >= FREE_LIMIT) { openUpgradeModal(); return; }
+
+  const input = document.getElementById('chat-input');
+  const text  = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  // Clear welcome message on first send
+  const welcome = document.querySelector('.welcome-msg');
+  if (welcome) welcome.remove();
+
+  appendMessage('user', text);
+  messages.push({ role: 'user', content: text });
+
+  document.getElementById('send-btn').disabled  = true;
+  document.getElementById('chat-input').disabled = true;
+
+  // Show typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'msg ai';
+  typing.id = 'typing-indicator';
+  typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  document.getElementById('chat-messages').appendChild(typing);
+  scrollToBottom();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages })
+    });
+    const data = await res.json();
+    const reply = data.reply || data.message || 'Sorry, I could not process your request.';
+
+    typing.remove();
+    appendMessage('ai', reply);
+    messages.push({ role: 'assistant', content: reply });
+
+    // Count question
+    if (!isPaidUser) {
+      questionsUsed++;
+      saveUsage();
+      updateUI();
+    }
+  } catch(e) {
+    typing.remove();
+    appendMessage('ai', 'Connection error. Please try again.');
+  }
+
+  document.getElementById('send-btn').disabled  = false;
+  document.getElementById('chat-input').disabled = false;
+  document.getElementById('chat-input').focus();
+}
+
+function appendMessage(role, text) {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg ' + role;
+  const label = role === 'user' ? 'You' : 'NormWise AI';
+  wrap.innerHTML = `<div class="msg-label">${label}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
+  document.getElementById('chat-messages').appendChild(wrap);
+  scrollToBottom();
+}
+
+function scrollToBottom() {
+  const el = document.getElementById('chat-messages');
+  el.scrollTop = el.scrollHeight;
+}
+
+// ── UPGRADE MODAL ───────────────────────────────────────
+function openUpgradeModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('upgrade-modal').classList.add('open');
+}
+function closeUpgradeModal() {
+  document.getElementById('upgrade-modal').classList.remove('open');
+}
+document.getElementById('upgrade-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeUpgradeModal();
+});
+
+// ── LOGOUT ──────────────────────────────────────────────
+async function handleLogout() {
+  try {
+    await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() }
+    });
+  } catch(e) {}
+  // Clear auth tokens
+  for (let i = localStorage.length - 1; i >= 0; i--) {
+    const k = localStorage.key(i);
+    if (k && (k.includes('auth-token') || k.includes('supabase'))) localStorage.removeItem(k);
+  }
+  window.location.href = 'login.html';
+}
+
+// ── INIT ────────────────────────────────────────────────
+checkAuth();
+</script>
+</body>
+</html>
