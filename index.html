@@ -21,8 +21,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18;color:#fff;overfl
   --mono:'IBM Plex Mono',monospace;
 }
 body::before{content:'';position:fixed;inset:0;z-index:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.012) 2px,rgba(255,255,255,.012) 4px);pointer-events:none}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(7,12,24,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2)}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
@@ -35,8 +33,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .btn-login:hover{color:#fff;border-color:rgba(255,255,255,.3)}
 .btn-start{font-size:13px;font-weight:600;color:#fff;background:var(--red);border:none;padding:9px 20px;border-radius:6px;cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-start:hover{background:#a93226}
-
-/* HERO */
 .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;position:relative;z-index:1}
 .hero-chip{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px;justify-content:center}
 .hero-chip::before,.hero-chip::after{content:'';width:32px;height:1px;background:rgba(192,57,43,.4)}
@@ -49,8 +45,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .btn-secondary{font-size:16px;font-weight:500;color:#fff;background:transparent;border:1px solid var(--border2);padding:16px 36px;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-secondary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .hero-note{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin-bottom:48px}
-
-/* DEMO BOX */
 .demo-wrap{width:100%;max-width:700px}
 .demo-box{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.4)}
 .demo-bar{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
@@ -71,22 +65,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .demo-inp{padding:14px 16px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center}
 .demo-inp-field{flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted2)}
 .demo-send{background:var(--red);border:none;border-radius:8px;padding:10px 16px;color:#fff;font-size:13px;cursor:pointer;font-weight:600}
-
-/* STATS */
 .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:60px 32px;position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .stat{text-align:center}
 .stat-val{font-size:40px;font-weight:700;letter-spacing:-2px}
 .stat-val span{color:var(--red)}
 .stat-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:6px}
-
-/* SECTIONS */
 .section{max-width:1000px;margin:0 auto;padding:80px 32px;position:relative;z-index:1}
 .section-chip{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .section-chip::before{content:'//';color:var(--muted)}
 .section h2{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
 .lead{font-size:17px;color:var(--muted2);line-height:1.7;margin-bottom:48px;max-width:600px}
-
-/* GRIDS */
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -95,28 +83,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .card-icon{font-size:28px;margin-bottom:16px}
 .card h3{font-size:16px;font-weight:600;margin-bottom:10px}
 .card p{font-size:13px;color:var(--muted2);line-height:1.7}
-
-/* PROBLEM CARD */
 .problem-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start}
 .problem-icon{font-size:24px;flex-shrink:0}
 .problem-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
 .problem-card p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* STANDARDS */
 .std-badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
 .std-badge.cur{background:rgba(22,163,74,.15);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
 .std-badge.dra{background:rgba(217,119,6,.15);color:#fbbf24;border:1px solid rgba(217,119,6,.3)}
 .std-card-p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* STEPS */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;position:relative}
 .steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),var(--border2),transparent)}
 .step{text-align:center;position:relative;z-index:1}
 .step-num{width:64px;height:64px;border-radius:50%;background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:600;color:var(--red);margin:0 auto 16px}
 .step h3{font-size:15px;font-weight:600;margin-bottom:8px}
 .step p{font-size:13px;color:var(--muted2);line-height:1.6}
-
-/* PRICING */
 .plan{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;position:relative}
 .plan.hot{border-color:var(--red);box-shadow:0 0 32px rgba(192,57,43,.15)}
 .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap}
@@ -134,21 +114,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;ali
 .btn-plan.sec{background:transparent;color:#fff;border:1px solid var(--border2)}
 .btn-plan.sec:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 .trial-note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;margin-top:20px}
-
-/* TESTIMONIALS */
 .tcard{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px 20px}
 .tcard-text{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:16px;font-style:italic}
 .tauthor{display:flex;align-items:center;gap:12px}
 .tav{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:#fff}
 .tname{font-size:14px;font-weight:600}
 .trole{font-size:12px;color:var(--muted)}
-
-/* CTA BOX */
 .cta-box{background:linear-gradient(135deg,rgba(26,63,168,.15),rgba(192,57,43,.1));border:1px solid var(--border2);border-radius:16px;padding:64px 48px;text-align:center;max-width:960px;margin:0 auto 80px;position:relative;z-index:1}
 .cta-box h2{font-size:clamp(26px,4vw,46px);font-weight:700;letter-spacing:-2px;margin-bottom:16px}
 .cta-box-p{font-size:17px;color:var(--muted2);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
-
-/* FOOTER */
 footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;position:relative;z-index:1}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1000px;margin:0 auto 40px}
 .footer-brand h3{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
@@ -162,14 +136,12 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
 .footer-langs{display:flex;gap:16px}
 .footer-langs a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;cursor:pointer}
 .footer-langs a:hover{color:#fff}
-
 @media(max-width:900px){.grid3,.grid4,.steps,.footer-grid{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
 @media(max-width:600px){nav{padding:0 16px}.grid2,.grid3,.grid4,.steps,.footer-grid{grid-template-columns:1fr}.hero{padding:100px 16px 60px}.section{padding:60px 16px}.stats{gap:24px;padding:40px 16px}.hero-cta{flex-direction:column;align-items:center}.cta-box{padding:40px 24px;margin:0 16px 60px}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html">
     <svg width="28" height="28" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/><circle cx="172" cy="62" r="20" fill="#c0392b" opacity="0.12"/></svg>
@@ -186,7 +158,6 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero-section">
   <div class="hero-chip" id="hero-chip"></div>
   <h1 id="hero-h1"></h1>
@@ -208,7 +179,6 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
   <div class="stat"><div class="stat-val">2.1<span>M+</span></div><div class="stat-lbl" id="stat1"></div></div>
   <div class="stat"><div class="stat-val"><span>3</span></div><div class="stat-lbl" id="stat2"></div></div>
@@ -216,7 +186,6 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <div class="stat"><div class="stat-val"><span>7</span></div><div class="stat-lbl" id="stat4"></div></div>
 </div>
 
-<!-- PROBLEM (EN SEO) -->
 <div class="section" id="problem-section">
   <div class="section-chip" id="problem-chip"></div>
   <h2 id="problem-h2"></h2>
@@ -224,7 +193,6 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <div class="grid2" id="problem-grid"></div>
 </div>
 
-<!-- SOLUTION (EN SEO) -->
 <div class="section" style="padding-top:0" id="solution-section">
   <div class="section-chip" id="solution-chip"></div>
   <h2 id="solution-h2"></h2>
@@ -232,7 +200,6 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <div class="grid3" id="solution-grid"></div>
 </div>
 
-<!-- FEATURES -->
 <div class="section" style="padding-top:0">
   <div class="section-chip" id="features-chip"></div>
   <h2 id="features-h2"></h2>
@@ -240,21 +207,18 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <div class="grid3" id="features-grid"></div>
 </div>
 
-<!-- STANDARDS -->
 <div class="section" style="padding-top:0">
   <div class="section-chip" id="standards-chip"></div>
   <h2 id="standards-h2"></h2>
   <div class="grid3" style="margin-top:32px" id="standards-grid"></div>
 </div>
 
-<!-- HOW IT WORKS -->
 <div class="section" style="padding-top:0">
   <div class="section-chip" id="steps-chip"></div>
   <h2 id="steps-h2"></h2>
   <div class="steps" id="steps-grid"></div>
 </div>
 
-<!-- PRICING -->
 <div class="section" style="padding-top:0" id="pricing">
   <div class="section-chip" id="pricing-chip"></div>
   <h2 id="pricing-h2"></h2>
@@ -263,14 +227,12 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <p class="trial-note" id="trial-note"></p>
 </div>
 
-<!-- TESTIMONIALS -->
 <div class="section" style="padding-top:0">
   <div class="section-chip" id="testimonials-chip"></div>
   <h2 id="testimonials-h2"></h2>
   <div class="grid3" style="margin-top:32px" id="testimonials-grid"></div>
 </div>
 
-<!-- CTA -->
 <div class="cta-box">
   <div class="section-chip" style="justify-content:center" id="cta-chip"></div>
   <h2 id="cta-h2"></h2>
@@ -278,12 +240,12 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
   <div class="hero-cta" style="margin-bottom:0" id="cta-btns"></div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <h3>Norm<span>Wise</span></h3>
-      <p>Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. EN / DE / FR.</p>
+      <!-- ✅ id added so JS can translate this text -->
+      <p id="footer-brand-text">Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. EN / DE / FR.</p>
       <p style="font-family:var(--mono);font-size:11px;color:var(--muted)">hello@normwise.cloud</p>
     </div>
     <div class="footer-col" id="footer-col1"></div>
@@ -304,6 +266,7 @@ footer{background:#070c18;border-top:1px solid var(--border2);padding:48px;posit
 const T = {
   en: {
     navLogin:'Log in', navStart:'Try for Free',
+    footerBrand:'Your AI-powered ISO compliance co-pilot. Gap analysis in minutes. EN / DE / FR.',
     heroChip:'AI-powered ISO 9001 compliance software',
     heroH1:'ISO 9001 Software –<br/><em>AI-Powered</em> Compliance<br/>&amp; Audit Automation',
     heroSub:'Automate ISO audits, gap analysis, and documentation with an AI assistant built for ISO 9001, ISO 14001, and ISO 45001.',
@@ -380,6 +343,7 @@ const T = {
   },
   de: {
     navLogin:'Anmelden', navStart:'Kostenlos testen',
+    footerBrand:'Ihr KI-gestützter ISO-Compliance-Co-Pilot. Gap-Analyse in Minuten. DE / EN / FR.',
     heroChip:'KI-gestützte ISO-Compliance',
     heroH1:'Ihr <em>Compliance</em><br/>Co-Pilot',
     heroSub:'Gap-Analyse in Minuten. Klauselgenaue Antworten. ISO 9001, 14001 &amp; 45001. Auf Deutsch, Englisch und Französisch.',
@@ -442,6 +406,7 @@ const T = {
   },
   fr: {
     navLogin:'Connexion', navStart:'Essai gratuit',
+    footerBrand:'Votre co-pilote IA pour la conformité ISO. Analyse des écarts en minutes. FR / DE / EN.',
     heroChip:'Conformité ISO assistée par IA',
     heroH1:'Votre <em>Co-Pilote</em><br/>Conformité',
     heroSub:'Analyse des écarts en minutes. Réponses clause par clause. ISO 9001, 14001 &amp; 45001. En français, allemand et anglais.',
@@ -458,11 +423,11 @@ const T = {
     featuresLead:"Des questions rapides sur les clauses à l'analyse complète des écarts — NormWise gère tout.",
     features:[
       {icon:'🔍',h:"Moteur d'analyse des écarts",p:'Téléchargez vos documents et obtenez une analyse clause par clause avec classification NC Majeure / Mineure / OFI en quelques minutes.'},
-      {icon:'🌍',h:'Support trilingue',p:"Détecte automatiquement votre langue et répond à 100% en français, allemand ou anglais — y compris tous les rapports."},
-      {icon:'📋',h:'Préparation aux audits',p:'Sachez exactement ce que les auditeurs vérifient pour chaque clause. Construit avec la connaissance TÜV SÜD et DNV.'},
-      {icon:'📊',h:'Rapports Word &amp; Excel',p:'Générez des rapports professionnels et plans d\'action prêts à partager avec la direction en un clic.'},
+      {icon:'🌍',h:'Support trilingue',p:"Détecte automatiquement votre langue et répond à 100% en français, allemand ou anglais."},
+      {icon:'📋',h:'Préparation aux audits',p:'Sachez exactement ce que les auditeurs vérifient pour chaque clause.'},
+      {icon:'📊',h:'Rapports Word &amp; Excel',p:"Générez des rapports professionnels et plans d'action prêts à partager avec la direction."},
       {icon:'🔮',h:'Prêt pour ISO 2026',p:'Inclut la connaissance complète des projets ISO 9001:2026, 14001:2026 et 45001:2027.'},
-      {icon:'⚡',h:'Réponses instantanées',p:'Posez n\'importe quelle question et obtenez des réponses référencées en quelques secondes.'}
+      {icon:'⚡',h:'Réponses instantanées',p:"Posez n'importe quelle question et obtenez des réponses référencées en quelques secondes."}
     ],
     standardsChip:'normes', standardsH2:'Toutes les principales normes ISO<br/>+ révisions à venir',
     standards:[
@@ -470,7 +435,7 @@ const T = {
       {badge:'EN VIGUEUR',type:'cur',h:'ISO 14001:2015',p:'Systèmes de management environnemental — toutes les clauses avec exemples pratiques'},
       {badge:'EN VIGUEUR',type:'cur',h:'ISO 45001:2018',p:'Systèmes de management de la santé et sécurité — couverture complète'},
       {badge:'PROJET 2026',type:'dra',h:'ISO 9001:2026',p:'DIS approuvé décembre 2025 — publication prévue septembre 2026'},
-      {badge:'PROJET 2026',type:'dra',h:'ISO 14001:2026',p:'Stade FDIS — publication prévue avril 2026 — préparez-vous maintenant'},
+      {badge:'PROJET 2026',type:'dra',h:'ISO 14001:2026',p:'Stade FDIS — publication prévue avril 2026'},
       {badge:'PROJET 2027',type:'dra',h:'ISO 45001:2027',p:'Stade projet de comité — NormWise suit tous les développements'}
     ],
     stepsChip:'comment_ça_marche', stepsH2:"De la question à l'action<br/>en 4 étapes",
@@ -478,14 +443,14 @@ const T = {
       {h:'Demandez ou téléchargez',p:'Posez votre question ISO ou téléchargez votre document pour une analyse des écarts'},
       {h:"L'IA analyse",p:'NormWise vérifie chaque clause par rapport aux exigences et aux bonnes pratiques'},
       {h:'Obtenez les résultats',p:'Recevez les conclusions par clause avec classification NC Majeure / Mineure / OFI'},
-      {h:'Téléchargez le rapport',p:'Exportez votre plan d\'action en Word ou Excel — prêt à partager immédiatement'}
+      {h:'Téléchargez le rapport',p:"Exportez votre plan d'action en Word ou Excel — prêt à partager immédiatement"}
     ],
     pricingChip:'tarifs', pricingH2:'Tarification simple et transparente',
     pricingLead:'Commencez gratuitement. Évoluez selon vos besoins. Résiliez à tout moment.',
     plans:[
       {name:'Starter',price:'€79',period:'/mois',users:'1 utilisateur · 150 questions/mois',features:['Assistant IA Q&R','ISO 9001, 14001, 45001','Projets 2026/2027','FR / DE / EN','Support e-mail (48h)'],btn:'Essai gratuit',btnClass:'sec',link:'register.html?plan=starter'},
       {name:'Professional',price:'€199',period:'/mois',users:'3 utilisateurs · 750 questions/mois',features:["Tout du Starter","Plans d'action Word","Tableaux Excel","Dashboard KPI PDF","Support prioritaire (24h)"],btn:'Essai gratuit',btnClass:'sec',link:'register.html?plan=pro'},
-      {name:'Expert',price:'€499',period:'/mois',users:'5 utilisateurs · 3 000 questions/mois',features:['Tout du Professional','Analyse des écarts','Plan d\'action maître','Synthèse direction','Support même jour'],btn:'Essai gratuit',btnClass:'pri',link:'register.html?plan=expert',hot:true,badge:'Plus populaire'},
+      {name:'Expert',price:'€499',period:'/mois',users:'5 utilisateurs · 3 000 questions/mois',features:['Tout du Professional','Analyse des écarts',"Plan d'action maître",'Synthèse direction','Support même jour'],btn:'Essai gratuit',btnClass:'pri',link:'register.html?plan=expert',hot:true,badge:'Plus populaire'},
       {name:'Enterprise',price:'Sur mesure',period:'',users:'Utilisateurs illimités',features:['Tout du Expert','Marque blanche','Accès API','Gestionnaire dédié','Onboarding personnalisé'],btn:'Nous contacter',btnClass:'sec',link:'mailto:hello@normwise.cloud'}
     ],
     trialNote:'// tous_les_plans_incluent_7_jours_gratuits · sans_carte_pour_démo · résiliation_libre',
@@ -515,10 +480,16 @@ function setLang(lang, btn) {
   document.getElementById('nav-login').textContent = t.navLogin;
   document.getElementById('nav-start').textContent = t.navStart;
   document.querySelectorAll('.nav-lang').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  else document.querySelectorAll('.nav-lang').forEach(b => {
-    if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
-  });
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll('.nav-lang').forEach(b => {
+      if (b.textContent.toLowerCase().includes(lang)) b.classList.add('active');
+    });
+  }
+
+  // ✅ Footer brand text — now translated!
+  document.getElementById('footer-brand-text').textContent = t.footerBrand;
 
   // Hero
   document.getElementById('hero-chip').innerHTML = t.heroChip;
@@ -598,11 +569,11 @@ function setLang(lang, btn) {
   // Testimonials
   document.getElementById('testimonials-chip').textContent = t.testimonialsChip;
   document.getElementById('testimonials-h2').innerHTML = t.testimonialsH2;
-  document.getElementById('testimonials-grid').innerHTML = t.testimonials.map(t => `
+  document.getElementById('testimonials-grid').innerHTML = t.testimonials.map(tm => `
     <div class="tcard">
-      <p class="tcard-text">${t.q}</p>
-      <div class="tauthor"><div class="tav" style="background:${t.bg}">${t.av}</div>
-      <div><div class="tname">${t.name}</div><div class="trole">${t.role}</div></div></div>
+      <p class="tcard-text">${tm.q}</p>
+      <div class="tauthor"><div class="tav" style="background:${tm.bg}">${tm.av}</div>
+      <div><div class="tname">${tm.name}</div><div class="trole">${tm.role}</div></div></div>
     </div>`).join('');
 
   // CTA
@@ -611,18 +582,19 @@ function setLang(lang, btn) {
   document.getElementById('cta-p').innerHTML = t.ctaP;
   document.getElementById('cta-btns').innerHTML = t.ctaBtns;
 
-  // Footer
+  // Footer columns
   document.getElementById('footer-col1').innerHTML = t.footerCol1;
   document.getElementById('footer-col2').innerHTML = t.footerCol2;
   document.getElementById('footer-col3').innerHTML = t.footerCol3;
 
+  // ✅ Save language so it persists across ALL pages
   localStorage.setItem('nw_lang', lang);
 }
 
-// Init
+// ✅ On load: read saved language and apply immediately
 const saved = localStorage.getItem('nw_lang');
 const browser = (navigator.language || 'en').substring(0,2).toLowerCase();
 setLang(saved || (['de','fr'].includes(browser) ? browser : 'en'), null);
-</script type="text/javascript" src="https://embeds.iubenda.com/widgets/1cd4e37e-ae9b-40a3-aa60-136de2049a45.js"></script>
+</script>
 </body>
 </html>
