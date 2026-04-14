@@ -38,6 +38,7 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .auth-footer a:hover{text-decoration:underline}
 .alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
 .alert.error{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);color:#f87171}
+.alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
 .demo-link{display:block;text-align:center;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
 .demo-link:hover{color:var(--muted2)}
 </style>
@@ -56,6 +57,8 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
     <h1 id="login-title">Welcome back</h1>
     <p id="login-subtitle">Log in to your NormWise account</p>
 
+    <!-- ✅ NEW: Success message after registration -->
+    <div class="alert success" id="alert-success"></div>
     <div class="alert error" id="alert-error"></div>
 
     <div class="form-group">
@@ -85,9 +88,9 @@ const SUPABASE_URL     = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
 const t = {
-  en: { chip:'// sign_in', title:'Welcome back', subtitle:'Log in to your NormWise account', labelEmail:'Email', labelPassword:'Password', btn:'Log In', forgot:'Forgot password?', divider:'new to NormWise?', register:'Create a free account', demo:'→ Try the free demo first (no account needed)', placeholderEmail:'you@company.com', placeholderPassword:'Your password' },
-  de: { chip:'// anmelden', title:'Willkommen zurück', subtitle:'Melden Sie sich bei Ihrem NormWise-Konto an', labelEmail:'E-Mail', labelPassword:'Passwort', btn:'Anmelden', forgot:'Passwort vergessen?', divider:'neu bei NormWise?', register:'Kostenloses Konto erstellen', demo:'→ Zuerst die kostenlose Demo testen', placeholderEmail:'sie@unternehmen.de', placeholderPassword:'Ihr Passwort' },
-  fr: { chip:'// connexion', title:'Bienvenue', subtitle:'Connectez-vous à votre compte NormWise', labelEmail:'E-mail', labelPassword:'Mot de passe', btn:'Se connecter', forgot:'Mot de passe oublié ?', divider:'nouveau sur NormWise ?', register:'Créer un compte gratuit', demo:'→ Essayer la démo gratuite d\'abord', placeholderEmail:'vous@entreprise.fr', placeholderPassword:'Votre mot de passe' }
+  en: { chip:'// sign_in', title:'Welcome back', subtitle:'Log in to your NormWise account', labelEmail:'Email', labelPassword:'Password', btn:'Log In', forgot:'Forgot password?', divider:'new to NormWise?', register:'Create a free account', demo:'→ Try the free demo first (no account needed)', placeholderEmail:'you@company.com', placeholderPassword:'Your password', successMsg:'✅ Account created! Please log in to start your free trial.' },
+  de: { chip:'// anmelden', title:'Willkommen zurück', subtitle:'Melden Sie sich bei Ihrem NormWise-Konto an', labelEmail:'E-Mail', labelPassword:'Passwort', btn:'Anmelden', forgot:'Passwort vergessen?', divider:'neu bei NormWise?', register:'Kostenloses Konto erstellen', demo:'→ Zuerst die kostenlose Demo testen', placeholderEmail:'sie@unternehmen.de', placeholderPassword:'Ihr Passwort', successMsg:'✅ Konto erstellt! Bitte melden Sie sich an, um Ihre kostenlose Testversion zu starten.' },
+  fr: { chip:'// connexion', title:'Bienvenue', subtitle:'Connectez-vous à votre compte NormWise', labelEmail:'E-mail', labelPassword:'Mot de passe', btn:'Se connecter', forgot:'Mot de passe oublié ?', divider:'nouveau sur NormWise ?', register:'Créer un compte gratuit', demo:'→ Essayer la démo gratuite d\'abord', placeholderEmail:'vous@entreprise.fr', placeholderPassword:'Votre mot de passe', successMsg:'✅ Compte créé ! Veuillez vous connecter pour démarrer votre essai gratuit.' }
 };
 
 function applyLang(lang) {
@@ -104,6 +107,14 @@ function applyLang(lang) {
   document.getElementById('demo-link').textContent = l.demo;
   document.getElementById('email').placeholder = l.placeholderEmail;
   document.getElementById('password').placeholder = l.placeholderPassword;
+}
+
+// ✅ Show success message if coming from registration
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('registered') === 'true') {
+  const lang = localStorage.getItem('nw_lang') || 'en';
+  document.getElementById('alert-success').textContent = t[lang]?.successMsg || t.en.successMsg;
+  document.getElementById('alert-success').style.display = 'block';
 }
 
 async function handleLogin() {
@@ -131,7 +142,6 @@ async function handleLogin() {
       const lang = localStorage.getItem('nw_lang') || 'en';
       document.getElementById('btn-text').textContent = t[lang].btn;
     } else {
-      // Save session token
       localStorage.setItem('sb-iasasvucmmvehppvbwtm-auth-token', JSON.stringify({
         access_token:  data.access_token,
         refresh_token: data.refresh_token,
@@ -139,8 +149,6 @@ async function handleLogin() {
       }));
       localStorage.setItem('nw_token', data.access_token);
       localStorage.setItem('nw_user', JSON.stringify(data.user));
-
-      // ✅ FIXED: redirect to dashboard, not chat.html
       window.location.href = 'dashboard.html';
     }
   } catch(e) {
