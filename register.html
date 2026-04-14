@@ -43,6 +43,18 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
 .terms-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
 .terms-note a{color:var(--muted2);text-decoration:underline}
+
+/* ── CAPTCHA ── */
+.captcha-box{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.captcha-question{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:#fff;white-space:nowrap}
+.captcha-input{flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:15px;color:#fff;outline:none;transition:border-color .2s;max-width:100px}
+.captcha-input:focus{border-color:rgba(26,63,168,.5)}
+.captcha-input.error{border-color:rgba(192,57,43,.6)}
+.captcha-refresh{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:4px;transition:color .2s;flex-shrink:0}
+.captcha-refresh:hover{color:#fff}
+
+/* ── HONEYPOT (invisible to humans) ── */
+.hp-field{opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden}
 </style>
 </head>
 <body>
@@ -65,6 +77,11 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
       </div>
 
       <div class="alert error" id="alert-error"></div>
+
+      <!-- ✅ HONEYPOT — invisible to humans, bots fill it in -->
+      <div class="hp-field" aria-hidden="true">
+        <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off"/>
+      </div>
 
       <div class="form-group">
         <label id="label-name">Full Name</label>
@@ -91,6 +108,17 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
         <input type="text" id="company" placeholder="Your company name" autocomplete="organization"/>
       </div>
 
+      <!-- ✅ MATH CAPTCHA -->
+      <div class="form-group">
+        <label id="label-captcha">Security Check</label>
+        <div class="captcha-box">
+          <span class="captcha-question" id="captcha-question">3 + 5 = ?</span>
+          <input type="number" class="captcha-input" id="captcha-answer" placeholder="?" autocomplete="off"/>
+          <button type="button" class="captcha-refresh" onclick="generateCaptcha()" title="New question">↻</button>
+        </div>
+        <div class="error-msg" id="err-captcha">Wrong answer — please try again</div>
+      </div>
+
       <button class="btn-submit" id="submit-btn" onclick="handleRegister()">
         <span id="btn-text">Create Account & Start Free Trial</span>
       </button>
@@ -111,6 +139,39 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 const SUPABASE_URL      = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
+// ── CAPTCHA ─────────────────────────────────────────────────────────────────
+let captchaAnswer = 0;
+
+function generateCaptcha() {
+  const ops = ['+', '-', '×'];
+  const op  = ops[Math.floor(Math.random() * ops.length)];
+  let a, b, result;
+
+  if (op === '+') {
+    a = Math.floor(Math.random() * 15) + 1;
+    b = Math.floor(Math.random() * 15) + 1;
+    result = a + b;
+  } else if (op === '-') {
+    a = Math.floor(Math.random() * 15) + 5;
+    b = Math.floor(Math.random() * (a - 1)) + 1;
+    result = a - b;
+  } else {
+    a = Math.floor(Math.random() * 9) + 2;
+    b = Math.floor(Math.random() * 9) + 2;
+    result = a * b;
+  }
+
+  captchaAnswer = result;
+  document.getElementById('captcha-question').textContent = `${a} ${op} ${b} = ?`;
+  document.getElementById('captcha-answer').value = '';
+  document.getElementById('err-captcha').style.display = 'none';
+  document.getElementById('captcha-answer').classList.remove('error');
+}
+
+// Generate on page load
+generateCaptcha();
+
+// ── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const translations = {
   en: {
     chip:'// create_account', title:'Start your free trial',
@@ -118,10 +179,13 @@ const translations = {
     trialInfo:'✅ <strong>Free trial included</strong> — 25 questions free. Choose a paid plan whenever you\'re ready.',
     labelName:'Full Name', labelEmail:'Work Email', labelPassword:'Password',
     labelConfirmPassword:'Confirm Password', labelCompany:'Company (Optional)',
+    labelCaptcha:'Security Check',
     btnText:'Create Account & Start Free Trial',
     errName:'Please enter your full name', errEmail:'Please enter a valid email',
     errPassword:'Password must be at least 8 characters',
     errConfirmPassword:'Passwords do not match',
+    errCaptcha:'Wrong answer — please try again',
+    errBot:'Registration blocked. Please try again.',
     termsNote:'By creating an account you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.',
     divider:'already have an account?', loginLink:'Log in to NormWise',
     placeholderName:'Your full name', placeholderEmail:'you@company.com',
@@ -134,10 +198,13 @@ const translations = {
     trialInfo:'✅ <strong>Kostenlose Testversion</strong> — 25 Fragen gratis. Wählen Sie jederzeit einen kostenpflichtigen Plan.',
     labelName:'Vollständiger Name', labelEmail:'Geschäftliche E-Mail', labelPassword:'Passwort',
     labelConfirmPassword:'Passwort bestätigen', labelCompany:'Unternehmen (Optional)',
+    labelCaptcha:'Sicherheitsprüfung',
     btnText:'Konto erstellen & Test starten',
     errName:'Bitte geben Sie Ihren vollständigen Namen ein', errEmail:'Bitte geben Sie eine gültige E-Mail-Adresse ein',
     errPassword:'Das Passwort muss mindestens 8 Zeichen lang sein',
     errConfirmPassword:'Passwörter stimmen nicht überein',
+    errCaptcha:'Falsche Antwort — bitte versuchen Sie es erneut',
+    errBot:'Registrierung blockiert. Bitte versuchen Sie es erneut.',
     termsNote:'Mit der Kontoerstellung stimmen Sie unseren <a href="terms.html">Nutzungsbedingungen</a> und unserer <a href="privacy.html">Datenschutzerklärung</a> zu.',
     divider:'bereits ein Konto?', loginLink:'Bei NormWise anmelden',
     placeholderName:'Ihr vollständiger Name', placeholderEmail:'sie@unternehmen.de',
@@ -150,10 +217,13 @@ const translations = {
     trialInfo:'✅ <strong>Essai gratuit inclus</strong> — 25 questions gratuites. Choisissez un plan payant quand vous voulez.',
     labelName:'Nom complet', labelEmail:'E-mail professionnel', labelPassword:'Mot de passe',
     labelConfirmPassword:'Confirmer le mot de passe', labelCompany:'Entreprise (Optionnel)',
+    labelCaptcha:'Vérification de sécurité',
     btnText:'Créer un compte et démarrer',
     errName:'Veuillez entrer votre nom complet', errEmail:'Veuillez entrer un e-mail valide',
     errPassword:'Le mot de passe doit contenir au moins 8 caractères',
     errConfirmPassword:'Les mots de passe ne correspondent pas',
+    errCaptcha:'Mauvaise réponse — veuillez réessayer',
+    errBot:'Inscription bloquée. Veuillez réessayer.',
     termsNote:'En créant un compte, vous acceptez nos <a href="terms.html">Conditions d\'utilisation</a> et notre <a href="privacy.html">Politique de confidentialité</a>.',
     divider:'vous avez déjà un compte ?', loginLink:'Se connecter à NormWise',
     placeholderName:'Votre nom complet', placeholderEmail:'vous@entreprise.fr',
@@ -173,11 +243,13 @@ function applyLang(lang) {
   document.getElementById('label-password').textContent = t.labelPassword;
   document.getElementById('label-confirm-password').textContent = t.labelConfirmPassword;
   document.getElementById('label-company').textContent = t.labelCompany;
+  document.getElementById('label-captcha').textContent = t.labelCaptcha;
   document.getElementById('btn-text').textContent = t.btnText;
   document.getElementById('err-name').textContent = t.errName;
   document.getElementById('err-email').textContent = t.errEmail;
   document.getElementById('err-password').textContent = t.errPassword;
   document.getElementById('err-confirm-password').textContent = t.errConfirmPassword;
+  document.getElementById('err-captcha').textContent = t.errCaptcha;
   document.getElementById('terms-note').innerHTML = t.termsNote;
   document.getElementById('divider-text').textContent = t.divider;
   document.getElementById('login-link').textContent = t.loginLink;
@@ -196,22 +268,49 @@ function showError(msg) {
 
 async function handleRegister() {
   document.getElementById('alert-error').style.display = 'none';
+  const lang = localStorage.getItem('nw_lang') || 'en';
+  const t = translations[lang] || translations.en;
+
+  // ✅ HONEYPOT CHECK — if bot filled the hidden field, block silently
+  const honeypot = document.getElementById('hp-website').value;
+  if (honeypot) {
+    // Pretend it worked (confuse the bot)
+    showError(t.errBot);
+    return;
+  }
 
   const name            = document.getElementById('fullname').value.trim();
   const email           = document.getElementById('email').value.trim();
   const password        = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirm-password').value;
   const company         = document.getElementById('company').value.trim();
+  const captchaInput    = parseInt(document.getElementById('captcha-answer').value);
 
   let valid = true;
+
   if (!name) { document.getElementById('err-name').style.display='block'; document.getElementById('fullname').classList.add('error'); valid=false; }
   else { document.getElementById('err-name').style.display='none'; document.getElementById('fullname').classList.remove('error'); }
+
   if (!email || !email.includes('@')) { document.getElementById('err-email').style.display='block'; document.getElementById('email').classList.add('error'); valid=false; }
   else { document.getElementById('err-email').style.display='none'; document.getElementById('email').classList.remove('error'); }
+
   if (password.length < 8) { document.getElementById('err-password').style.display='block'; document.getElementById('password').classList.add('error'); valid=false; }
   else { document.getElementById('err-password').style.display='none'; document.getElementById('password').classList.remove('error'); }
+
   if (password !== confirmPassword) { document.getElementById('err-confirm-password').style.display='block'; document.getElementById('confirm-password').classList.add('error'); valid=false; }
   else { document.getElementById('err-confirm-password').style.display='none'; document.getElementById('confirm-password').classList.remove('error'); }
+
+  // ✅ CAPTCHA CHECK
+  if (isNaN(captchaInput) || captchaInput !== captchaAnswer) {
+    document.getElementById('err-captcha').style.display = 'block';
+    document.getElementById('captcha-answer').classList.add('error');
+    generateCaptcha(); // New question after wrong answer
+    valid = false;
+  } else {
+    document.getElementById('err-captcha').style.display = 'none';
+    document.getElementById('captcha-answer').classList.remove('error');
+  }
+
   if (!valid) return;
 
   const btn     = document.getElementById('submit-btn');
@@ -239,17 +338,19 @@ async function handleRegister() {
         ? 'An account with this email already exists. Please log in instead.'
         : (msg || 'Registration failed. Please try again.'));
       btn.disabled = false;
-      btnText.textContent = translations[localStorage.getItem('nw_lang') || 'en'].btnText;
+      btnText.textContent = t.btnText;
+      generateCaptcha(); // New captcha after error
       return;
     }
 
-    // ✅ Account created — redirect to login with success message
+    // ✅ Success — redirect to login with success message
     window.location.href = 'login.html?registered=true';
 
   } catch(e) {
     showError('Connection error. Please check your internet connection and try again.');
     btn.disabled = false;
-    btnText.textContent = translations[localStorage.getItem('nw_lang') || 'en'].btnText;
+    btnText.textContent = t.btnText;
+    generateCaptcha();
   }
 }
 
