@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="theme-color" content="#070c18"/>
 <title>NormWise Blog — ISO Compliance Insights</title>
-<meta name="description" content="Expert insights on ISO 9001, ISO 14001 and ISO 45001. Gap analysis guides, audit preparation tips and ISO 2026 updates. In English, German and French."/>
+<meta name="description" content="Expert insights on ISO 9001, ISO 14001 and ISO 45001. Gap analysis guides, audit preparation tips and the latest on ISO 2026. In English, German and French."/>
 <meta name="keywords" content="ISO 9001 blog, ISO gap analysis, audit preparation, ISO 9001 2026, Qualitätsmanagement, analyse écarts ISO"/>
 <link rel="canonical" href="https://normwise.cloud/blog"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -154,7 +154,11 @@ footer p{color:var(--muted);font-size:13px;}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover{color:var(--text);}
 
+/* ✅ HIDDEN CLASS — used by filter */
 .hidden{display:none!important;}
+
+/* No results message */
+.no-results{text-align:center;padding:40px;color:var(--muted);font-size:15px;display:none;grid-column:1/-1;}
 
 @media(max-width:900px){
   .featured-card{grid-template-columns:1fr;}
@@ -199,21 +203,21 @@ footer a:hover{color:var(--text);}
 <div class="filter-bar">
   <span class="filter-label">// filter:</span>
   <button class="filter-btn active" onclick="filterPosts('all')" id="filter-all">
-    <span id="f-all">All Posts</span> <span class="count-badge">8</span>
+    <span id="f-all">All Posts</span> <span class="count-badge" id="badge-all">9</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('de')" id="filter-de">
-    🇩🇪 <span id="f-de">Deutsch</span> <span class="count-badge">3</span>
+    🇩🇪 <span id="f-de">Deutsch</span> <span class="count-badge" id="badge-de">4</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('en')" id="filter-en">
-    🇬🇧 <span id="f-en">English</span> <span class="count-badge">3</span>
+    🇬🇧 <span id="f-en">English</span> <span class="count-badge" id="badge-en">3</span>
   </button>
   <button class="filter-btn" onclick="filterPosts('fr')" id="filter-fr">
-    🇫🇷 <span id="f-fr">Français</span> <span class="count-badge">2</span>
+    🇫🇷 <span id="f-fr">Français</span> <span class="count-badge" id="badge-fr">2</span>
   </button>
 </div>
 
-<!-- FEATURED -->
-<section class="featured-section">
+<!-- ✅ FEATURED — now has data-lang="de" so filter works -->
+<section class="featured-section" id="featured-section" data-lang="de">
   <div class="section-label" id="featured-label">// featured_post</div>
   <a class="featured-card" href="#" onclick="openArticle('post-iso9001-2026-de');return false;">
     <div class="featured-img">
@@ -233,11 +237,12 @@ footer a:hover{color:var(--text);}
   </a>
 </section>
 
-<!-- NEW INDIVIDUAL ARTICLES -->
-<div class="new-articles">
+<!-- ✅ NEW ARTICLES — each card now has data-lang -->
+<div class="new-articles" id="new-articles-section">
   <div class="new-articles-label" id="new-label">// new · individual_seo_articles</div>
-  <div class="new-articles-grid">
-    <a class="new-article-card" href="blog-iso-9001-audit-preparation-en.html">
+  <div class="new-articles-grid" id="new-articles-grid">
+
+    <a class="new-article-card" href="blog-iso-9001-audit-preparation-en.html" data-lang="en">
       <div class="new-article-icon">📋</div>
       <div>
         <div class="new-article-badge">🇬🇧 EN · NEW</div>
@@ -246,7 +251,8 @@ footer a:hover{color:var(--text);}
       </div>
       <div class="new-article-arrow">→</div>
     </a>
-    <a class="new-article-card" href="blog-iso-9001-auditvorbereitung-de.html">
+
+    <a class="new-article-card" href="blog-iso-9001-auditvorbereitung-de.html" data-lang="de">
       <div class="new-article-icon">📋</div>
       <div>
         <div class="new-article-badge">🇩🇪 DE · NEU</div>
@@ -255,7 +261,8 @@ footer a:hover{color:var(--text);}
       </div>
       <div class="new-article-arrow">→</div>
     </a>
-    <a class="new-article-card" href="blog-iso-9001-gap-analysis-en.html">
+
+    <a class="new-article-card" href="blog-iso-9001-gap-analysis-en.html" data-lang="en">
       <div class="new-article-icon">🔍</div>
       <div>
         <div class="new-article-badge">🇬🇧 EN · NEW</div>
@@ -264,7 +271,8 @@ footer a:hover{color:var(--text);}
       </div>
       <div class="new-article-arrow">→</div>
     </a>
-    <a class="new-article-card" href="blog-iso-9001-gap-analyse-de.html">
+
+    <a class="new-article-card" href="blog-iso-9001-gap-analyse-de.html" data-lang="de">
       <div class="new-article-icon">🔍</div>
       <div>
         <div class="new-article-badge">🇩🇪 DE · NEU</div>
@@ -273,6 +281,7 @@ footer a:hover{color:var(--text);}
       </div>
       <div class="new-article-arrow">→</div>
     </a>
+
   </div>
 </div>
 
@@ -282,9 +291,7 @@ footer a:hover{color:var(--text);}
   <div class="posts-grid" id="posts-grid">
 
     <a class="post-card" href="#" data-lang="en" onclick="openArticle('post-gap-analysis-en');return false;">
-      <div class="post-card-img" data-iso="9001">
-        <span class="post-card-icon">🔍</span>
-      </div>
+      <div class="post-card-img" data-iso="9001"><span class="post-card-icon">🔍</span></div>
       <div class="post-card-body">
         <div class="post-card-meta">
           <span class="lang-tag lang-en">🇬🇧 EN</span>
@@ -301,9 +308,7 @@ footer a:hover{color:var(--text);}
     </a>
 
     <a class="post-card" href="#" data-lang="fr" onclick="openArticle('post-audit-fr');return false;">
-      <div class="post-card-img" data-iso="9001">
-        <span class="post-card-icon">📋</span>
-      </div>
+      <div class="post-card-img" data-iso="9001"><span class="post-card-icon">📋</span></div>
       <div class="post-card-body">
         <div class="post-card-meta">
           <span class="lang-tag lang-fr">🇫🇷 FR</span>
@@ -320,9 +325,7 @@ footer a:hover{color:var(--text);}
     </a>
 
     <a class="post-card" href="#" data-lang="de" onclick="openArticle('post-major-nc-de');return false;">
-      <div class="post-card-img" data-iso="9001">
-        <span class="post-card-icon">⚠️</span>
-      </div>
+      <div class="post-card-img" data-iso="9001"><span class="post-card-icon">⚠️</span></div>
       <div class="post-card-body">
         <div class="post-card-meta">
           <span class="lang-tag lang-de">🇩🇪 DE</span>
@@ -339,9 +342,7 @@ footer a:hover{color:var(--text);}
     </a>
 
     <a class="post-card" href="#" data-lang="en" onclick="openArticle('post-consultant-en');return false;">
-      <div class="post-card-img" data-iso="ISO">
-        <span class="post-card-icon">🚀</span>
-      </div>
+      <div class="post-card-img" data-iso="ISO"><span class="post-card-icon">🚀</span></div>
       <div class="post-card-body">
         <div class="post-card-meta">
           <span class="lang-tag lang-en">🇬🇧 EN</span>
@@ -358,9 +359,7 @@ footer a:hover{color:var(--text);}
     </a>
 
     <a class="post-card" href="#" data-lang="fr" onclick="openArticle('post-14001-fr');return false;">
-      <div class="post-card-img" data-iso="14001">
-        <span class="post-card-icon">🌍</span>
-      </div>
+      <div class="post-card-img" data-iso="14001"><span class="post-card-icon">🌍</span></div>
       <div class="post-card-body">
         <div class="post-card-meta">
           <span class="lang-tag lang-fr">🇫🇷 FR</span>
@@ -375,6 +374,9 @@ footer a:hover{color:var(--text);}
         </div>
       </div>
     </a>
+
+    <!-- No results message -->
+    <div class="no-results" id="no-results">No articles found for this language filter.</div>
 
   </div>
 </section>
@@ -550,7 +552,7 @@ const articles = {
   }
 };
 
-const t = {
+const tr = {
   en: {
     chip: '// normwise_blog · iso_insights',
     title: 'ISO Compliance <em>Insights</em>',
@@ -562,7 +564,8 @@ const t = {
     nlTitle: 'Get ISO Insights in Your Inbox',
     nlSub: 'New articles every week. No spam. Unsubscribe anytime.',
     nlBtn: 'Subscribe', nlPlaceholder: 'your@email.com',
-    navCta: 'Try Free'
+    navCta: 'Try Free',
+    noResults: 'No articles found for this language.'
   },
   de: {
     chip: '// normwise_blog · iso_einblicke',
@@ -575,59 +578,96 @@ const t = {
     nlTitle: 'ISO-Insights direkt in Ihr Postfach',
     nlSub: 'Neue Artikel jede Woche. Kein Spam. Jederzeit abmelden.',
     nlBtn: 'Abonnieren', nlPlaceholder: 'ihre@email.de',
-    navCta: 'Kostenlos testen'
+    navCta: 'Kostenlos testen',
+    noResults: 'Keine Artikel in dieser Sprache gefunden.'
   },
   fr: {
     chip: '// normwise_blog · insights_iso',
     title: 'Conformité ISO <em>Insights</em>',
-    sub: 'Guides experts sur ISO 9001, 14001 & 45001. Modèles d\'analyse des écarts, conseils audit et actualités ISO 2026.',
+    sub: "Guides experts sur ISO 9001, 14001 & 45001. Modèles d'analyse des écarts, conseils audit et actualités ISO 2026.",
     featuredLabel: '// article_vedette',
     allLabel: '// tous_les_articles',
     newLabel: '// nouveau · articles_seo_individuels',
     fAll: 'Tous', fDe: 'Deutsch', fEn: 'English', fFr: 'Français',
     nlTitle: 'Recevez les Insights ISO par Email',
     nlSub: 'Nouveaux articles chaque semaine. Pas de spam. Désabonnement libre.',
-    nlBtn: 'S\'abonner', nlPlaceholder: 'votre@email.fr',
-    navCta: 'Essai gratuit'
+    nlBtn: "S'abonner", nlPlaceholder: 'votre@email.fr',
+    navCta: 'Essai gratuit',
+    noResults: 'Aucun article trouvé pour cette langue.'
   }
 };
 
-let currentLang = 'en';
+let currentLang = localStorage.getItem('nw_lang') || 'en';
 let currentFilter = 'all';
 
 function setLang(lang) {
   currentLang = lang;
+  localStorage.setItem('nw_lang', lang);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('btn-' + lang).classList.add('active');
-  const tr = t[lang];
-  document.getElementById('chip-text').textContent = tr.chip;
-  document.getElementById('hero-title').innerHTML = tr.title;
-  document.getElementById('hero-sub').textContent = tr.sub;
-  document.getElementById('featured-label').textContent = tr.featuredLabel;
-  document.getElementById('all-posts-label').textContent = tr.allLabel;
-  document.getElementById('new-label').textContent = tr.newLabel;
-  document.getElementById('f-all').textContent = tr.fAll;
-  document.getElementById('f-de').textContent = tr.fDe;
-  document.getElementById('f-en').textContent = tr.fEn;
-  document.getElementById('f-fr').textContent = tr.fFr;
-  document.getElementById('nl-title').textContent = tr.nlTitle;
-  document.getElementById('nl-sub').textContent = tr.nlSub;
-  document.getElementById('nl-btn').textContent = tr.nlBtn;
-  document.getElementById('nl-email').placeholder = tr.nlPlaceholder;
-  document.getElementById('nav-cta-text').textContent = tr.navCta;
+  const t = tr[lang];
+  document.getElementById('chip-text').textContent = t.chip;
+  document.getElementById('hero-title').innerHTML = t.title;
+  document.getElementById('hero-sub').textContent = t.sub;
+  document.getElementById('featured-label').textContent = t.featuredLabel;
+  document.getElementById('all-posts-label').textContent = t.allLabel;
+  document.getElementById('new-label').textContent = t.newLabel;
+  document.getElementById('f-all').textContent = t.fAll;
+  document.getElementById('f-de').textContent = t.fDe;
+  document.getElementById('f-en').textContent = t.fEn;
+  document.getElementById('f-fr').textContent = t.fFr;
+  document.getElementById('nl-title').textContent = t.nlTitle;
+  document.getElementById('nl-sub').textContent = t.nlSub;
+  document.getElementById('nl-btn').textContent = t.nlBtn;
+  document.getElementById('nl-email').placeholder = t.nlPlaceholder;
+  document.getElementById('nav-cta-text').textContent = t.navCta;
+  document.getElementById('no-results').textContent = t.noResults;
 }
 
+// ✅ FIXED FILTER — now works on ALL cards including featured + new articles
 function filterPosts(lang) {
   currentFilter = lang;
+
+  // Update filter button styles
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('filter-' + lang).classList.add('active');
-  document.querySelectorAll('.post-card').forEach(card => {
+
+  // ✅ Filter featured section
+  const featured = document.getElementById('featured-section');
+  if (lang === 'all' || featured.dataset.lang === lang) {
+    featured.classList.remove('hidden');
+  } else {
+    featured.classList.add('hidden');
+  }
+
+  // ✅ Filter new article cards
+  document.querySelectorAll('.new-article-card').forEach(card => {
     if (lang === 'all' || card.dataset.lang === lang) {
       card.classList.remove('hidden');
     } else {
       card.classList.add('hidden');
     }
   });
+
+  // ✅ Hide new articles section label if all cards hidden
+  const newGrid = document.getElementById('new-articles-grid');
+  const visibleNew = newGrid.querySelectorAll('.new-article-card:not(.hidden)').length;
+  document.getElementById('new-articles-section').style.display = visibleNew > 0 ? '' : 'none';
+
+  // ✅ Filter post grid cards
+  const postCards = document.querySelectorAll('#posts-grid .post-card');
+  let visibleCount = 0;
+  postCards.forEach(card => {
+    if (lang === 'all' || card.dataset.lang === lang) {
+      card.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  // Show/hide "no results" message
+  document.getElementById('no-results').style.display = visibleCount === 0 ? 'block' : 'none';
 }
 
 function openArticle(id) {
@@ -644,7 +684,7 @@ function openArticle(id) {
     <div class="article-body">${art.body}</div>
     <div class="article-cta">
       <h4>${art.lang === 'de' ? 'Bereit, Ihre ISO-Compliance zu vereinfachen?' : art.lang === 'fr' ? 'Prêt à simplifier votre conformité ISO ?' : 'Ready to simplify your ISO compliance?'}</h4>
-      <p>${art.lang === 'de' ? 'Stellen Sie NormWise jede ISO-Frage — klauselgenaue Antworten in Sekunden.' : art.lang === 'fr' ? 'Posez à NormWise n\'importe quelle question ISO — réponses clause par clause en secondes.' : 'Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.'}</p>
+      <p>${art.lang === 'de' ? 'Stellen Sie NormWise jede ISO-Frage — klauselgenaue Antworten in Sekunden.' : art.lang === 'fr' ? "Posez à NormWise n'importe quelle question ISO — réponses clause par clause en secondes." : 'Ask NormWise any ISO question — clause-exact answers in seconds. Free to try.'}</p>
       <a href="/demo.html">${art.lang === 'de' ? '3 kostenlose Fragen →' : art.lang === 'fr' ? '3 questions gratuites →' : 'Try 3 Free Questions →'}</a>
     </div>
   `;
@@ -667,11 +707,14 @@ function subscribeNewsletter() {
   document.getElementById('nl-btn').textContent = '✓ Subscribed!';
   document.getElementById('nl-email').value = '';
   setTimeout(() => {
-    document.getElementById('nl-btn').textContent = t[currentLang].nlBtn;
+    document.getElementById('nl-btn').textContent = tr[currentLang].nlBtn;
   }, 3000);
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+// ✅ Init — apply saved language on page load
+setLang(currentLang);
 </script>
 </body>
 </html>
