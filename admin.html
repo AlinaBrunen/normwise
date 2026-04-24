@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NormWise Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111720;
+    --border: #1e2a38;
+    --accent: #00d4aa;
+    --accent2: #0088ff;
+    --danger: #ff4466;
+    --warn: #ffaa00;
+    --text: #e0e8f0;
+    --muted: #4a6070;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+  }
+
+  /* LOGIN SCREEN */
+  #login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  .login-box {
+    width: 380px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 40px;
+  }
+
+  .login-box .logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .login-box h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .login-box p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .field label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+  }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .login-error {
+    color: var(--danger);
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-top: 12px;
+    display: none;
+  }
+
+  /* ADMIN DASHBOARD */
+  #admin-screen { display: none; }
+
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .topbar-right span {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .btn-logout {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-logout:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  .dashboard {
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  /* STAT CARDS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .stat-card.warn::before { background: var(--warn); }
+  .stat-card.blue::before { background: var(--accent2); }
+  .stat-card.red::before { background: var(--danger); }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .stat-value {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* SECTION */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .section-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(0, 212, 170, 0.03); }
+
+  tbody td {
+    padding: 14px 24px;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .mono { font-family: var(--mono); font-size: 12px; }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid;
+  }
+
+  .badge-active { color: var(--accent); border-color: var(--accent); background: rgba(0,212,170,0.08); }
+  .badge-inactive { color: var(--muted); border-color: var(--border); }
+  .badge-free { color: var(--muted); border-color: var(--border); }
+  .badge-starter { color: var(--accent2); border-color: var(--accent2); background: rgba(0,136,255,0.08); }
+  .badge-professional { color: var(--warn); border-color: var(--warn); background: rgba(255,170,0,0.08); }
+  .badge-expert { color: #cc88ff; border-color: #cc88ff; background: rgba(204,136,255,0.08); }
+
+  /* ACTION BUTTONS */
+  .btn-action {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 4px;
+  }
+
+  .btn-action:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-action.danger:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  /* PLAN SELECT */
+  .plan-select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .plan-select:focus { border-color: var(--accent); }
+
+  /* PLANS TABLE */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .plan-card {
+    border: 1px solid var(--border);
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .plan-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .plan-price {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .plan-price span {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .plan-features {
+    list-style: none;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .plan-features li::before {
+    content: '→ ';
+    color: var(--accent);
+  }
+
+  /* LOADING */
+  .loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 32px 24px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+  }
+
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* REFRESH BTN */
+  .btn-refresh {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-refresh:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+    width: 420px;
+  }
+
+  .modal h2 {
+    font-family: var(--mono);
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  .modal p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn-confirm {
+    flex: 1;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  .empty-state {
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .plans-grid { grid-template-columns: 1fr; }
+    .dashboard { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="logo">NormWise</div>
+    <h1>Admin Access</h1>
+    <p>Restricted to authorized personnel only.</p>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="hello@normwise.cloud" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="••••••••">
+    </div>
+    <button class="btn-primary" onclick="doLogin()">ACCESS DASHBOARD</button>
+    <div class="login-error" id="login-error">⚠ Invalid credentials</div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2 id="modal-title">Confirm Action</h2>
+    <p id="modal-body">Are you sure?</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">CANCEL</button>
+      <button class="btn-confirm" id="modal-confirm">CONFIRM</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="admin-screen">
+  <div class="topbar">
+    <div class="topbar-logo">NORMWISE // ADMIN</div>
+    <div class="topbar-right">
+      <span id="admin-email-display"></span>
+      <button class="btn-logout" onclick="doLogout()">LOGOUT</button>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <div class="page-title">// OPERATIONS DASHBOARD</div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Users</div>
+        <div class="stat-value" id="stat-total">—</div>
+        <div class="stat-sub">registered accounts</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Active Subscribers</div>
+        <div class="stat-value" id="stat-active">—</div>
+        <div class="stat-sub">paying customers</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-label">Monthly Revenue</div>
+        <div class="stat-value" id="stat-mrr">—</div>
+        <div class="stat-sub">estimated MRR (EUR)</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-label">Free / Inactive</div>
+        <div class="stat-value" id="stat-free">—</div>
+        <div class="stat-sub">not yet converted</div>
+      </div>
+    </div>
+
+    <!-- USERS TABLE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">// Users</div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterUsers('all', this)">ALL</button>
+            <button class="filter-btn" onclick="filterUsers('active', this)">ACTIVE</button>
+            <button class="filter-btn" onclick="filterUsers('free', this)">FREE</button>
+          </div>
+          <button class="btn-refresh" onclick="loadData()">↻ REFRESH</button>
+        </div>
+      </div>
+      <div id="users-container">
+        <div class="loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div> Loading users...</div>
+      </div>
+    </div>
+
+    <!-- PLANS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">// Plans</div>
+        <span class="section-count" id="plans-count"></span>
+      </div>
+      <div id="plans-container">
+        <div class="loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div> Loading plans...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+  const ADMIN_EMAIL = 'hello@normwise.cloud';
+  const ADMIN_PASSWORD = 'normwise2024!';
+
+  // Change this password! Or integrate with Supabase Auth later.
+
+  let allUsers = [];
+  let currentFilter = 'all';
+
+  const PLAN_PRICES = { starter: 79, professional: 199, expert: 499 };
+
+  function doLogin() {
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const pass = document.getElementById('login-password').value;
+    const err = document.getElementById('login-error');
+
+    if (email === ADMIN_EMAIL && pass === ADMIN_PASSWORD) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-screen').style.display = 'block';
+      document.getElementById('admin-email-display').textContent = email;
+      loadData();
+    } else {
+      err.style.display = 'block';
+      setTimeout(() => err.style.display = 'none', 3000);
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+  });
+
+  function doLogout() {
+    document.getElementById('admin-screen').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('login-password').value = '';
+  }
+
+  async function sbFetch(path) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    return res.json();
+  }
+
+  async function sbPatch(path, body) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(body)
+    });
+    return res.ok;
+  }
+
+  async function loadData() {
+    loadUsers();
+    loadPlans();
+  }
+
+  async function loadUsers() {
+    document.getElementById('users-container').innerHTML = `<div class="loading"><div class="dot"></div><div class="dot"></div><div class="dot"></div> Loading users...</div>`;
+    try {
+      const users = await sbFetch('users?select=*&order=created_at.desc');
+      allUsers = users;
+      renderUsers(users);
+      updateStats(users);
+    } catch(e) {
+      document.getElementById('users-container').innerHTML = `<div class="empty-state">⚠ Could not load users. Check Supabase RLS policies.</div>`;
+    }
+  }
+
+  function updateStats(users) {
+    const total = users.length;
+    const active = users.filter(u => u.status === 'active').length;
+    const free = users.filter(u => u.status !== 'active').length;
+    let mrr = 0;
+    users.filter(u => u.status === 'active').forEach(u => {
+      mrr += PLAN_PRICES[u.plan?.toLowerCase()] || 0;
+    });
+
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-active').textContent = active;
+    document.getElementById('stat-free').textContent = free;
+    document.getElementById('stat-mrr').textContent = '€' + mrr.toLocaleString();
+  }
+
+  function filterUsers(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filtered = filter === 'all' ? allUsers
+      : filter === 'active' ? allUsers.filter(u => u.status === 'active')
+      : allUsers.filter(u => u.status !== 'active');
+    renderUsers(filtered);
+  }
+
+  function renderUsers(users) {
+    if (!users.length) {
+      document.getElementById('users-container').innerHTML = `<div class="empty-state">No users found.</div>`;
+      return;
+    }
+
+    const rows = users.map(u => {
+      const plan = (u.plan || 'free').toLowerCase();
+      const status = u.status || 'inactive';
+      const date = new Date(u.created_at).toLocaleDateString('en-GB');
+      return `
+        <tr>
+          <td class="mono">${u.email}</td>
+          <td><span class="badge badge-${plan}">${plan}</span></td>
+          <td><span class="badge badge-${status}">${status}</span></td>
+          <td class="mono" style="color:var(--muted);font-size:11px;">${date}</td>
+          <td>
+            <select class="plan-select" onchange="changePlan('${u.id}', this.value, '${u.email}')">
+              <option value="free" ${plan==='free'?'selected':''}>Free</option>
+              <option value="starter" ${plan==='starter'?'selected':''}>Starter</option>
+              <option value="professional" ${plan==='professional'?'selected':''}>Professional</option>
+              <option value="expert" ${plan==='expert'?'selected':''}>Expert</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-action" onclick="toggleStatus('${u.id}', '${status}', '${u.email}')">
+              ${status === 'active' ? 'DEACTIVATE' : 'ACTIVATE'}
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    document.getElementById('users-container').innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Plan</th>
+            <th>Status</th>
+            <th>Joined</th>
+            <th>Change Plan</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `;
+  }
+
+  function changePlan(userId, newPlan, email) {
+    showModal(
+      'Change Plan',
+      `Set ${email} to <strong>${newPlan}</strong>?`,
+      async () => {
+        const ok = await sbPatch(`users?id=eq.${userId}`, { plan: newPlan });
+        if (ok) { closeModal(); loadUsers(); }
+      }
+    );
+  }
+
+  function toggleStatus(userId, currentStatus, email) {
+    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+    showModal(
+      'Change Status',
+      `Set ${email} to <strong>${newStatus}</strong>?`,
+      async () => {
+        const ok = await sbPatch(`users?id=eq.${userId}`, { status: newStatus });
+        if (ok) { closeModal(); loadUsers(); }
+      }
+    );
+  }
+
+  async function loadPlans() {
+    try {
+      const plans = await sbFetch('plans?select=*&order=price.asc');
+      document.getElementById('plans-count').textContent = `${plans.length} plans`;
+      const cards = plans.map(p => `
+        <div class="plan-card">
+          <div class="plan-name">${p.name}</div>
+          <div class="plan-price">€${p.price}<span>/mo</span></div>
+          <ul class="plan-features">
+            ${(p.features || []).map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+      document.getElementById('plans-container').innerHTML = `<div class="plans-grid">${cards}</div>`;
+    } catch(e) {
+      document.getElementById('plans-container').innerHTML = `<div class="empty-state">⚠ Could not load plans.</div>`;
+    }
+  }
+
+  let modalCallback = null;
+
+  function showModal(title, body, cb) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-body').innerHTML = body;
+    modalCallback = cb;
+    document.getElementById('modal').classList.add('active');
+    document.getElementById('modal-confirm').onclick = cb;
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+</script>
+</body>
+</html>
