@@ -622,6 +622,9 @@ function setLang(lang) {
   document.getElementById('nl-email').placeholder = t.nlPlaceholder;
   document.getElementById('nav-cta-text').textContent = t.navCta;
   document.getElementById('no-results').textContent = t.noResults;
+
+  // ✅ Auto-filter articles to match selected language
+  filterPosts(lang);
 }
 
 // ✅ FIXED FILTER — now works on ALL cards including featured + new articles
