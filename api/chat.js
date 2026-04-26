@@ -17,19 +17,4 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 1000,
-        system: finalSystem,
-        messages: messages
-      })
-    });
-    const data = await response.json();
-    if (data.content && data.content[0] && data.content[0].text) {
-      res.status(200).json({ reply: data.content[0].text });
-    } else {
-      res.status(500).json({ reply: 'Sorry, I could not process your request.' });
-    }
-  } catch (error) {
-    res.status(500).json({ reply: 'Connection error. Please try again.' });
-  }
-}
+        model: 'claude-haiku-4
