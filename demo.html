@@ -241,8 +241,6 @@ function setDemoLang(lang, btn) {
   document.getElementById('upgrade-secondary-btn').textContent = t.upgradeSecondary;
   document.getElementById('demo-signup-btn').textContent = t.signupBtn;
   document.getElementById('disclaimer-box').textContent = t.disclaimer;
-
-  // Update example questions buttons
   const sqButtons = document.getElementById('sq-buttons');
   sqButtons.innerHTML = '';
   t.questions.forEach(q => {
@@ -252,7 +250,6 @@ function setDemoLang(lang, btn) {
     btn2.onclick = () => askQuestion(q);
     sqButtons.appendChild(btn2);
   });
-
   localStorage.setItem('nw_lang', lang);
 }
 
@@ -322,8 +319,9 @@ IMPORTANT: You are in DEMO mode — give helpful, complete answers to showcase N
     const data = await response.json();
     removeTyping(typingId);
 
-    if (data.content && data.content[0]) {
-      addMessage('ai', data.content[0].text);
+    // ✅ FIX: chat.js sends { reply: "..." } so we read data.reply
+    if (data.reply) {
+      addMessage('ai', data.reply);
     } else {
       addMessage('ai', 'I apologize — there was an error processing your question. Please try again.');
     }
@@ -379,7 +377,6 @@ function removeTyping(id) {
   if (el) el.remove();
 }
 
-// Init language
 const saved = localStorage.getItem('nw_lang') || 'en';
 setDemoLang(saved, null);
 document.querySelectorAll('.nav-lang').forEach(b => {
