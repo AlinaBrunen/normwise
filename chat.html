@@ -251,11 +251,9 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 </div>
 
 <script>
-// ✅ Supabase config
 const SUPABASE_URL = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
-// ✅ Stripe payment links
 const stripeLinks = {
   starter:      'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00',
   professional: 'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01',
@@ -272,74 +270,43 @@ let userPlan = 'starter';
 const planLimits = { starter: 150, professional: 750, expert: 3000 };
 const planNames  = { starter: 'STARTER', professional: 'PROFESSIONAL', expert: 'EXPERT' };
 
-// ✅ CHECK ACCESS ON LOAD
 async function checkAccess() {
   const loadingScreen = document.getElementById('loading-screen');
   const paywallScreen = document.getElementById('paywall-screen');
-
   try {
-    // 1. Check if user is logged in via Supabase session
     const sessionRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
       headers: {
         'apikey': SUPABASE_ANON_KEY,
         'Authorization': 'Bearer ' + (localStorage.getItem('nw_access_token') || '')
       }
     });
-
-    if (!sessionRes.ok) {
-      // Not logged in → go to login
-      window.location.href = 'login.html';
-      return;
-    }
-
+    if (!sessionRes.ok) { window.location.href = 'login.html'; return; }
     const sessionData = await sessionRes.json();
     const userEmail = sessionData.email;
-
-    if (!userEmail) {
-      window.location.href = 'login.html';
-      return;
-    }
-
-    // 2. Check users table for active status
+    if (!userEmail) { window.location.href = 'login.html'; return; }
     const dbRes = await fetch(
       `${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(userEmail)}&select=plan,status`,
-      {
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': 'Bearer ' + (localStorage.getItem('nw_access_token') || '')
-        }
-      }
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + (localStorage.getItem('nw_access_token') || '') } }
     );
-
     const dbData = await dbRes.json();
     const userRecord = dbData && dbData[0];
-
     if (!userRecord || userRecord.status !== 'active') {
-      // Not paid → show paywall
       loadingScreen.style.display = 'none';
       paywallScreen.style.display = 'flex';
       return;
     }
-
-    // 3. Access granted — set plan
     const plan = userRecord.plan || 'starter';
     userPlan = plan;
     questionsLimit = planLimits[plan] || 150;
-
     const planLabel = document.getElementById('header-plan-label');
     if (planLabel) planLabel.textContent = planNames[plan] + ' PLAN';
     const planInfoName = document.getElementById('plan-info-name');
     if (planInfoName) planInfoName.textContent = planNames[plan] + ' PLAN';
-
     updateUsageDisplay();
     updateLangUI();
-
-    // Hide loading, show app
     loadingScreen.style.display = 'none';
-
   } catch(e) {
     console.error('Access check failed:', e);
-    // On error, redirect to login
     window.location.href = 'login.html';
   }
 }
@@ -386,12 +353,6 @@ function updateLangUI() {
     fr: { placeholder: 'Question sur ISO 9001, 14001 ou 45001...', sendBtn: 'Envoyer →', welcomeTitle: 'Posez une question à NormWise', welcomeSub: 'Votre co-pilote IA pour la conformité ISO. Réponses référencées clause par clause en français, allemand ou anglais.', inputHint: '// normwise_ia · iso_9001 · iso_14001 · iso_45001 · répond_en_fr_de_en', newBtn: '+ Nouveau chat', newLabel: 'Nouvelle session', standardsLabel: 'Normes', topicsLabel: 'Sujets rapides' }
   };
   const t = ui[lang] || ui.en;
-  const els = {
-    'chat-input': 'placeholder', 'welcome-title': 'textContent',
-    'welcome-subtitle': 'textContent', 'input-hint': 'textContent',
-    'sb-new-btn': 'textContent', 'sb-new-label': 'textContent',
-    'sb-standards-label': 'textContent', 'sb-topics-label': 'textContent'
-  };
   const inp = document.getElementById('chat-input');
   if (inp) inp.placeholder = t.placeholder;
   const sb = document.getElementById('send-btn');
@@ -488,8 +449,10 @@ async function sendMessage() {
     });
     const data = await response.json();
     removeTyping(typingId);
-    if (data.content && data.content[0]) {
-      const reply = data.content[0].text;
+
+    // ✅ FIX: chat.js sends { reply: "..." } so we read data.reply
+    if (data.reply) {
+      const reply = data.reply;
       conversationHistory.push({ role: 'assistant', content: reply });
       addMessage('ai', reply, new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}));
       questionsUsed++;
@@ -562,7 +525,6 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// Init lang buttons
 const savedLang = localStorage.getItem('nw_lang') || 'en';
 currentLang = savedLang;
 document.querySelectorAll('.lang-btn').forEach(b => {
@@ -570,7 +532,6 @@ document.querySelectorAll('.lang-btn').forEach(b => {
   if (map[b.textContent] === savedLang) b.classList.add('active');
 });
 
-// ✅ Run access check on load
 checkAccess();
 </script>
 </body>
