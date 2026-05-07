@@ -60,7 +60,7 @@ async function sendWelcomeEmail(email, plan) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'NormWise <hello@normwise.cloud>',
+      from: 'NormWise <hello@updates.normwise.cloud>',
       to: email,
       subject: 'Welcome to NormWise 🎉',
       html: `
