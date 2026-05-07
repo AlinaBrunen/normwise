@@ -16,31 +16,51 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grotesk',sans-serif}
+
+/* ── NAV ── */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border2);background:#070c18;position:sticky;top:0;z-index:100}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
 .nav-wordmark span{color:var(--red)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .nav-user{font-size:13px;color:var(--muted2);font-family:'IBM Plex Mono',monospace}
+.plan-badge-nav{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.08em;display:none}
+.plan-badge-nav.starter{background:rgba(26,63,168,.2);color:#7aa4e8;border:1px solid rgba(26,63,168,.3)}
+.plan-badge-nav.professional{background:rgba(192,57,43,.15);color:#f87171;border:1px solid rgba(192,57,43,.3)}
+.plan-badge-nav.expert{background:rgba(234,179,8,.15);color:#fbbf24;border:1px solid rgba(234,179,8,.3)}
 .btn-logout{background:transparent;border:1px solid var(--border2);border-radius:6px;padding:7px 14px;font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--muted2);cursor:pointer;transition:all .2s}
 .btn-logout:hover{border-color:rgba(255,255,255,.3);color:#fff}
 .lang-switcher{display:flex;align-items:center;gap:3px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:3px}
 .lang-btn{background:transparent;border:none;border-radius:5px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.05em}
 .lang-btn:hover{color:#fff}
 .lang-btn.active{background:var(--red);color:#fff}
+
+/* ── LAYOUT ── */
 .main{max-width:1100px;margin:0 auto;padding:40px 24px}
-.trial-banner{background:var(--green-bg);border:1px solid var(--green-border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+
+/* ── BANNERS ── */
+.trial-banner{background:var(--green-bg);border:1px solid var(--green-border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .trial-banner-left{display:flex;align-items:center;gap:12px}
 .trial-dot{width:10px;height:10px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 8px rgba(74,222,128,.5);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .trial-text strong{color:#4ade80;font-size:14px}
 .trial-text p{font-size:13px;color:var(--muted2);margin-top:2px}
-.btn-upgrade-small{background:var(--red);border:none;border-radius:7px;padding:9px 20px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block}
-.btn-upgrade-small:hover{background:#a93226;transform:translateY(-1px)}
-.upgrade-banner{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:12px;padding:16px 24px;display:none;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+.paid-banner{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.2);border-radius:12px;padding:16px 24px;display:none;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.paid-banner-left{display:flex;align-items:center;gap:12px}
+.paid-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.paid-dot.starter{background:#7aa4e8;box-shadow:0 0 8px rgba(122,164,232,.5)}
+.paid-dot.professional{background:var(--red);box-shadow:0 0 8px var(--red-glow)}
+.paid-dot.expert{background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,.5)}
+.paid-banner-left strong{font-size:14px}
+.paid-banner-left p{font-size:13px;color:var(--muted2);margin-top:2px}
+.upgrade-banner{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);border-radius:12px;padding:16px 24px;display:none;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .upgrade-banner-left strong{color:#f87171;font-size:14px}
 .upgrade-banner-left p{font-size:13px;color:var(--muted2);margin-top:2px}
-.counter-row{display:flex;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.btn-upgrade-small{background:var(--red);border:none;border-radius:7px;padding:9px 20px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block}
+.btn-upgrade-small:hover{background:#a93226;transform:translateY(-1px)}
+
+/* ── COUNTER ── */
+.counter-row{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .counter-card{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:16px 22px}
 .counter-num{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:#fff}
 .counter-num span{color:var(--muted);font-size:18px}
@@ -49,7 +69,29 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .counter-bar-bg{background:var(--surface2);border-radius:99px;height:8px;overflow:hidden;margin-top:6px}
 .counter-bar-fill{height:8px;border-radius:99px;background:var(--red);transition:width .5s ease}
 .counter-bar-fill.green{background:#16a34a}
-.chat-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;margin-bottom:32px}
+
+/* ── DOWNLOADS ── */
+.downloads-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:24px;margin-bottom:24px;display:none}
+.downloads-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.downloads-header h3{font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
+.downloads-plan-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.08em}
+.downloads-plan-tag.professional{background:rgba(192,57,43,.15);color:#f87171;border:1px solid rgba(192,57,43,.3)}
+.downloads-plan-tag.expert{background:rgba(234,179,8,.15);color:#fbbf24;border:1px solid rgba(234,179,8,.3)}
+.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.download-card{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:16px;display:flex;align-items:center;gap:14px;text-decoration:none;transition:all .2s;cursor:pointer}
+.download-card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+.download-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.download-icon.excel{background:rgba(22,163,74,.15)}
+.download-icon.pptx{background:rgba(192,57,43,.15)}
+.download-icon.word{background:rgba(26,63,168,.15)}
+.download-info{flex:1;min-width:0}
+.download-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
+.download-desc{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.download-arrow{color:var(--muted);font-size:16px;flex-shrink:0;transition:color .2s}
+.download-card:hover .download-arrow{color:#fff}
+
+/* ── CHAT ── */
+.chat-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;margin-bottom:24px}
 .chat-header{padding:18px 24px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px}
 .chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red-glow)}
 .chat-header h2{font-size:15px;font-weight:600;letter-spacing:-.3px}
@@ -82,7 +124,9 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-send:hover{background:#a93226;transform:translateY(-1px)}
 .btn-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .btn-send svg{width:20px;height:20px;fill:#fff}
-.upgrade-wall{display:none;text-align:center;padding:40px 24px;background:var(--surface);border:1px solid rgba(192,57,43,.3);border-radius:14px;margin-bottom:32px}
+
+/* ── UPGRADE WALL ── */
+.upgrade-wall{display:none;text-align:center;padding:40px 24px;background:var(--surface);border:1px solid rgba(192,57,43,.3);border-radius:14px;margin-bottom:24px}
 .upgrade-wall h2{font-size:24px;font-weight:700;margin-bottom:10px;letter-spacing:-.5px}
 .upgrade-wall p{font-size:14px;color:var(--muted2);margin-bottom:32px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:32px}
@@ -100,6 +144,8 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-plan:hover{background:var(--surface3);border-color:rgba(255,255,255,.2)}
 .btn-plan.primary{background:var(--red);border-color:var(--red);box-shadow:0 0 20px var(--red-glow)}
 .btn-plan.primary:hover{background:#a93226}
+
+/* ── MODAL ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,12,24,.85);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:36px;max-width:560px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
@@ -107,12 +153,15 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .modal-close:hover{color:#fff}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:8px;letter-spacing:-.5px}
 .modal p{font-size:14px;color:var(--muted2);margin-bottom:24px;line-height:1.6}
+
+/* ── RESPONSIVE ── */
 @media(max-width:600px){
   .nav{padding:14px 16px;flex-wrap:wrap;gap:8px}
   .nav-user{display:none}
   .main{padding:24px 16px}
-  .trial-banner{flex-direction:column;align-items:flex-start}
+  .trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}
   .chat-messages{min-height:250px}
+  .download-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -129,6 +178,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
       <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
       <button class="lang-btn" id="lang-fr" onclick="setLang('fr')">FR</button>
     </div>
+    <span class="plan-badge-nav" id="plan-badge-nav"></span>
     <span class="nav-user" id="nav-email">Loading...</span>
     <button class="btn-logout" id="btn-logout" onclick="handleLogout()">Log out</button>
   </div>
@@ -136,6 +186,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 
 <main class="main">
 
+  <!-- FREE TRIAL BANNER -->
   <div class="trial-banner" id="trial-banner">
     <div class="trial-banner-left">
       <div class="trial-dot"></div>
@@ -147,6 +198,19 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     <a href="#" class="btn-upgrade-small" id="txt-upgrade-btn" onclick="openUpgradeModal(event)">Upgrade Plan →</a>
   </div>
 
+  <!-- PAID PLAN BANNER -->
+  <div class="paid-banner" id="paid-banner">
+    <div class="paid-banner-left">
+      <div class="paid-dot" id="paid-dot"></div>
+      <div>
+        <strong id="paid-plan-title">Professional Plan Active</strong>
+        <p id="paid-plan-sub">Unlimited AI questions + all Professional templates</p>
+      </div>
+    </div>
+    <a href="#" class="btn-upgrade-small" onclick="openUpgradeModal(event)" id="btn-upgrade-plan">Upgrade →</a>
+  </div>
+
+  <!-- TRIAL ENDED BANNER -->
   <div class="upgrade-banner" id="upgrade-banner">
     <div class="upgrade-banner-left">
       <strong id="txt-trial-ended">🔒 Trial ended — choose a plan to continue</strong>
@@ -155,10 +219,11 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     <a href="#" class="btn-upgrade-small" id="txt-choose-plan" onclick="openUpgradeModal(event)">Choose a Plan →</a>
   </div>
 
-  <div class="counter-row">
+  <!-- COUNTER ROW -->
+  <div class="counter-row" id="counter-row">
     <div class="counter-card">
       <div class="counter-label" id="txt-questions-used">Questions used</div>
-      <div class="counter-num"><span id="used-count">0</span> <span>/ 25</span></div>
+      <div class="counter-num"><span id="used-count">0</span> <span id="counter-limit">/ 25</span></div>
     </div>
     <div class="counter-bar-wrap">
       <div class="counter-label" id="txt-trial-usage">Trial usage</div>
@@ -168,6 +233,16 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     </div>
   </div>
 
+  <!-- DOWNLOADS — Professional & Expert only -->
+  <div class="downloads-section" id="downloads-section">
+    <div class="downloads-header">
+      <h3>📥 <span id="txt-downloads-title">Your Downloads</span></h3>
+      <span class="downloads-plan-tag" id="downloads-plan-tag">Professional</span>
+    </div>
+    <div class="download-grid" id="download-grid"></div>
+  </div>
+
+  <!-- CHAT -->
   <div class="chat-section" id="chat-section">
     <div class="chat-header">
       <div class="chat-header-dot"></div>
@@ -189,7 +264,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     </div>
   </div>
 
-  <!-- UPGRADE WALL — rendered dynamically by JS -->
+  <!-- UPGRADE WALL -->
   <div class="upgrade-wall" id="upgrade-wall">
     <h2 id="txt-wall-title">Your free trial is complete 🎯</h2>
     <p id="txt-wall-sub">You've used all 25 free questions. Choose a plan below to continue.</p>
@@ -198,7 +273,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 
 </main>
 
-<!-- UPGRADE MODAL — rendered dynamically by JS -->
+<!-- UPGRADE MODAL -->
 <div class="modal-overlay" id="upgrade-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeUpgradeModal()">✕</button>
@@ -209,14 +284,16 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 </div>
 
 <script>
-const SUPABASE_URL     = 'https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_URL      = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
-const FREE_LIMIT  = 25;
-const STORAGE_KEY = 'nw_questions_used';
+const FREE_LIMIT        = 25;
+const STORAGE_KEY       = 'nw_questions_used';
+const GITHUB_BASE       = 'https://raw.githubusercontent.com/AlinaBrunen/normwise/main/downloads';
 
 let currentUser   = null;
 let questionsUsed = 0;
 let isPaidUser    = false;
+let userPlan      = 'free'; // free | starter | professional | expert
 let currentLang   = localStorage.getItem('nw_lang') || 'en';
 let userEmail     = '';
 
@@ -242,8 +319,16 @@ const T = {
     modalTitle:'Choose your plan',
     modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',
     youLabel:'You', aiLabel:'NormWise AI',
-    month:'/month', mostPopular:'// most popular', popular:'// popular',
-    plans: [
+    month:'/month',
+    downloadsTitle:'Your Downloads',
+    upgradeToAccess:'Upgrade to access downloads',
+    paidPlanSubs:{
+      starter:'Unlimited AI compliance questions — ask anything, anytime.',
+      professional:'Unlimited AI questions + all Professional templates included.',
+      expert:'Full expert access — all templates, gap analysis & priority support.'
+    },
+    upgradeFromPlan:'Upgrade Plan →',
+    plans:[
       {
         badge:'// starter', name:'Starter', price:'€79',
         features:['Unlimited AI compliance questions','ISO 9001 audit preparation','Gap analysis guidance','Email support'],
@@ -252,13 +337,13 @@ const T = {
       },
       {
         badge:'// most popular', name:'Professional', price:'€199',
-        features:['Everything in Starter','Word action plan template','Excel gap analysis tracker','Priority support','Multi-standard coverage'],
+        features:['Everything in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO Process Flows PowerPoint','Priority support','ISO 9001 · 14001 · 45001'],
         btn:'Get Professional →', primary:true,
         link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
       },
       {
         badge:'// expert', name:'Expert', price:'€499',
-        features:['Everything in Professional','Dedicated compliance expert','Full ISO Gap Analysis report','Custom templates','Phone support','Unlimited standards'],
+        features:['Everything in Professional','Full ISO Gap Analysis Excel','Custom templates','Phone support','Dedicated compliance expert'],
         btn:'Get Expert →', primary:false,
         link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
       }
@@ -284,8 +369,16 @@ const T = {
     modalTitle:'Plan wählen',
     modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',
     youLabel:'Sie', aiLabel:'NormWise KI',
-    month:'/Monat', mostPopular:'// beliebtester', popular:'// beliebt',
-    plans: [
+    month:'/Monat',
+    downloadsTitle:'Ihre Downloads',
+    upgradeToAccess:'Upgraden für Zugang zu Downloads',
+    paidPlanSubs:{
+      starter:'Unbegrenzte KI-Compliance-Fragen — jederzeit fragen.',
+      professional:'Unbegrenzte KI-Fragen + alle Professional-Vorlagen inklusive.',
+      expert:'Voller Expert-Zugang — alle Vorlagen, Gap-Analyse & Prioritäts-Support.'
+    },
+    upgradeFromPlan:'Plan upgraden →',
+    plans:[
       {
         badge:'// starter', name:'Starter', price:'€79',
         features:['Unbegrenzte KI-Compliance-Fragen','ISO 9001 Auditvorbereitung','Gap-Analyse-Beratung','E-Mail-Support'],
@@ -294,13 +387,13 @@ const T = {
       },
       {
         badge:'// beliebtester', name:'Professional', price:'€199',
-        features:['Alles in Starter','Word-Aktionsplan-Vorlage','Excel-Gap-Analyse-Tracker','Prioritäts-Support','Multi-Norm-Abdeckung'],
+        features:['Alles in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO-Prozessflüsse PowerPoint','Prioritäts-Support','ISO 9001 · 14001 · 45001'],
         btn:'Professional wählen →', primary:true,
         link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
       },
       {
         badge:'// experte', name:'Expert', price:'€499',
-        features:['Alles in Professional','Persönlicher Compliance-Experte','Vollständiger ISO-Gap-Analysebericht','Individuelle Vorlagen','Telefon-Support','Unbegrenzte Normen'],
+        features:['Alles in Professional','Vollständige ISO-Gap-Analyse Excel','Individuelle Vorlagen','Telefon-Support','Persönlicher Compliance-Experte'],
         btn:'Expert wählen →', primary:false,
         link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
       }
@@ -324,10 +417,18 @@ const T = {
     wallTitle:'Votre essai est terminé 🎯',
     wallSub:"Vous avez utilisé vos 25 questions. Choisissez un plan.",
     modalTitle:'Choisissez votre plan',
-    modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI et toutes les fonctionnalités premium.",
+    modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",
     youLabel:'Vous', aiLabel:'NormWise IA',
-    month:'/mois', mostPopular:'// plus populaire', popular:'// populaire',
-    plans: [
+    month:'/mois',
+    downloadsTitle:'Vos Téléchargements',
+    upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',
+    paidPlanSubs:{
+      starter:'Questions conformité IA illimitées — posez tout, à tout moment.',
+      professional:'Questions IA illimitées + tous les modèles Professional inclus.',
+      expert:'Accès expert complet — tous les modèles, analyse des écarts & support prioritaire.'
+    },
+    upgradeFromPlan:'Changer de plan →',
+    plans:[
       {
         badge:'// starter', name:'Starter', price:'€79',
         features:['Questions conformité IA illimitées','Préparation audit ISO 9001','Conseils analyse des écarts','Support par e-mail'],
@@ -336,16 +437,51 @@ const T = {
       },
       {
         badge:'// plus populaire', name:'Professional', price:'€199',
-        features:['Tout dans Starter','Modèle plan d\'action Word','Tracker analyse des écarts Excel','Support prioritaire','Couverture multi-normes'],
+        features:['Tout dans Starter','IMS Masterplan Excel (EN/DE/FR)','Flux de processus ISO PowerPoint','Support prioritaire','ISO 9001 · 14001 · 45001'],
         btn:'Choisir Professional →', primary:true,
         link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
       },
       {
         badge:'// expert', name:'Expert', price:'€499',
-        features:['Tout dans Professional','Expert conformité dédié','Rapport complet analyse des écarts ISO','Modèles personnalisés','Support téléphonique','Normes illimitées'],
+        features:['Tout dans Professional','Analyse des écarts ISO complète Excel','Modèles personnalisés','Support téléphonique','Expert conformité dédié'],
         btn:'Choisir Expert →', primary:false,
         link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
       }
+    ]
+  }
+};
+
+// ── DOWNLOADS CONFIG ─────────────────────────────────────────────────────────
+const DOWNLOADS = {
+  professional: {
+    en:[
+      { name:'IMS Masterplan', desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'ISO Process Flows', desc:'9 core processes · All 3 standards · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+    ],
+    de:[
+      { name:'IMS Masterplan', desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'ISO-Prozessflüsse', desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+    ],
+    fr:[
+      { name:'IMS Masterplan', desc:'Contexte · Parties prenantes · Risques · Plan d\'action · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'Flux de processus ISO', desc:'9 processus clés · 3 normes · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+    ]
+  },
+  expert: {
+    en:[
+      { name:'IMS Masterplan', desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'ISO Process Flows', desc:'9 core processes · All 3 standards · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+      { name:'ISO Gap Analysis', desc:'Full gap analysis · 4 sheets · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
+    ],
+    de:[
+      { name:'IMS Masterplan', desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'ISO-Prozessflüsse', desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+      { name:'ISO-Gap-Analyse', desc:'Vollständige Gap-Analyse · 4 Blätter · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
+    ],
+    fr:[
+      { name:'IMS Masterplan', desc:'Contexte · Parties prenantes · Risques · Plan d\'action · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
+      { name:'Flux de processus ISO', desc:'9 processus clés · 3 normes · EN/DE/FR', icon:'📋', type:'pptx', file:'NormWise_Professional_Process_Flows.pptx' },
+      { name:'Analyse des écarts ISO', desc:'Analyse complète · 4 feuilles · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
     ]
   }
 };
@@ -364,16 +500,44 @@ function renderPlans(containerId) {
       <ul class="plan-features">
         ${p.features.map(f => `<li>${f}</li>`).join('')}
       </ul>
-      <a href="${p.link}${enc ? '?prefilled_email=' + enc : ''}" class="btn-plan${p.primary ? ' primary' : ''}">${p.btn}</a>
+      <a href="${p.link}${enc ? '?prefilled_email='+enc : ''}" class="btn-plan${p.primary?' primary':''}" target="_blank">${p.btn}</a>
     </div>
   `).join('');
 }
 
-// ── APPLY ALL TRANSLATIONS ───────────────────────────────────────────────────
+// ── RENDER DOWNLOADS ─────────────────────────────────────────────────────────
+function renderDownloads() {
+  const grid = document.getElementById('download-grid');
+  if (!grid) return;
+
+  const plan = userPlan === 'expert' ? 'expert' : 'professional';
+  const langFiles = DOWNLOADS[plan]?.[currentLang] || DOWNLOADS[plan]?.['en'] || [];
+
+  grid.innerHTML = langFiles.map(f => `
+    <a href="${GITHUB_BASE}/${f.file}" download="${f.file}" class="download-card">
+      <div class="download-icon ${f.type}">${f.icon}</div>
+      <div class="download-info">
+        <div class="download-name">${f.name}</div>
+        <div class="download-desc">${f.desc}</div>
+      </div>
+      <span class="download-arrow">↓</span>
+    </a>
+  `).join('');
+
+  // Update plan tag
+  const tag = document.getElementById('downloads-plan-tag');
+  if (tag) {
+    tag.textContent = userPlan === 'expert' ? 'Expert' : 'Professional';
+    tag.className = 'downloads-plan-tag ' + (userPlan === 'expert' ? 'expert' : 'professional');
+  }
+}
+
+// ── APPLY TRANSLATIONS ───────────────────────────────────────────────────────
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('nw_lang', lang);
   applyTranslations();
+  if (isPaidUser && (userPlan === 'professional' || userPlan === 'expert')) renderDownloads();
 }
 
 function applyTranslations() {
@@ -383,29 +547,30 @@ function applyTranslations() {
   const ab = document.getElementById('lang-' + currentLang);
   if (ab) ab.classList.add('active');
 
-  document.getElementById('btn-logout').textContent            = t.logout;
-  document.getElementById('txt-trial-title').textContent       = t.trialTitle;
+  document.getElementById('btn-logout').textContent              = t.logout;
+  document.getElementById('txt-trial-title').textContent         = t.trialTitle;
   document.getElementById('txt-questions-remaining').textContent = t.questionsRemaining;
-  document.getElementById('txt-upgrade-btn').textContent       = t.upgradeBtn;
-  document.getElementById('txt-trial-ended').textContent       = t.trialEnded;
-  document.getElementById('txt-trial-ended-sub').textContent   = t.trialEndedSub;
-  document.getElementById('txt-choose-plan').textContent       = t.choosePlan;
-  document.getElementById('txt-questions-used').textContent    = t.questionsUsed;
-  document.getElementById('txt-trial-usage').textContent       = t.trialUsage;
-  document.getElementById('txt-chat-title').textContent        = t.chatTitle;
-  document.getElementById('txt-welcome-title').textContent     = t.welcomeTitle;
-  document.getElementById('chat-input').placeholder            = t.placeholder;
-  document.getElementById('txt-wall-title').textContent        = t.wallTitle;
-  document.getElementById('txt-wall-sub').textContent          = t.wallSub;
-  document.getElementById('txt-modal-title').textContent       = t.modalTitle;
-  document.getElementById('txt-modal-sub').textContent         = t.modalSub;
+  document.getElementById('txt-upgrade-btn').textContent         = t.upgradeBtn;
+  document.getElementById('txt-trial-ended').textContent         = t.trialEnded;
+  document.getElementById('txt-trial-ended-sub').textContent     = t.trialEndedSub;
+  document.getElementById('txt-choose-plan').textContent         = t.choosePlan;
+  document.getElementById('txt-questions-used').textContent      = t.questionsUsed;
+  document.getElementById('txt-trial-usage').textContent         = t.trialUsage;
+  document.getElementById('txt-chat-title').textContent          = t.chatTitle;
+  document.getElementById('txt-welcome-title').textContent       = t.welcomeTitle;
+  document.getElementById('chat-input').placeholder              = t.placeholder;
+  document.getElementById('txt-wall-title').textContent          = t.wallTitle;
+  document.getElementById('txt-wall-sub').textContent            = t.wallSub;
+  document.getElementById('txt-modal-title').textContent         = t.modalTitle;
+  document.getElementById('txt-modal-sub').textContent           = t.modalSub;
+  document.getElementById('txt-downloads-title').textContent     = t.downloadsTitle;
+  document.getElementById('btn-upgrade-plan').textContent        = t.upgradeFromPlan;
 
-  const wqs = document.getElementById('welcome-questions-left');
-  const qCount = wqs ? wqs.textContent : '25';
+  const wql = document.getElementById('welcome-questions-left');
+  const qCount = wql ? wql.textContent : '25';
   document.getElementById('txt-welcome-sub').innerHTML =
     t.welcomeSub + '<strong id="welcome-questions-left">' + qCount + '</strong>' + t.welcomeFree;
 
-  // ✅ Re-render plan cards in correct language
   renderPlans('wall-plans');
   renderPlans('modal-plans');
 }
@@ -443,11 +608,15 @@ function getToken() {
 
 async function checkPlan(email) {
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(email)}&select=plan,status`, {
-      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() }
-    });
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(email)}&select=plan,status`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() } }
+    );
     const rows = await res.json();
-    if (rows && rows.length > 0 && rows[0].status === 'active') isPaidUser = true;
+    if (rows && rows.length > 0 && rows[0].status === 'active') {
+      isPaidUser = true;
+      userPlan   = rows[0].plan || 'starter';
+    }
   } catch(e) {}
 }
 
@@ -461,9 +630,12 @@ function saveUsage() {
   localStorage.setItem(STORAGE_KEY + '_' + (currentUser?.id || 'guest'), questionsUsed);
 }
 
+// ── UPDATE UI ────────────────────────────────────────────────────────────────
 function updateUI() {
+  const t   = T[currentLang] || T.en;
   const left = Math.max(0, FREE_LIMIT - questionsUsed);
   const pct  = Math.min(100, (questionsUsed / FREE_LIMIT) * 100);
+
   document.getElementById('used-count').textContent = questionsUsed;
   document.getElementById('questions-left').textContent = left;
   const wql = document.getElementById('welcome-questions-left');
@@ -472,22 +644,64 @@ function updateUI() {
   document.getElementById('usage-bar').classList.toggle('green', pct < 50);
 
   if (isPaidUser) {
-    document.getElementById('trial-banner').style.display  = 'none';
+    // ── PAID USER ──
+    document.getElementById('trial-banner').style.display   = 'none';
     document.getElementById('upgrade-banner').style.display = 'none';
-    document.getElementById('upgrade-wall').style.display  = 'none';
-    document.getElementById('chat-section').style.display  = 'block';
-    document.getElementById('chat-status').textContent     = '// paid_plan';
+    document.getElementById('upgrade-wall').style.display   = 'none';
+    document.getElementById('chat-section').style.display   = 'block';
+    document.getElementById('chat-status').textContent      = '// ' + userPlan + '_plan';
+
+    // Counter shows unlimited
+    document.getElementById('counter-limit').textContent = '/ ∞';
+    document.getElementById('txt-trial-usage').textContent = userPlan.charAt(0).toUpperCase() + userPlan.slice(1) + ' Plan';
+    document.getElementById('usage-bar').style.width = '100%';
+    document.getElementById('usage-bar').style.background = userPlan === 'expert' ? '#D97706' : userPlan === 'professional' ? '#c0392b' : '#1a3fa8';
+
+    // Paid banner
+    const paidBanner = document.getElementById('paid-banner');
+    paidBanner.style.display = 'flex';
+    const dot = document.getElementById('paid-dot');
+    dot.className = 'paid-dot ' + userPlan;
+    document.getElementById('paid-plan-title').textContent =
+      (userPlan.charAt(0).toUpperCase() + userPlan.slice(1)) + ' Plan Active';
+    document.getElementById('paid-plan-sub').textContent =
+      t.paidPlanSubs[userPlan] || t.paidPlanSubs.starter;
+
+    // Hide upgrade button for expert plan (top tier)
+    document.getElementById('btn-upgrade-plan').style.display = userPlan === 'expert' ? 'none' : 'inline-block';
+
+    // Nav badge
+    const navBadge = document.getElementById('plan-badge-nav');
+    navBadge.textContent = userPlan.charAt(0).toUpperCase() + userPlan.slice(1);
+    navBadge.className = 'plan-badge-nav ' + userPlan;
+    navBadge.style.display = 'block';
+
+    // Downloads for professional & expert
+    if (userPlan === 'professional' || userPlan === 'expert') {
+      document.getElementById('downloads-section').style.display = 'block';
+      renderDownloads();
+    }
+
     enableChat();
+
   } else if (questionsUsed >= FREE_LIMIT) {
-    document.getElementById('trial-banner').style.display  = 'none';
+    // ── TRIAL ENDED ──
+    document.getElementById('trial-banner').style.display   = 'none';
+    document.getElementById('paid-banner').style.display    = 'none';
     document.getElementById('upgrade-banner').style.display = 'flex';
-    document.getElementById('upgrade-wall').style.display  = 'block';
-    document.getElementById('chat-section').style.display  = 'none';
+    document.getElementById('upgrade-wall').style.display   = 'block';
+    document.getElementById('chat-section').style.display   = 'none';
+    document.getElementById('downloads-section').style.display = 'none';
+    renderPlans('wall-plans');
+
   } else {
-    document.getElementById('trial-banner').style.display  = 'flex';
+    // ── FREE TRIAL ──
+    document.getElementById('trial-banner').style.display   = 'flex';
+    document.getElementById('paid-banner').style.display    = 'none';
     document.getElementById('upgrade-banner').style.display = 'none';
-    document.getElementById('upgrade-wall').style.display  = 'none';
-    document.getElementById('chat-section').style.display  = 'block';
+    document.getElementById('upgrade-wall').style.display   = 'none';
+    document.getElementById('chat-section').style.display   = 'block';
+    document.getElementById('downloads-section').style.display = 'none';
     enableChat();
   }
 }
@@ -522,12 +736,14 @@ async function sendMessage() {
   messages.push({ role: 'user', content: text });
   document.getElementById('send-btn').disabled   = true;
   document.getElementById('chat-input').disabled = true;
+
   const typing = document.createElement('div');
   typing.className = 'msg ai';
   typing.id = 'typing-indicator';
   typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
   document.getElementById('chat-messages').appendChild(typing);
   scrollToBottom();
+
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
@@ -544,6 +760,7 @@ async function sendMessage() {
     typing.remove();
     appendMessage('ai', 'Connection error. Please try again.');
   }
+
   document.getElementById('send-btn').disabled   = false;
   document.getElementById('chat-input').disabled = false;
   document.getElementById('chat-input').focus();
@@ -567,6 +784,7 @@ function scrollToBottom() {
 // ── MODAL ────────────────────────────────────────────────────────────────────
 function openUpgradeModal(e) {
   if (e) e.preventDefault();
+  renderPlans('modal-plans');
   document.getElementById('upgrade-modal').classList.add('open');
 }
 function closeUpgradeModal() {
