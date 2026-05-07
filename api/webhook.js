@@ -22,6 +22,30 @@ async function getRawBody(req) {
   });
 }
 
+async function getPlanFromSession(stripe, session) {
+  // 1. Check metadata first (in case it's set)
+  if (session.metadata?.plan) {
+    return session.metadata.plan;
+  }
+
+  // 2. Detect plan from price ID via line items
+  try {
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+    const priceId = lineItems.data[0]?.price?.id;
+
+    if (priceId === process.env.STRIPE_PRICE_EXPERT) return 'expert';
+    if (priceId === process.env.STRIPE_PRICE_PROFESSIONAL) return 'professional';
+    if (priceId === process.env.STRIPE_PRICE_STARTER) return 'starter';
+
+    console.warn(`Unknown price ID: ${priceId} — defaulting to starter`);
+  } catch (err) {
+    console.error('Failed to fetch line items:', err.message);
+  }
+
+  // 3. Fallback
+  return 'starter';
+}
+
 async function sendWelcomeEmail(email, plan) {
   const planNames = {
     starter: 'Starter (€79/mo)',
@@ -77,15 +101,7 @@ export default async function handler(req, res) {
     const stripeCustomerId = session.customer;
     const stripeSessionId = session.id;
 
-    let plan = 'starter';
-    const lineItems = session.metadata?.plan;
-    if (lineItems) {
-      plan = lineItems;
-    } else if (stripeSessionId.includes('professional')) {
-      plan = 'professional';
-    } else if (stripeSessionId.includes('expert')) {
-      plan = 'expert';
-    }
+    const plan = await getPlanFromSession(stripe, session);
 
     console.log(`✅ Payment received for: ${email} | Plan: ${plan}`);
 
@@ -129,13 +145,11 @@ export default async function handler(req, res) {
       console.log(`✅ New user created: ${email}`);
     }
 
-    // Send welcome email via Resend
     try {
       await sendWelcomeEmail(email, plan);
       console.log(`✅ Welcome email sent to: ${email}`);
     } catch (emailError) {
       console.error('Failed to send welcome email:', emailError);
-      // Don't return error — payment already processed successfully
     }
   }
 
