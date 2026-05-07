@@ -35,7 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .chat-header{background:var(--surface2);padding:14px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .chat-status{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,.5)}
 .chat-title{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted2)}
-.chat-messages{padding:20px;min-height:300px;max-height:500px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+.chat-messages{padding:20px;min-height:300px;max-height:560px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
 .msg{display:flex;gap:10px;align-items:flex-start;animation:msgIn .3s ease}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .msg.user{flex-direction:row-reverse}
@@ -43,7 +43,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .msg-avatar.ai{background:var(--blue)}.msg-avatar.user{background:var(--red)}
 .msg-bubble{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:14px;color:var(--muted2);line-height:1.7;max-width:85%}
 .msg.user .msg-bubble{background:rgba(192,57,43,.12);border-color:rgba(192,57,43,.25);color:#fff}
-.msg-bubble strong{color:#fff;display:block;margin-bottom:6px}
+.msg-bubble p{margin:3px 0}
+.msg-bubble p:first-child{margin-top:0}
+.msg-bubble p:last-child{margin-bottom:0}
+.msg-bubble strong{color:#fff}
+.msg-bubble .msg-h1{font-weight:700;color:#fff;font-size:16px;margin:14px 0 8px;display:block}
+.msg-bubble .msg-h2{font-weight:700;color:#fff;font-size:15px;margin:12px 0 6px;display:block}
+.msg-bubble .msg-h3{font-weight:700;color:#e2e8f0;font-size:14px;margin:10px 0 4px;display:block}
+.msg-bubble .msg-bullet{padding-left:14px;margin:3px 0;display:block}
+.msg-bubble .msg-bullet::before{content:"• ";color:var(--red);font-weight:700}
+.msg-bubble .msg-numbered{padding-left:14px;margin:3px 0;display:block}
+.msg-bubble .msg-divider{border:none;border-top:1px solid var(--border2);margin:10px 0}
 .msg-bubble code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(26,63,168,.2);color:#7aa4e8;padding:2px 6px;border-radius:3px}
 .typing{display:flex;gap:4px;align-items:center;padding:8px 0}
 .typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite}
@@ -118,7 +128,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
       <div class="msg">
         <div class="msg-avatar ai">N</div>
         <div class="msg-bubble" id="welcome-msg">
-          <strong>Welcome to NormWise!</strong>
+          <strong>Welcome to NormWise!</strong><br/><br/>
           Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I'll give you clause-referenced answers from an auditor's perspective.<br/><br/>
           You have <strong>3 free questions</strong> — no account needed. Enjoy!
         </div>
@@ -136,9 +146,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
   <div class="upgrade-box" id="upgrade-box">
     <h3 id="upgrade-title">You've used all 3 free questions!</h3>
-    <p id="upgrade-text">Ready to unlock unlimited ISO compliance assistance? Start your 7-day free trial — no card needed for the first 3 days.</p>
+    <p id="upgrade-text">Ready to unlock unlimited ISO compliance assistance? Create a free account and get 25 more questions.</p>
     <div class="upgrade-btns">
-      <a href="register.html" class="btn-upgrade-primary" id="upgrade-primary-btn">Start 7-Day Free Trial →</a>
+      <a href="register.html" class="btn-upgrade-primary" id="upgrade-primary-btn">Start Free Trial →</a>
       <a href="index.html#pricing" class="btn-upgrade-secondary" id="upgrade-secondary-btn">See All Plans</a>
     </div>
   </div>
@@ -163,12 +173,12 @@ const translations = {
       'What are the key changes in ISO 9001:2026?'
     ],
     chatTitle: '// normwise_ai · iso_compliance_assistant',
-    welcome: '<strong>Welcome to NormWise!</strong> Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>3 free questions</strong> — no account needed. Enjoy!',
+    welcome: '<strong>Welcome to NormWise!</strong><br/><br/>Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>3 free questions</strong> — no account needed. Enjoy!',
     placeholder: 'Ask about ISO 9001, 14001 or 45001...',
     sendBtn: 'Ask →',
     upgradeTitle: "You've used all 3 free questions!",
-    upgradeText: 'Ready to unlock unlimited ISO compliance assistance? Start your 7-day free trial.',
-    upgradePrimary: 'Start 7-Day Free Trial →',
+    upgradeText: 'Ready for unlimited ISO compliance assistance? Create a free account and get 25 more questions.',
+    upgradePrimary: 'Start Free Trial →',
     upgradeSecondary: 'See All Plans',
     signupBtn: 'Start Free Trial',
     disclaimer: '⚠️ NormWise provides informational guidance only. All compliance matters should be verified by a certified auditor. ISO is a registered trademark of the International Organization for Standardization.'
@@ -186,12 +196,12 @@ const translations = {
       'Was sind die wichtigsten Änderungen in ISO 9001:2026?'
     ],
     chatTitle: '// normwise_ki · iso_compliance_assistent',
-    welcome: '<strong>Willkommen bei NormWise!</strong> Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>3 kostenlose Fragen</strong> — kein Konto erforderlich.',
+    welcome: '<strong>Willkommen bei NormWise!</strong><br/><br/>Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>3 kostenlose Fragen</strong> — kein Konto erforderlich.',
     placeholder: 'Frage zu ISO 9001, 14001 oder 45001...',
     sendBtn: 'Fragen →',
     upgradeTitle: 'Sie haben alle 3 kostenlosen Fragen genutzt!',
-    upgradeText: 'Bereit für unbegrenzte ISO-Compliance-Unterstützung? Starten Sie Ihren 7-tägigen kostenlosen Test.',
-    upgradePrimary: '7 Tage kostenlos testen →',
+    upgradeText: 'Bereit für unbegrenzte ISO-Compliance-Unterstützung? Kostenloses Konto erstellen und 25 weitere Fragen erhalten.',
+    upgradePrimary: 'Kostenlos testen →',
     upgradeSecondary: 'Alle Pläne ansehen',
     signupBtn: 'Kostenlos testen',
     disclaimer: '⚠️ NormWise bietet nur informelle Orientierungshilfe. Alle Compliance-Fragen sollten von einem zertifizierten Auditor überprüft werden. ISO ist eine eingetragene Marke der International Organization for Standardization.'
@@ -209,17 +219,50 @@ const translations = {
       'Quels sont les principaux changements dans ISO 9001:2026 ?'
     ],
     chatTitle: '// normwise_ia · assistant_conformité_iso',
-    welcome: '<strong>Bienvenue sur NormWise !</strong> Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>3 questions gratuites</strong> — sans compte requis.',
+    welcome: '<strong>Bienvenue sur NormWise !</strong><br/><br/>Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>3 questions gratuites</strong> — sans compte requis.',
     placeholder: 'Question sur ISO 9001, 14001 ou 45001...',
     sendBtn: 'Demander →',
     upgradeTitle: 'Vous avez utilisé vos 3 questions gratuites !',
-    upgradeText: 'Prêt pour une assistance ISO illimitée ? Démarrez votre essai gratuit de 7 jours.',
-    upgradePrimary: 'Essai gratuit 7 jours →',
+    upgradeText: 'Prêt pour une assistance ISO illimitée ? Créez un compte gratuit et obtenez 25 questions supplémentaires.',
+    upgradePrimary: 'Essai gratuit →',
     upgradeSecondary: 'Voir tous les tarifs',
     signupBtn: 'Essai gratuit',
     disclaimer: '⚠️ NormWise fournit des informations à titre indicatif uniquement. Toute question de conformité doit être vérifiée par un auditeur certifié. ISO est une marque déposée de l\'Organisation internationale de normalisation.'
   }
 };
+
+// ── FORMAT MARKDOWN PROPERLY ─────────────────────────────────────────────────
+function formatMessage(text) {
+  const lines = text.split('\n');
+  let html = '';
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+    // Apply inline formatting first
+    line = line
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`(.*?)`/g, '<code>$1</code>');
+    // Block-level elements
+    if (/^### /.test(lines[i])) {
+      html += `<span class="msg-h3">${line.replace(/^### /, '')}</span>`;
+    } else if (/^## /.test(lines[i])) {
+      html += `<span class="msg-h2">${line.replace(/^## /, '')}</span>`;
+    } else if (/^# /.test(lines[i])) {
+      html += `<span class="msg-h1">${line.replace(/^# /, '')}</span>`;
+    } else if (/^[-*] /.test(lines[i])) {
+      html += `<span class="msg-bullet">${line.replace(/^[-*] /, '')}</span>`;
+    } else if (/^\d+\. /.test(lines[i])) {
+      html += `<span class="msg-numbered">${line}</span>`;
+    } else if (/^---/.test(lines[i])) {
+      html += `<hr class="msg-divider"/>`;
+    } else if (lines[i].trim() === '') {
+      html += `<br/>`;
+    } else {
+      html += `<p>${line}</p>`;
+    }
+  }
+  return html;
+}
 
 function setDemoLang(lang, btn) {
   currentLang = lang;
@@ -256,8 +299,13 @@ function setDemoLang(lang, btn) {
 function updateDots() {
   for (let i = 1; i <= 3; i++) {
     const dot = document.getElementById('dot' + i);
-    if (i <= 3 - questionsLeft) { dot.classList.remove('available'); dot.classList.add('used'); }
-    else { dot.classList.remove('used'); dot.classList.add('available'); }
+    if (i <= 3 - questionsLeft) {
+      dot.classList.remove('available');
+      dot.classList.add('used');
+    } else {
+      dot.classList.remove('used');
+      dot.classList.add('available');
+    }
   }
 }
 
@@ -300,12 +348,12 @@ RESPONSE STYLE:
 - Distinguish between SHALL (mandatory) and SHOULD (recommended)
 - Use audit perspective — explain what auditors actually check
 - Be practical and actionable
-- Keep responses clear and structured
+- Keep responses clear and structured with proper headings and bullet points
 - Use finding classifications when relevant: Major NC (absent/critical), Minor NC (partial), OFI (opportunity for improvement)
 
-DISCLAIMER: End every response with a brief note that this is informational guidance and should be verified by a certified auditor.
+FORMAT: Use markdown formatting — ## for section headers, - for bullet points, **bold** for key terms and clause numbers.
 
-IMPORTANT: You are in DEMO mode — give helpful, complete answers to showcase NormWise value.`;
+DISCLAIMER: End every response with a brief note that this is informational guidance and should be verified by a certified auditor.`;
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -319,7 +367,6 @@ IMPORTANT: You are in DEMO mode — give helpful, complete answers to showcase N
     const data = await response.json();
     removeTyping(typingId);
 
-    // ✅ FIX: chat.js sends { reply: "..." } so we read data.reply
     if (data.reply) {
       addMessage('ai', data.reply);
     } else {
@@ -333,14 +380,14 @@ IMPORTANT: You are in DEMO mode — give helpful, complete answers to showcase N
   isLoading = false;
 
   if (questionsLeft <= 0) {
-    input.disabled = true;
+    document.getElementById('chat-input').disabled = true;
     document.getElementById('send-btn').disabled = true;
     document.getElementById('upgrade-box').style.display = 'block';
     setTimeout(() => document.getElementById('upgrade-box').scrollIntoView({behavior:'smooth',block:'center'}), 500);
   } else {
-    input.disabled = false;
+    document.getElementById('chat-input').disabled = false;
     document.getElementById('send-btn').disabled = false;
-    input.focus();
+    document.getElementById('chat-input').focus();
   }
 }
 
@@ -353,7 +400,7 @@ function addMessage(role, text) {
   avatar.textContent = role === 'ai' ? 'N' : 'A';
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
-  bubble.innerHTML = text.replace(/\n/g, '<br/>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code>$1</code>');
+  bubble.innerHTML = role === 'ai' ? formatMessage(text) : `<p>${text}</p>`;
   div.appendChild(avatar);
   div.appendChild(bubble);
   messages.appendChild(div);
