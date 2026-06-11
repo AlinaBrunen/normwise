@@ -38,13 +38,13 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .auth-footer a:hover{text-decoration:underline}
 .trial-info{background:rgba(26,63,168,.1);border:1px solid rgba(26,63,168,.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--muted2);line-height:1.6}
 .trial-info strong{color:#7aa4e8}
+.promo-info{background:rgba(192,57,43,.12);border:1px solid rgba(192,57,43,.35);border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--muted2);line-height:1.6;display:none}
+.promo-info strong{color:#f87171}
 .alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
 .alert.error{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3);color:#f87171}
 .alert.success{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#4ade80}
 .terms-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px;text-align:center}
 .terms-note a{color:var(--muted2);text-decoration:underline}
-
-/* ── CAPTCHA ── */
 .captcha-box{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .captcha-question{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:#fff;white-space:nowrap}
 .captcha-input{flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:15px;color:#fff;outline:none;transition:border-color .2s;max-width:100px}
@@ -52,8 +52,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 .captcha-input.error{border-color:rgba(192,57,43,.6)}
 .captcha-refresh{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:4px;transition:color .2s;flex-shrink:0}
 .captcha-refresh:hover{color:#fff}
-
-/* ── HONEYPOT (invisible to humans) ── */
 .hp-field{opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden}
 </style>
 </head>
@@ -70,15 +68,20 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
     <div id="form-section">
       <div class="auth-chip" id="reg-chip">// create_account</div>
       <h1 id="reg-title">Start your free trial</h1>
-      <p id="reg-subtitle">Create your account and get 25 free questions — no credit card needed.</p>
+      <p id="reg-subtitle">Create your account — no credit card needed.</p>
 
+      <!-- Standard trial info (hidden when promo active) -->
       <div class="trial-info" id="trial-info">
-        ✅ <strong>Free trial included</strong> — 25 questions free. Choose a paid plan whenever you're ready.
+        ✅ <strong>Free trial included</strong> — 5 questions free. Choose a paid plan whenever you're ready.
+      </div>
+
+      <!-- Promo banner (shown when ?promo=LAUNCH50) -->
+      <div class="promo-info" id="promo-info">
+        🎉 <strong>50% off your first month!</strong> Your promo code <strong>LAUNCH50</strong> will be applied at checkout.
       </div>
 
       <div class="alert error" id="alert-error"></div>
 
-      <!-- ✅ HONEYPOT — invisible to humans, bots fill it in -->
       <div class="hp-field" aria-hidden="true">
         <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off"/>
       </div>
@@ -108,7 +111,6 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
         <input type="text" id="company" placeholder="Your company name" autocomplete="organization"/>
       </div>
 
-      <!-- ✅ MATH CAPTCHA -->
       <div class="form-group">
         <label id="label-captcha">Security Check</label>
         <div class="captcha-box">
@@ -139,44 +141,40 @@ body{font-family:'Space Grotesk',sans-serif;background:#070c18 !important;color:
 const SUPABASE_URL      = 'https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 
-// ── CAPTCHA ─────────────────────────────────────────────────────────────────
+// ── PROMO CODE — read from URL ───────────────────────────────────────────────
+const urlParams = new URLSearchParams(window.location.search);
+const promoCode = urlParams.get('promo') || '';
+
+if (promoCode === 'LAUNCH50') {
+  document.getElementById('trial-info').style.display = 'none';
+  document.getElementById('promo-info').style.display = 'block';
+}
+
+// ── CAPTCHA ──────────────────────────────────────────────────────────────────
 let captchaAnswer = 0;
 
 function generateCaptcha() {
   const ops = ['+', '-', '×'];
   const op  = ops[Math.floor(Math.random() * ops.length)];
   let a, b, result;
-
-  if (op === '+') {
-    a = Math.floor(Math.random() * 15) + 1;
-    b = Math.floor(Math.random() * 15) + 1;
-    result = a + b;
-  } else if (op === '-') {
-    a = Math.floor(Math.random() * 15) + 5;
-    b = Math.floor(Math.random() * (a - 1)) + 1;
-    result = a - b;
-  } else {
-    a = Math.floor(Math.random() * 9) + 2;
-    b = Math.floor(Math.random() * 9) + 2;
-    result = a * b;
-  }
-
+  if (op === '+') { a = Math.floor(Math.random()*15)+1; b = Math.floor(Math.random()*15)+1; result = a+b; }
+  else if (op === '-') { a = Math.floor(Math.random()*15)+5; b = Math.floor(Math.random()*(a-1))+1; result = a-b; }
+  else { a = Math.floor(Math.random()*9)+2; b = Math.floor(Math.random()*9)+2; result = a*b; }
   captchaAnswer = result;
   document.getElementById('captcha-question').textContent = `${a} ${op} ${b} = ?`;
   document.getElementById('captcha-answer').value = '';
   document.getElementById('err-captcha').style.display = 'none';
   document.getElementById('captcha-answer').classList.remove('error');
 }
-
-// Generate on page load
 generateCaptcha();
 
 // ── TRANSLATIONS ─────────────────────────────────────────────────────────────
 const translations = {
   en: {
     chip:'// create_account', title:'Start your free trial',
-    subtitle:'Create your account and get 25 free questions — no credit card needed.',
-    trialInfo:'✅ <strong>Free trial included</strong> — 25 questions free. Choose a paid plan whenever you\'re ready.',
+    subtitle:'Create your account — no credit card needed.',
+    trialInfo:'✅ <strong>Free trial included</strong> — 5 questions free. Choose a paid plan whenever you\'re ready.',
+    promoInfo:'🎉 <strong>50% off your first month!</strong> Your promo code <strong>LAUNCH50</strong> will be applied at checkout.',
     labelName:'Full Name', labelEmail:'Work Email', labelPassword:'Password',
     labelConfirmPassword:'Confirm Password', labelCompany:'Company (Optional)',
     labelCaptcha:'Security Check',
@@ -194,8 +192,9 @@ const translations = {
   },
   de: {
     chip:'// konto_erstellen', title:'Kostenlosen Test starten',
-    subtitle:'Konto erstellen und 25 kostenlose Fragen erhalten — keine Kreditkarte erforderlich.',
-    trialInfo:'✅ <strong>Kostenlose Testversion</strong> — 25 Fragen gratis. Wählen Sie jederzeit einen kostenpflichtigen Plan.',
+    subtitle:'Konto erstellen — keine Kreditkarte erforderlich.',
+    trialInfo:'✅ <strong>Kostenlose Testversion</strong> — 5 Fragen gratis. Wählen Sie jederzeit einen kostenpflichtigen Plan.',
+    promoInfo:'🎉 <strong>50% Rabatt im ersten Monat!</strong> Ihr Promo-Code <strong>LAUNCH50</strong> wird beim Checkout angewendet.',
     labelName:'Vollständiger Name', labelEmail:'Geschäftliche E-Mail', labelPassword:'Passwort',
     labelConfirmPassword:'Passwort bestätigen', labelCompany:'Unternehmen (Optional)',
     labelCaptcha:'Sicherheitsprüfung',
@@ -213,8 +212,9 @@ const translations = {
   },
   fr: {
     chip:'// créer_un_compte', title:'Démarrer votre essai gratuit',
-    subtitle:'Créez votre compte et obtenez 25 questions gratuites — aucune carte bancaire requise.',
-    trialInfo:'✅ <strong>Essai gratuit inclus</strong> — 25 questions gratuites. Choisissez un plan payant quand vous voulez.',
+    subtitle:'Créez votre compte — aucune carte bancaire requise.',
+    trialInfo:'✅ <strong>Essai gratuit inclus</strong> — 5 questions gratuites. Choisissez un plan payant quand vous voulez.',
+    promoInfo:'🎉 <strong>50% sur le premier mois !</strong> Votre code promo <strong>LAUNCH50</strong> sera appliqué lors du paiement.',
     labelName:'Nom complet', labelEmail:'E-mail professionnel', labelPassword:'Mot de passe',
     labelConfirmPassword:'Confirmer le mot de passe', labelCompany:'Entreprise (Optionnel)',
     labelCaptcha:'Vérification de sécurité',
@@ -238,6 +238,7 @@ function applyLang(lang) {
   document.getElementById('reg-title').textContent = t.title;
   document.getElementById('reg-subtitle').textContent = t.subtitle;
   document.getElementById('trial-info').innerHTML = t.trialInfo;
+  document.getElementById('promo-info').innerHTML = t.promoInfo;
   document.getElementById('label-name').textContent = t.labelName;
   document.getElementById('label-email').textContent = t.labelEmail;
   document.getElementById('label-password').textContent = t.labelPassword;
@@ -258,6 +259,12 @@ function applyLang(lang) {
   document.getElementById('password').placeholder = t.placeholderPassword;
   document.getElementById('confirm-password').placeholder = t.placeholderConfirmPassword;
   document.getElementById('company').placeholder = t.placeholderCompany;
+
+  // Re-apply promo visibility after lang switch
+  if (promoCode === 'LAUNCH50') {
+    document.getElementById('trial-info').style.display = 'none';
+    document.getElementById('promo-info').style.display = 'block';
+  }
 }
 
 function showError(msg) {
@@ -271,13 +278,8 @@ async function handleRegister() {
   const lang = localStorage.getItem('nw_lang') || 'en';
   const t = translations[lang] || translations.en;
 
-  // ✅ HONEYPOT CHECK — if bot filled the hidden field, block silently
   const honeypot = document.getElementById('hp-website').value;
-  if (honeypot) {
-    // Pretend it worked (confuse the bot)
-    showError(t.errBot);
-    return;
-  }
+  if (honeypot) { showError(t.errBot); return; }
 
   const name            = document.getElementById('fullname').value.trim();
   const email           = document.getElementById('email').value.trim();
@@ -300,11 +302,10 @@ async function handleRegister() {
   if (password !== confirmPassword) { document.getElementById('err-confirm-password').style.display='block'; document.getElementById('confirm-password').classList.add('error'); valid=false; }
   else { document.getElementById('err-confirm-password').style.display='none'; document.getElementById('confirm-password').classList.remove('error'); }
 
-  // ✅ CAPTCHA CHECK
   if (isNaN(captchaInput) || captchaInput !== captchaAnswer) {
     document.getElementById('err-captcha').style.display = 'block';
     document.getElementById('captcha-answer').classList.add('error');
-    generateCaptcha(); // New question after wrong answer
+    generateCaptcha();
     valid = false;
   } else {
     document.getElementById('err-captcha').style.display = 'none';
@@ -326,7 +327,7 @@ async function handleRegister() {
         email,
         password,
         options: { emailRedirectTo: 'https://normwise.cloud/dashboard.html' },
-        data: { full_name: name, company }
+        data: { full_name: name, company, promo_code: promoCode || null }
       })
     });
 
@@ -339,12 +340,13 @@ async function handleRegister() {
         : (msg || 'Registration failed. Please try again.'));
       btn.disabled = false;
       btnText.textContent = t.btnText;
-      generateCaptcha(); // New captcha after error
+      generateCaptcha();
       return;
     }
 
-    // ✅ Success — redirect to login with success message
-    window.location.href = 'login.html?registered=true';
+    // Redirect — pass promo code so login page / dashboard can apply it
+    const redirect = promoCode ? `login.html?registered=true&promo=${promoCode}` : 'login.html?registered=true';
+    window.location.href = redirect;
 
   } catch(e) {
     showError('Connection error. Please check your internet connection and try again.');
