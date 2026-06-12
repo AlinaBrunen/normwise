@@ -7,17 +7,9 @@
 <title>NormWise — Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --red:#c0392b;--red-glow:rgba(192,57,43,.35);--blue:#1a3fa8;
-  --ink:#070c18;--surface:#111827;--surface2:#161e30;--surface3:#1c2640;
-  --muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);
-  --green:#16a34a;--green-bg:rgba(22,163,74,.12);--green-border:rgba(22,163,74,.25);
-}
+:root{--red:#c0392b;--red-glow:rgba(192,57,43,.35);--blue:#1a3fa8;--ink:#070c18;--surface:#111827;--surface2:#161e30;--surface3:#1c2640;--muted:rgba(255,255,255,.38);--muted2:rgba(255,255,255,.68);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.11);--green:#16a34a;--green-bg:rgba(22,163,74,.12);--green-border:rgba(22,163,74,.25)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grotesk',sans-serif}
-
-/* ── NAV ── */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border2);background:#070c18;position:sticky;top:0;z-index:100}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .nav-wordmark{font-weight:700;font-size:20px;color:#fff;letter-spacing:-.5px}
@@ -34,11 +26,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .lang-btn{background:transparent;border:none;border-radius:5px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.05em}
 .lang-btn:hover{color:#fff}
 .lang-btn.active{background:var(--red);color:#fff}
-
-/* ── LAYOUT ── */
 .main{max-width:1100px;margin:0 auto;padding:40px 24px}
-
-/* ── BANNERS ── */
 .trial-banner{background:var(--green-bg);border:1px solid var(--green-border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .trial-banner-left{display:flex;align-items:center;gap:12px}
 .trial-dot{width:10px;height:10px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 8px rgba(74,222,128,.5);animation:pulse 2s infinite}
@@ -58,8 +46,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .upgrade-banner-left p{font-size:13px;color:var(--muted2);margin-top:2px}
 .btn-upgrade-small{background:var(--red);border:none;border-radius:7px;padding:9px 20px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-block}
 .btn-upgrade-small:hover{background:#a93226;transform:translateY(-1px)}
-
-/* ── COUNTER ── */
 .counter-row{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .counter-card{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:16px 22px}
 .counter-num{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:#fff}
@@ -69,8 +55,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .counter-bar-bg{background:var(--surface2);border-radius:99px;height:8px;overflow:hidden;margin-top:6px}
 .counter-bar-fill{height:8px;border-radius:99px;background:var(--red);transition:width .5s ease}
 .counter-bar-fill.green{background:#16a34a}
-
-/* ── DOWNLOADS ── */
 .downloads-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:24px;margin-bottom:24px;display:none}
 .downloads-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .downloads-header h3{font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
@@ -88,8 +72,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .download-desc{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .download-arrow{color:var(--muted);font-size:16px;flex-shrink:0;transition:color .2s}
 .download-card:hover .download-arrow{color:#fff}
-
-/* ── CHAT ── */
 .chat-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;margin-bottom:24px}
 .chat-header{padding:18px 24px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px}
 .chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red-glow)}
@@ -123,8 +105,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-send:hover{background:#a93226;transform:translateY(-1px)}
 .btn-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .btn-send svg{width:20px;height:20px;fill:#fff}
-
-/* ── UPGRADE WALL ── */
 .upgrade-wall{display:none;text-align:center;padding:40px 24px;background:var(--surface);border:1px solid rgba(192,57,43,.3);border-radius:14px;margin-bottom:24px}
 .upgrade-wall h2{font-size:24px;font-weight:700;margin-bottom:10px;letter-spacing:-.5px}
 .upgrade-wall p{font-size:14px;color:var(--muted2);margin-bottom:32px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
@@ -143,8 +123,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-plan:hover{background:var(--surface3);border-color:rgba(255,255,255,.2)}
 .btn-plan.primary{background:var(--red);border-color:var(--red);box-shadow:0 0 20px var(--red-glow)}
 .btn-plan.primary:hover{background:#a93226}
-
-/* ── MODAL ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,12,24,.85);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:36px;max-width:560px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
@@ -152,20 +130,10 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .modal-close:hover{color:#fff}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:8px;letter-spacing:-.5px}
 .modal p{font-size:14px;color:var(--muted2);margin-bottom:24px;line-height:1.6}
-
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
-  .nav{padding:14px 16px;flex-wrap:wrap;gap:8px}
-  .nav-user{display:none}
-  .main{padding:24px 16px}
-  .trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}
-  .chat-messages{min-height:250px}
-  .download-grid{grid-template-columns:1fr}
-}
+@media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap;gap:8px}.nav-user{display:none}.main{padding:24px 16px}.trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}.chat-messages{min-height:250px}.download-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <a href="index.html" class="nav-logo">
     <svg width="26" height="26" viewBox="0 0 200 200"><rect x="10" y="10" width="180" height="180" rx="36" fill="#111827"/><circle cx="100" cy="14" r="10" fill="#1a3fa8"/><circle cx="146" cy="26" r="9" fill="#3a6fd4"/><circle cx="172" cy="62" r="12" fill="#c0392b"/></svg>
@@ -182,57 +150,41 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     <button class="btn-logout" id="btn-logout" onclick="handleLogout()">Log out</button>
   </div>
 </nav>
-
 <main class="main">
-
-  <!-- FREE TRIAL BANNER -->
   <div class="trial-banner" id="trial-banner">
     <div class="trial-banner-left">
       <div class="trial-dot"></div>
       <div class="trial-text">
         <strong id="txt-trial-title">Free Trial Active</strong>
-        <p>You have <strong id="questions-left">25</strong> <span id="txt-questions-remaining">free questions remaining.</span></p>
+        <p>You have <strong id="questions-left">5</strong> <span id="txt-questions-remaining">free questions remaining.</span></p>
       </div>
     </div>
     <a href="#" class="btn-upgrade-small" id="txt-upgrade-btn" onclick="openUpgradeModal(event)">Upgrade Plan →</a>
   </div>
-
-  <!-- PAID PLAN BANNER -->
   <div class="paid-banner" id="paid-banner">
     <div class="paid-banner-left">
       <div class="paid-dot" id="paid-dot"></div>
-      <div>
-        <strong id="paid-plan-title">Professional Plan Active</strong>
-        <p id="paid-plan-sub">Unlimited AI questions + all Professional templates</p>
-      </div>
+      <div><strong id="paid-plan-title">Professional Plan Active</strong><p id="paid-plan-sub">Unlimited AI questions + all Professional templates</p></div>
     </div>
     <a href="#" class="btn-upgrade-small" onclick="openUpgradeModal(event)" id="btn-upgrade-plan">Upgrade →</a>
   </div>
-
-  <!-- TRIAL ENDED BANNER -->
   <div class="upgrade-banner" id="upgrade-banner">
     <div class="upgrade-banner-left">
       <strong id="txt-trial-ended">🔒 Trial ended — choose a plan to continue</strong>
-      <p id="txt-trial-ended-sub">You've used all 25 free questions. Upgrade to keep going.</p>
+      <p id="txt-trial-ended-sub">You've used all 5 free questions. Upgrade to keep going.</p>
     </div>
     <a href="#" class="btn-upgrade-small" id="txt-choose-plan" onclick="openUpgradeModal(event)">Choose a Plan →</a>
   </div>
-
-  <!-- COUNTER ROW -->
   <div class="counter-row" id="counter-row">
     <div class="counter-card">
       <div class="counter-label" id="txt-questions-used">Questions used</div>
-      <div class="counter-num"><span id="used-count">0</span> <span id="counter-limit">/ 25</span></div>
+      <div class="counter-num"><span id="used-count">0</span> <span id="counter-limit">/ 5</span></div>
     </div>
     <div class="counter-bar-wrap">
       <div class="counter-label" id="txt-trial-usage">Trial usage</div>
-      <div class="counter-bar-bg">
-        <div class="counter-bar-fill" id="usage-bar" style="width:0%"></div>
-      </div>
+      <div class="counter-bar-bg"><div class="counter-bar-fill" id="usage-bar" style="width:0%"></div></div>
     </div>
   </div>
-
-  <!-- DOWNLOADS — Professional & Expert only -->
   <div class="downloads-section" id="downloads-section">
     <div class="downloads-header">
       <h3>📥 <span id="txt-downloads-title">Your Downloads</span></h3>
@@ -240,8 +192,6 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     </div>
     <div class="download-grid" id="download-grid"></div>
   </div>
-
-  <!-- CHAT -->
   <div class="chat-section" id="chat-section">
     <div class="chat-header">
       <div class="chat-header-dot"></div>
@@ -252,27 +202,20 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
       <div class="welcome-msg" id="welcome-msg">
         <div class="welcome-icon">🤖</div>
         <h3 id="txt-welcome-title">Welcome to NormWise!</h3>
-        <p id="txt-welcome-sub">Ask me anything about ISO standards, compliance, audits, or gap analysis. You have <strong id="welcome-questions-left">25</strong> free questions to explore.</p>
+        <p id="txt-welcome-sub">Ask me anything about ISO standards, compliance, audits, or gap analysis. You have <strong id="welcome-questions-left">5</strong> free questions to explore.</p>
       </div>
     </div>
     <div class="chat-input-area">
       <textarea class="chat-input" id="chat-input" placeholder="Ask about ISO 9001, audits, gap analysis..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="btn-send" id="send-btn" onclick="sendMessage()">
-        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-      </button>
+      <button class="btn-send" id="send-btn" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </div>
   </div>
-
-  <!-- UPGRADE WALL -->
   <div class="upgrade-wall" id="upgrade-wall">
     <h2 id="txt-wall-title">Your free trial is complete 🎯</h2>
-    <p id="txt-wall-sub">You've used all 25 free questions. Choose a plan below to continue.</p>
+    <p id="txt-wall-sub">You've used all 5 free questions. Choose a plan below to continue.</p>
     <div class="plans" id="wall-plans"></div>
   </div>
-
 </main>
-
-<!-- UPGRADE MODAL -->
 <div class="modal-overlay" id="upgrade-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeUpgradeModal()">✕</button>
@@ -281,534 +224,40 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     <div class="plans" id="modal-plans"></div>
   </div>
 </div>
-
 <script>
-const SUPABASE_URL      = 'https://iasasvucmmvehppvbwtm.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
-const FREE_LIMIT        = 25;
-const STORAGE_KEY       = 'nw_questions_used';
-const GITHUB_BASE       = 'https://raw.githubusercontent.com/AlinaBrunen/normwise/main/downloads';
-
-let currentUser   = null;
-let questionsUsed = 0;
-let isPaidUser    = false;
-let userPlan      = 'free'; // free | starter | professional | expert
-let currentLang   = localStorage.getItem('nw_lang') || 'en';
-let userEmail     = '';
-
-// ── TRANSLATIONS ─────────────────────────────────────────────────────────────
-const T = {
-  en: {
-    logout:'Log out',
-    trialTitle:'Free Trial Active',
-    questionsRemaining:'free questions remaining.',
-    upgradeBtn:'Upgrade Plan →',
-    trialEnded:'🔒 Trial ended — choose a plan to continue',
-    trialEndedSub:"You've used all 25 free questions. Upgrade to keep going.",
-    choosePlan:'Choose a Plan →',
-    questionsUsed:'Questions used',
-    trialUsage:'Trial usage',
-    chatTitle:'ISO Compliance Assistant',
-    welcomeTitle:'Welcome to NormWise!',
-    welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',
-    welcomeFree:' free questions to explore.',
-    placeholder:'Ask about ISO 9001, audits, gap analysis...',
-    wallTitle:'Your free trial is complete 🎯',
-    wallSub:"You've used all 25 free questions. Choose a plan below to continue.",
-    modalTitle:'Choose your plan',
-    modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',
-    youLabel:'You', aiLabel:'NormWise AI',
-    month:'/month',
-    downloadsTitle:'Your Downloads',
-    upgradeToAccess:'Upgrade to access downloads',
-    paidPlanSubs:{
-      starter:'Unlimited AI compliance questions — ask anything, anytime.',
-      professional:'Unlimited AI questions + all Professional templates included.',
-      expert:'Full expert access — all templates, gap analysis & priority support.'
-    },
-    upgradeFromPlan:'Upgrade Plan →',
-    plans:[
-      {
-        badge:'// starter', name:'Starter', price:'€79',
-        features:['Unlimited AI compliance questions','ISO 9001 audit preparation','Gap analysis guidance','Email support'],
-        btn:'Get Starter →', primary:false,
-        link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'
-      },
-      {
-        badge:'// most popular', name:'Professional', price:'€199',
-        features:['Everything in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO Process Flows PowerPoint','Priority support','ISO 9001 · 14001 · 45001'],
-        btn:'Get Professional →', primary:true,
-        link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
-      },
-      {
-        badge:'// expert', name:'Expert', price:'€499',
-        features:['Everything in Professional','Full ISO Gap Analysis Excel','Custom templates','Phone support','Dedicated compliance expert'],
-        btn:'Get Expert →', primary:false,
-        link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
-      }
-    ]
-  },
-  de: {
-    logout:'Abmelden',
-    trialTitle:'Kostenlose Testversion aktiv',
-    questionsRemaining:'kostenlose Fragen verbleibend.',
-    upgradeBtn:'Plan upgraden →',
-    trialEnded:'🔒 Test beendet — wählen Sie einen Plan',
-    trialEndedSub:'Sie haben alle 25 kostenlosen Fragen genutzt.',
-    choosePlan:'Plan wählen →',
-    questionsUsed:'Genutzte Fragen',
-    trialUsage:'Testnutzung',
-    chatTitle:'ISO-Compliance-Assistent',
-    welcomeTitle:'Willkommen bei NormWise!',
-    welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',
-    welcomeFree:' kostenlose Fragen.',
-    placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',
-    wallTitle:'Ihre Testversion ist abgeschlossen 🎯',
-    wallSub:'Sie haben alle 25 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',
-    modalTitle:'Plan wählen',
-    modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',
-    youLabel:'Sie', aiLabel:'NormWise KI',
-    month:'/Monat',
-    downloadsTitle:'Ihre Downloads',
-    upgradeToAccess:'Upgraden für Zugang zu Downloads',
-    paidPlanSubs:{
-      starter:'Unbegrenzte KI-Compliance-Fragen — jederzeit fragen.',
-      professional:'Unbegrenzte KI-Fragen + alle Professional-Vorlagen inklusive.',
-      expert:'Voller Expert-Zugang — alle Vorlagen, Gap-Analyse & Prioritäts-Support.'
-    },
-    upgradeFromPlan:'Plan upgraden →',
-    plans:[
-      {
-        badge:'// starter', name:'Starter', price:'€79',
-        features:['Unbegrenzte KI-Compliance-Fragen','ISO 9001 Auditvorbereitung','Gap-Analyse-Beratung','E-Mail-Support'],
-        btn:'Starter wählen →', primary:false,
-        link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'
-      },
-      {
-        badge:'// beliebtester', name:'Professional', price:'€199',
-        features:['Alles in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO-Prozessflüsse PowerPoint','Prioritäts-Support','ISO 9001 · 14001 · 45001'],
-        btn:'Professional wählen →', primary:true,
-        link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
-      },
-      {
-        badge:'// experte', name:'Expert', price:'€499',
-        features:['Alles in Professional','Vollständige ISO-Gap-Analyse Excel','Individuelle Vorlagen','Telefon-Support','Persönlicher Compliance-Experte'],
-        btn:'Expert wählen →', primary:false,
-        link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
-      }
-    ]
-  },
-  fr: {
-    logout:'Se déconnecter',
-    trialTitle:'Essai gratuit actif',
-    questionsRemaining:'questions gratuites restantes.',
-    upgradeBtn:'Changer de plan →',
-    trialEnded:'🔒 Essai terminé — choisissez un plan',
-    trialEndedSub:'Vous avez utilisé vos 25 questions gratuites.',
-    choosePlan:'Choisir un plan →',
-    questionsUsed:'Questions utilisées',
-    trialUsage:"Utilisation de l'essai",
-    chatTitle:'Assistant Conformité ISO',
-    welcomeTitle:'Bienvenue sur NormWise !',
-    welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",
-    welcomeFree:' questions gratuites.',
-    placeholder:"Questions sur ISO 9001, audits...",
-    wallTitle:'Votre essai est terminé 🎯',
-    wallSub:"Vous avez utilisé vos 25 questions. Choisissez un plan.",
-    modalTitle:'Choisissez votre plan',
-    modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",
-    youLabel:'Vous', aiLabel:'NormWise IA',
-    month:'/mois',
-    downloadsTitle:'Vos Téléchargements',
-    upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',
-    paidPlanSubs:{
-      starter:'Questions conformité IA illimitées — posez tout, à tout moment.',
-      professional:'Questions IA illimitées + tous les modèles Professional inclus.',
-      expert:'Accès expert complet — tous les modèles, analyse des écarts & support prioritaire.'
-    },
-    upgradeFromPlan:'Changer de plan →',
-    plans:[
-      {
-        badge:'// starter', name:'Starter', price:'€79',
-        features:['Questions conformité IA illimitées','Préparation audit ISO 9001','Conseils analyse des écarts','Support par e-mail'],
-        btn:'Choisir Starter →', primary:false,
-        link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'
-      },
-      {
-        badge:'// plus populaire', name:'Professional', price:'€199',
-        features:['Tout dans Starter','IMS Masterplan Excel (EN/DE/FR)','Flux de processus ISO PowerPoint','Support prioritaire','ISO 9001 · 14001 · 45001'],
-        btn:'Choisir Professional →', primary:true,
-        link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'
-      },
-      {
-        badge:'// expert', name:'Expert', price:'€499',
-        features:['Tout dans Professional','Analyse des écarts ISO complète Excel','Modèles personnalisés','Support téléphonique','Expert conformité dédié'],
-        btn:'Choisir Expert →', primary:false,
-        link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'
-      }
-    ]
-  }
+const SUPABASE_URL='https://iasasvucmmvehppvbwtm.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
+const FREE_LIMIT=5;
+const STORAGE_KEY='nw_questions_used';
+const GITHUB_BASE='https://raw.githubusercontent.com/AlinaBrunen/normwise/main/downloads';
+let currentUser=null,questionsUsed=0,isPaidUser=false,userPlan='free',currentLang=localStorage.getItem('nw_lang')||'en',userEmail='';
+const T={
+  en:{logout:'Log out',trialTitle:'Free Trial Active',questionsRemaining:'free questions remaining.',upgradeBtn:'Upgrade Plan →',trialEnded:'🔒 Trial ended — choose a plan to continue',trialEndedSub:"You've used all 5 free questions. Upgrade to keep going.",choosePlan:'Choose a Plan →',questionsUsed:'Questions used',trialUsage:'Trial usage',chatTitle:'ISO Compliance Assistant',welcomeTitle:'Welcome to NormWise!',welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',welcomeFree:' free questions to explore.',placeholder:'Ask about ISO 9001, audits, gap analysis...',wallTitle:'Your free trial is complete 🎯',wallSub:"You've used all 5 free questions. Choose a plan below to continue.",modalTitle:'Choose your plan',modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',youLabel:'You',aiLabel:'NormWise AI',month:'/month',downloadsTitle:'Your Downloads',upgradeToAccess:'Upgrade to access downloads',paidPlanSubs:{starter:'Unlimited AI compliance questions — ask anything, anytime.',professional:'Unlimited AI questions + all Professional templates included.',expert:'Full expert access — all templates, gap analysis & priority support.'},upgradeFromPlan:'Upgrade Plan →',plans:[{badge:'// starter',name:'Starter',price:'€79',features:['Unlimited AI compliance questions','ISO 9001 audit preparation','Gap analysis guidance','Email support'],btn:'Get Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// most popular',name:'Professional',price:'€199',features:['Everything in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO Process Flows PowerPoint','Priority support','ISO 9001 · 14001 · 45001'],btn:'Get Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Everything in Professional','Full ISO Gap Analysis Excel','Custom templates','Phone support','Dedicated compliance expert'],btn:'Get Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  de:{logout:'Abmelden',trialTitle:'Kostenlose Testversion aktiv',questionsRemaining:'kostenlose Fragen verbleibend.',upgradeBtn:'Plan upgraden →',trialEnded:'🔒 Test beendet — wählen Sie einen Plan',trialEndedSub:'Sie haben alle 5 kostenlosen Fragen genutzt.',choosePlan:'Plan wählen →',questionsUsed:'Genutzte Fragen',trialUsage:'Testnutzung',chatTitle:'ISO-Compliance-Assistent',welcomeTitle:'Willkommen bei NormWise!',welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',welcomeFree:' kostenlose Fragen.',placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',wallTitle:'Ihre Testversion ist abgeschlossen 🎯',wallSub:'Sie haben alle 5 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',modalTitle:'Plan wählen',modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',youLabel:'Sie',aiLabel:'NormWise KI',month:'/Monat',downloadsTitle:'Ihre Downloads',upgradeToAccess:'Upgraden für Zugang zu Downloads',paidPlanSubs:{starter:'Unbegrenzte KI-Compliance-Fragen — jederzeit fragen.',professional:'Unbegrenzte KI-Fragen + alle Professional-Vorlagen inklusive.',expert:'Voller Expert-Zugang — alle Vorlagen, Gap-Analyse & Prioritäts-Support.'},upgradeFromPlan:'Plan upgraden →',plans:[{badge:'// starter',name:'Starter',price:'€79',features:['Unbegrenzte KI-Compliance-Fragen','ISO 9001 Auditvorbereitung','Gap-Analyse-Beratung','E-Mail-Support'],btn:'Starter wählen →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// beliebtester',name:'Professional',price:'€199',features:['Alles in Starter','IMS Masterplan Excel (EN/DE/FR)','ISO-Prozessflüsse PowerPoint','Prioritäts-Support','ISO 9001 · 14001 · 45001'],btn:'Professional wählen →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// experte',name:'Expert',price:'€499',features:['Alles in Professional','Vollständige ISO-Gap-Analyse Excel','Individuelle Vorlagen','Telefon-Support','Persönlicher Compliance-Experte'],btn:'Expert wählen →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  fr:{logout:'Se déconnecter',trialTitle:'Essai gratuit actif',questionsRemaining:'questions gratuites restantes.',upgradeBtn:'Changer de plan →',trialEnded:'🔒 Essai terminé — choisissez un plan',trialEndedSub:'Vous avez utilisé vos 5 questions gratuites.',choosePlan:'Choisir un plan →',questionsUsed:'Questions utilisées',trialUsage:"Utilisation de l'essai",chatTitle:'Assistant Conformité ISO',welcomeTitle:'Bienvenue sur NormWise !',welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",welcomeFree:' questions gratuites.',placeholder:"Questions sur ISO 9001, audits...",wallTitle:'Votre essai est terminé 🎯',wallSub:"Vous avez utilisé vos 5 questions. Choisissez un plan.",modalTitle:'Choisissez votre plan',modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",youLabel:'Vous',aiLabel:'NormWise IA',month:'/mois',downloadsTitle:'Vos Téléchargements',upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',paidPlanSubs:{starter:'Questions conformité IA illimitées — posez tout, à tout moment.',professional:'Questions IA illimitées + tous les modèles Professional inclus.',expert:'Accès expert complet — tous les modèles, analyse des écarts & support prioritaire.'},upgradeFromPlan:'Changer de plan →',plans:[{badge:'// starter',name:'Starter',price:'€79',features:['Questions conformité IA illimitées','Préparation audit ISO 9001','Conseils analyse des écarts','Support par e-mail'],btn:'Choisir Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// plus populaire',name:'Professional',price:'€199',features:['Tout dans Starter','IMS Masterplan Excel (EN/DE/FR)','Flux de processus ISO PowerPoint','Support prioritaire','ISO 9001 · 14001 · 45001'],btn:'Choisir Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Tout dans Professional','Analyse des écarts ISO complète Excel','Modèles personnalisés','Support téléphonique','Expert conformité dédié'],btn:'Choisir Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]}
 };
-
-// ── DOWNLOADS CONFIG ─────────────────────────────────────────────────────────
-const DOWNLOADS = {
-  professional: {
-    en:[
-      { name:'IMS Masterplan', desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'ISO Process Flows', desc:'9 core processes · All 3 standards · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-    ],
-    de:[
-      { name:'IMS Masterplan', desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'ISO-Prozessflüsse', desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-    ],
-    fr:[
-      { name:'IMS Masterplan', desc:'Contexte · Parties prenantes · Risques · Plan d\'action · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'Flux de processus ISO', desc:'9 processus clés · 3 normes · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-    ]
-  },
-  expert: {
-    en:[
-      { name:'IMS Masterplan', desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'ISO Process Flows', desc:'9 core processes · All 3 standards · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-      { name:'ISO Gap Analysis', desc:'Full gap analysis · 4 sheets · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
-    ],
-    de:[
-      { name:'IMS Masterplan', desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'ISO-Prozessflüsse', desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-      { name:'ISO-Gap-Analyse', desc:'Vollständige Gap-Analyse · 4 Blätter · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
-    ],
-    fr:[
-      { name:'IMS Masterplan', desc:'Contexte · Parties prenantes · Risques · Plan d\'action · EN/DE/FR', icon:'📊', type:'excel', file:'NormWise_Professional_IMS_Masterplan.xlsx' },
-      { name:'Flux de processus ISO', desc:'9 processus clés · 3 normes · EN/DE/FR', icon:'📋', type:'word', file:'NormWise_Professional_Process_Flows.docx' },
-      { name:'Analyse des écarts ISO', desc:'Analyse complète · 4 feuilles · ISO 9001·14001·45001', icon:'📈', type:'excel', file:'NormWise_Expert_Gap_Analysis.xlsx' },
-    ]
-  }
-};
-
-// ── RENDER PLAN CARDS ────────────────────────────────────────────────────────
-function renderPlans(containerId) {
-  const t = T[currentLang] || T.en;
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const enc = userEmail ? encodeURIComponent(userEmail) : '';
-  container.innerHTML = t.plans.map(p => `
-    <div class="plan-card${p.primary ? ' featured' : ''}">
-      <div class="plan-badge">${p.badge}</div>
-      <div class="plan-name">${p.name}</div>
-      <div class="plan-price">${p.price} <span>${t.month}</span></div>
-      <ul class="plan-features">
-        ${p.features.map(f => `<li>${f}</li>`).join('')}
-      </ul>
-      <a href="${p.link}${enc ? '?prefilled_email='+enc : ''}" class="btn-plan${p.primary?' primary':''}" target="_blank">${p.btn}</a>
-    </div>
-  `).join('');
-}
-
-// ── RENDER DOWNLOADS ─────────────────────────────────────────────────────────
-function renderDownloads() {
-  const grid = document.getElementById('download-grid');
-  if (!grid) return;
-
-  const plan = userPlan === 'expert' ? 'expert' : 'professional';
-  const langFiles = DOWNLOADS[plan]?.[currentLang] || DOWNLOADS[plan]?.['en'] || [];
-
-  grid.innerHTML = langFiles.map(f => `
-    <a href="${GITHUB_BASE}/${f.file}" download="${f.file}" class="download-card">
-      <div class="download-icon ${f.type}">${f.icon}</div>
-      <div class="download-info">
-        <div class="download-name">${f.name}</div>
-        <div class="download-desc">${f.desc}</div>
-      </div>
-      <span class="download-arrow">↓</span>
-    </a>
-  `).join('');
-
-  // Update plan tag
-  const tag = document.getElementById('downloads-plan-tag');
-  if (tag) {
-    tag.textContent = userPlan === 'expert' ? 'Expert' : 'Professional';
-    tag.className = 'downloads-plan-tag ' + (userPlan === 'expert' ? 'expert' : 'professional');
-  }
-}
-
-// ── APPLY TRANSLATIONS ───────────────────────────────────────────────────────
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('nw_lang', lang);
-  applyTranslations();
-  if (isPaidUser && (userPlan === 'professional' || userPlan === 'expert')) renderDownloads();
-}
-
-function applyTranslations() {
-  const t = T[currentLang] || T.en;
-
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  const ab = document.getElementById('lang-' + currentLang);
-  if (ab) ab.classList.add('active');
-
-  document.getElementById('btn-logout').textContent              = t.logout;
-  document.getElementById('txt-trial-title').textContent         = t.trialTitle;
-  document.getElementById('txt-questions-remaining').textContent = t.questionsRemaining;
-  document.getElementById('txt-upgrade-btn').textContent         = t.upgradeBtn;
-  document.getElementById('txt-trial-ended').textContent         = t.trialEnded;
-  document.getElementById('txt-trial-ended-sub').textContent     = t.trialEndedSub;
-  document.getElementById('txt-choose-plan').textContent         = t.choosePlan;
-  document.getElementById('txt-questions-used').textContent      = t.questionsUsed;
-  document.getElementById('txt-trial-usage').textContent         = t.trialUsage;
-  document.getElementById('txt-chat-title').textContent          = t.chatTitle;
-  document.getElementById('txt-welcome-title').textContent       = t.welcomeTitle;
-  document.getElementById('chat-input').placeholder              = t.placeholder;
-  document.getElementById('txt-wall-title').textContent          = t.wallTitle;
-  document.getElementById('txt-wall-sub').textContent            = t.wallSub;
-  document.getElementById('txt-modal-title').textContent         = t.modalTitle;
-  document.getElementById('txt-modal-sub').textContent           = t.modalSub;
-  document.getElementById('txt-downloads-title').textContent     = t.downloadsTitle;
-  document.getElementById('btn-upgrade-plan').textContent        = t.upgradeFromPlan;
-
-  const wql = document.getElementById('welcome-questions-left');
-  const qCount = wql ? wql.textContent : '25';
-  document.getElementById('txt-welcome-sub').innerHTML =
-    t.welcomeSub + '<strong id="welcome-questions-left">' + qCount + '</strong>' + t.welcomeFree;
-
-  renderPlans('wall-plans');
-  renderPlans('modal-plans');
-}
-
-// ── AUTH ─────────────────────────────────────────────────────────────────────
-async function checkAuth() {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() }
-    });
-    const data = await res.json();
-    if (!data.id) { window.location.href = 'login.html'; return; }
-    currentUser = data;
-    userEmail   = data.email;
-    document.getElementById('nav-email').textContent = data.email;
-    await checkPlan(data.email);
-    loadUsage();
-    updateUI();
-  } catch(e) { window.location.href = 'login.html'; }
-}
-
-function getToken() {
-  try {
-    const raw = localStorage.getItem('sb-iasasvucmmvehppvbwtm-auth-token');
-    if (raw) return JSON.parse(raw).access_token;
-  } catch(e){}
-  for (let i = 0; i < localStorage.length; i++) {
-    const k = localStorage.key(i);
-    if (k && k.includes('auth-token')) {
-      try { return JSON.parse(localStorage.getItem(k)).access_token; } catch(e){}
-    }
-  }
-  return '';
-}
-
-async function checkPlan(email) {
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(email)}&select=plan,status`,
-      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() } }
-    );
-    const rows = await res.json();
-    if (rows && rows.length > 0 && rows[0].status === 'active') {
-      isPaidUser = true;
-      userPlan   = rows[0].plan || 'starter';
-    }
-  } catch(e) {}
-}
-
-// ── USAGE ────────────────────────────────────────────────────────────────────
-function loadUsage() {
-  const stored = localStorage.getItem(STORAGE_KEY + '_' + (currentUser?.id || 'guest'));
-  questionsUsed = stored ? parseInt(stored) : 0;
-}
-
-function saveUsage() {
-  localStorage.setItem(STORAGE_KEY + '_' + (currentUser?.id || 'guest'), questionsUsed);
-}
-
-// ── UPDATE UI ────────────────────────────────────────────────────────────────
-function updateUI() {
-  const t   = T[currentLang] || T.en;
-  const left = Math.max(0, FREE_LIMIT - questionsUsed);
-  const pct  = Math.min(100, (questionsUsed / FREE_LIMIT) * 100);
-
-  document.getElementById('used-count').textContent = questionsUsed;
-  document.getElementById('questions-left').textContent = left;
-  const wql = document.getElementById('welcome-questions-left');
-  if (wql) wql.textContent = left;
-  document.getElementById('usage-bar').style.width = pct + '%';
-  document.getElementById('usage-bar').classList.toggle('green', pct < 50);
-
-  if (isPaidUser) {
-    // ── PAID USER ──
-    document.getElementById('trial-banner').style.display   = 'none';
-    document.getElementById('upgrade-banner').style.display = 'none';
-    document.getElementById('upgrade-wall').style.display   = 'none';
-    document.getElementById('chat-section').style.display   = 'block';
-    document.getElementById('chat-status').textContent      = '// ' + userPlan + '_plan';
-
-    // Counter shows unlimited
-    document.getElementById('counter-limit').textContent = '/ ∞';
-    document.getElementById('txt-trial-usage').textContent = userPlan.charAt(0).toUpperCase() + userPlan.slice(1) + ' Plan';
-    document.getElementById('usage-bar').style.width = '100%';
-    document.getElementById('usage-bar').style.background = userPlan === 'expert' ? '#D97706' : userPlan === 'professional' ? '#c0392b' : '#1a3fa8';
-
-    // Paid banner
-    const paidBanner = document.getElementById('paid-banner');
-    paidBanner.style.display = 'flex';
-    const dot = document.getElementById('paid-dot');
-    dot.className = 'paid-dot ' + userPlan;
-    document.getElementById('paid-plan-title').textContent =
-      (userPlan.charAt(0).toUpperCase() + userPlan.slice(1)) + ' Plan Active';
-    document.getElementById('paid-plan-sub').textContent =
-      t.paidPlanSubs[userPlan] || t.paidPlanSubs.starter;
-
-    // Hide upgrade button for expert plan (top tier)
-    document.getElementById('btn-upgrade-plan').style.display = userPlan === 'expert' ? 'none' : 'inline-block';
-
-    // Nav badge
-    const navBadge = document.getElementById('plan-badge-nav');
-    navBadge.textContent = userPlan.charAt(0).toUpperCase() + userPlan.slice(1);
-    navBadge.className = 'plan-badge-nav ' + userPlan;
-    navBadge.style.display = 'block';
-
-    // Downloads for professional & expert
-    if (userPlan === 'professional' || userPlan === 'expert') {
-      document.getElementById('downloads-section').style.display = 'block';
-      renderDownloads();
-    }
-
-    enableChat();
-
-  } else if (questionsUsed >= FREE_LIMIT) {
-    // ── TRIAL ENDED ──
-    document.getElementById('trial-banner').style.display   = 'none';
-    document.getElementById('paid-banner').style.display    = 'none';
-    document.getElementById('upgrade-banner').style.display = 'flex';
-    document.getElementById('upgrade-wall').style.display   = 'block';
-    document.getElementById('chat-section').style.display   = 'none';
-    document.getElementById('downloads-section').style.display = 'none';
-    renderPlans('wall-plans');
-
-  } else {
-    // ── FREE TRIAL ──
-    document.getElementById('trial-banner').style.display   = 'flex';
-    document.getElementById('paid-banner').style.display    = 'none';
-    document.getElementById('upgrade-banner').style.display = 'none';
-    document.getElementById('upgrade-wall').style.display   = 'none';
-    document.getElementById('chat-section').style.display   = 'block';
-    document.getElementById('downloads-section').style.display = 'none';
-    enableChat();
-  }
-}
-
-function enableChat() {
-  document.getElementById('chat-input').disabled = false;
-  document.getElementById('send-btn').disabled   = false;
-}
-
-// ── CHAT ─────────────────────────────────────────────────────────────────────
-const messages = [];
-
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-}
-
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
-
-async function sendMessage() {
-  if (!isPaidUser && questionsUsed >= FREE_LIMIT) { openUpgradeModal(); return; }
-  const input = document.getElementById('chat-input');
-  const text  = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  input.style.height = 'auto';
-  const welcome = document.getElementById('welcome-msg');
-  if (welcome) welcome.remove();
-  appendMessage('user', text);
-  messages.push({ role: 'user', content: text });
-  document.getElementById('send-btn').disabled   = true;
-  document.getElementById('chat-input').disabled = true;
-
-  const typing = document.createElement('div');
-  typing.className = 'msg ai';
-  typing.id = 'typing-indicator';
-  typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
-  document.getElementById('chat-messages').appendChild(typing);
-  scrollToBottom();
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages })
-    });
-    const data = await res.json();
-    const reply = data.reply || 'Sorry, I could not process your request.';
-    typing.remove();
-    appendMessage('ai', reply);
-    messages.push({ role: 'assistant', content: reply });
-    if (!isPaidUser) { questionsUsed++; saveUsage(); updateUI(); }
-  } catch(e) {
-    typing.remove();
-    appendMessage('ai', 'Connection error. Please try again.');
-  }
-
-  document.getElementById('send-btn').disabled   = false;
-  document.getElementById('chat-input').disabled = false;
-  document.getElementById('chat-input').focus();
-}
-
-function appendMessage(role, text) {
-  const t = T[currentLang] || T.en;
-  const wrap = document.createElement('div');
-  wrap.className = 'msg ' + role;
-  const label = role === 'user' ? t.youLabel : t.aiLabel;
-  wrap.innerHTML = `<div class="msg-label">${label}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
-  document.getElementById('chat-messages').appendChild(wrap);
-  scrollToBottom();
-}
-
-function scrollToBottom() {
-  const el = document.getElementById('chat-messages');
-  el.scrollTop = el.scrollHeight;
-}
-
-// ── MODAL ────────────────────────────────────────────────────────────────────
-function openUpgradeModal(e) {
-  if (e) e.preventDefault();
-  renderPlans('modal-plans');
-  document.getElementById('upgrade-modal').classList.add('open');
-}
-function closeUpgradeModal() {
-  document.getElementById('upgrade-modal').classList.remove('open');
-}
-document.getElementById('upgrade-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeUpgradeModal();
-});
-
-// ── LOGOUT ───────────────────────────────────────────────────────────────────
-async function handleLogout() {
-  try {
-    await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
-      method: 'POST',
-      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + getToken() }
-    });
-  } catch(e) {}
-  for (let i = localStorage.length - 1; i >= 0; i--) {
-    const k = localStorage.key(i);
-    if (k && (k.includes('auth-token') || k.includes('supabase'))) localStorage.removeItem(k);
-  }
-  window.location.href = 'login.html';
-}
-
-// ── INIT ─────────────────────────────────────────────────────────────────────
+const DOWNLOADS={professional:{en:[{name:'IMS Masterplan',desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR',icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'ISO Process Flows',desc:'9 core processes · All 3 standards · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'}],de:[{name:'IMS Masterplan',desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR',icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'ISO-Prozessflüsse',desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'}],fr:[{name:'IMS Masterplan',desc:"Contexte · Parties prenantes · Risques · Plan d'action · EN/DE/FR",icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'Flux de processus ISO',desc:'9 processus clés · 3 normes · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'}]},expert:{en:[{name:'IMS Masterplan',desc:'Context · Stakeholders · Risks · Action Plan · EN/DE/FR',icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'ISO Process Flows',desc:'9 core processes · All 3 standards · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'},{name:'ISO Gap Analysis',desc:'Full gap analysis · 4 sheets · ISO 9001·14001·45001',icon:'📈',type:'excel',file:'NormWise_Expert_Gap_Analysis.xlsx'}],de:[{name:'IMS Masterplan',desc:'Kontext · Stakeholder · Risiken · Maßnahmenplan · EN/DE/FR',icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'ISO-Prozessflüsse',desc:'9 Kernprozesse · Alle 3 Normen · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'},{name:'ISO-Gap-Analyse',desc:'Vollständige Gap-Analyse · 4 Blätter · ISO 9001·14001·45001',icon:'📈',type:'excel',file:'NormWise_Expert_Gap_Analysis.xlsx'}],fr:[{name:'IMS Masterplan',desc:"Contexte · Parties prenantes · Risques · Plan d'action · EN/DE/FR",icon:'📊',type:'excel',file:'NormWise_Professional_IMS_Masterplan.xlsx'},{name:'Flux de processus ISO',desc:'9 processus clés · 3 normes · EN/DE/FR',icon:'📋',type:'word',file:'NormWise_Professional_Process_Flows.docx'},{name:'Analyse des écarts ISO',desc:'Analyse complète · 4 feuilles · ISO 9001·14001·45001',icon:'📈',type:'excel',file:'NormWise_Expert_Gap_Analysis.xlsx'}]}};
+function renderPlans(id){const t=T[currentLang]||T.en;const c=document.getElementById(id);if(!c)return;const enc=userEmail?encodeURIComponent(userEmail):'';c.innerHTML=t.plans.map(p=>`<div class="plan-card${p.primary?' featured':''}"><div class="plan-badge">${p.badge}</div><div class="plan-name">${p.name}</div><div class="plan-price">${p.price} <span>${t.month}</span></div><ul class="plan-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul><a href="${p.link}${enc?'?prefilled_email='+enc:''}" class="btn-plan${p.primary?' primary':''}" target="_blank">${p.btn}</a></div>`).join('');}
+function renderDownloads(){const grid=document.getElementById('download-grid');if(!grid)return;const plan=userPlan==='expert'?'expert':'professional';const lf=DOWNLOADS[plan]?.[currentLang]||DOWNLOADS[plan]?.['en']||[];grid.innerHTML=lf.map(f=>`<a href="${GITHUB_BASE}/${f.file}" download="${f.file}" class="download-card"><div class="download-icon ${f.type}">${f.icon}</div><div class="download-info"><div class="download-name">${f.name}</div><div class="download-desc">${f.desc}</div></div><span class="download-arrow">↓</span></a>`).join('');const tag=document.getElementById('downloads-plan-tag');if(tag){tag.textContent=userPlan==='expert'?'Expert':'Professional';tag.className='downloads-plan-tag '+(userPlan==='expert'?'expert':'professional');}}
+function setLang(lang){currentLang=lang;localStorage.setItem('nw_lang',lang);applyTranslations();if(isPaidUser&&(userPlan==='professional'||userPlan==='expert'))renderDownloads();}
+function applyTranslations(){const t=T[currentLang]||T.en;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));const ab=document.getElementById('lang-'+currentLang);if(ab)ab.classList.add('active');document.getElementById('btn-logout').textContent=t.logout;document.getElementById('txt-trial-title').textContent=t.trialTitle;document.getElementById('txt-questions-remaining').textContent=t.questionsRemaining;document.getElementById('txt-upgrade-btn').textContent=t.upgradeBtn;document.getElementById('txt-trial-ended').textContent=t.trialEnded;document.getElementById('txt-trial-ended-sub').textContent=t.trialEndedSub;document.getElementById('txt-choose-plan').textContent=t.choosePlan;document.getElementById('txt-questions-used').textContent=t.questionsUsed;document.getElementById('txt-trial-usage').textContent=t.trialUsage;document.getElementById('txt-chat-title').textContent=t.chatTitle;document.getElementById('txt-welcome-title').textContent=t.welcomeTitle;document.getElementById('chat-input').placeholder=t.placeholder;document.getElementById('txt-wall-title').textContent=t.wallTitle;document.getElementById('txt-wall-sub').textContent=t.wallSub;document.getElementById('txt-modal-title').textContent=t.modalTitle;document.getElementById('txt-modal-sub').textContent=t.modalSub;document.getElementById('txt-downloads-title').textContent=t.downloadsTitle;document.getElementById('btn-upgrade-plan').textContent=t.upgradeFromPlan;const wql=document.getElementById('welcome-questions-left');const qc=wql?wql.textContent:'5';document.getElementById('txt-welcome-sub').innerHTML=t.welcomeSub+'<strong id="welcome-questions-left">'+qc+'</strong>'+t.welcomeFree;renderPlans('wall-plans');renderPlans('modal-plans');}
+async function checkAuth(){try{const res=await fetch(`${SUPABASE_URL}/auth/v1/user`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+getToken()}});const data=await res.json();if(!data.id){window.location.href='login.html';return;}currentUser=data;userEmail=data.email;document.getElementById('nav-email').textContent=data.email;await checkPlan(data.email);loadUsage();updateUI();}catch(e){window.location.href='login.html';}}
+function getToken(){try{const raw=localStorage.getItem('sb-iasasvucmmvehppvbwtm-auth-token');if(raw)return JSON.parse(raw).access_token;}catch(e){}for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.includes('auth-token')){try{return JSON.parse(localStorage.getItem(k)).access_token;}catch(e){}}}return '';}
+async function checkPlan(email){try{const res=await fetch(`${SUPABASE_URL}/rest/v1/users?email=eq.${encodeURIComponent(email)}&select=plan,status`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+getToken()}});const rows=await res.json();if(rows&&rows.length>0&&rows[0].status==='active'){isPaidUser=true;userPlan=rows[0].plan||'starter';}}catch(e){}}
+function loadUsage(){const s=localStorage.getItem(STORAGE_KEY+'_'+(currentUser?.id||'guest'));questionsUsed=s?parseInt(s):0;}
+function saveUsage(){localStorage.setItem(STORAGE_KEY+'_'+(currentUser?.id||'guest'),questionsUsed);}
+function updateUI(){const t=T[currentLang]||T.en;const left=Math.max(0,FREE_LIMIT-questionsUsed);const pct=Math.min(100,(questionsUsed/FREE_LIMIT)*100);document.getElementById('used-count').textContent=questionsUsed;document.getElementById('questions-left').textContent=left;const wql=document.getElementById('welcome-questions-left');if(wql)wql.textContent=left;document.getElementById('usage-bar').style.width=pct+'%';document.getElementById('usage-bar').classList.toggle('green',pct<50);if(isPaidUser){document.getElementById('trial-banner').style.display='none';document.getElementById('upgrade-banner').style.display='none';document.getElementById('upgrade-wall').style.display='none';document.getElementById('chat-section').style.display='block';document.getElementById('chat-status').textContent='// '+userPlan+'_plan';document.getElementById('counter-limit').textContent='/ ∞';document.getElementById('txt-trial-usage').textContent=userPlan.charAt(0).toUpperCase()+userPlan.slice(1)+' Plan';document.getElementById('usage-bar').style.width='100%';document.getElementById('usage-bar').style.background=userPlan==='expert'?'#D97706':userPlan==='professional'?'#c0392b':'#1a3fa8';const pb=document.getElementById('paid-banner');pb.style.display='flex';const dot=document.getElementById('paid-dot');dot.className='paid-dot '+userPlan;document.getElementById('paid-plan-title').textContent=(userPlan.charAt(0).toUpperCase()+userPlan.slice(1))+' Plan Active';document.getElementById('paid-plan-sub').textContent=t.paidPlanSubs[userPlan]||t.paidPlanSubs.starter;document.getElementById('btn-upgrade-plan').style.display=userPlan==='expert'?'none':'inline-block';const nb=document.getElementById('plan-badge-nav');nb.textContent=userPlan.charAt(0).toUpperCase()+userPlan.slice(1);nb.className='plan-badge-nav '+userPlan;nb.style.display='block';if(userPlan==='professional'||userPlan==='expert'){document.getElementById('downloads-section').style.display='block';renderDownloads();}enableChat();}else if(questionsUsed>=FREE_LIMIT){document.getElementById('trial-banner').style.display='none';document.getElementById('paid-banner').style.display='none';document.getElementById('upgrade-banner').style.display='flex';document.getElementById('upgrade-wall').style.display='block';document.getElementById('chat-section').style.display='none';document.getElementById('downloads-section').style.display='none';renderPlans('wall-plans');}else{document.getElementById('trial-banner').style.display='flex';document.getElementById('paid-banner').style.display='none';document.getElementById('upgrade-banner').style.display='none';document.getElementById('upgrade-wall').style.display='none';document.getElementById('chat-section').style.display='block';document.getElementById('downloads-section').style.display='none';enableChat();}}
+function enableChat(){document.getElementById('chat-input').disabled=false;document.getElementById('send-btn').disabled=false;}
+const messages=[];
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+async function sendMessage(){if(!isPaidUser&&questionsUsed>=FREE_LIMIT){openUpgradeModal();return;}const input=document.getElementById('chat-input');const text=input.value.trim();if(!text)return;input.value='';input.style.height='auto';const welcome=document.getElementById('welcome-msg');if(welcome)welcome.remove();appendMessage('user',text);messages.push({role:'user',content:text});document.getElementById('send-btn').disabled=true;document.getElementById('chat-input').disabled=true;const typing=document.createElement('div');typing.className='msg ai';typing.id='typing-indicator';typing.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';document.getElementById('chat-messages').appendChild(typing);scrollToBottom();try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});const data=await res.json();const reply=data.reply||'Sorry, I could not process your request.';typing.remove();appendMessage('ai',reply);messages.push({role:'assistant',content:reply});if(!isPaidUser){questionsUsed++;saveUsage();updateUI();}}catch(e){typing.remove();appendMessage('ai','Connection error. Please try again.');}document.getElementById('send-btn').disabled=false;document.getElementById('chat-input').disabled=false;document.getElementById('chat-input').focus();}
+function appendMessage(role,text){const t=T[currentLang]||T.en;const wrap=document.createElement('div');wrap.className='msg '+role;const label=role==='user'?t.youLabel:t.aiLabel;wrap.innerHTML=`<div class="msg-label">${label}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;document.getElementById('chat-messages').appendChild(wrap);scrollToBottom();}
+function scrollToBottom(){const el=document.getElementById('chat-messages');el.scrollTop=el.scrollHeight;}
+function openUpgradeModal(e){if(e)e.preventDefault();renderPlans('modal-plans');document.getElementById('upgrade-modal').classList.add('open');}
+function closeUpgradeModal(){document.getElementById('upgrade-modal').classList.remove('open');}
+document.getElementById('upgrade-modal').addEventListener('click',function(e){if(e.target===this)closeUpgradeModal();});
+async function handleLogout(){try{await fetch(`${SUPABASE_URL}/auth/v1/logout`,{method:'POST',headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+getToken()}});}catch(e){}for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&(k.includes('auth-token')||k.includes('supabase')))localStorage.removeItem(k);}window.location.href='login.html';}
 applyTranslations();
 checkAuth();
 </script>

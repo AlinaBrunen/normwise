@@ -109,17 +109,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <div class="demo-header">
     <div class="demo-chip" id="demo-chip">// free_demo · no_account_needed</div>
     <h1 id="demo-title">Try NormWise Free</h1>
-    <p id="demo-subtitle">Ask 5 questions about ISO 9001, 14001 or 45001 — no account needed</p>
+    <p id="demo-subtitle">Ask 3 questions about ISO 9001, 14001 or 45001 — no account needed</p>
   </div>
 
   <div class="counter-bar">
-    <span class="counter-text" id="counter-text">5 free questions remaining</span>
+    <span class="counter-text" id="counter-text">3 free questions remaining</span>
     <div class="counter-dots">
       <div class="counter-dot available" id="dot1"></div>
       <div class="counter-dot available" id="dot2"></div>
       <div class="counter-dot available" id="dot3"></div>
-      <div class="counter-dot available" id="dot4"></div>
-      <div class="counter-dot available" id="dot5"></div>
     </div>
   </div>
 
@@ -139,7 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <div class="msg-bubble" id="welcome-msg">
           <strong>Welcome to NormWise!</strong><br/><br/>
           Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I'll give you clause-referenced answers from an auditor's perspective.<br/><br/>
-          You have <strong>5 free questions</strong> — no account needed. Enjoy!
+          You have <strong>3 free questions</strong> — no account needed. Enjoy!
         </div>
       </div>
     </div>
@@ -155,7 +153,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
   <div class="upgrade-box" id="upgrade-box">
     <div class="promo-badge" id="promo-badge">🎉 LAUNCH OFFER — 50% OFF FIRST MONTH</div>
-    <h3 id="upgrade-title">You've used all 5 free questions!</h3>
+    <h3 id="upgrade-title">You've used all 3 free questions!</h3>
     <div class="upgrade-price-row">
       <span class="upgrade-price-old" id="upgrade-price-old">€79</span>
       <span class="upgrade-price-new">€39<span class="upgrade-price-period">/mo</span></span>
@@ -170,7 +168,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 </div>
 
 <script>
-let questionsLeft = 5;
+let questionsLeft = 3;
 let isLoading = false;
 let currentLang = 'en';
 
@@ -178,7 +176,7 @@ const translations = {
   en: {
     chip: '// free_demo · no_account_needed',
     title: 'Try NormWise Free',
-    subtitle: 'Ask 5 questions about ISO 9001, 14001 or 45001 — no account needed',
+    subtitle: 'Ask 3 questions about ISO 9001, 14001 or 45001 — no account needed',
     counterText: (n) => n > 0 ? `${n} free question${n>1?'s':''}` : 'No free questions remaining',
     sqLabel: '// try_asking',
     questions: [
@@ -188,11 +186,11 @@ const translations = {
       'What are the key changes in ISO 9001:2026?'
     ],
     chatTitle: '// normwise_ai · iso_compliance_assistant',
-    welcome: '<strong>Welcome to NormWise!</strong><br/><br/>Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>5 free questions</strong> — no account needed. Enjoy!',
+    welcome: '<strong>Welcome to NormWise!</strong><br/><br/>Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>3 free questions</strong> — no account needed. Enjoy!',
     placeholder: 'Ask about ISO 9001, 14001 or 45001...',
     sendBtn: 'Ask →',
     promoBadge: '🎉 LAUNCH OFFER — 50% OFF FIRST MONTH',
-    upgradeTitle: "You've used all 5 free questions!",
+    upgradeTitle: "You've used all 3 free questions!",
     upgradePriceOld: '€79',
     upgradePriceNote: '// first_month_50%_off · then_€79/mo · cancel_anytime',
     upgradeText: 'Ready for unlimited ISO compliance assistance? Start your plan today — 50% off your first month.',
@@ -204,7 +202,7 @@ const translations = {
   de: {
     chip: '// kostenlose_demo · kein_konto_erforderlich',
     title: 'NormWise kostenlos testen',
-    subtitle: '5 Fragen zu ISO 9001, 14001 oder 45001 — ohne Konto',
+    subtitle: '3 Fragen zu ISO 9001, 14001 oder 45001 — ohne Konto',
     counterText: (n) => n > 0 ? `${n} kostenlose Frage${n>1?'n':''}` : 'Keine kostenlosen Fragen mehr',
     sqLabel: '// beispielfragen',
     questions: [
@@ -214,11 +212,11 @@ const translations = {
       'Was sind die wichtigsten Änderungen in ISO 9001:2026?'
     ],
     chatTitle: '// normwise_ki · iso_compliance_assistent',
-    welcome: '<strong>Willkommen bei NormWise!</strong><br/><br/>Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>5 kostenlose Fragen</strong> — kein Konto erforderlich.',
+    welcome: '<strong>Willkommen bei NormWise!</strong><br/><br/>Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>3 kostenlose Fragen</strong> — kein Konto erforderlich.',
     placeholder: 'Frage zu ISO 9001, 14001 oder 45001...',
     sendBtn: 'Fragen →',
     promoBadge: '🎉 LAUNCH-ANGEBOT — 50% RABATT IM ERSTEN MONAT',
-    upgradeTitle: 'Sie haben alle 5 kostenlosen Fragen genutzt!',
+    upgradeTitle: 'Sie haben alle 3 kostenlosen Fragen genutzt!',
     upgradePriceOld: '€79',
     upgradePriceNote: '// erster_monat_50%_rabatt · danach_€79/Mo · jederzeit_kündbar',
     upgradeText: 'Bereit für unbegrenzte ISO-Compliance-Unterstützung? Jetzt Plan starten — 50% Rabatt im ersten Monat.',
@@ -230,7 +228,7 @@ const translations = {
   fr: {
     chip: '// démo_gratuite · sans_compte',
     title: 'Essayez NormWise gratuitement',
-    subtitle: 'Posez 5 questions sur ISO 9001, 14001 ou 45001 — sans compte',
+    subtitle: 'Posez 3 questions sur ISO 9001, 14001 ou 45001 — sans compte',
     counterText: (n) => n > 0 ? `${n} question${n>1?'s':''} gratuite${n>1?'s':''}` : 'Plus de questions gratuites',
     sqLabel: '// exemples_de_questions',
     questions: [
@@ -240,11 +238,11 @@ const translations = {
       'Quels sont les principaux changements dans ISO 9001:2026 ?'
     ],
     chatTitle: '// normwise_ia · assistant_conformité_iso',
-    welcome: '<strong>Bienvenue sur NormWise !</strong><br/><br/>Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>5 questions gratuites</strong> — sans compte requis.',
+    welcome: '<strong>Bienvenue sur NormWise !</strong><br/><br/>Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>3 questions gratuites</strong> — sans compte requis.',
     placeholder: 'Question sur ISO 9001, 14001 ou 45001...',
     sendBtn: 'Demander →',
     promoBadge: '🎉 OFFRE DE LANCEMENT — 50% SUR LE PREMIER MOIS',
-    upgradeTitle: 'Vous avez utilisé vos 5 questions gratuites !',
+    upgradeTitle: 'Vous avez utilisé vos 3 questions gratuites !',
     upgradePriceOld: '€79',
     upgradePriceNote: '// premier_mois_50%_off · ensuite_€79/mois · résiliation_libre',
     upgradeText: 'Prêt pour une assistance ISO illimitée ? Démarrez votre plan aujourd\'hui — 50% sur le premier mois.',
@@ -321,9 +319,9 @@ function setDemoLang(lang, btn) {
 }
 
 function updateDots() {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 3; i++) {
     const dot = document.getElementById('dot' + i);
-    if (i <= 5 - questionsLeft) {
+    if (i <= 3 - questionsLeft) {
       dot.classList.remove('available');
       dot.classList.add('used');
     } else {
