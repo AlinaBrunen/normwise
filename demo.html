@@ -98,26 +98,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
     <span class="nav-wordmark">Norm<span>Wise</span></span>
   </a>
   <div class="nav-links">
-    <button class="nav-lang active" onclick="setDemoLang('en',this)">🇬🇧</button>
-    <button class="nav-lang" onclick="setDemoLang('de',this)">🇩🇪</button>
-    <button class="nav-lang" onclick="setDemoLang('fr',this)">🇫🇷</button>
+    <button class="nav-lang active" onclick="setDemoLang('en',this)">&#127468;&#127463;</button>
+    <button class="nav-lang" onclick="setDemoLang('de',this)">&#127465;&#127466;</button>
+    <button class="nav-lang" onclick="setDemoLang('fr',this)">&#127467;&#127479;</button>
   </div>
-  <a href="register.html" class="btn-signup" id="demo-signup-btn">Start Free Trial</a>
+  <a href="register.html" class="btn-signup" id="demo-signup-btn">Test for Free</a>
 </nav>
 
 <div class="page">
   <div class="demo-header">
-    <div class="demo-chip" id="demo-chip">// free_demo · no_account_needed</div>
+    <div class="demo-chip" id="demo-chip">// free_demo &middot; no_account_needed</div>
     <h1 id="demo-title">Try NormWise Free</h1>
-    <p id="demo-subtitle">Ask 3 questions about ISO 9001, 14001 or 45001 — no account needed</p>
+    <p id="demo-subtitle">Ask 5 questions about ISO 9001, 14001 or 45001 &mdash; no account needed</p>
   </div>
 
   <div class="counter-bar">
-    <span class="counter-text" id="counter-text">3 free questions remaining</span>
+    <span class="counter-text" id="counter-text">5 free questions remaining</span>
     <div class="counter-dots">
       <div class="counter-dot available" id="dot1"></div>
       <div class="counter-dot available" id="dot2"></div>
       <div class="counter-dot available" id="dot3"></div>
+      <div class="counter-dot available" id="dot4"></div>
+      <div class="counter-dot available" id="dot5"></div>
     </div>
   </div>
 
@@ -129,7 +131,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <div class="chat-box">
     <div class="chat-header">
       <div class="chat-status"></div>
-      <span class="chat-title" id="chat-title">// normwise_ai · iso_compliance_assistant</span>
+      <span class="chat-title" id="chat-title">// normwise_ai &middot; iso_requirements_assistant</span>
     </div>
     <div class="chat-messages" id="chat-messages">
       <div class="msg">
@@ -137,46 +139,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <div class="msg-bubble" id="welcome-msg">
           <strong>Welcome to NormWise!</strong><br/><br/>
           Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I'll give you clause-referenced answers from an auditor's perspective.<br/><br/>
-          You have <strong>3 free questions</strong> — no account needed. Enjoy!
+          You have <strong>5 free questions</strong> &mdash; no account needed. Enjoy!
         </div>
       </div>
     </div>
     <div class="chat-input-area">
       <textarea class="chat-input" id="chat-input" placeholder="Ask about ISO 9001, 14001 or 45001..." rows="1" onkeydown="handleKey(event)"></textarea>
-      <button class="btn-send" id="send-btn" onclick="sendMessage()">Ask →</button>
+      <button class="btn-send" id="send-btn" onclick="sendMessage()">Ask &rarr;</button>
     </div>
   </div>
 
   <div class="disclaimer" id="disclaimer-box">
-    ⚠️ NormWise provides informational guidance only. All compliance matters should be verified by a certified auditor. ISO is a registered trademark of the International Organization for Standardization.
+    &#9888;&#65039; NormWise provides informational guidance only. All compliance matters should be verified by a certified auditor. ISO is a registered trademark of the International Organization for Standardization.
   </div>
 
   <div class="upgrade-box" id="upgrade-box">
-    <div class="promo-badge" id="promo-badge">🎉 LAUNCH OFFER — 50% OFF FIRST MONTH</div>
-    <h3 id="upgrade-title">You've used all 3 free questions!</h3>
+    <div class="promo-badge" id="promo-badge">&#127881; LAUNCH OFFER &mdash; 50% OFF FIRST MONTH</div>
+    <h3 id="upgrade-title">You've used all 5 free questions!</h3>
     <div class="upgrade-price-row">
-      <span class="upgrade-price-old" id="upgrade-price-old">€79</span>
-      <span class="upgrade-price-new">€39<span class="upgrade-price-period">/mo</span></span>
+      <span class="upgrade-price-old" id="upgrade-price-old">&euro;79</span>
+      <span class="upgrade-price-new">&euro;39<span class="upgrade-price-period">/mo</span></span>
     </div>
-    <p class="upgrade-price-note" id="upgrade-price-note">// first_month_50%_off · then_€79/mo · cancel_anytime</p>
-    <p id="upgrade-text">Ready for unlimited ISO compliance assistance? Start your plan today — 50% off your first month.</p>
+    <p class="upgrade-price-note" id="upgrade-price-note">// first_month_50%_off &middot; then_&euro;79/mo &middot; cancel_anytime</p>
+    <p id="upgrade-text">Ready for unlimited ISO requirements assistance? Start your plan today &mdash; 50% off your first month.</p>
     <div class="upgrade-btns">
-      <a href="register.html?promo=LAUNCH50" class="btn-upgrade-primary" id="upgrade-primary-btn">Claim 50% Off →</a>
+      <a href="register.html?promo=LAUNCH50" class="btn-upgrade-primary" id="upgrade-primary-btn">Claim 50% Off &rarr;</a>
       <a href="index.html#pricing" class="btn-upgrade-secondary" id="upgrade-secondary-btn">See All Plans</a>
     </div>
   </div>
 </div>
 
 <script>
-let questionsLeft = 3;
+let questionsLeft = 5;
 let isLoading = false;
 let currentLang = 'en';
 
 const translations = {
   en: {
-    chip: '// free_demo · no_account_needed',
+    chip: '// free_demo &middot; no_account_needed',
     title: 'Try NormWise Free',
-    subtitle: 'Ask 3 questions about ISO 9001, 14001 or 45001 — no account needed',
+    subtitle: 'Ask 5 questions about ISO 9001, 14001 or 45001 \u2014 no account needed',
     counterText: (n) => n > 0 ? `${n} free question${n>1?'s':''}` : 'No free questions remaining',
     sqLabel: '// try_asking',
     questions: [
@@ -185,71 +187,71 @@ const translations = {
       'What is the difference between a Major NC and a Minor NC in an ISO audit?',
       'What are the key changes in ISO 9001:2026?'
     ],
-    chatTitle: '// normwise_ai · iso_compliance_assistant',
-    welcome: '<strong>Welcome to NormWise!</strong><br/><br/>Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>3 free questions</strong> — no account needed. Enjoy!',
+    chatTitle: '// normwise_ai \u00b7 iso_requirements_assistant',
+    welcome: '<strong>Welcome to NormWise!</strong><br/><br/>Ask me anything about ISO 9001, ISO 14001 or ISO 45001. I\'ll give you clause-referenced answers from an auditor\'s perspective.<br/><br/>You have <strong>5 free questions</strong> \u2014 no account needed. Enjoy!',
     placeholder: 'Ask about ISO 9001, 14001 or 45001...',
-    sendBtn: 'Ask →',
-    promoBadge: '🎉 LAUNCH OFFER — 50% OFF FIRST MONTH',
-    upgradeTitle: "You've used all 3 free questions!",
-    upgradePriceOld: '€79',
-    upgradePriceNote: '// first_month_50%_off · then_€79/mo · cancel_anytime',
-    upgradeText: 'Ready for unlimited ISO compliance assistance? Start your plan today — 50% off your first month.',
-    upgradePrimary: 'Claim 50% Off →',
+    sendBtn: 'Ask \u2192',
+    promoBadge: '\ud83c\udf89 LAUNCH OFFER \u2014 50% OFF FIRST MONTH',
+    upgradeTitle: "You've used all 5 free questions!",
+    upgradePriceOld: '\u20ac79',
+    upgradePriceNote: '// first_month_50%_off \u00b7 then_\u20ac79/mo \u00b7 cancel_anytime',
+    upgradeText: 'Ready for unlimited ISO requirements assistance? Start your plan today \u2014 50% off your first month.',
+    upgradePrimary: 'Claim 50% Off \u2192',
     upgradeSecondary: 'See All Plans',
-    signupBtn: 'Start Free Trial',
-    disclaimer: '⚠️ NormWise provides informational guidance only. All compliance matters should be verified by a certified auditor. ISO is a registered trademark of the International Organization for Standardization.'
+    signupBtn: 'Test for Free',
+    disclaimer: '\u26a0\ufe0f NormWise provides informational guidance only. All compliance matters should be verified by a certified auditor. ISO is a registered trademark of the International Organization for Standardization.'
   },
   de: {
-    chip: '// kostenlose_demo · kein_konto_erforderlich',
+    chip: '// kostenlose_demo \u00b7 kein_konto_erforderlich',
     title: 'NormWise kostenlos testen',
-    subtitle: '3 Fragen zu ISO 9001, 14001 oder 45001 — ohne Konto',
+    subtitle: '5 Fragen zu ISO 9001, 14001 oder 45001 \u2014 ohne Konto',
     counterText: (n) => n > 0 ? `${n} kostenlose Frage${n>1?'n':''}` : 'Keine kostenlosen Fragen mehr',
     sqLabel: '// beispielfragen',
     questions: [
-      'Welche Pflichtinputs sind für die ISO 9001 Managementbewertung (Klausel 9.3) erforderlich?',
-      'Wie identifiziere ich Umweltaspekte und -auswirkungen für ISO 14001?',
+      'Welche Pflichtinputs sind f\u00fcr die ISO 9001 Managementbewertung (Klausel 9.3) erforderlich?',
+      'Wie identifiziere ich Umweltaspekte und -auswirkungen f\u00fcr ISO 14001?',
       'Was ist der Unterschied zwischen einer Major NC und einer Minor NC beim ISO-Audit?',
-      'Was sind die wichtigsten Änderungen in ISO 9001:2026?'
+      'Was sind die wichtigsten \u00c4nderungen in ISO 9001:2026?'
     ],
-    chatTitle: '// normwise_ki · iso_compliance_assistent',
-    welcome: '<strong>Willkommen bei NormWise!</strong><br/><br/>Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>3 kostenlose Fragen</strong> — kein Konto erforderlich.',
+    chatTitle: '// normwise_ki \u00b7 iso_anforderungs_assistent',
+    welcome: '<strong>Willkommen bei NormWise!</strong><br/><br/>Stellen Sie mir jede Frage zu ISO 9001, ISO 14001 oder ISO 45001. Ich antworte klauselgenau aus Auditorenperspektive.<br/><br/>Sie haben <strong>5 kostenlose Fragen</strong> \u2014 kein Konto erforderlich.',
     placeholder: 'Frage zu ISO 9001, 14001 oder 45001...',
-    sendBtn: 'Fragen →',
-    promoBadge: '🎉 LAUNCH-ANGEBOT — 50% RABATT IM ERSTEN MONAT',
-    upgradeTitle: 'Sie haben alle 3 kostenlosen Fragen genutzt!',
-    upgradePriceOld: '€79',
-    upgradePriceNote: '// erster_monat_50%_rabatt · danach_€79/Mo · jederzeit_kündbar',
-    upgradeText: 'Bereit für unbegrenzte ISO-Compliance-Unterstützung? Jetzt Plan starten — 50% Rabatt im ersten Monat.',
-    upgradePrimary: '50% Rabatt sichern →',
-    upgradeSecondary: 'Alle Pläne ansehen',
+    sendBtn: 'Fragen \u2192',
+    promoBadge: '\ud83c\udf89 LAUNCH-ANGEBOT \u2014 50% RABATT IM ERSTEN MONAT',
+    upgradeTitle: 'Sie haben alle 5 kostenlosen Fragen genutzt!',
+    upgradePriceOld: '\u20ac79',
+    upgradePriceNote: '// erster_monat_50%_rabatt \u00b7 danach_\u20ac79/Mo \u00b7 jederzeit_k\u00fcndbar',
+    upgradeText: 'Bereit f\u00fcr unbegrenzte ISO-Unterst\u00fctzung? Jetzt Plan starten \u2014 50% Rabatt im ersten Monat.',
+    upgradePrimary: '50% Rabatt sichern \u2192',
+    upgradeSecondary: 'Alle Pl\u00e4ne ansehen',
     signupBtn: 'Kostenlos testen',
-    disclaimer: '⚠️ NormWise bietet nur informelle Orientierungshilfe. Alle Compliance-Fragen sollten von einem zertifizierten Auditor überprüft werden. ISO ist eine eingetragene Marke der International Organization for Standardization.'
+    disclaimer: '\u26a0\ufe0f NormWise bietet nur informelle Orientierungshilfe. Alle Konformit\u00e4tsfragen sollten von einem zertifizierten Auditor \u00fcberpr\u00fcft werden. ISO ist eine eingetragene Marke der International Organization for Standardization.'
   },
   fr: {
-    chip: '// démo_gratuite · sans_compte',
+    chip: '// d\u00e9mo_gratuite \u00b7 sans_compte',
     title: 'Essayez NormWise gratuitement',
-    subtitle: 'Posez 3 questions sur ISO 9001, 14001 ou 45001 — sans compte',
+    subtitle: 'Posez 5 questions sur ISO 9001, 14001 ou 45001 \u2014 sans compte',
     counterText: (n) => n > 0 ? `${n} question${n>1?'s':''} gratuite${n>1?'s':''}` : 'Plus de questions gratuites',
     sqLabel: '// exemples_de_questions',
     questions: [
       'Quels sont les inputs obligatoires pour la revue de direction ISO 9001 (Clause 9.3) ?',
       'Comment identifier les aspects environnementaux et impacts pour ISO 14001 ?',
-      'Quelle est la différence entre une NC Majeure et une NC Mineure lors d\'un audit ISO ?',
+      'Quelle est la diff\u00e9rence entre une NC Majeure et une NC Mineure lors d\'un audit ISO ?',
       'Quels sont les principaux changements dans ISO 9001:2026 ?'
     ],
-    chatTitle: '// normwise_ia · assistant_conformité_iso',
-    welcome: '<strong>Bienvenue sur NormWise !</strong><br/><br/>Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des réponses référencées clause par clause.<br/><br/>Vous avez <strong>3 questions gratuites</strong> — sans compte requis.',
+    chatTitle: '// normwise_ia \u00b7 assistant_exigences_iso',
+    welcome: '<strong>Bienvenue sur NormWise !</strong><br/><br/>Posez-moi toute question sur ISO 9001, ISO 14001 ou ISO 45001. Je vous fournirai des r\u00e9ponses r\u00e9f\u00e9renc\u00e9es clause par clause.<br/><br/>Vous avez <strong>5 questions gratuites</strong> \u2014 sans compte requis.',
     placeholder: 'Question sur ISO 9001, 14001 ou 45001...',
-    sendBtn: 'Demander →',
-    promoBadge: '🎉 OFFRE DE LANCEMENT — 50% SUR LE PREMIER MOIS',
-    upgradeTitle: 'Vous avez utilisé vos 3 questions gratuites !',
-    upgradePriceOld: '€79',
-    upgradePriceNote: '// premier_mois_50%_off · ensuite_€79/mois · résiliation_libre',
-    upgradeText: 'Prêt pour une assistance ISO illimitée ? Démarrez votre plan aujourd\'hui — 50% sur le premier mois.',
-    upgradePrimary: 'Profiter de -50% →',
+    sendBtn: 'Demander \u2192',
+    promoBadge: '\ud83c\udf89 OFFRE DE LANCEMENT \u2014 50% SUR LE PREMIER MOIS',
+    upgradeTitle: 'Vous avez utilis\u00e9 vos 5 questions gratuites !',
+    upgradePriceOld: '\u20ac79',
+    upgradePriceNote: '// premier_mois_50%_off \u00b7 ensuite_\u20ac79/mois \u00b7 r\u00e9siliation_libre',
+    upgradeText: 'Pr\u00eat pour une assistance ISO illimit\u00e9e ? D\u00e9marrez votre plan aujourd\'hui \u2014 50% sur le premier mois.',
+    upgradePrimary: 'Profiter de -50% \u2192',
     upgradeSecondary: 'Voir tous les tarifs',
     signupBtn: 'Essai gratuit',
-    disclaimer: '⚠️ NormWise fournit des informations à titre indicatif uniquement. Toute question de conformité doit être vérifiée par un auditeur certifié. ISO est une marque déposée de l\'Organisation internationale de normalisation.'
+    disclaimer: '\u26a0\ufe0f NormWise fournit des informations \u00e0 titre indicatif uniquement. Toute question de conformit\u00e9 doit \u00eatre v\u00e9rifi\u00e9e par un auditeur certifi\u00e9. ISO est une marque d\u00e9pos\u00e9e de l\'Organisation internationale de normalisation.'
   }
 };
 
@@ -319,9 +321,9 @@ function setDemoLang(lang, btn) {
 }
 
 function updateDots() {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 5; i++) {
     const dot = document.getElementById('dot' + i);
-    if (i <= 3 - questionsLeft) {
+    if (i <= 5 - questionsLeft) {
       dot.classList.remove('available');
       dot.classList.add('used');
     } else {
@@ -361,7 +363,7 @@ async function sendMessage() {
   const typingId = addTyping();
 
   try {
-    const systemPrompt = `You are NormWise, an expert AI compliance assistant specializing in ISO management systems. You have deep knowledge of ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 and their upcoming 2026/2027 revisions.
+    const systemPrompt = `You are NormWise, an expert AI assistant specializing in ISO management system requirements. You have deep knowledge of ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 and their upcoming 2026/2027 revisions.
 
 LANGUAGE: Detect the user's language and respond 100% in that language (English, German or French).
 
@@ -449,7 +451,7 @@ function removeTyping(id) {
 const saved = localStorage.getItem('nw_lang') || 'en';
 setDemoLang(saved, null);
 document.querySelectorAll('.nav-lang').forEach(b => {
-  const langs = {'🇬🇧':'en','🇩🇪':'de','🇫🇷':'fr'};
+  const langs = {'\u{1F1EC}\u{1F1E7}':'en','\u{1F1E9}\u{1F1EA}':'de','\u{1F1EB}\u{1F1F7}':'fr'};
   if (langs[b.textContent] === saved) b.classList.add('active');
   else b.classList.remove('active');
 });
