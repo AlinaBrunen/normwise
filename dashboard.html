@@ -56,7 +56,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .counter-bar-fill{height:8px;border-radius:99px;background:var(--red);transition:width .5s ease}
 .counter-bar-fill.green{background:#16a34a}
 
-/* ── Downloads Section ── */
+/* Downloads Section */
 .downloads-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:24px;margin-bottom:24px;display:none}
 .downloads-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px}
 .downloads-header h3{font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
@@ -82,17 +82,24 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-dl .arrow{color:var(--muted);font-size:11px;margin-left:auto}
 .btn-dl:hover .arrow{color:#fff}
 
+/* Chat Section */
 .chat-section{background:var(--surface);border:1px solid var(--border2);border-radius:14px;overflow:hidden;margin-bottom:24px}
-.chat-header{padding:18px 24px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px}
-.chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red-glow)}
+.chat-header{padding:18px 24px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.chat-header-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red-glow);flex-shrink:0}
 .chat-header h2{font-size:15px;font-weight:600;letter-spacing:-.3px}
-.chat-header span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-left:auto}
+.chat-mode-tabs{display:flex;gap:6px;margin-left:auto}
+.mode-tab{background:transparent;border:1px solid var(--border2);border-radius:6px;padding:5px 12px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.05em}
+.mode-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.mode-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.interview-tab{display:none}
+.chat-status-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
 .chat-messages{padding:24px;min-height:320px;max-height:460px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
 .chat-messages::-webkit-scrollbar{width:4px}
 .chat-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 .msg{max-width:82%;display:flex;flex-direction:column;gap:4px}
 .msg.user{align-self:flex-end;align-items:flex-end}
 .msg.ai{align-self:flex-start}
+.msg.full-width{max-width:100%;width:100%}
 .msg-bubble{padding:12px 16px;border-radius:12px;font-size:14px;line-height:1.6}
 .msg.user .msg-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px}
 .msg.ai .msg-bubble{background:var(--surface2);color:#fff;border-bottom-left-radius:4px;border:1px solid var(--border2)}
@@ -115,6 +122,25 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .btn-send:hover{background:#a93226;transform:translateY(-1px)}
 .btn-send:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .btn-send svg{width:20px;height:20px;fill:#fff}
+
+/* Entry Card (Interview Mode) */
+.entry-card{background:rgba(192,57,43,.07);border:1px solid rgba(192,57,43,.28);border-radius:10px;padding:16px;width:100%}
+.entry-card-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#f87171;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.entry-field{display:flex;gap:10px;margin-bottom:5px;font-size:13px;line-height:1.5;align-items:flex-start}
+.entry-field-label{color:var(--muted);min-width:130px;font-size:12px;flex-shrink:0;font-family:'IBM Plex Mono',monospace}
+.entry-field-value{color:#fff}
+
+/* Export Bar */
+.export-bar{padding:12px 20px;border-top:1px solid var(--border2);display:none;align-items:center;justify-content:space-between;gap:12px;background:rgba(192,57,43,.04)}
+.export-bar.visible{display:flex}
+.export-count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted2)}
+.export-actions{display:flex;gap:8px;align-items:center}
+.btn-export{background:transparent;border:1px solid rgba(192,57,43,.5);border-radius:7px;padding:7px 16px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--red);cursor:pointer;transition:all .2s}
+.btn-export:hover{background:rgba(192,57,43,.1);border-color:var(--red)}
+.btn-export:disabled{opacity:.4;cursor:not-allowed}
+.btn-reset-interview{background:transparent;border:none;font-size:12px;color:var(--muted);cursor:pointer;padding:4px 8px;font-family:'IBM Plex Mono',monospace}
+.btn-reset-interview:hover{color:#fff}
+
 .upgrade-wall{display:none;text-align:center;padding:40px 24px;background:var(--surface);border:1px solid rgba(192,57,43,.3);border-radius:14px;margin-bottom:24px}
 .upgrade-wall h2{font-size:24px;font-weight:700;margin-bottom:10px;letter-spacing:-.5px}
 .upgrade-wall p{font-size:14px;color:var(--muted2);margin-bottom:32px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
@@ -140,7 +166,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .modal-close:hover{color:#fff}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:8px;letter-spacing:-.5px}
 .modal p{font-size:14px;color:var(--muted2);margin-bottom:24px;line-height:1.6}
-@media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap;gap:8px}.nav-user{display:none}.main{padding:24px 16px}.trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}.chat-messages{min-height:250px}.download-grid{grid-template-columns:1fr}.download-lang-btns{flex-direction:column}}
+@media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap;gap:8px}.nav-user{display:none}.main{padding:24px 16px}.trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}.chat-messages{min-height:250px}.download-grid{grid-template-columns:1fr}.download-lang-btns{flex-direction:column}.chat-mode-tabs{order:3;width:100%}}
 </style>
 </head>
 <body>
@@ -196,7 +222,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     </div>
   </div>
 
-  <!-- Downloads: alle 9 ZIP-Pakete für alle bezahlten Pläne -->
+  <!-- Downloads: alle 9 ZIP-Pakete für ALLE 3 bezahlten Pläne (Starter, Professional, Expert) -->
   <div class="downloads-section" id="downloads-section">
     <div class="downloads-header">
       <h3>📥 <span id="txt-downloads-title">Your Template Packages</span></h3>
@@ -210,7 +236,11 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
     <div class="chat-header">
       <div class="chat-header-dot"></div>
       <h2 id="txt-chat-title">ISO Compliance Assistant</h2>
-      <span id="chat-status">// free_trial</span>
+      <div class="chat-mode-tabs" id="chat-mode-tabs">
+        <button class="mode-tab active" id="tab-chat" onclick="switchMode('chat')">💬 Chat</button>
+        <button class="mode-tab interview-tab" id="tab-interview" onclick="switchMode('interview')">📋 Masterplan</button>
+      </div>
+      <span class="chat-status-tag" id="chat-status">// free_trial</span>
     </div>
     <div class="chat-messages" id="chat-messages">
       <div class="welcome-msg" id="welcome-msg">
@@ -219,11 +249,19 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
         <p id="txt-welcome-sub">Ask me anything about ISO standards, compliance, audits, or gap analysis. You have <strong id="welcome-questions-left">5</strong> free questions to explore.</p>
       </div>
     </div>
+    <div class="export-bar" id="export-bar">
+      <span class="export-count" id="export-count">No entries yet</span>
+      <div class="export-actions">
+        <button class="btn-reset-interview" onclick="resetInterview()">↺ Reset</button>
+        <button class="btn-export" id="btn-export" onclick="exportCSV()" disabled>⬇ Export Masterplan CSV</button>
+      </div>
+    </div>
     <div class="chat-input-area">
       <textarea class="chat-input" id="chat-input" placeholder="Ask about ISO 9001, audits, gap analysis..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="btn-send" id="send-btn" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </div>
   </div>
+
   <div class="upgrade-wall" id="upgrade-wall">
     <h2 id="txt-wall-title">Your free trial is complete 🎯</h2>
     <p id="txt-wall-sub">You've used all 5 free questions. Choose a plan below to continue.</p>
@@ -243,67 +281,26 @@ const SUPABASE_URL='https://iasasvucmmvehppvbwtm.supabase.co';
 const SUPABASE_ANON_KEY='sb_publishable_SUjuHrANbxufHJtpRPdbwQ_g0PQ6C1X';
 const FREE_LIMIT=5;
 const STORAGE_KEY='nw_questions_used';
-// ZIP-Dateien in Supabase Storage oder GitHub ablegen
 const STORAGE_BASE='https://raw.githubusercontent.com/AlinaBrunen/normwise/main/downloads';
 
 let currentUser=null,questionsUsed=0,isPaidUser=false,userPlan='free',currentLang=localStorage.getItem('nw_lang')||'en',userEmail='';
 
-// Alle 9 Pakete — gleich für alle bezahlten Pläne
+// Interview mode state
+let interviewMode=false;
+let interviewMessages=[];
+let collectedEntries=[];
+
+// Alle 9 Pakete — gleich für ALLE 3 bezahlten Pläne
 const PACKAGES=[
-  {
-    id:'iso9001',
-    iconClass:'iso9001',
-    icon:'🔵',
-    files:{
-      de:'NormWise_ISO_9001_DE_FINAL.zip',
-      en:'NormWise_ISO_9001_EN_FINAL.zip',
-      fr:'NormWise_ISO_9001_FR_FINAL.zip'
-    },
-    count:19,
-    labels:{
-      en:{title:'ISO 9001 · Quality Management',meta:'19 files · T00–T16'},
-      de:{title:'ISO 9001 · Qualitätsmanagement',meta:'19 Dateien · T00–T16'},
-      fr:{title:'ISO 9001 · Management de la Qualité',meta:'19 fichiers · T00–T16'}
-    }
-  },
-  {
-    id:'iso14001',
-    iconClass:'iso14001',
-    icon:'🌿',
-    files:{
-      de:'NormWise_ISO_14001_DE_FINAL.zip',
-      en:'NormWise_ISO_14001_EN_FINAL.zip',
-      fr:'NormWise_ISO_14001_FR_FINAL.zip'
-    },
-    count:16,
-    labels:{
-      en:{title:'ISO 14001 · Environmental Management',meta:'16 files · E-01–E-04 + shared'},
-      de:{title:'ISO 14001 · Umweltmanagement',meta:'16 Dateien · E-01–E-04 + gemeinsam'},
-      fr:{title:'ISO 14001 · Management Environnemental',meta:'16 fichiers · E-01–E-04 + communs'}
-    }
-  },
-  {
-    id:'iso45001',
-    iconClass:'iso45001',
-    icon:'🦺',
-    files:{
-      de:'NormWise_ISO_45001_DE_FINAL.zip',
-      en:'NormWise_ISO_45001_EN_FINAL.zip',
-      fr:'NormWise_ISO_45001_FR_FINAL.zip'
-    },
-    count:17,
-    labels:{
-      en:{title:'ISO 45001 · Health & Safety Management',meta:'17 files · S-01–S-05 + shared'},
-      de:{title:'ISO 45001 · Arbeitsschutzmanagement',meta:'17 Dateien · S-01–S-05 + gemeinsam'},
-      fr:{title:'ISO 45001 · Santé et Sécurité au Travail',meta:'17 fichiers · S-01–S-05 + communs'}
-    }
-  }
+  {id:'iso9001',iconClass:'iso9001',icon:'🔵',files:{de:'NormWise_ISO_9001_DE_FINAL.zip',en:'NormWise_ISO_9001_EN_FINAL.zip',fr:'NormWise_ISO_9001_FR_FINAL.zip'},count:19,labels:{en:{title:'ISO 9001 · Quality Management',meta:'19 files · T00–T16'},de:{title:'ISO 9001 · Qualitätsmanagement',meta:'19 Dateien · T00–T16'},fr:{title:'ISO 9001 · Management de la Qualité',meta:'19 fichiers · T00–T16'}}},
+  {id:'iso14001',iconClass:'iso14001',icon:'🌿',files:{de:'NormWise_ISO_14001_DE_FINAL.zip',en:'NormWise_ISO_14001_EN_FINAL.zip',fr:'NormWise_ISO_14001_FR_FINAL.zip'},count:16,labels:{en:{title:'ISO 14001 · Environmental Management',meta:'16 files · E-01–E-04 + shared'},de:{title:'ISO 14001 · Umweltmanagement',meta:'16 Dateien · E-01–E-04 + gemeinsam'},fr:{title:'ISO 14001 · Management Environnemental',meta:'16 fichiers · E-01–E-04 + communs'}}},
+  {id:'iso45001',iconClass:'iso45001',icon:'🦺',files:{de:'NormWise_ISO_45001_DE_FINAL.zip',en:'NormWise_ISO_45001_EN_FINAL.zip',fr:'NormWise_ISO_45001_FR_FINAL.zip'},count:17,labels:{en:{title:'ISO 45001 · Health & Safety Management',meta:'17 files · S-01–S-05 + shared'},de:{title:'ISO 45001 · Arbeitsschutzmanagement',meta:'17 Dateien · S-01–S-05 + gemeinsam'},fr:{title:'ISO 45001 · Santé et Sécurité au Travail',meta:'17 fichiers · S-01–S-05 + communs'}}}
 ];
 
 const T={
-  en:{logout:'Log out',trialTitle:'Free Trial Active',questionsRemaining:'free questions remaining.',upgradeBtn:'Upgrade Plan →',trialEnded:'🔒 Trial ended — choose a plan to continue',trialEndedSub:"You've used all 5 free questions. Upgrade to keep going.",choosePlan:'Choose a Plan →',questionsUsed:'Questions used',trialUsage:'Trial usage',chatTitle:'ISO Compliance Assistant',welcomeTitle:'Welcome to NormWise!',welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',welcomeFree:' free questions to explore.',placeholder:'Ask about ISO 9001, audits, gap analysis...',wallTitle:'Your free trial is complete 🎯',wallSub:"You've used all 5 free questions. Choose a plan below to continue.",modalTitle:'Choose your plan',modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',youLabel:'You',aiLabel:'NormWise AI',month:'/month',downloadsTitle:'Your Template Packages',downloadsSub:'19–17 files per package · DE / EN / FR available',upgradeToAccess:'Upgrade to access downloads',paidPlanSubs:{starter:'All ISO templates included · Starter AI compliance assistant.',professional:'All ISO templates included · Full AI chatbot auto-fill.',expert:'All ISO templates included · AI auto-fill + document gap analysis.'},upgradeFromPlan:'Upgrade →',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['All 9 ISO template packages (DE/EN/FR)','AI compliance assistant','ISO 9001 · 14001 · 45001','Email support'],btn:'Get Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// most popular',name:'Professional',price:'€199',features:['Everything in Starter','AI chatbot auto-fills your documents','Process map PowerPoint included','Priority support'],btn:'Get Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Everything in Professional','Upload docs · AI gap analysis','Custom template generation','Dedicated compliance expert'],btn:'Get Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
-  de:{logout:'Abmelden',trialTitle:'Kostenlose Testversion aktiv',questionsRemaining:'kostenlose Fragen verbleibend.',upgradeBtn:'Plan upgraden →',trialEnded:'🔒 Test beendet — wählen Sie einen Plan',trialEndedSub:'Sie haben alle 5 kostenlosen Fragen genutzt.',choosePlan:'Plan wählen →',questionsUsed:'Genutzte Fragen',trialUsage:'Testnutzung',chatTitle:'ISO-Compliance-Assistent',welcomeTitle:'Willkommen bei NormWise!',welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',welcomeFree:' kostenlose Fragen.',placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',wallTitle:'Ihre Testversion ist abgeschlossen 🎯',wallSub:'Sie haben alle 5 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',modalTitle:'Plan wählen',modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',youLabel:'Sie',aiLabel:'NormWise KI',month:'/Monat',downloadsTitle:'Ihre Vorlagenpakete',downloadsSub:'19–17 Dateien pro Paket · DE / EN / FR verfügbar',upgradeToAccess:'Upgraden für Zugang zu Downloads',paidPlanSubs:{starter:'Alle ISO-Vorlagen inklusive · Starter KI-Compliance-Assistent.',professional:'Alle ISO-Vorlagen inklusive · Vollständiger KI-Chatbot mit Auto-Ausfüllung.',expert:'Alle ISO-Vorlagen inklusive · KI-Auto-Ausfüllung + Dokument-Gap-Analyse.'},upgradeFromPlan:'Plan upgraden →',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['Alle 9 ISO-Vorlagenpakete (DE/EN/FR)','KI-Compliance-Assistent','ISO 9001 · 14001 · 45001','E-Mail-Support'],btn:'Starter wählen →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// beliebtester',name:'Professional',price:'€199',features:['Alles in Starter','KI-Chatbot füllt Dokumente automatisch aus','Prozesslandkarte PowerPoint inklusive','Prioritäts-Support'],btn:'Professional wählen →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// experte',name:'Expert',price:'€499',features:['Alles in Professional','Dokument-Upload · KI-Gap-Analyse','Individuelle Vorlagenerstellung','Persönlicher Compliance-Experte'],btn:'Expert wählen →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
-  fr:{logout:'Se déconnecter',trialTitle:'Essai gratuit actif',questionsRemaining:'questions gratuites restantes.',upgradeBtn:'Changer de plan →',trialEnded:'🔒 Essai terminé — choisissez un plan',trialEndedSub:'Vous avez utilisé vos 5 questions gratuites.',choosePlan:'Choisir un plan →',questionsUsed:'Questions utilisées',trialUsage:"Utilisation de l'essai",chatTitle:'Assistant Conformité ISO',welcomeTitle:'Bienvenue sur NormWise !',welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",welcomeFree:' questions gratuites.',placeholder:"Questions sur ISO 9001, audits...",wallTitle:'Votre essai est terminé 🎯',wallSub:"Vous avez utilisé vos 5 questions. Choisissez un plan.",modalTitle:'Choisissez votre plan',modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",youLabel:'Vous',aiLabel:'NormWise IA',month:'/mois',downloadsTitle:'Vos Packs de Modèles',downloadsSub:'19–17 fichiers par pack · DE / EN / FR disponibles',upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',paidPlanSubs:{starter:'Tous les modèles ISO inclus · Assistant conformité IA Starter.',professional:'Tous les modèles ISO inclus · Chatbot IA avec remplissage automatique.',expert:'Tous les modèles ISO inclus · IA auto-remplissage + analyse des écarts.'},upgradeFromPlan:'Changer de plan →',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['Tous les 9 packs de modèles ISO (DE/EN/FR)',"Assistant conformité IA",'ISO 9001 · 14001 · 45001','Support par e-mail'],btn:'Choisir Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// plus populaire',name:'Professional',price:'€199',features:['Tout dans Starter','Chatbot IA remplit vos documents automatiquement','Cartographie des processus PowerPoint incluse','Support prioritaire'],btn:'Choisir Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Tout dans Professional','Upload docs · Analyse des écarts IA','Génération de modèles personnalisés','Expert conformité dédié'],btn:'Choisir Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]}
+  en:{logout:'Log out',trialTitle:'Free Trial Active',questionsRemaining:'free questions remaining.',upgradeBtn:'Upgrade Plan →',trialEnded:'🔒 Trial ended — choose a plan to continue',trialEndedSub:"You've used all 5 free questions. Upgrade to keep going.",choosePlan:'Choose a Plan →',questionsUsed:'Questions used',trialUsage:'Trial usage',chatTitle:'ISO Compliance Assistant',welcomeTitle:'Welcome to NormWise!',welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',welcomeFree:' free questions to explore.',placeholder:'Ask about ISO 9001, audits, gap analysis...',wallTitle:'Your free trial is complete 🎯',wallSub:"You've used all 5 free questions. Choose a plan below to continue.",modalTitle:'Choose your plan',modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',youLabel:'You',aiLabel:'NormWise AI',month:'/month',downloadsTitle:'Your Template Packages',downloadsSub:'19–17 files per package · DE / EN / FR available',upgradeToAccess:'Upgrade to access downloads',paidPlanSubs:{starter:'All ISO templates included · Starter AI compliance assistant.',professional:'All ISO templates included · Full AI chatbot + Masterplan interview.',expert:'All ISO templates included · AI auto-fill + document gap analysis.'},upgradeFromPlan:'Upgrade →',interviewWelcomeTitle:'Masterplan Interview',interviewWelcomeSub:'I guide you step by step through the Masterplan (T01). Just describe a topic and I will detect the ISO clause automatically.',interviewPlaceholder:'Describe a topic, e.g. "We are introducing new software"...',exportLabel:'entries collected',exportNone:'No entries yet',exportBtn:'⬇ Export Masterplan CSV',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['All 9 ISO template packages (DE/EN/FR)','AI compliance assistant','ISO 9001 · 14001 · 45001','Email support'],btn:'Get Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// most popular',name:'Professional',price:'€199',features:['Everything in Starter','AI chatbot auto-fills your documents','Masterplan interview feature','Priority support'],btn:'Get Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Everything in Professional','Upload docs · AI gap analysis','Custom template generation','Dedicated compliance expert'],btn:'Get Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  de:{logout:'Abmelden',trialTitle:'Kostenlose Testversion aktiv',questionsRemaining:'kostenlose Fragen verbleibend.',upgradeBtn:'Plan upgraden →',trialEnded:'🔒 Test beendet — wählen Sie einen Plan',trialEndedSub:'Sie haben alle 5 kostenlosen Fragen genutzt.',choosePlan:'Plan wählen →',questionsUsed:'Genutzte Fragen',trialUsage:'Testnutzung',chatTitle:'ISO-Compliance-Assistent',welcomeTitle:'Willkommen bei NormWise!',welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',welcomeFree:' kostenlose Fragen.',placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',wallTitle:'Ihre Testversion ist abgeschlossen 🎯',wallSub:'Sie haben alle 5 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',modalTitle:'Plan wählen',modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',youLabel:'Sie',aiLabel:'NormWise KI',month:'/Monat',downloadsTitle:'Ihre Vorlagenpakete',downloadsSub:'19–17 Dateien pro Paket · DE / EN / FR verfügbar',upgradeToAccess:'Upgraden für Zugang zu Downloads',paidPlanSubs:{starter:'Alle ISO-Vorlagen inklusive · Starter KI-Compliance-Assistent.',professional:'Alle ISO-Vorlagen inklusive · KI-Chatbot + Masterplan-Interview.',expert:'Alle ISO-Vorlagen inklusive · KI-Auto-Ausfüllung + Gap-Analyse.'},upgradeFromPlan:'Plan upgraden →',interviewWelcomeTitle:'Masterplan-Interview',interviewWelcomeSub:'Ich führe dich Schritt für Schritt durch den Masterplan (T01). Beschreibe einfach ein Thema – ich erkenne automatisch den ISO-Bereich.',interviewPlaceholder:'Beschreibe ein Thema, z.B. "Wir führen neue Software ein"...',exportLabel:'Einträge erfasst',exportNone:'Noch keine Einträge',exportBtn:'⬇ Masterplan CSV exportieren',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['Alle 9 ISO-Vorlagenpakete (DE/EN/FR)','KI-Compliance-Assistent','ISO 9001 · 14001 · 45001','E-Mail-Support'],btn:'Starter wählen →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// beliebtester',name:'Professional',price:'€199',features:['Alles in Starter','KI-Chatbot füllt Dokumente automatisch aus','Masterplan-Interview-Funktion','Prioritäts-Support'],btn:'Professional wählen →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// experte',name:'Expert',price:'€499',features:['Alles in Professional','Dokument-Upload · KI-Gap-Analyse','Individuelle Vorlagenerstellung','Persönlicher Compliance-Experte'],btn:'Expert wählen →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  fr:{logout:'Se déconnecter',trialTitle:'Essai gratuit actif',questionsRemaining:'questions gratuites restantes.',upgradeBtn:'Changer de plan →',trialEnded:'🔒 Essai terminé — choisissez un plan',trialEndedSub:'Vous avez utilisé vos 5 questions gratuites.',choosePlan:'Choisir un plan →',questionsUsed:'Questions utilisées',trialUsage:"Utilisation de l'essai",chatTitle:'Assistant Conformité ISO',welcomeTitle:'Bienvenue sur NormWise !',welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",welcomeFree:' questions gratuites.',placeholder:"Questions sur ISO 9001, audits...",wallTitle:'Votre essai est terminé 🎯',wallSub:"Vous avez utilisé vos 5 questions. Choisissez un plan.",modalTitle:'Choisissez votre plan',modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",youLabel:'Vous',aiLabel:'NormWise IA',month:'/mois',downloadsTitle:'Vos Packs de Modèles',downloadsSub:'19–17 fichiers par pack · DE / EN / FR disponibles',upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',paidPlanSubs:{starter:'Tous les modèles ISO inclus · Assistant conformité IA Starter.',professional:'Tous les modèles ISO inclus · Chatbot IA + interview Plan Directeur.',expert:'Tous les modèles ISO inclus · IA auto-remplissage + analyse des écarts.'},upgradeFromPlan:'Changer de plan →',interviewWelcomeTitle:'Interview Plan Directeur',interviewWelcomeSub:"Je vous guide étape par étape dans le Plan Directeur (T01). Décrivez simplement un sujet et je détecterai automatiquement la clause ISO.",interviewPlaceholder:'Décrivez un sujet, ex. "Nous introduisons un nouveau logiciel"...',exportLabel:'entrées collectées',exportNone:'Aucune entrée encore',exportBtn:'⬇ Exporter Plan Directeur CSV',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['Tous les 9 packs de modèles ISO (DE/EN/FR)',"Assistant conformité IA",'ISO 9001 · 14001 · 45001','Support par e-mail'],btn:'Choisir Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// plus populaire',name:'Professional',price:'€199',features:['Tout dans Starter','Chatbot IA remplit vos documents automatiquement','Fonction interview Plan Directeur','Support prioritaire'],btn:'Choisir Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Tout dans Professional','Upload docs · Analyse des écarts IA','Génération de modèles personnalisés','Expert conformité dédié'],btn:'Choisir Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]}
 };
 
 function renderPlans(id){const t=T[currentLang]||T.en;const c=document.getElementById(id);if(!c)return;const enc=userEmail?encodeURIComponent(userEmail):'';c.innerHTML=t.plans.map(p=>`<div class="plan-card${p.primary?' featured':''}"><div class="plan-badge">${p.badge}</div><div class="plan-name">${p.name}</div><div class="plan-price">${p.price} <span>${t.month}</span></div><ul class="plan-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul><a href="${p.link}${enc?'?prefilled_email='+enc:''}" class="btn-plan${p.primary?' primary':''}" target="_blank">${p.btn}</a></div>`).join('');}
@@ -316,28 +313,11 @@ function renderDownloads(){
     const lbl=pkg.labels[lang]||pkg.labels.en;
     const flags={de:'🇩🇪',en:'🇬🇧',fr:'🇫🇷'};
     const langLabels={de:'Deutsch',en:'English',fr:'Français'};
-    const btns=['de','en','fr'].map(l=>`
-      <a href="${STORAGE_BASE}/${pkg.files[l]}" download="${pkg.files[l]}" class="btn-dl">
-        <span class="flag">${flags[l]}</span> ${langLabels[l]} <span class="arrow">↓</span>
-      </a>`).join('');
-    return `<div class="download-card">
-      <div class="download-card-header">
-        <div class="download-card-icon ${pkg.iconClass}">${pkg.icon}</div>
-        <div>
-          <div class="download-card-title">${lbl.title}</div>
-          <div class="download-card-meta">${lbl.meta}</div>
-        </div>
-      </div>
-      <div class="download-lang-btns">${btns}</div>
-    </div>`;
+    const btns=['de','en','fr'].map(l=>`<a href="${STORAGE_BASE}/${pkg.files[l]}" download="${pkg.files[l]}" class="btn-dl"><span class="flag">${flags[l]}</span> ${langLabels[l]} <span class="arrow">↓</span></a>`).join('');
+    return `<div class="download-card"><div class="download-card-header"><div class="download-card-icon ${pkg.iconClass}">${pkg.icon}</div><div><div class="download-card-title">${lbl.title}</div><div class="download-card-meta">${lbl.meta}</div></div></div><div class="download-lang-btns">${btns}</div></div>`;
   }).join('');
-  // Plan-Tag aktualisieren
   const tag=document.getElementById('downloads-plan-tag');
-  if(tag){
-    const planName=userPlan.charAt(0).toUpperCase()+userPlan.slice(1);
-    tag.textContent=planName;
-    tag.className='downloads-plan-tag '+userPlan;
-  }
+  if(tag){const planName=userPlan.charAt(0).toUpperCase()+userPlan.slice(1);tag.textContent=planName;tag.className='downloads-plan-tag '+userPlan;}
 }
 
 function setLang(lang){currentLang=lang;localStorage.setItem('nw_lang',lang);applyTranslations();if(isPaidUser)renderDownloads();}
@@ -372,6 +352,78 @@ function applyTranslations(){
   renderPlans('modal-plans');
 }
 
+// ── Interview Mode ──────────────────────────────────────────
+
+function switchMode(mode){
+  interviewMode=(mode==='interview');
+  document.getElementById('tab-chat').classList.toggle('active',!interviewMode);
+  document.getElementById('tab-interview').classList.toggle('active',interviewMode);
+  const container=document.getElementById('chat-messages');
+  container.innerHTML='';
+  const t=T[currentLang]||T.en;
+  if(interviewMode){
+    container.innerHTML=`<div class="welcome-msg"><div class="welcome-icon">📋</div><h3>${t.interviewWelcomeTitle}</h3><p>${t.interviewWelcomeSub}</p></div>`;
+    document.getElementById('chat-status').textContent='// interview_mode';
+    document.getElementById('chat-input').placeholder=t.interviewPlaceholder;
+    document.getElementById('export-bar').classList.add('visible');
+    updateExportBar();
+  } else {
+    const left=Math.max(0,FREE_LIMIT-questionsUsed);
+    container.innerHTML=`<div class="welcome-msg" id="welcome-msg"><div class="welcome-icon">🤖</div><h3 id="txt-welcome-title">${t.welcomeTitle}</h3><p id="txt-welcome-sub">${t.welcomeSub}<strong id="welcome-questions-left">${left}</strong>${t.welcomeFree}</p></div>`;
+    document.getElementById('chat-status').textContent=isPaidUser?'// '+userPlan+'_plan':'// free_trial';
+    document.getElementById('chat-input').placeholder=t.placeholder;
+    document.getElementById('export-bar').classList.remove('visible');
+  }
+}
+
+function updateExportBar(){
+  const t=T[currentLang]||T.en;
+  const count=document.getElementById('export-count');
+  const btn=document.getElementById('btn-export');
+  if(collectedEntries.length>0){
+    count.textContent=collectedEntries.length+' '+t.exportLabel;
+    btn.disabled=false;
+  } else {
+    count.textContent=t.exportNone;
+    btn.disabled=true;
+  }
+}
+
+function resetInterview(){
+  interviewMessages=[];
+  collectedEntries=[];
+  switchMode('interview');
+}
+
+function buildEntryCard(entry,nr){
+  const fields=[
+    ['Kategorie',entry.kategorie],
+    ['Thema/Partei',entry.thema],
+    ['Erfordernisse',entry.erfordernisse],
+    ['Risiko',entry.risiko],
+    ['Chancen',entry.chancen],
+    ['Bewertung',entry.bewertung],
+    ['Maßnahmen',entry.massnahmen],
+    ['Verantwortlich',entry.verantwortlichkeit],
+    ['Bis Wann',entry.bisWann],
+    ['Kennzahlen',entry.kennzahlen]
+  ].filter(([,v])=>v&&v!=='null'&&v!=='');
+  return `<div class="entry-card"><div class="entry-card-title">✅ Eintrag ${nr} erfasst</div>${fields.map(([l,v])=>`<div class="entry-field"><span class="entry-field-label">${l}</span><span class="entry-field-value">${v}</span></div>`).join('')}</div>`;
+}
+
+function exportCSV(){
+  const headers=['Nr.','Kategorie','Thema/Partei','Erfordernisse/Erwartungen','Risiko','Chancen','Bewertung','Maßnahmen','Verantwortlichkeit','Bis Wann','Kennzahlen'];
+  const rows=collectedEntries.map((e,i)=>[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.kennzahlen||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+  const csv=[headers.join(','),...rows].join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='NormWise_Masterplan_'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();URL.revokeObjectURL(url);
+}
+
+// ── Auth & Plan ─────────────────────────────────────────────
+
 async function checkAuth(){try{const res=await fetch(`${SUPABASE_URL}/auth/v1/user`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+getToken()}});const data=await res.json();if(!data.id){window.location.href='login.html';return;}currentUser=data;userEmail=data.email;document.getElementById('nav-email').textContent=data.email;await checkPlan(data.email);loadUsage();updateUI();}catch(e){window.location.href='login.html';}}
 
 function getToken(){try{const raw=localStorage.getItem('sb-iasasvucmmvehppvbwtm-auth-token');if(raw)return JSON.parse(raw).access_token;}catch(e){}for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.includes('auth-token')){try{return JSON.parse(localStorage.getItem(k)).access_token;}catch(e){}}}return '';}
@@ -387,38 +439,32 @@ function updateUI(){
   const pct=Math.min(100,(questionsUsed/FREE_LIMIT)*100);
   document.getElementById('used-count').textContent=questionsUsed;
   document.getElementById('questions-left').textContent=left;
-  const wql=document.getElementById('welcome-questions-left');
-  if(wql)wql.textContent=left;
+  const wql=document.getElementById('welcome-questions-left');if(wql)wql.textContent=left;
   document.getElementById('usage-bar').style.width=pct+'%';
   document.getElementById('usage-bar').classList.toggle('green',pct<50);
 
   if(isPaidUser){
-    // Banners
     document.getElementById('trial-banner').style.display='none';
     document.getElementById('upgrade-banner').style.display='none';
     document.getElementById('upgrade-wall').style.display='none';
-    // Paid banner
     const pb=document.getElementById('paid-banner');pb.style.display='flex';
     const dot=document.getElementById('paid-dot');dot.className='paid-dot '+userPlan;
     document.getElementById('paid-plan-title').textContent=(userPlan.charAt(0).toUpperCase()+userPlan.slice(1))+' Plan Active';
     document.getElementById('paid-plan-sub').textContent=t.paidPlanSubs[userPlan]||t.paidPlanSubs.starter;
-    // Upgrade-Button nur anzeigen wenn nicht Expert
     document.getElementById('btn-upgrade-plan').style.display=userPlan==='expert'?'none':'inline-block';
-    // Nav badge
-    const nb=document.getElementById('plan-badge-nav');
-    nb.textContent=userPlan.charAt(0).toUpperCase()+userPlan.slice(1);
-    nb.className='plan-badge-nav '+userPlan;nb.style.display='block';
-    // Counter
+    const nb=document.getElementById('plan-badge-nav');nb.textContent=userPlan.charAt(0).toUpperCase()+userPlan.slice(1);nb.className='plan-badge-nav '+userPlan;nb.style.display='block';
     document.getElementById('counter-limit').textContent='/ ∞';
     document.getElementById('txt-trial-usage').textContent=userPlan.charAt(0).toUpperCase()+userPlan.slice(1)+' Plan';
     document.getElementById('usage-bar').style.width='100%';
     document.getElementById('usage-bar').style.background=userPlan==='expert'?'#D97706':userPlan==='professional'?'#c0392b':'#1a3fa8';
-    // Chat
     document.getElementById('chat-section').style.display='block';
     document.getElementById('chat-status').textContent='// '+userPlan+'_plan';
-    // Downloads — für ALLE bezahlten Pläne
+    // Downloads für ALLE 3 bezahlten Pläne (Starter, Professional, Expert)
     document.getElementById('downloads-section').style.display='block';
     renderDownloads();
+    // Interview-Tab nur für Professional und Expert
+    const interviewTab=document.getElementById('tab-interview');
+    if(interviewTab)interviewTab.style.display=(userPlan==='professional'||userPlan==='expert')?'block':'none';
     enableChat();
   } else if(questionsUsed>=FREE_LIMIT){
     document.getElementById('trial-banner').style.display='none';
@@ -440,6 +486,9 @@ function updateUI(){
 }
 
 function enableChat(){document.getElementById('chat-input').disabled=false;document.getElementById('send-btn').disabled=false;}
+
+// ── Chat & Interview Send ───────────────────────────────────
+
 const messages=[];
 function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
@@ -450,22 +499,52 @@ async function sendMessage(){
   const text=input.value.trim();if(!text)return;
   input.value='';input.style.height='auto';
   const welcome=document.getElementById('welcome-msg');if(welcome)welcome.remove();
-  appendMessage('user',text);messages.push({role:'user',content:text});
+  appendMessage('user',text);
+  if(interviewMode){interviewMessages.push({role:'user',content:text});}
+  else{messages.push({role:'user',content:text});}
   document.getElementById('send-btn').disabled=true;document.getElementById('chat-input').disabled=true;
   const typing=document.createElement('div');typing.className='msg ai';typing.id='typing-indicator';
   typing.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   document.getElementById('chat-messages').appendChild(typing);scrollToBottom();
   try{
-    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
-    const data=await res.json();
-    const reply=data.reply||'Sorry, I could not process your request.';
-    typing.remove();appendMessage('ai',reply);messages.push({role:'assistant',content:reply});
-    if(!isPaidUser){questionsUsed++;saveUsage();updateUI();}
-  }catch(e){typing.remove();appendMessage('ai','Connection error. Please try again.');}
+    if(interviewMode){
+      const res=await fetch('/api/interview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:interviewMessages,language:currentLang})});
+      const data=await res.json();
+      const reply=data.reply||'Fehler bei der Verarbeitung.';
+      const entry=data.entry||null;
+      interviewMessages.push({role:'assistant',content:reply});
+      typing.remove();
+      if(reply)appendMessage('ai',reply);
+      if(entry){
+        collectedEntries.push(entry);
+        const entryWrap=document.createElement('div');
+        entryWrap.className='msg ai full-width';
+        entryWrap.innerHTML=buildEntryCard(entry,collectedEntries.length);
+        document.getElementById('chat-messages').appendChild(entryWrap);
+        scrollToBottom();
+        updateExportBar();
+      }
+    } else {
+      const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+      const data=await res.json();
+      const reply=data.reply||'Sorry, I could not process your request.';
+      typing.remove();appendMessage('ai',reply);messages.push({role:'assistant',content:reply});
+      if(!isPaidUser){questionsUsed++;saveUsage();updateUI();}
+    }
+  }catch(e){
+    typing.remove();
+    appendMessage('ai',interviewMode?'Verbindungsfehler. Bitte erneut versuchen.':'Connection error. Please try again.');
+  }
   document.getElementById('send-btn').disabled=false;document.getElementById('chat-input').disabled=false;document.getElementById('chat-input').focus();
 }
 
-function appendMessage(role,text){const t=T[currentLang]||T.en;const wrap=document.createElement('div');wrap.className='msg '+role;const label=role==='user'?t.youLabel:t.aiLabel;wrap.innerHTML=`<div class="msg-label">${label}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;document.getElementById('chat-messages').appendChild(wrap);scrollToBottom();}
+function appendMessage(role,text){
+  const t=T[currentLang]||T.en;
+  const wrap=document.createElement('div');wrap.className='msg '+role;
+  const label=role==='user'?t.youLabel:t.aiLabel;
+  wrap.innerHTML=`<div class="msg-label">${label}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
+  document.getElementById('chat-messages').appendChild(wrap);scrollToBottom();
+}
 function scrollToBottom(){const el=document.getElementById('chat-messages');el.scrollTop=el.scrollHeight;}
 function openUpgradeModal(e){if(e)e.preventDefault();renderPlans('modal-plans');document.getElementById('upgrade-modal').classList.add('open');}
 function closeUpgradeModal(){document.getElementById('upgrade-modal').classList.remove('open');}
