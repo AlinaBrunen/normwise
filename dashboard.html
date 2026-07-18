@@ -412,8 +412,8 @@ function buildEntryCard(entry,nr){
 }
 
 function exportCSV(){
-  const headers=['Nr.','Kategorie','Thema/Partei','Erfordernisse/Erwartungen','Risiko','Chancen','Bewertung','Maßnahmen','Verantwortlichkeit','Bis Wann','Kennzahlen'];
-  const rows=collectedEntries.map((e,i)=>[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.kennzahlen||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
+  const headers=['Nr.','Kategorie','Thema/Partei','Erfordernisse/Erwartungen','Risiko','Chancen','Bewertung','Maßnahmen','Verantwortlichkeit','Bis Wann','Wirksamkeit geprüft (gem. ISO 9001:2026 Kap. 6.3)','Änderungen System','Kennzahlen'];
+  const rows=collectedEntries.map((e,i)=>[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.wirksamkeit||'',e.aenderungen||'',e.kennzahlen||''].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(','));
   const csv=[headers.join(','),...rows].join('\n');
   const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
   const url=URL.createObjectURL(blob);
