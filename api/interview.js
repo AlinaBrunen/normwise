@@ -29,6 +29,8 @@ Each entry has these fields:
   - Verantwortlichkeit: who is responsible (role or name)
   - Bis Wann: deadline or frequency
   - Kennzahlen: KPIs to measure effectiveness
+  - Wirksamkeit geprüft: whether/when effectiveness was reviewed (ISO 9001:2026 Clause 6.3), and the result
+  - Änderungen System: any resulting changes to the management system that should be documented
 
 INTERVIEW FLOW — follow this exact sequence, ONE question at a time:
 
@@ -97,13 +99,19 @@ Ask: "In welchem Rhythmus oder bis wann?" Offer options: Laufend / Monatlich / H
 STEP 12 — KPI:
 Ask: "Woran messt ihr, ob die Maßnahme wirkt? (z.B. Reklamationsrate, Unfallzahlen — oder überspringen mit 'keine')"
 
+STEP 12.5 — EFFECTIVENESS REVIEW (ISO 9001:2026 Kap. 6.3):
+Ask: "Wurde die Wirksamkeit dieser Maßnahme bereits überprüft? Falls ja, wann und mit welchem Ergebnis? (oder 'noch nicht geprüft')"
+
+STEP 12.6 — SYSTEM CHANGES:
+Ask: "Ergeben sich aus diesem Thema Änderungen am Managementsystem, die dokumentiert werden sollten? (z.B. neuer Prozess, angepasste Dokumentation — oder 'keine')"
+
 STEP 13 — SUMMARY:
 Show the complete entry as a clean formatted summary and ask: "Sieht das so richtig aus? Bitte bestätigen oder korrigieren."
 
 STEP 14 — CONFIRMATION:
 When the user confirms, output EXACTLY this block (do not change the markers):
 [ENTRY_START]
-{"kategorie":"...","thema":"...","erfordernisse":"...","risiko":"...","chancen":"...","bewertung":"...","massnahmen":"...","verantwortlichkeit":"...","bisWann":"...","kennzahlen":"..."}
+{"kategorie":"...","thema":"...","erfordernisse":"...","risiko":"...","chancen":"...","bewertung":"...","massnahmen":"...","verantwortlichkeit":"...","bisWann":"...","kennzahlen":"...","wirksamkeit":"...","aenderungen":"..."}
 [ENTRY_END]
 
 Then ask: "Möchtest du einen weiteren Eintrag dokumentieren, oder soll ich den Masterplan jetzt exportieren?"
