@@ -168,7 +168,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 .modal p{font-size:14px;color:var(--muted2);margin-bottom:24px;line-height:1.6}
 @media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap;gap:8px}.nav-user{display:none}.main{padding:24px 16px}.trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}.chat-messages{min-height:250px}.download-grid{grid-template-columns:1fr}.download-lang-btns{flex-direction:column}.chat-mode-tabs{order:3;width:100%}}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
 </head>
 <body>
 <nav class="nav">
@@ -412,24 +412,72 @@ function buildEntryCard(entry,nr){
   return `<div class="entry-card"><div class="entry-card-title">✅ Eintrag ${nr} erfasst</div>${fields.map(([l,v])=>`<div class="entry-field"><span class="entry-field-label">${l}</span><span class="entry-field-value">${v}</span></div>`).join('')}</div>`;
 }
 
-function exportExcel(){
+async function exportExcel(){
   const t=T[currentLang]||T.en;
   const headers=t.masterplanHeaders;
-  const titleRows={
-    de:['NormWise — Masterplan','Kontext der Organisation · Interessierte Parteien · Risiken & Chancen · Maßnahmenplan','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Klauseln 4.1, 4.2, 6.1, 6.3'],
-    en:['NormWise — Master Plan','Organizational Context · Interested Parties · Risks & Opportunities · Action Plan','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3'],
-    fr:['NormWise — Plan Directeur','Contexte de l\'Organisation · Parties Intéressées · Risques & Opportunités · Plan d\'Actions','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3']
+  const labels={
+    de:{title:'NormWise — Masterplan',subtitle:'Kontext der Organisation · Interessierte Parteien · Risiken & Chancen · Maßnahmenplan',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Klauseln 4.1, 4.2, 6.1, 6.3',company:'Unternehmen:',createdBy:'Erstellt von:',date:'Datum:',version:'Version:'},
+    en:{title:'NormWise — Master Plan',subtitle:'Organizational Context · Interested Parties · Risks & Opportunities · Action Plan',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3',company:'Company:',createdBy:'Created by:',date:'Date:',version:'Version:'},
+    fr:{title:'NormWise — Plan Directeur',subtitle:'Contexte de l\'Organisation · Parties Intéressées · Risques & Opportunités · Plan d\'Actions',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3',company:'Entreprise:',createdBy:'Créé par:',date:'Date:',version:'Version:'}
   };
-  const titles=titleRows[currentLang]||titleRows.en;
-  const dataRows=collectedEntries.map((e,i)=>[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.wirksamkeit||'',e.aenderungen||'',e.kennzahlen||'']);
-  const sheetData=[[titles[0]],[titles[1]],[titles[2]],[],headers,...dataRows];
-  const ws=XLSX.utils.aoa_to_sheet(sheetData);
-  ws['!cols']=[{wch:5},{wch:12},{wch:22},{wch:28},{wch:22},{wch:22},{wch:12},{wch:28},{wch:18},{wch:14},{wch:26},{wch:20},{wch:22}];
-  ws['!merges']=[{s:{r:0,c:0},e:{r:0,c:12}},{s:{r:1,c:0},e:{r:1,c:12}},{s:{r:2,c:0},e:{r:2,c:12}}];
-  const wb=XLSX.utils.book_new();
+  const l=labels[currentLang]||labels.en;
   const sheetNames={de:'DE — Masterplan',en:'EN — Master Plan',fr:'FR — Plan Directeur'};
-  XLSX.utils.book_append_sheet(wb,ws,sheetNames[currentLang]||sheetNames.en);
-  XLSX.writeFile(wb,'NormWise_Masterplan_'+new Date().toISOString().slice(0,10)+'.xlsx');
+
+  const wb=new ExcelJS.Workbook();
+  const ws=wb.addWorksheet(sheetNames[currentLang]||sheetNames.en);
+  ws.columns=[{width:5},{width:14},{width:24},{width:36},{width:28},{width:26},{width:11},{width:30},{width:18},{width:11},{width:26},{width:24},{width:22}];
+
+  const darkFill={type:'pattern',pattern:'solid',fgColor:{argb:'FF070C18'}};
+  const lightFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF8FAFF'}};
+  const grayFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF1F5F9'}};
+  const redFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFC0392B'}};
+
+  ws.mergeCells('A1:M1');
+  ws.getCell('A1').value=l.title;
+  ws.getCell('A1').font={name:'Arial',size:14,bold:true,color:{argb:'FFFFFFFF'}};
+  ws.getCell('A1').fill=darkFill;
+  ws.getRow(1).height=22;
+
+  ws.mergeCells('A2:M2');
+  ws.getCell('A2').value=l.subtitle;
+  ws.getCell('A2').font={name:'Arial',size:10,color:{argb:'FF94A3B8'}};
+  ws.getCell('A2').fill=darkFill;
+
+  ws.mergeCells('A3:M3');
+  ws.getCell('A3').value=l.clauses;
+  ws.getCell('A3').font={name:'Arial',size:9,color:{argb:'FF64748B'}};
+  ws.getCell('A3').fill=lightFill;
+
+  ws.getCell('A4').value=l.company;ws.getCell('A4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('A4').fill=grayFill;
+  ws.getCell('D4').value=l.createdBy;ws.getCell('D4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('D4').fill=grayFill;
+  ws.getCell('D4').value=l.createdBy;
+  ws.getCell('G4').value=userEmail||'';ws.getCell('G4').fill=grayFill;
+  ws.getCell('J4').value=l.date;ws.getCell('J4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('J4').fill=grayFill;
+  ws.getCell('K4').value=new Date().toLocaleDateString(currentLang==='de'?'de-DE':currentLang==='fr'?'fr-FR':'en-GB');ws.getCell('K4').fill=grayFill;
+  for(const addr of ['B4','C4','E4','F4','H4','I4','L4','M4']){ws.getCell(addr).fill=grayFill;}
+
+  const headerRow=ws.getRow(5);
+  headers.forEach((h,i)=>{
+    const cell=headerRow.getCell(i+1);
+    cell.value=h;
+    cell.font={name:'Arial',size:9,bold:true,color:{argb:'FFFFFFFF'}};
+    cell.fill=redFill;
+    cell.alignment={wrapText:true,vertical:'middle'};
+  });
+  headerRow.height=28;
+
+  collectedEntries.forEach((e,i)=>{
+    const row=ws.getRow(6+i);
+    const vals=[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.wirksamkeit||'',e.aenderungen||'',e.kennzahlen||''];
+    vals.forEach((v,idx)=>{row.getCell(idx+1).value=v;row.getCell(idx+1).font={name:'Arial',size:9};row.getCell(idx+1).alignment={wrapText:true,vertical:'top'};});
+  });
+
+  const buf=await wb.xlsx.writeBuffer();
+  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='NormWise_Masterplan_'+new Date().toISOString().slice(0,10)+'.xlsx';
+  a.click();URL.revokeObjectURL(url);
 }
 
 // ── Auth & Plan ─────────────────────────────────────────────
