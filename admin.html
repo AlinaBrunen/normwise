@@ -604,9 +604,9 @@
         <div class="stat-sub">paying customers</div>
       </div>
       <div class="stat-card warn">
-        <div class="stat-label">Monthly Revenue</div>
+        <div class="stat-label">Annual Revenue</div>
         <div class="stat-value" id="stat-mrr">—</div>
-        <div class="stat-sub">estimated MRR (EUR)</div>
+        <div class="stat-sub">estimated ARR (EUR)</div>
       </div>
       <div class="stat-card red">
         <div class="stat-label">Free / Inactive</div>
@@ -658,7 +658,7 @@
   let allUsers = [];
   let currentFilter = 'all';
 
-  const PLAN_PRICES = { starter: 79, professional: 199, expert: 499 };
+  const PLAN_PRICES = { starter: 97, professional: 199, expert: 499 };
 
   function doLogin() {
     const email = document.getElementById('login-email').value.trim().toLowerCase();
@@ -833,7 +833,7 @@
       const cards = plans.map(p => `
         <div class="plan-card">
           <div class="plan-name">${p.name}</div>
-          <div class="plan-price">€${p.price}<span>/mo</span></div>
+          <div class="plan-price">€${p.price}<span>/yr</span></div>
           <ul class="plan-features">
             ${(p.features || []).map(f => `<li>${f}</li>`).join('')}
           </ul>
