@@ -418,7 +418,7 @@ function exportExcel(){
   const titleRows={
     de:['NormWise — Masterplan','Kontext der Organisation · Interessierte Parteien · Risiken & Chancen · Maßnahmenplan','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Klauseln 4.1, 4.2, 6.1, 6.3'],
     en:['NormWise — Master Plan','Organizational Context · Interested Parties · Risks & Opportunities · Action Plan','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3'],
-    fr:['NormWise — Plan Directeur','Contexte de l\\'Organisation · Parties Intéressées · Risques & Opportunités · Plan d\\'Actions','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3']
+    fr:['NormWise — Plan Directeur','Contexte de l\'Organisation · Parties Intéressées · Risques & Opportunités · Plan d\'Actions','ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3']
   };
   const titles=titleRows[currentLang]||titleRows.en;
   const dataRows=collectedEntries.map((e,i)=>[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.wirksamkeit||'',e.aenderungen||'',e.kennzahlen||'']);
