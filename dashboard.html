@@ -170,6 +170,7 @@ html,body{background:#070c18;min-height:100vh;color:#fff;font-family:'Space Grot
 @media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap;gap:8px}.nav-user{display:none}.main{padding:24px 16px}.trial-banner,.paid-banner,.upgrade-banner{flex-direction:column;align-items:flex-start}.chat-messages{min-height:250px}.download-grid{grid-template-columns:1fr}.download-lang-btns{flex-direction:column}.chat-mode-tabs{order:3;width:100%}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<script src="https://unpkg.com/docx@8/build/index.js"></script>
 </head>
 <body>
 <nav class="nav">
@@ -313,9 +314,9 @@ const PACKAGES=[
 ];
 
 const T={
-  en:{logout:'Log out',trialTitle:'Free Trial Active',questionsRemaining:'free questions remaining.',upgradeBtn:'Upgrade Plan →',trialEnded:'🔒 Trial ended — choose a plan to continue',trialEndedSub:"You've used all 5 free questions. Upgrade to keep going.",choosePlan:'Choose a Plan →',questionsUsed:'Questions used',trialUsage:'Trial usage',chatTitle:'ISO Compliance Assistant',welcomeTitle:'Welcome to NormWise!',welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',welcomeFree:' free questions to explore.',placeholder:'Ask about ISO 9001, audits, gap analysis...',wallTitle:'Your free trial is complete 🎯',wallSub:"You've used all 5 free questions. Choose a plan below to continue.",modalTitle:'Choose your plan',modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',youLabel:'You',aiLabel:'NormWise AI',month:'/month',downloadsTitle:'Your Template Packages',downloadsSub:'19–17 files per package · DE / EN / FR available',upgradeToAccess:'Upgrade to access downloads',paidPlanSubs:{starter:'All ISO templates included · Starter AI compliance assistant.',professional:'All ISO templates included · Full AI chatbot + Masterplan interview.',expert:'All ISO templates included · AI Masterplan + Management Review assistant · We handle your Gap Analysis for you.'},upgradeFromPlan:'Upgrade →',interviewWelcomeTitle:'Masterplan Interview',interviewWelcomeSub:'I guide you step by step through the Masterplan (T01). Just describe a topic and I will detect the ISO clause automatically.',interviewPlaceholder:'Describe a topic, e.g. "We are introducing new software"...',exportLabel:'entries collected',exportNone:'No entries yet',exportBtn:'⬇ Export Masterplan Excel',masterplanHeaders:['No.','Category','Topic / Party','Requirements / Expectations','Risk','Opportunities','Rating','Actions','Responsibility','Due Date','Effectiveness Checked (per ISO 9001:2026 Cl. 6.3)','System Changes','KPIs / Metrics'],reviewWelcomeTitle:'Management Review Assistant',reviewWelcomeSub:'I guide you through all 8 mandatory inputs of the Management Review under ISO 9001 Clause 9.3, then generate a ready-to-export record.',reviewPlaceholder:'Answer the question, or describe your situation...',reviewExportLabel:'Management Review ready',reviewExportNone:'No review recorded yet',reviewExportBtn:'⬇ Export Management Review',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['AI Q&A on ISO 9001, 14001 & 45001','DE/EN/FR','Incl. 2026/2027 draft','All required documents for ISO 9001, 14001 & 45001 (DE/EN/FR)','Email support (48h)'],btn:'Get Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// most popular',name:'Professional',price:'€199',features:['Everything in Starter','Masterplan interview — AI fills it out for you','Priority support'],btn:'Get Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Everything in Professional','AI-guided Management Review assistant','We handle your Gap Analysis for you','Same-day support'],btn:'Get Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
-  de:{logout:'Abmelden',trialTitle:'Kostenlose Testversion aktiv',questionsRemaining:'kostenlose Fragen verbleibend.',upgradeBtn:'Plan upgraden →',trialEnded:'🔒 Test beendet — wählen Sie einen Plan',trialEndedSub:'Sie haben alle 5 kostenlosen Fragen genutzt.',choosePlan:'Plan wählen →',questionsUsed:'Genutzte Fragen',trialUsage:'Testnutzung',chatTitle:'ISO-Compliance-Assistent',welcomeTitle:'Willkommen bei NormWise!',welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',welcomeFree:' kostenlose Fragen.',placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',wallTitle:'Ihre Testversion ist abgeschlossen 🎯',wallSub:'Sie haben alle 5 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',modalTitle:'Plan wählen',modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',youLabel:'Sie',aiLabel:'NormWise KI',month:'/Monat',downloadsTitle:'Ihre Vorlagenpakete',downloadsSub:'19–17 Dateien pro Paket · DE / EN / FR verfügbar',upgradeToAccess:'Upgraden für Zugang zu Downloads',paidPlanSubs:{starter:'Alle ISO-Vorlagen inklusive · Starter KI-Compliance-Assistent.',professional:'Alle ISO-Vorlagen inklusive · KI-Chatbot + Masterplan-Interview.',expert:'Alle ISO-Vorlagen inklusive · KI-Masterplan + Management-Review-Assistent · Wir übernehmen Ihre Gap-Analyse persönlich.'},upgradeFromPlan:'Plan upgraden →',interviewWelcomeTitle:'Masterplan-Interview',interviewWelcomeSub:'Ich führe dich Schritt für Schritt durch den Masterplan (T01). Beschreibe einfach ein Thema – ich erkenne automatisch den ISO-Bereich.',interviewPlaceholder:'Beschreibe ein Thema, z.B. "Wir führen neue Software ein"...',exportLabel:'Einträge erfasst',exportNone:'Noch keine Einträge',exportBtn:'⬇ Masterplan Excel exportieren',masterplanHeaders:['Nr.','Kategorie','Thema / Partei','Erfordernisse / Erwartungen','Risiko','Chancen','Bewertung','Maßnahmen','Verantwortlichkeit','Bis Wann?','Wirksamkeit geprüft (gem. ISO 9001:2026 Kap. 6.3)','Änderungen System','Kennzahlen'],reviewWelcomeTitle:'Management-Review-Assistent',reviewWelcomeSub:'Ich führe dich durch alle 8 Pflichtinputs der Managementbewertung nach ISO 9001 Klausel 9.3 und erstelle daraus ein exportfertiges Protokoll.',reviewPlaceholder:'Antworte auf die Frage oder beschreibe deine Situation...',reviewExportLabel:'Management Review bereit',reviewExportNone:'Noch kein Review erfasst',reviewExportBtn:'⬇ Management Review exportieren',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['KI-Q&A zu ISO 9001, 14001 & 45001','DE/EN/FR','Inkl. Entwurf 2026/2027','Alle notwendigen Dokumente für ISO 9001, 14001 & 45001 (DE/EN/FR)','E-Mail-Support (48h)'],btn:'Starter wählen →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// beliebtester',name:'Professional',price:'€199',features:['Alles aus Starter','Masterplan-Interview – KI füllt automatisch aus','Prioritäts-Support'],btn:'Professional wählen →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// experte',name:'Expert',price:'€499',features:['Alles in Professional','KI-geführter Management-Review-Assistent','Wir übernehmen Ihre Gap-Analyse persönlich','Same-Day-Support'],btn:'Expert wählen →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
-  fr:{logout:'Se déconnecter',trialTitle:'Essai gratuit actif',questionsRemaining:'questions gratuites restantes.',upgradeBtn:'Changer de plan →',trialEnded:'🔒 Essai terminé — choisissez un plan',trialEndedSub:'Vous avez utilisé vos 5 questions gratuites.',choosePlan:'Choisir un plan →',questionsUsed:'Questions utilisées',trialUsage:"Utilisation de l'essai",chatTitle:'Assistant Conformité ISO',welcomeTitle:'Bienvenue sur NormWise !',welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",welcomeFree:' questions gratuites.',placeholder:"Questions sur ISO 9001, audits...",wallTitle:'Votre essai est terminé 🎯',wallSub:"Vous avez utilisé vos 5 questions. Choisissez un plan.",modalTitle:'Choisissez votre plan',modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",youLabel:'Vous',aiLabel:'NormWise IA',month:'/mois',downloadsTitle:'Vos Packs de Modèles',downloadsSub:'19–17 fichiers par pack · DE / EN / FR disponibles',upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',paidPlanSubs:{starter:'Tous les modèles ISO inclus · Assistant conformité IA Starter.',professional:'Tous les modèles ISO inclus · Chatbot IA + interview Plan Directeur.',expert:'Tous les modèles ISO inclus · IA Plan Directeur + assistant Revue de Direction · Nous réalisons votre analyse des écarts pour vous.'},upgradeFromPlan:'Changer de plan →',interviewWelcomeTitle:'Interview Plan Directeur',interviewWelcomeSub:"Je vous guide étape par étape dans le Plan Directeur (T01). Décrivez simplement un sujet et je détecterai automatiquement la clause ISO.",interviewPlaceholder:'Décrivez un sujet, ex. "Nous introduisons un nouveau logiciel"...',exportLabel:'entrées collectées',exportNone:'Aucune entrée encore',exportBtn:'⬇ Exporter Plan Directeur Excel',masterplanHeaders:['N°','Catégorie','Thème / Partie','Exigences / Attentes','Risque','Opportunités','Évaluation','Actions','Responsabilité','Échéance','Efficacité vérifiée (selon ISO 9001:2026 Art. 6.3)','Modifications système','Indicateurs / KPIs'],reviewWelcomeTitle:'Assistant Revue de Direction',reviewWelcomeSub:"Je vous guide à travers les 8 éléments d'entrée obligatoires de la revue de direction selon ISO 9001 Article 9.3, puis je génère un compte-rendu prêt à exporter.",reviewPlaceholder:'Répondez à la question, ou décrivez votre situation...',reviewExportLabel:'Revue de Direction prête',reviewExportNone:'Aucune revue enregistrée',reviewExportBtn:'⬇ Exporter la Revue de Direction',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['IA Q&R sur ISO 9001, 14001 & 45001','DE/EN/FR','Incl. projet 2026/2027','Tous les documents obligatoires ISO 9001, 14001 & 45001 (DE/EN/FR)','Support e-mail (48h)'],btn:'Choisir Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// plus populaire',name:'Professional',price:'€199',features:['Tout du Starter',"Interview Plan Directeur — l'IA le remplit pour vous",'Support prioritaire'],btn:'Choisir Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Tout dans Professional',"Assistant Revue de Direction guidé par IA",'Nous réalisons votre analyse des écarts pour vous','Support même jour'],btn:'Choisir Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]}
+  en:{logout:'Log out',trialTitle:'Free Trial Active',questionsRemaining:'free questions remaining.',upgradeBtn:'Upgrade Plan →',trialEnded:'🔒 Trial ended — choose a plan to continue',trialEndedSub:"You've used all 5 free questions. Upgrade to keep going.",choosePlan:'Choose a Plan →',questionsUsed:'Questions used',trialUsage:'Trial usage',chatTitle:'ISO Compliance Assistant',welcomeTitle:'Welcome to NormWise!',welcomeSub:'Ask me anything about ISO standards, compliance, audits, or gap analysis. You have ',welcomeFree:' free questions to explore.',placeholder:'Ask about ISO 9001, audits, gap analysis...',wallTitle:'Your free trial is complete 🎯',wallSub:"You've used all 5 free questions. Choose a plan below to continue.",modalTitle:'Choose your plan',modalSub:'Upgrade anytime to get unlimited access to NormWise AI and all premium features.',youLabel:'You',aiLabel:'NormWise AI',month:'/month',downloadsTitle:'Your Template Packages',downloadsSub:'19–17 files per package · DE / EN / FR available',upgradeToAccess:'Upgrade to access downloads',paidPlanSubs:{starter:'All ISO templates included · Starter AI compliance assistant.',professional:'All ISO templates included · Full AI chatbot + Masterplan interview.',expert:'All ISO templates included · AI Masterplan + Management Review assistant · We handle your Gap Analysis for you.'},upgradeFromPlan:'Upgrade →',interviewWelcomeTitle:'Masterplan Interview',interviewWelcomeSub:'I guide you step by step through the Masterplan (T01). Just describe a topic and I will detect the ISO clause automatically.',interviewPlaceholder:'Describe a topic, e.g. "We are introducing new software"...',exportLabel:'entries collected',exportNone:'No entries yet',exportBtn:'⬇ Export Masterplan Excel',masterplanHeaders:['No.','Category','Topic / Party','Requirements / Expectations','Risk','Opportunities','Rating','Actions','Responsibility','Due Date','Effectiveness Checked (per ISO 9001:2026 Cl. 6.3)','System Changes','KPIs / Metrics'],reviewWelcomeTitle:'Management Review Assistant',reviewWelcomeSub:'I guide you through the full Integrated Management Review — general info, shared inputs, KPIs and findings per standard (9001/14001/45001), decided actions, overall assessment and signatures — then generate a ready-to-export record.',reviewPlaceholder:'Answer the question, or describe your situation...',reviewExportLabel:'Management Review ready',reviewExportNone:'No review recorded yet',reviewExportBtn:'⬇ Export Management Review',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['AI Q&A on ISO 9001, 14001 & 45001','DE/EN/FR','Incl. 2026/2027 draft','All required documents for ISO 9001, 14001 & 45001 (DE/EN/FR)','Email support (48h)'],btn:'Get Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// most popular',name:'Professional',price:'€199',features:['Everything in Starter','Masterplan interview — AI fills it out for you','Priority support'],btn:'Get Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Everything in Professional','AI-guided Management Review assistant','We handle your Gap Analysis for you','Same-day support'],btn:'Get Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  de:{logout:'Abmelden',trialTitle:'Kostenlose Testversion aktiv',questionsRemaining:'kostenlose Fragen verbleibend.',upgradeBtn:'Plan upgraden →',trialEnded:'🔒 Test beendet — wählen Sie einen Plan',trialEndedSub:'Sie haben alle 5 kostenlosen Fragen genutzt.',choosePlan:'Plan wählen →',questionsUsed:'Genutzte Fragen',trialUsage:'Testnutzung',chatTitle:'ISO-Compliance-Assistent',welcomeTitle:'Willkommen bei NormWise!',welcomeSub:'Fragen Sie mich alles über ISO-Normen, Audits oder Gap-Analysen. Sie haben ',welcomeFree:' kostenlose Fragen.',placeholder:'Fragen zu ISO 9001, Audits, Gap-Analyse...',wallTitle:'Ihre Testversion ist abgeschlossen 🎯',wallSub:'Sie haben alle 5 kostenlosen Fragen genutzt. Wählen Sie einen Plan.',modalTitle:'Plan wählen',modalSub:'Upgraden Sie für unbegrenzten Zugang zu NormWise AI und allen Premium-Funktionen.',youLabel:'Sie',aiLabel:'NormWise KI',month:'/Monat',downloadsTitle:'Ihre Vorlagenpakete',downloadsSub:'19–17 Dateien pro Paket · DE / EN / FR verfügbar',upgradeToAccess:'Upgraden für Zugang zu Downloads',paidPlanSubs:{starter:'Alle ISO-Vorlagen inklusive · Starter KI-Compliance-Assistent.',professional:'Alle ISO-Vorlagen inklusive · KI-Chatbot + Masterplan-Interview.',expert:'Alle ISO-Vorlagen inklusive · KI-Masterplan + Management-Review-Assistent · Wir übernehmen Ihre Gap-Analyse persönlich.'},upgradeFromPlan:'Plan upgraden →',interviewWelcomeTitle:'Masterplan-Interview',interviewWelcomeSub:'Ich führe dich Schritt für Schritt durch den Masterplan (T01). Beschreibe einfach ein Thema – ich erkenne automatisch den ISO-Bereich.',interviewPlaceholder:'Beschreibe ein Thema, z.B. "Wir führen neue Software ein"...',exportLabel:'Einträge erfasst',exportNone:'Noch keine Einträge',exportBtn:'⬇ Masterplan Excel exportieren',masterplanHeaders:['Nr.','Kategorie','Thema / Partei','Erfordernisse / Erwartungen','Risiko','Chancen','Bewertung','Maßnahmen','Verantwortlichkeit','Bis Wann?','Wirksamkeit geprüft (gem. ISO 9001:2026 Kap. 6.3)','Änderungen System','Kennzahlen'],reviewWelcomeTitle:'Management-Review-Assistent',reviewWelcomeSub:'Ich führe dich durch das vollständige integrierte Managementbewertungsprotokoll — allgemeine Angaben, gemeinsame Eingaben, Kennzahlen und Befunde je Norm (9001/14001/45001), beschlossene Maßnahmen, Gesamtbewertung und Unterschriften — und erstelle daraus ein exportfertiges Protokoll.',reviewPlaceholder:'Antworte auf die Frage oder beschreibe deine Situation...',reviewExportLabel:'Management Review bereit',reviewExportNone:'Noch kein Review erfasst',reviewExportBtn:'⬇ Management Review exportieren',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['KI-Q&A zu ISO 9001, 14001 & 45001','DE/EN/FR','Inkl. Entwurf 2026/2027','Alle notwendigen Dokumente für ISO 9001, 14001 & 45001 (DE/EN/FR)','E-Mail-Support (48h)'],btn:'Starter wählen →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// beliebtester',name:'Professional',price:'€199',features:['Alles aus Starter','Masterplan-Interview – KI füllt automatisch aus','Prioritäts-Support'],btn:'Professional wählen →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// experte',name:'Expert',price:'€499',features:['Alles in Professional','KI-geführter Management-Review-Assistent','Wir übernehmen Ihre Gap-Analyse persönlich','Same-Day-Support'],btn:'Expert wählen →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]},
+  fr:{logout:'Se déconnecter',trialTitle:'Essai gratuit actif',questionsRemaining:'questions gratuites restantes.',upgradeBtn:'Changer de plan →',trialEnded:'🔒 Essai terminé — choisissez un plan',trialEndedSub:'Vous avez utilisé vos 5 questions gratuites.',choosePlan:'Choisir un plan →',questionsUsed:'Questions utilisées',trialUsage:"Utilisation de l'essai",chatTitle:'Assistant Conformité ISO',welcomeTitle:'Bienvenue sur NormWise !',welcomeSub:"Posez-moi vos questions sur les normes ISO, audits ou l'analyse des écarts. Vous avez ",welcomeFree:' questions gratuites.',placeholder:"Questions sur ISO 9001, audits...",wallTitle:'Votre essai est terminé 🎯',wallSub:"Vous avez utilisé vos 5 questions. Choisissez un plan.",modalTitle:'Choisissez votre plan',modalSub:"Passez à la version supérieure pour un accès illimité à NormWise AI.",youLabel:'Vous',aiLabel:'NormWise IA',month:'/mois',downloadsTitle:'Vos Packs de Modèles',downloadsSub:'19–17 fichiers par pack · DE / EN / FR disponibles',upgradeToAccess:'Passez à un plan pour accéder aux téléchargements',paidPlanSubs:{starter:'Tous les modèles ISO inclus · Assistant conformité IA Starter.',professional:'Tous les modèles ISO inclus · Chatbot IA + interview Plan Directeur.',expert:'Tous les modèles ISO inclus · IA Plan Directeur + assistant Revue de Direction · Nous réalisons votre analyse des écarts pour vous.'},upgradeFromPlan:'Changer de plan →',interviewWelcomeTitle:'Interview Plan Directeur',interviewWelcomeSub:"Je vous guide étape par étape dans le Plan Directeur (T01). Décrivez simplement un sujet et je détecterai automatiquement la clause ISO.",interviewPlaceholder:'Décrivez un sujet, ex. "Nous introduisons un nouveau logiciel"...',exportLabel:'entrées collectées',exportNone:'Aucune entrée encore',exportBtn:'⬇ Exporter Plan Directeur Excel',masterplanHeaders:['N°','Catégorie','Thème / Partie','Exigences / Attentes','Risque','Opportunités','Évaluation','Actions','Responsabilité','Échéance','Efficacité vérifiée (selon ISO 9001:2026 Art. 6.3)','Modifications système','Indicateurs / KPIs'],reviewWelcomeTitle:'Assistant Revue de Direction',reviewWelcomeSub:"Je vous guide à travers le compte-rendu complet de revue de direction intégrée — informations générales, éléments communs, indicateurs et constats par norme (9001/14001/45001), actions décidées, évaluation globale et signatures — puis je génère un compte-rendu prêt à exporter.",reviewPlaceholder:'Répondez à la question, ou décrivez votre situation...',reviewExportLabel:'Revue de Direction prête',reviewExportNone:'Aucune revue enregistrée',reviewExportBtn:'⬇ Exporter la Revue de Direction',plans:[{badge:'// starter',name:'Starter',price:'€97',features:['IA Q&R sur ISO 9001, 14001 & 45001','DE/EN/FR','Incl. projet 2026/2027','Tous les documents obligatoires ISO 9001, 14001 & 45001 (DE/EN/FR)','Support e-mail (48h)'],btn:'Choisir Starter →',primary:false,link:'https://buy.stripe.com/9B6cMY1qhc3TaPN9erfUQ00'},{badge:'// plus populaire',name:'Professional',price:'€199',features:['Tout du Starter',"Interview Plan Directeur — l'IA le remplit pour vous",'Support prioritaire'],btn:'Choisir Professional →',primary:true,link:'https://buy.stripe.com/00wbIU6KB5Fv9LJ2Q3fUQ01'},{badge:'// expert',name:'Expert',price:'€499',features:['Tout dans Professional',"Assistant Revue de Direction guidé par IA",'Nous réalisons votre analyse des écarts pour vous','Support même jour'],btn:'Choisir Expert →',primary:false,link:'https://buy.stripe.com/6oUdR2fh71pfaPNcqDfUQ02'}]}
 };
 
 function renderPlans(id){const t=T[currentLang]||T.en;const c=document.getElementById(id);if(!c)return;const enc=userEmail?encodeURIComponent(userEmail):'';c.innerHTML=t.plans.map(p=>`<div class="plan-card${p.primary?' featured':''}"><div class="plan-badge">${p.badge}</div><div class="plan-name">${p.name}</div><div class="plan-price">${p.price} <span>${t.month}</span></div><ul class="plan-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul><a href="${p.link}${enc?'?prefilled_email='+enc:''}" class="btn-plan${p.primary?' primary':''}" target="_blank">${p.btn}</a></div>`).join('');}
@@ -458,149 +459,196 @@ function buildEntryCard(entry,nr){
 }
 
 function buildReviewCard(review){
-  const fields=[
+  const normLabel={'9001':'ISO 9001','14001':'ISO 14001','45001':'ISO 45001'};
+  const scope=(review.applicableNorms||[]).map(n=>normLabel[n]||n).join(', ');
+  const topFields=[
     ['Unternehmen / Company',review.company],
+    ['Standort(e) / Location(s)',review.locations],
+    ['Protokoll-Nr. / Record No.',review.recordNumber],
     ['Datum / Date',review.date],
-    ['Teilnehmer / Participants',review.participants],
-    ['1. Maßnahmen vorheriger Reviews',review.input1_previousActions],
-    ['2. Externe/interne Themen',review.input2_externalInternalIssues],
-    ['3. Kundenzufriedenheit',review.input3_customerSatisfaction],
-    ['4. Qualitätsziele',review.input4_objectivesAchievement],
-    ['5. Prozessleistung',review.input5_processPerformance],
-    ['6. Nichtkonformitäten',review.input6_nonconformities],
-    ['7. Überwachungsergebnisse',review.input7_monitoringResults],
-    ['8. Lieferantenleistung',review.input8_supplierPerformance],
-    ['Verbesserungspotenziale',review.improvementOpportunities],
-    ['Entscheidungen',review.decisions]
+    ['Zeitraum / Period',review.period],
+    ['Geltende Normen / Scope',scope],
+    ['Nächste Bewertung / Next Review',review.nextReviewDate]
   ].filter(([,v])=>v&&v!=='null'&&v!=='');
-  return `<div class="entry-card"><div class="entry-card-title">✅ Management Review erfasst</div>${fields.map(([l,v])=>`<div class="entry-field"><span class="entry-field-label">${l}</span><span class="entry-field-value">${v}</span></div>`).join('')}</div>`;
-}
+  const participants=(review.participants||[]).map(p=>`${p.name} — ${p.role} (${p.norms})`).join('<br/>');
+  const sharedFields=[
+    ['a) Maßnahmen vorheriger Reviews',review.shared?.previousActions],
+    ['b) Externe/interne Themen',review.shared?.externalInternalChanges],
+    ['c) Ressourcen',review.shared?.resources],
+    ['d) Verbesserungsmöglichkeiten',review.shared?.improvementOpportunities]
+  ].filter(([,v])=>v&&v!=='null'&&v!=='');
+  const decided=(review.decidedActions||[]).map(a=>`#${a.nr}: ${a.action} — ${a.responsible} (bis ${a.deadline})`).join('<br/>');
+  const assessment=review.overallAssessment?Object.entries(review.overallAssessment).filter(([,v])=>v&&v!=='null').map(([k,v])=>`${normLabel[k.replace('iso','')]||k}: ${v}`).join('<br/>'):'';
 
-async function exportExcel(){
-  const t=T[currentLang]||T.en;
-  const headers=t.masterplanHeaders;
-  const labels={
-    de:{title:'NormWise — Masterplan',subtitle:'Kontext der Organisation · Interessierte Parteien · Risiken & Chancen · Maßnahmenplan',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Klauseln 4.1, 4.2, 6.1, 6.3',company:'Unternehmen:',createdBy:'Erstellt von:',date:'Datum:',version:'Version:'},
-    en:{title:'NormWise — Master Plan',subtitle:'Organizational Context · Interested Parties · Risks & Opportunities · Action Plan',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3',company:'Company:',createdBy:'Created by:',date:'Date:',version:'Version:'},
-    fr:{title:'NormWise — Plan Directeur',subtitle:'Contexte de l\'Organisation · Parties Intéressées · Risques & Opportunités · Plan d\'Actions',clauses:'ISO 9001:2015/2026 · ISO 14001:2015 · ISO 45001:2018  |  Clauses 4.1, 4.2, 6.1, 6.3',company:'Entreprise:',createdBy:'Créé par:',date:'Date:',version:'Version:'}
-  };
-  const l=labels[currentLang]||labels.en;
-  const sheetNames={de:'DE — Masterplan',en:'EN — Master Plan',fr:'FR — Plan Directeur'};
-
-  const wb=new ExcelJS.Workbook();
-  const ws=wb.addWorksheet(sheetNames[currentLang]||sheetNames.en);
-  ws.columns=[{width:5},{width:14},{width:24},{width:36},{width:28},{width:26},{width:11},{width:30},{width:18},{width:11},{width:26},{width:24},{width:22}];
-
-  const darkFill={type:'pattern',pattern:'solid',fgColor:{argb:'FF070C18'}};
-  const lightFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF8FAFF'}};
-  const grayFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF1F5F9'}};
-  const redFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFC0392B'}};
-
-  ws.mergeCells('A1:M1');
-  ws.getCell('A1').value=l.title;
-  ws.getCell('A1').font={name:'Arial',size:14,bold:true,color:{argb:'FFFFFFFF'}};
-  ws.getCell('A1').fill=darkFill;
-  ws.getRow(1).height=22;
-
-  ws.mergeCells('A2:M2');
-  ws.getCell('A2').value=l.subtitle;
-  ws.getCell('A2').font={name:'Arial',size:10,color:{argb:'FF94A3B8'}};
-  ws.getCell('A2').fill=darkFill;
-
-  ws.mergeCells('A3:M3');
-  ws.getCell('A3').value=l.clauses;
-  ws.getCell('A3').font={name:'Arial',size:9,color:{argb:'FF64748B'}};
-  ws.getCell('A3').fill=lightFill;
-
-  ws.getCell('A4').value=l.company;ws.getCell('A4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('A4').fill=grayFill;
-  ws.getCell('D4').value=l.createdBy;ws.getCell('D4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('D4').fill=grayFill;
-  ws.getCell('D4').value=l.createdBy;
-  ws.getCell('G4').value=userEmail||'';ws.getCell('G4').fill=grayFill;
-  ws.getCell('J4').value=l.date;ws.getCell('J4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('J4').fill=grayFill;
-  ws.getCell('K4').value=new Date().toLocaleDateString(currentLang==='de'?'de-DE':currentLang==='fr'?'fr-FR':'en-GB');ws.getCell('K4').fill=grayFill;
-  for(const addr of ['B4','C4','E4','F4','H4','I4','L4','M4']){ws.getCell(addr).fill=grayFill;}
-
-  const headerRow=ws.getRow(5);
-  headers.forEach((h,i)=>{
-    const cell=headerRow.getCell(i+1);
-    cell.value=h;
-    cell.font={name:'Arial',size:9,bold:true,color:{argb:'FFFFFFFF'}};
-    cell.fill=redFill;
-    cell.alignment={wrapText:true,vertical:'middle'};
+  let html=`<div class="entry-card"><div class="entry-card-title">✅ Management Review erfasst</div>`;
+  topFields.forEach(([l,v])=>{html+=`<div class="entry-field"><span class="entry-field-label">${l}</span><span class="entry-field-value">${v}</span></div>`;});
+  if(participants)html+=`<div class="entry-field"><span class="entry-field-label">Teilnehmer</span><span class="entry-field-value">${participants}</span></div>`;
+  sharedFields.forEach(([l,v])=>{html+=`<div class="entry-field"><span class="entry-field-label">${l}</span><span class="entry-field-value">${v}</span></div>`;});
+  ['iso9001','iso14001','iso45001'].forEach(key=>{
+    const sec=review[key];
+    if(!sec)return;
+    const label=normLabel[key.replace('iso','')];
+    if(!sec.applicable){html+=`<div class="entry-field"><span class="entry-field-label">${label}</span><span class="entry-field-value">Entfällt</span></div>`;return;}
+    (sec.kpis||[]).forEach(k=>{html+=`<div class="entry-field"><span class="entry-field-label">${label} — ${k.name}</span><span class="entry-field-value">Ziel: ${k.target} · Ist: ${k.actual}</span></div>`;});
   });
-  headerRow.height=28;
-
-  collectedEntries.forEach((e,i)=>{
-    const row=ws.getRow(6+i);
-    const vals=[i+1,e.kategorie||'',e.thema||'',e.erfordernisse||'',e.risiko||'',e.chancen||'',e.bewertung||'',e.massnahmen||'',e.verantwortlichkeit||'',e.bisWann||'',e.wirksamkeit||'',e.aenderungen||'',e.kennzahlen||''];
-    vals.forEach((v,idx)=>{row.getCell(idx+1).value=v;row.getCell(idx+1).font={name:'Arial',size:9};row.getCell(idx+1).alignment={wrapText:true,vertical:'top'};});
-  });
-
-  const buf=await wb.xlsx.writeBuffer();
-  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download='NormWise_Masterplan_'+new Date().toISOString().slice(0,10)+'.xlsx';
-  a.click();URL.revokeObjectURL(url);
+  if(decided)html+=`<div class="entry-field"><span class="entry-field-label">Beschlossene Maßnahmen</span><span class="entry-field-value">${decided}</span></div>`;
+  if(assessment)html+=`<div class="entry-field"><span class="entry-field-label">Gesamtbewertung</span><span class="entry-field-value">${assessment}</span></div>`;
+  if(review.additionalNotes&&review.additionalNotes!=='null')html+=`<div class="entry-field"><span class="entry-field-label">Anmerkungen</span><span class="entry-field-value">${review.additionalNotes}</span></div>`;
+  html+=`</div>`;
+  return html;
 }
 
 async function exportReview(){
   if(!reviewRecord)return;
-  const labels={
-    de:{title:'NormWise — Management Review',subtitle:'Managementbewertung gemäß ISO 9001:2015 Klausel 9.3',company:'Unternehmen:',date:'Datum:',participants:'Teilnehmer:',rows:[['1. Maßnahmen aus vorherigen Reviews','input1_previousActions'],['2. Änderungen externer/interner Themen','input2_externalInternalIssues'],['3. Kundenzufriedenheit & Stakeholder-Feedback','input3_customerSatisfaction'],['4. Erreichung der Qualitätsziele','input4_objectivesAchievement'],['5. Prozessleistung & Produktkonformität','input5_processPerformance'],['6. Nichtkonformitäten & Korrekturmaßnahmen','input6_nonconformities'],['7. Ergebnisse der Überwachung & Messung','input7_monitoringResults'],['8. Lieferantenleistung','input8_supplierPerformance'],['Verbesserungspotenziale','improvementOpportunities'],['Entscheidungen','decisions']]},
-    en:{title:'NormWise — Management Review',subtitle:'Management Review record per ISO 9001:2015 Clause 9.3',company:'Company:',date:'Date:',participants:'Participants:',rows:[['1. Status of actions from previous reviews','input1_previousActions'],['2. Changes in external/internal issues','input2_externalInternalIssues'],['3. Customer satisfaction & stakeholder feedback','input3_customerSatisfaction'],['4. Quality objectives achievement','input4_objectivesAchievement'],['5. Process performance & product conformity','input5_processPerformance'],['6. Nonconformities & corrective actions','input6_nonconformities'],['7. Monitoring & measurement results','input7_monitoringResults'],['8. Supplier / external provider performance','input8_supplierPerformance'],['Improvement opportunities','improvementOpportunities'],['Decisions','decisions']]},
-    fr:{title:'NormWise — Revue de Direction',subtitle:'Revue de direction selon ISO 9001:2015 Article 9.3',company:'Entreprise:',date:'Date:',participants:'Participants:',rows:[['1. Statut des actions des revues précédentes','input1_previousActions'],['2. Évolutions des enjeux internes/externes','input2_externalInternalIssues'],['3. Satisfaction client & retours parties intéressées','input3_customerSatisfaction'],['4. Atteinte des objectifs qualité','input4_objectivesAchievement'],['5. Performance des processus & conformité produit','input5_processPerformance'],['6. Non-conformités & actions correctives','input6_nonconformities'],['7. Résultats de surveillance & mesure','input7_monitoringResults'],["8. Performance des prestataires externes",'input8_supplierPerformance'],["Opportunités d'amélioration",'improvementOpportunities'],['Décisions','decisions']]}
+  const normLabel={'9001':'ISO 9001','14001':'ISO 14001','45001':'ISO 45001'};
+  const L={
+    de:{title:'NormWise — Integriertes Managementbewertungsprotokoll',subtitle:'ISO 9001:2015 (Kl. 9.3) · ISO 14001:2015 (Kl. 9.3) · ISO 45001:2018 (Kl. 9.3)',
+      company:'Unternehmen',locations:'Standort(e)',recordNumber:'Protokoll-Nr.',date:'Datum der Bewertung',period:'Bewertungszeitraum',scope:'Geltende Normen',nextReview:'Nächste Bewertung',
+      participantsHeader:'Teilnehmer/in',participantRole:'Funktion / Rolle',participantNorms:'Norm(en)',
+      sharedHeader:'2. Gemeinsame Eingaben (alle Normen)',sharedA:'a) Status der Maßnahmen aus früheren Managementbewertungen',sharedB:'b) Veränderungen externer und interner Themen',sharedC:'c) Ressourcen — Eignung und Bedarf',sharedD:'d) Verbesserungsmöglichkeiten',
+      kpiHeader:'Kennzahl / KPI',kpiTarget:'Zielwert',kpiActual:'Ist-Wert',
+      entfaellt:'Entfällt — nicht im Zertifizierungsumfang',
+      n9001kpis:['Kundenzufriedenheitsindex (CSI)','Nichtkonformitätsrate (NC-Rate)','Reklamationsquote','Liefertermintreue','Lieferantenqualifikationsquote','Auditerfüllungsgrad'],
+      n9001narr:['9001-a) Interne und externe Auditfeststellungen','9001-b) Kundenzufriedenheit und Kundenkommunikation','9001-c) Wirksamkeit der Maßnahmen zu Risiken und Chancen','9001-d) Änderungen am QMS / Lieferantenleistung'],
+      n14001kpis:['Energieverbrauch (kWh/Einheit)','CO2-Emissionen (t CO2 eq./Jahr)','Abfallaufkommen gesamt (t/Jahr)','Anteil gefährlicher Abfall (%)','Wasserverbrauch (m3/Jahr)','Compliance-Abweichungen (Anzahl)'],
+      n14001narr:['14001-a) Umweltaspekte — Aktualisierung und wesentliche Änderungen','14001-b) Einhaltung rechtlicher und anderer Anforderungen','14001-c) Umweltvorfälle und Notfallvorsorge','14001-d) Externe Auditfeststellungen (Umwelt) / Kommunikation'],
+      n45001kpis:['LTIFR (Unfälle/1 Mio. Arbeitsstd.)','Arbeitsunfälle mit Ausfalltagen (Anzahl)','Beinaheunfälle / Near-Miss (Anzahl)','Krankenstandsquote (%)','Unterweisungsquote (%)','Aktualität Gefährdungsbeurteilungen (%)'],
+      n45001narr:['45001-a) Arbeitsunfälle, Vorfälle und Untersuchungsergebnisse','45001-b) Gefährdungsbeurteilungen — Aktualisierungsstand','45001-c) Einhaltung Arbeitsschutzrecht — Compliance','45001-d) Beteiligung und Konsultation der Beschäftigten'],
+      actionsHeader:'6. Beschlossene Maßnahmen und Verantwortlichkeiten',actionsNr:'Nr.',actionsAction:'Beschlossene Maßnahme / Entscheidung',actionsResp:'Verantwortlich',actionsDeadline:'Frist',
+      assessmentHeader:'7. Gesamtbewertung des integrierten Managementsystems',notesHeader:'Ergänzende Anmerkungen / Strategische Hinweise',
+      signHeader:'8. Unterschriften & Freigabe',signTop:'Geschäftsführung / Oberste Leitung',signIms:'IMS-/Managementbeauftragte/r',signMinute:'Protokollführer/in'},
+    en:{title:'NormWise — Integrated Management Review Record',subtitle:'ISO 9001:2015 (Cl. 9.3) · ISO 14001:2015 (Cl. 9.3) · ISO 45001:2018 (Cl. 9.3)',
+      company:'Company',locations:'Location(s)',recordNumber:'Record No.',date:'Review Date',period:'Review Period',scope:'Applicable Standards',nextReview:'Next Review',
+      participantsHeader:'Participant',participantRole:'Function / Role',participantNorms:'Standard(s)',
+      sharedHeader:'2. Shared Inputs (all standards)',sharedA:'a) Status of actions from previous management reviews',sharedB:'b) Changes in external and internal issues',sharedC:'c) Resources — adequacy and needs',sharedD:'d) Improvement opportunities',
+      kpiHeader:'KPI',kpiTarget:'Target',kpiActual:'Actual',
+      entfaellt:'Not applicable — outside certification scope',
+      n9001kpis:['Customer Satisfaction Index (CSI)','Nonconformity rate','Complaint rate','On-time delivery rate','Supplier qualification rate','Audit fulfillment rate'],
+      n9001narr:['9001-a) Internal and external audit findings','9001-b) Customer satisfaction and communication','9001-c) Effectiveness of risk/opportunity actions','9001-d) QMS changes / supplier performance'],
+      n14001kpis:['Energy consumption (kWh/unit)','CO2 emissions (t CO2 eq./year)','Total waste generated (t/year)','Share of hazardous waste (%)','Water consumption (m3/year)','Compliance deviations (count)'],
+      n14001narr:['14001-a) Environmental aspects — update and significant changes','14001-b) Compliance with legal and other requirements','14001-c) Environmental incidents and emergency preparedness','14001-d) External audit findings (environmental) / communication'],
+      n45001kpis:['LTIFR (accidents/1M work hours)','Work accidents with lost days (count)','Near-misses (count)','Sick leave rate (%)','Training completion rate (%)','Risk assessments up to date (%)'],
+      n45001narr:['45001-a) Work accidents, incidents and investigation results','45001-b) Risk assessments — update status','45001-c) Compliance with OH&S legal requirements','45001-d) Employee participation and consultation'],
+      actionsHeader:'6. Decided Actions and Responsibilities',actionsNr:'No.',actionsAction:'Decided Action / Decision',actionsResp:'Responsible',actionsDeadline:'Deadline',
+      assessmentHeader:'7. Overall Assessment of the Integrated Management System',notesHeader:'Additional Remarks / Strategic Notes',
+      signHeader:'8. Signatures & Approval',signTop:'Top Management / CEO',signIms:'IMS / Management Representative',signMinute:'Minute-taker'},
+    fr:{title:'NormWise — Compte-rendu de Revue de Direction Intégrée',subtitle:'ISO 9001:2015 (Art. 9.3) · ISO 14001:2015 (Art. 9.3) · ISO 45001:2018 (Art. 9.3)',
+      company:'Entreprise',locations:'Site(s)',recordNumber:'N° de compte-rendu',date:'Date de la revue',period:'Période évaluée',scope:'Normes applicables',nextReview:'Prochaine revue',
+      participantsHeader:'Participant',participantRole:'Fonction / Rôle',participantNorms:'Norme(s)',
+      sharedHeader:'2. Éléments communs (toutes les normes)',sharedA:'a) Statut des actions des revues précédentes',sharedB:'b) Évolutions des enjeux internes/externes',sharedC:'c) Ressources — adéquation et besoins',sharedD:'d) Opportunités d\'amélioration',
+      kpiHeader:'Indicateur',kpiTarget:'Cible',kpiActual:'Réel',
+      entfaellt:'Non applicable — hors périmètre de certification',
+      n9001kpis:['Indice de satisfaction client (CSI)','Taux de non-conformité','Taux de réclamations','Taux de livraison à temps','Taux de qualification fournisseurs','Taux de réalisation des audits'],
+      n9001narr:['9001-a) Constats d\'audits internes et externes','9001-b) Satisfaction client et communication','9001-c) Efficacité des actions sur risques/opportunités','9001-d) Changements SMQ / performance fournisseurs'],
+      n14001kpis:['Consommation d\'énergie (kWh/unité)','Émissions CO2 (t CO2 eq./an)','Déchets totaux générés (t/an)','Part de déchets dangereux (%)','Consommation d\'eau (m3/an)','Écarts de conformité (nombre)'],
+      n14001narr:['14001-a) Aspects environnementaux — mise à jour et changements significatifs','14001-b) Conformité aux exigences légales et autres','14001-c) Incidents environnementaux et préparation aux urgences','14001-d) Constats d\'audits externes (environnement) / communication'],
+      n45001kpis:['TF (accidents/1M heures travaillées)','Accidents du travail avec arrêt (nombre)','Presqu\'accidents (nombre)','Taux d\'absentéisme maladie (%)','Taux de réalisation des formations (%)','Évaluations des risques à jour (%)'],
+      n45001narr:['45001-a) Accidents du travail, incidents et résultats d\'enquête','45001-b) Évaluations des risques — statut de mise à jour','45001-c) Conformité à la réglementation SST','45001-d) Participation et consultation des employés'],
+      actionsHeader:'6. Actions Décidées et Responsabilités',actionsNr:'N°',actionsAction:'Action / Décision',actionsResp:'Responsable',actionsDeadline:'Échéance',
+      assessmentHeader:'7. Évaluation Globale du Système de Management Intégré',notesHeader:'Remarques Complémentaires / Notes Stratégiques',
+      signHeader:'8. Signatures & Approbation',signTop:'Direction Générale',signIms:'Représentant SMI',signMinute:'Rédacteur du compte-rendu'}
   };
-  const l=labels[currentLang]||labels.en;
+  const l=L[currentLang]||L.en;
+  const r=reviewRecord;
+  const normLabelKey={'9001':'ISO 9001','14001':'ISO 14001','45001':'ISO 45001'};
+  const {Document,Packer,Paragraph,TextRun,Table,TableRow,TableCell,WidthType,AlignmentType,BorderStyle,ShadingType,HeadingLevel,PageOrientation} = docx;
 
-  const wb=new ExcelJS.Workbook();
-  const ws=wb.addWorksheet(l.title);
-  ws.columns=[{width:42},{width:80}];
+  const NAVY='070C18', RED='C0392B', GRAY='F1F5F9', WHITE='FFFFFF', DARKTXT='1E293B';
+  const cellBorder={style:BorderStyle.SINGLE,size:2,color:'D0D5DD'};
+  const allBorders={top:cellBorder,bottom:cellBorder,left:cellBorder,right:cellBorder};
 
-  const darkFill={type:'pattern',pattern:'solid',fgColor:{argb:'FF070C18'}};
-  const lightFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF8FAFF'}};
-  const grayFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFF1F5F9'}};
-  const redFill={type:'pattern',pattern:'solid',fgColor:{argb:'FFC0392B'}};
+  const headCell=(text,widthPct)=>new TableCell({width:{size:widthPct,type:WidthType.PERCENTAGE},shading:{type:ShadingType.CLEAR,color:'auto',fill:RED},borders:allBorders,children:[new Paragraph({children:[new TextRun({text,bold:true,color:WHITE,size:18})]})]});
+  const bodyCell=(text,widthPct,opts)=>new TableCell({width:{size:widthPct,type:WidthType.PERCENTAGE},shading:opts?.gray?{type:ShadingType.CLEAR,color:'auto',fill:GRAY}:undefined,borders:allBorders,children:[new Paragraph({children:[new TextRun({text:text||'',size:18})]})]});
+  const labelCell=(text,widthPct)=>new TableCell({width:{size:widthPct,type:WidthType.PERCENTAGE},shading:{type:ShadingType.CLEAR,color:'auto',fill:GRAY},borders:allBorders,children:[new Paragraph({children:[new TextRun({text,bold:true,color:DARKTXT,size:18})]})]});
 
-  ws.mergeCells('A1:B1');
-  ws.getCell('A1').value=l.title;
-  ws.getCell('A1').font={name:'Arial',size:14,bold:true,color:{argb:'FFFFFFFF'}};
-  ws.getCell('A1').fill=darkFill;
-  ws.getRow(1).height=22;
+  const children=[];
 
-  ws.mergeCells('A2:B2');
-  ws.getCell('A2').value=l.subtitle;
-  ws.getCell('A2').font={name:'Arial',size:10,color:{argb:'FF94A3B8'}};
-  ws.getCell('A2').fill=darkFill;
+  children.push(new Paragraph({shading:{type:ShadingType.CLEAR,color:'auto',fill:NAVY},children:[new TextRun({text:l.title,bold:true,color:WHITE,size:32})],spacing:{after:60}}));
+  children.push(new Paragraph({shading:{type:ShadingType.CLEAR,color:'auto',fill:NAVY},children:[new TextRun({text:l.subtitle,color:'94A3B8',size:18})],spacing:{after:240}}));
 
-  ws.getCell('A3').value=l.company;ws.getCell('A3').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('A3').fill=grayFill;
-  ws.getCell('B3').value=reviewRecord.company||'';ws.getCell('B3').fill=grayFill;
-  ws.getCell('A4').value=l.date;ws.getCell('A4').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('A4').fill=lightFill;
-  ws.getCell('B4').value=reviewRecord.date||'';ws.getCell('B4').fill=lightFill;
-  ws.getCell('A5').value=l.participants;ws.getCell('A5').font={name:'Arial',size:9,bold:true,color:{argb:'FF1E293B'}};ws.getCell('A5').fill=grayFill;
-  ws.getCell('B5').value=reviewRecord.participants||'';ws.getCell('B5').fill=grayFill;
+  children.push(new Paragraph({children:[new TextRun({text:'1. '+l.company+' / '+l.recordNumber,bold:true,color:WHITE,size:22})],shading:{type:ShadingType.CLEAR,color:'auto',fill:'1A3FA8'},spacing:{before:120,after:120}}));
 
-  let rowIdx=6;
-  l.rows.forEach(([label,key])=>{
-    const row=ws.getRow(rowIdx);
-    row.getCell(1).value=label;
-    row.getCell(1).font={name:'Arial',size:9,bold:true,color:{argb:'FFFFFFFF'}};
-    row.getCell(1).fill=redFill;
-    row.getCell(1).alignment={wrapText:true,vertical:'top'};
-    row.getCell(2).value=reviewRecord[key]||'';
-    row.getCell(2).font={name:'Arial',size:9};
-    row.getCell(2).alignment={wrapText:true,vertical:'top'};
-    rowIdx++;
+  const kvRows=[
+    [l.company,r.company],[l.locations,r.locations],[l.recordNumber,r.recordNumber],
+    [l.date,r.date],[l.period,r.period],
+    [l.scope,(r.applicableNorms||[]).map(n=>normLabelKey[n]||n).join(', ')],
+    [l.nextReview,r.nextReviewDate]
+  ];
+  children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:kvRows.map(([lab,val])=>new TableRow({children:[labelCell(lab,30),bodyCell(val,70)]}))}));
+  children.push(new Paragraph({text:'',spacing:{after:200}}));
+
+  if((r.participants||[]).length){
+    children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[
+      new TableRow({children:[headCell(l.participantsHeader,34),headCell(l.participantRole,33),headCell(l.participantNorms,33)]}),
+      ...r.participants.map(p=>new TableRow({children:[bodyCell(p.name,34),bodyCell(p.role,33),bodyCell(p.norms,33)]}))
+    ]}));
+    children.push(new Paragraph({text:'',spacing:{after:200}}));
+  }
+
+  const sectionTitle=(text)=>children.push(new Paragraph({children:[new TextRun({text,bold:true,color:WHITE,size:22})],shading:{type:ShadingType.CLEAR,color:'auto',fill:'1A3FA8'},spacing:{before:200,after:120}}));
+  const narrBlock=(label,value)=>{
+    children.push(new Paragraph({children:[new TextRun({text:label,bold:true,color:RED,size:19})],spacing:{before:100,after:40}}));
+    children.push(new Paragraph({children:[new TextRun({text:value||'—',size:19})],spacing:{after:120}}));
+  };
+
+  sectionTitle(l.sharedHeader);
+  narrBlock(l.sharedA,r.shared?.previousActions);
+  narrBlock(l.sharedB,r.shared?.externalInternalChanges);
+  narrBlock(l.sharedC,r.shared?.resources);
+  narrBlock(l.sharedD,r.shared?.improvementOpportunities);
+
+  const renderNormSection=(num,normKey,data,kpiNames,narrLabels,narrKeys)=>{
+    sectionTitle(num+'. '+normLabelKey[normKey]);
+    if(!data||!data.applicable){
+      children.push(new Paragraph({children:[new TextRun({text:l.entfaellt,italics:true,color:'64748B',size:19})],spacing:{after:160}}));
+      return;
+    }
+    const kpis=data.kpis||[];
+    children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[
+      new TableRow({children:[headCell(l.kpiHeader,50),headCell(l.kpiTarget,25),headCell(l.kpiActual,25)]}),
+      ...kpiNames.map((name,i)=>{const k=kpis[i]||{};return new TableRow({children:[bodyCell(name,50),bodyCell(k.target,25),bodyCell(k.actual,25)]});})
+    ]}));
+    children.push(new Paragraph({text:'',spacing:{after:120}}));
+    narrLabels.forEach((label,i)=>narrBlock(label,data[narrKeys[i]]));
+  };
+
+  renderNormSection(3,'9001',r.iso9001,l.n9001kpis,l.n9001narr,['auditFindings','customerSatisfaction','riskOpportunityEffectiveness','qmsChangesSupplierPerformance']);
+  renderNormSection(4,'14001',r.iso14001,l.n14001kpis,l.n14001narr,['environmentalAspects','legalCompliance','incidentsEmergencyPrep','externalAuditFindings']);
+  renderNormSection(5,'45001',r.iso45001,l.n45001kpis,l.n45001narr,['accidentsIncidents','riskAssessmentStatus','legalCompliance','employeeParticipation']);
+
+  sectionTitle(l.actionsHeader);
+  if((r.decidedActions||[]).length){
+    children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[
+      new TableRow({children:[headCell(l.actionsNr,8),headCell(l.actionsAction,50),headCell(l.actionsResp,22),headCell(l.actionsDeadline,20)]}),
+      ...r.decidedActions.map(a=>new TableRow({children:[bodyCell(String(a.nr||''),8),bodyCell(a.action,50),bodyCell(a.responsible,22),bodyCell(a.deadline,20)]}))
+    ]}));
+    children.push(new Paragraph({text:'',spacing:{after:200}}));
+  }
+
+  sectionTitle(l.assessmentHeader);
+  const oa=r.overallAssessment||{};
+  ['iso9001','iso14001','iso45001'].forEach(key=>{
+    const val=oa[key];
+    if(!val||val==='null')return;
+    narrBlock(normLabelKey[key.replace('iso','')],val);
   });
+  if(r.additionalNotes&&r.additionalNotes!=='null')narrBlock(l.notesHeader,r.additionalNotes);
 
-  const buf=await wb.xlsx.writeBuffer();
-  const blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  sectionTitle(l.signHeader);
+  const sig=r.signatures||{};
+  children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[
+    new TableRow({children:[labelCell(l.signTop,40),bodyCell(sig.topManagement,60)]}),
+    new TableRow({children:[labelCell(l.signIms,40),bodyCell(sig.imsRepresentative,60)]}),
+    new TableRow({children:[labelCell(l.signMinute,40),bodyCell(sig.minuteTaker,60)]})
+  ]}));
+
+  const doc=new Document({sections:[{properties:{},children}]});
+  const blob=await Packer.toBlob(doc);
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='NormWise_ManagementReview_'+new Date().toISOString().slice(0,10)+'.xlsx';
+  a.href=url;a.download='NormWise_ManagementReview_'+new Date().toISOString().slice(0,10)+'.docx';
   a.click();URL.revokeObjectURL(url);
 }
-
 // ── Auth & Plan ─────────────────────────────────────────────
 
 async function checkAuth(){try{const res=await fetch(`${SUPABASE_URL}/auth/v1/user`,{headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+getToken()}});const data=await res.json();if(!data.id){window.location.href='login.html';return;}currentUser=data;userEmail=data.email;document.getElementById('nav-email').textContent=data.email;await checkPlan(data.email);loadUsage();updateUI();}catch(e){window.location.href='login.html';}}
