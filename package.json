@@ -5,6 +5,10 @@
   "dependencies": {
     "stripe": "^17.0.0",
     "@supabase/supabase-js": "^2.45.0",
-    "standardwebhooks": "^1.0.0"
+    "standardwebhooks": "^1.0.0",
+    "mammoth": "^1.7.0",
+    "xlsx": "^0.18.5",
+    "pdf-parse": "^1.1.1",
+    "formidable": "^3.5.1"
   }
 }
